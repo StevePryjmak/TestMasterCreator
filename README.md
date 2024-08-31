@@ -12,3 +12,19 @@ but not shure if it is best aprouch
 
 Second problem i'm thinking about how to save tset i thoud about Serialize my test class and just save in bit format but i'm not sure whether 
 when i chage sorse code would it be problem for my old saved test. If bit format saves only field probably not but if it works other way then i think i could be a problem with this
+
+
+Clases
+
+Test - class wich contain few field and mainly it contains vector of pointes on base questi
+Question clase - difrent types of question clase i think ablout do something like base question extends Gui element like JPanel(probalbly for this projekt i should use JavaFX instead) and each question class difret type extends base class each test will be separate gui elemnt 
+
+Profs of using javaFX:
+Simple to bild difrent question with difrent batons 
+
+Cons:
+Had problem with pakajing all javaFX dependecies to jar file using gradle
+
+
+And thats probably it i think in think projekt i need just configure projekt configer proper question difrent type hadler 
+and solve this problem whith Serializele version controler test creator or function to abdates serialized old clase to new version (like i said if serializeble only sawing filed it could be easy solve also i can try to handle saving test with same sord of database but i think it would be harder then just save bit serisalize class) and create a lot of gui panels
