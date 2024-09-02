@@ -42,3 +42,8 @@ and solve this problem whith Serializele version controler test creator or funct
 
 
 
+## Workflow
+ 
+JavaFX was configured corectly and creating simple window 
+also probably should now configure proper jar file criation with pakaging all dependencies
+but if build and then use  .\gradlew.bat :app:run  everyting works
