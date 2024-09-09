@@ -17,7 +17,7 @@ application {
 }
 
 javafx {
-    version = "17.0.6"
+    version = "22.0.1"
     modules = listOf(
         "javafx.base",
         "javafx.controls",
@@ -30,8 +30,6 @@ javafx {
 }
 
 dependencies {
-    //implementation("org.controlsfx:controlsfx:11.1.2")
-
     // Use JUnit Jupiter for testing.
     testImplementation(libs.junit.jupiter)
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
@@ -51,4 +49,18 @@ java {
 
 tasks.test {
     useJUnitPlatform()
+}
+
+
+tasks.jar {
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+    manifest {
+        attributes(
+            "Main-Class" to "testmastercreator.Main"
+        )
+    }
+
+    from({
+        configurations.runtimeClasspath.get().map { if (it.isDirectory) it else zipTree(it) }
+    })
 }
