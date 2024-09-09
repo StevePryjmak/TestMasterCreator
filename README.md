@@ -47,3 +47,6 @@ and solve this problem whith Serializele version controler test creator or funct
 JavaFX was configured corectly and creating simple window 
 also probably should now configure proper jar file criation with pakaging all dependencies
 but if build and then use  .\gradlew.bat :app:run  everyting works
+
+Found why cant configure proper jar file when as ntery point set class which extends aplication it just would work
+Solution : create inbetween class
