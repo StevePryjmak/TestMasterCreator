@@ -50,3 +50,5 @@ but if build and then use  .\gradlew.bat :app:run  everyting works
 
 Found why cant configure proper jar file when as ntery point set class which extends aplication it just would work
 Solution : create inbetween class
+
+Extend Scene wasnt best idea thehere are a lot of problems with this and it harder tto configure what i need beter aprouch probably would be just have scene  varible in question class and test will just use get scene aand put it on the stage
