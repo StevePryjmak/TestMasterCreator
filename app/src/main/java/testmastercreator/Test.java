@@ -1,13 +1,11 @@
 package testmastercreator;
 
-import java.util.List;
-import java.util.NoSuchElementException;
-import java.util.ArrayList;
-import java.util.Iterator;
+import java.util.*;
 
 
 public class Test implements Iterable<AbstractQuestion> {
     private List<AbstractQuestion> questions = new ArrayList<>();
+    private boolean shuffle = false;
 
     public Test() {}
 
@@ -37,7 +35,7 @@ public class Test implements Iterable<AbstractQuestion> {
         questions.add(question);
     }
 
-    // iterator
+    // iterators
     private class QuestionIterator implements Iterator<AbstractQuestion> {
         private int currentIndex = 0;
 
@@ -56,11 +54,37 @@ public class Test implements Iterable<AbstractQuestion> {
         }
     }
 
+    private class ShuffledQuestionIterator implements Iterator<AbstractQuestion> {
+        private List<AbstractQuestion> shuffledQuestions;
+        private int currentIndex = 0;
+
+        public ShuffledQuestionIterator() {
+            shuffledQuestions = new ArrayList<>(questions);
+            Collections.shuffle(shuffledQuestions);  // Shuffle the questions list
+        }
+
+        @Override
+        public boolean hasNext() {
+            return currentIndex < shuffledQuestions.size();
+        }
+
+        @Override
+        public AbstractQuestion next() {
+            if (!hasNext()) {
+                throw new NoSuchElementException();
+            }
+            return shuffledQuestions.get(currentIndex++);
+        }
+    }
+
+
     @Override
     public Iterator<AbstractQuestion> iterator() {
-        return new QuestionIterator();
+        if (shuffle) {
+            return new ShuffledQuestionIterator();
+        } else {
+            return new QuestionIterator();
+        }
     }
 
 }
-
-
