@@ -1,0 +1,37 @@
+/* File: dark-theme.css */
+.anchor-pane {
+    -fx-background-color: #1e1e1e; /* Dark background */
+}
+
+.button {
+    -fx-background-color: #2d2d2d; /* Slightly lighter than background */
+    -fx-text-fill: #e0e0e0; /* Light gray text */
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+    -fx-padding: 10 20;
+    -fx-border-color: #3a3a3a; /* Subtle border */
+    -fx-border-width: 2px;
+}
+
+.button:hover {
+    -fx-background-color: #3a3a3a; /* Change button background on hover */
+    -fx-cursor: hand; /* Show pointer cursor on hover */
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 10, 0, 0, 0); /* Add soft shadow on hover */
+}
+
+.button:pressed {
+    -fx-background-color: #444444; /* Darker button when pressed */
+}
+
+.button:focused {
+    -fx-border-color: #4CAF50; /* Subtle green border to indicate focus */
+    -fx-border-width: 2px;
+}
+
+.text {
+    -fx-font-size: 16px;
+    -fx-text-fill: #cfcfcf; /* Light gray text for better contrast */
+}
+
