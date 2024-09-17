@@ -54,3 +54,5 @@ Solution : create inbetween class
 Extend Scene wasnt best idea thehere are a lot of problems with this and it harder tto configure what i need beter aprouch probably would be just have scene  varible in question class and test will just use get scene aand put it on the stage
 
 Created test example ewerything works like expacted (need to create test cheking and waiting untill question is anwerd but for now lokks fine)
+Problem : how to hadle questoin and aswer and swithing ot next aswer?
+I think good solution is to have controler for each question when check answer is presed it should call  function in App which will be updated scene updating core and maybe also something else
