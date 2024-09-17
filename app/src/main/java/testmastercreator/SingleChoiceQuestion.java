@@ -13,7 +13,7 @@ public class SingleChoiceQuestion extends AbstractQuestion {
     private List<String> options;
     private int correctAnswerIndex;
 
-    private SingleChoiceQuestoinController controller;
+    private SingleChoiceQuestionController controller;
 
 
     public SingleChoiceQuestion(String question, List<String> options, int correctAnswerIndex) throws IOException {
@@ -22,7 +22,7 @@ public class SingleChoiceQuestion extends AbstractQuestion {
         Parent root = loader.load();
 
         controller = loader.getController();
-        controller.setQuestionAndAnswers(question, options);
+        controller.setQuestionAndAnswers(question, options, options.get(correctAnswerIndex));
 
         scene = new Scene(root);
 

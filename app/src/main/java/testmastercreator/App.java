@@ -3,6 +3,7 @@ package testmastercreator;
 
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.Iterator;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -14,6 +15,7 @@ public class App extends Application
 {
     private static Stage stage;
     private Test test;
+    private static Iterator<AbstractQuestion> testIterator;
 
     @Override
     public void start(Stage stage) throws IOException {
@@ -23,7 +25,7 @@ public class App extends Application
         scene.getStylesheets().add("/Styles.css");
         stage.setScene(scene);
         stage.show();
-        runExampleTest();
+        //runExampleTest();
         //experimental();
     }
 
@@ -56,9 +58,24 @@ public class App extends Application
 
     public void runExampleTest() {
         test = TestInitializer.createExampleTest();
-        for (AbstractQuestion question : test) {
-            stage.setScene(question.getScene());
+        testIterator = test.iterator();
+        nextQuestion();
+    }   
+
+    public static void nextQuestion() {
+        if (!testIterator.hasNext()) {
+            try {
+                Parent root = FXMLLoader.load(App.class.getResource("/StartScene.fxml"));
+                Scene scene = new Scene(root);
+                scene.getStylesheets().add("/Styles.css");
+                stage.setScene(scene);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
-    }    
+        AbstractQuestion question = testIterator.next();
+        stage.setScene(question.getScene());
+        
+    }
 }
 
