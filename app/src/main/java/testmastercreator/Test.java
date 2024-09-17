@@ -31,7 +31,7 @@ public class Test implements Iterable<AbstractQuestion> {
         questions.remove(index);
     }
     
-    public void addQuestoin(AbstractQuestion question) {
+    public void addQuestion(AbstractQuestion question) {
         questions.add(question);
     }
 
