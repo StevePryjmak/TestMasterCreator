@@ -56,3 +56,32 @@ Extend Scene wasnt best idea thehere are a lot of problems with this and it hard
 Created test example ewerything works like expacted (need to create test cheking and waiting untill question is anwerd but for now lokks fine)
 Problem : how to hadle questoin and aswer and swithing ot next aswer?
 I think good solution is to have controler for each question when check answer is presed it should call  function in App which will be updated scene updating core and maybe also something else
+
+i thikning i ahve no structure and file mangment in my progect now i whant change it to someting like this 
+
+src
+ └── main
+     ├── java
+     │    └── com
+     │        └── testmastercreator
+     │             ├── model
+     │             │    ├── Questions
+     │             │    │   ├── AbstractQuestion.java
+     │             │    │   ├── SingleChoiceQuestion.java   
+     │             │    │   └── Other types
+     │             │    └── Test.java
+     │             ├── controller
+     │             │    ├── SingleChoiceQuestionController.java
+     │             │    ├── StartSceneController.java
+     │             │    └── TestInitializer.java // will be here for now
+     │             └── app
+     │                  ├── App.java
+     │                  └── Main.java
+     ├── resources
+     │    ├── fxml
+     │    │    ├── SingleChoiceQuestionScene.fxml
+     │    │    ├── StartScene.fxml //could be expanded later for more folder specyfication
+     │    └── css
+     │         └── Styles.css
+     └── test
+         └── (something Here)
