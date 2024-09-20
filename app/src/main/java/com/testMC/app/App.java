@@ -1,9 +1,14 @@
 
-package testmastercreator;
+package com.testMC.app;
 
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.Iterator;
+
+import com.testMC.controller.TestInitializer;
+import com.testMC.model.AbstractQuestion;
+import com.testMC.model.SingleChoiceQuestion;
+import com.testMC.model.Test;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -20,9 +25,9 @@ public class App extends Application
     @Override
     public void start(Stage stage) throws IOException {
         App.stage = stage;
-        Parent root = FXMLLoader.load(getClass().getResource("/StartScene.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/StartScene.fxml"));
         Scene scene = new Scene(root);
-        scene.getStylesheets().add("/Styles.css");
+        scene.getStylesheets().add("/css/Styles.css");
         stage.setScene(scene);
         stage.show();
         //runExampleTest();

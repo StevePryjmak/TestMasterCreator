@@ -63,7 +63,7 @@ src
  └── main
      ├── java
      │    └── com
-     │        └── testmastercreator
+     │        └── testMC
      │             ├── model
      │             │    ├── Questions
      │             │    │   ├── AbstractQuestion.java

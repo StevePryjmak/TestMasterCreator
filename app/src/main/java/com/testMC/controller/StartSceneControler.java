@@ -1,4 +1,6 @@
-package testmastercreator;
+package com.testMC.controller;
+
+import com.testMC.app.App;
 
 import javafx.fxml.FXML;
 

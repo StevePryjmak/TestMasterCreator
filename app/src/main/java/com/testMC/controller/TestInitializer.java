@@ -1,8 +1,11 @@
-package testmastercreator;
+package com.testMC.controller;
 
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
+
+import com.testMC.model.SingleChoiceQuestion;
+import com.testMC.model.Test;
 
 public class TestInitializer {
 

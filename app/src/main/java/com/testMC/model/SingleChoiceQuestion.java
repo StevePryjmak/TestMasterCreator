@@ -1,4 +1,4 @@
-package testmastercreator;
+package com.testMC.model;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -6,6 +6,9 @@ import javafx.scene.Scene;
 
 import java.io.IOException;
 import java.util.List;
+
+import com.testMC.app.App;
+import com.testMC.controller.SingleChoiceQuestionController;
 
 public class SingleChoiceQuestion extends AbstractQuestion {
 
@@ -18,7 +21,7 @@ public class SingleChoiceQuestion extends AbstractQuestion {
 
     public SingleChoiceQuestion(String question, List<String> options, int correctAnswerIndex) throws IOException {
         
-        FXMLLoader loader = new FXMLLoader(App.class.getResource("/SingleChoiceQuestionScene.fxml"));
+        FXMLLoader loader = new FXMLLoader(App.class.getResource("/fxml/SingleChoiceQuestionScene.fxml"));
         Parent root = loader.load();
 
         controller = loader.getController();

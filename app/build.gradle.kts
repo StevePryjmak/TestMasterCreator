@@ -13,7 +13,7 @@ repositories {
 val junitVersion = "5.9.2"
 
 application {
-    mainClass = "testmastercreator.App"
+    mainClass = "com.testMC.app.Main"
 }
 
 javafx {
@@ -56,7 +56,7 @@ tasks.jar {
     duplicatesStrategy = DuplicatesStrategy.EXCLUDE
     manifest {
         attributes(
-            "Main-Class" to "testmastercreator.Main"
+            "Main-Class" to "com.testMC.app.Main"
         )
     }
 

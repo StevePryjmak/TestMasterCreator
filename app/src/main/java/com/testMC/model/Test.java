@@ -1,4 +1,4 @@
-package testmastercreator;
+package com.testMC.model;
 
 import java.util.*;
 
