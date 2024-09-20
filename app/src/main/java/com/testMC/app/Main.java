@@ -1,4 +1,4 @@
-package testmastercreator;
+package com.testMC.app;
 
 
 // When give as a entery point class wich extend aplication it just inst working

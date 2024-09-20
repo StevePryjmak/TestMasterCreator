@@ -1,6 +1,9 @@
-package testmastercreator;
+package com.testMC.controller;
 
 import java.util.List;
+
+import com.testMC.app.App;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
