@@ -1,4 +1,4 @@
-package com.testMC.app;
+package com.LerningBara.app;
 
 
 // When give as a entery point class wich extend aplication it just inst working

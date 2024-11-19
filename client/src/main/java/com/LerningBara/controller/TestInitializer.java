@@ -1,11 +1,11 @@
-package com.testMC.controller;
+package com.LerningBara.controller;
 
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 
-import com.testMC.model.SingleChoiceQuestion;
-import com.testMC.model.Test;
+import com.LerningBara.model.SingleChoiceQuestion;
+import com.LerningBara.model.Test;
 
 public class TestInitializer {
 
