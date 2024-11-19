@@ -1,4 +1,4 @@
-package com.testMC.model;
+package com.LerningBara.model;
 
 import javafx.scene.Scene;
 

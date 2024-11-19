@@ -1,8 +1,8 @@
-package com.testMC.controller;
+package com.LerningBara.controller;
 
 import java.util.List;
 
-import com.testMC.app.App;
+import com.LerningBara.app.App;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -71,7 +71,7 @@ public class SingleChoiceQuestionController {
     
     @FXML
     private void handleCheckButton() {
-        // Get the selected radio button
+        
         RadioButton selectedButton = (RadioButton) toggleGroup.getSelectedToggle();
 
         if (selectedButton == null) {
@@ -79,8 +79,8 @@ public class SingleChoiceQuestionController {
         } else {
             
             String selectedAnswer = selectedButton.getText();
-            checkAnswer(selectedAnswer);  // Check if the answer is correct
-            App.nextQuestion();  // Load the next question
+            checkAnswer(selectedAnswer); 
+            App.getInstance().nextQuestion();
         }
     }
 

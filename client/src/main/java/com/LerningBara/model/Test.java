@@ -1,6 +1,9 @@
-package com.testMC.model;
+package com.LerningBara.model;
 
 import java.util.*;
+
+import QuestionData.AbstractQuestionData;
+import com.LerningBara.model.QuestionConventor;
 
 
 public class Test implements Iterable<AbstractQuestion> {
@@ -18,6 +21,19 @@ public class Test implements Iterable<AbstractQuestion> {
             this.questions.add(question);
         }
     }
+
+    public Test(List<AbstractQuestionData> questions, boolean dataConversion) {
+        for (AbstractQuestionData questionData : questions) {
+            this.questions.add(QuestionConventor.convertToQuestion(questionData));
+        }
+    }
+
+    // public Test(List<AbstractQuestionData> questionDataList) {
+    //     for (AbstractQuestionData questionData : questionDataList) {
+    //         AbstractQuestion question = QuestionConventor.convertToQuestion(questionData);
+    //         this.questions.add(question);
+    //     }
+    // }
 
     public List<AbstractQuestion> getQuestions() {
         return questions;
