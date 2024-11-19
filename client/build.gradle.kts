@@ -13,7 +13,7 @@ repositories {
 val junitVersion = "5.9.2"
 
 application {
-    mainClass = "com.testMC.app.Main"
+    mainClass = "com.LerningBara.app.Main"
 }
 
 javafx {
@@ -30,6 +30,8 @@ javafx {
 }
 
 dependencies {
+
+    implementation(project(":network"))
     // Use JUnit Jupiter for testing.
     testImplementation(libs.junit.jupiter)
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
@@ -54,9 +56,10 @@ tasks.test {
 
 tasks.jar {
     duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+    dependsOn(":network:jar")
     manifest {
         attributes(
-            "Main-Class" to "com.testMC.app.Main"
+            "Main-Class" to "com.LerningBara.app.Main"
         )
     }
 
