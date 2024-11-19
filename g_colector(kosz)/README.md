@@ -85,3 +85,10 @@ src
      │         └── Styles.css
      └── test
          └── (something Here)
+
+
+Qick recap more detailed recap what i need to do
+1. Implement test save option to have you created priviously test ( it could be database but i think for now i just od it with serializable because i don't see the need for database here) what if source code change it could be a problem but it would if code stays unchanged XD;
+2. create end test feedback
+3. Refactor some small detail and write simple test(test as like code tests) to be sure it works as expected in each version
+4. Write other types of tests;
