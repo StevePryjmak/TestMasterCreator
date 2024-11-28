@@ -20,7 +20,7 @@ public class App extends Application
     private static Stage stage;
     private Test test;
     private static Iterator<AbstractQuestion> testIterator;
-    public static Client client;
+    public Client client;
 
     @Override
     public void start(Stage stage) {
