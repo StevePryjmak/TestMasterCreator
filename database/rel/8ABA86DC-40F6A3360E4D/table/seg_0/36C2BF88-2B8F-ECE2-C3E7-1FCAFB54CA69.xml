@@ -1,0 +1,75 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="36C2BF88-2B8F-ECE2-C3E7-1FCAFB54CA69" name="Test_question">
+<createdBy>xxxx</createdBy>
+<createdTime>2024-11-24 16:10:21 UTC</createdTime>
+<ownerDesignName>database</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="Tests_TestId" id="AFF68CD4-9FB0-127B-3426-B55B7AC7474C">
+<createdBy>xxxx</createdBy>
+<createdTime>2024-11-24 16:10:21 UTC</createdTime>
+<ownerDesignName>database</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="29286FA8-1202-2C92-5B9F-E6B92629B711" referredColumn="95C436B1-F599-0D72-F34E-E26FB13AC680"/>
+</associations>
+</Column>
+<Column name="Questions_QuestionId" id="B8620B28-412F-5821-E2EA-92C71FF9E648">
+<createdBy>xxxx</createdBy>
+<createdTime>2024-11-24 16:10:21 UTC</createdTime>
+<ownerDesignName>database</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="0CD448EC-5870-D958-DEC6-D9A2C93819C2" referredColumn="BADE864F-D1BB-AED8-E63C-6CE01F698662"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="7966A656-B877-7412-BAD4-C12F7B0E7C7A" name="Relation_9_PK">
+<createdBy>xxxx</createdBy>
+<createdTime>2024-11-24 16:10:21 UTC</createdTime>
+<ownerDesignName>database</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="AFF68CD4-9FB0-127B-3426-B55B7AC7474C"/>
+<colUsage columnID="B8620B28-412F-5821-E2EA-92C71FF9E648"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="9BC70AFE-5B18-5C6F-DE82-9016A274A0FC" name="Relation_9_Tests_FK">
+<createdBy>xxxx</createdBy>
+<createdTime>2024-11-24 16:10:21 UTC</createdTime>
+<generatorID>7785E430-0FA1-9855-5C82-1CE9C9B37DB7</generatorID>
+<ownerDesignName>database</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="AFF68CD4-9FB0-127B-3426-B55B7AC7474C"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="63436251-7C06-F0FE-69A4-EFC07D076401" name="Relation_9_Questions_FK">
+<createdBy>xxxx</createdBy>
+<createdTime>2024-11-24 16:10:21 UTC</createdTime>
+<generatorID>7785E430-0FA1-9855-5C82-1CE9C9B37DB7</generatorID>
+<ownerDesignName>database</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="B8620B28-412F-5821-E2EA-92C71FF9E648"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

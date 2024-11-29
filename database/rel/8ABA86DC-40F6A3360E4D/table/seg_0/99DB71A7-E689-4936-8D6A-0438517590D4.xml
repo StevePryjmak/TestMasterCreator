@@ -1,0 +1,37 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="99DB71A7-E689-4936-8D6A-0438517590D4" name="Answers">
+<createdBy>xxxx</createdBy>
+<createdTime>2024-11-29 16:14:30 UTC</createdTime>
+<generatorID>FD89B628-6C5D-B2B9-8EDB-CA077EA5B3EE</generatorID>
+<ownerDesignName>database</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="AnswerId" id="4D53DE35-13BD-0121-ABCB-0F9BF79C5FFA">
+<createdBy>xxxx</createdBy>
+<createdTime>2024-11-29 16:14:30 UTC</createdTime>
+<generatorID>315C8CAD-7974-3A3F-1F77-1A2DDAA33A4E</generatorID>
+<ownerDesignName>database</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="3FAAE558-0160-4BC6-0113-800F9ACA259F" name="Answers_PK">
+<createdBy>xxxx</createdBy>
+<createdTime>2024-11-29 16:14:30 UTC</createdTime>
+<generatorID>BFCFF428-7164-7EDF-4DFF-76DA0012A291</generatorID>
+<ownerDesignName>database</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="4D53DE35-13BD-0121-ABCB-0F9BF79C5FFA"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

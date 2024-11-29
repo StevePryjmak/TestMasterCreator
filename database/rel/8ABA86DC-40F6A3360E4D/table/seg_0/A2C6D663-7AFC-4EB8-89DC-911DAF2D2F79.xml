@@ -1,0 +1,101 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="A2C6D663-7AFC-4EB8-89DC-911DAF2D2F79" name="Groups">
+<createdBy>xxxx</createdBy>
+<createdTime>2024-11-24 16:10:21 UTC</createdTime>
+<generatorID>466ACBBE-864B-98A9-6E94-4B79B3615B05</generatorID>
+<ownerDesignName>test</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="GroupId" id="2672EC38-9A98-07B9-9E64-00D4E8262AE8">
+<createdBy>xxxx</createdBy>
+<createdTime>2024-11-24 16:10:21 UTC</createdTime>
+<generatorID>01087677-E5A8-6264-457D-A7DC0FEF5246</generatorID>
+<ownerDesignName>test</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Name" id="3A526387-474F-DB36-0DB7-4086B0620B03">
+<createdBy>xxxx</createdBy>
+<createdTime>2024-11-24 16:10:21 UTC</createdTime>
+<generatorID>41D4A66D-5DFE-33D4-775A-5C958145A248</generatorID>
+<ownerDesignName>test</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>20 CHAR</dataTypeSize>
+<ownDataTypeParameters>20 CHAR,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Users_UserId" id="ED2B7761-9A00-A3B2-DFA7-5FD0F645CC60">
+<createdBy>xxxx</createdBy>
+<createdTime>2024-11-24 16:10:21 UTC</createdTime>
+<generatorID>DEBCAFF5-53C3-4530-7D22-90C5BFFBE67A</generatorID>
+<ownerDesignName>test</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="D9BDCA01-65DC-E1BF-034D-691FC8F1DFFC" referredColumn="2171C380-1075-9C6B-4EE0-4E16E9C36AB1"/>
+</associations>
+</Column>
+<Column name="Tests_TestId" id="D7AD879D-3766-2FB3-7E9B-1699187BE0A9">
+<createdBy>xxxx</createdBy>
+<createdTime>2024-11-24 16:10:21 UTC</createdTime>
+<generatorID>AD98A011-0B66-A01F-593F-951E601C7F69</generatorID>
+<ownerDesignName>test</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="7EB6DB58-35F5-07CC-1C15-5AAC56FB0C94" referredColumn="95C436B1-F599-0D72-F34E-E26FB13AC680"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="206AD6CD-5B26-5894-C3FE-D5C7B374DCB6" name="Groups_PK">
+<createdBy>xxxx</createdBy>
+<createdTime>2024-11-24 16:10:21 UTC</createdTime>
+<generatorID>6768C841-D9B1-904D-82F1-6AB2D597FCC4</generatorID>
+<ownerDesignName>test</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="2672EC38-9A98-07B9-9E64-00D4E8262AE8"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="24309BE5-C463-074B-3CFC-DDE594A10A35" name="Groups_Users_FK">
+<createdBy>xxxx</createdBy>
+<createdTime>2024-11-24 16:10:21 UTC</createdTime>
+<generatorID>C1181ED7-93F4-32C2-2E48-57F52B372C0F</generatorID>
+<ownerDesignName>test</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="ED2B7761-9A00-A3B2-DFA7-5FD0F645CC60"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="2305CDB3-51F7-1A27-F284-0ECBFFC04A80" name="Groups_Tests_FK">
+<createdBy>xxxx</createdBy>
+<createdTime>2024-11-24 16:10:21 UTC</createdTime>
+<generatorID>0B510A03-A721-DFB6-DBA8-4EADF52FD655</generatorID>
+<ownerDesignName>test</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="D7AD879D-3766-2FB3-7E9B-1699187BE0A9"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>
