@@ -1,0 +1,75 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="63584B66-0C65-E3E8-A8A5-C64F76C63E5C" name="Test_tag">
+<createdBy>xxxx</createdBy>
+<createdTime>2024-11-24 16:10:21 UTC</createdTime>
+<ownerDesignName>database</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="Tests_TestId" id="37099EEE-865D-437E-BAA1-C24491F53344">
+<createdBy>xxxx</createdBy>
+<createdTime>2024-11-24 16:10:21 UTC</createdTime>
+<ownerDesignName>database</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="AB740B51-2AE7-B605-FDF2-09849E495B38" referredColumn="95C436B1-F599-0D72-F34E-E26FB13AC680"/>
+</associations>
+</Column>
+<Column name="Tags_TagId" id="56B42256-84BC-127D-5F61-B1D3D9E6503E">
+<createdBy>xxxx</createdBy>
+<createdTime>2024-11-24 16:10:21 UTC</createdTime>
+<ownerDesignName>database</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="37845A65-1D30-E800-FDD8-0330A92151C6" referredColumn="1C0217D3-1FEC-A883-7668-BB94EBF975B6"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="C20D3BEC-6E06-850B-9FEA-DBF10673B271" name="Relation_10_PK">
+<createdBy>xxxx</createdBy>
+<createdTime>2024-11-24 16:10:21 UTC</createdTime>
+<ownerDesignName>database</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="37099EEE-865D-437E-BAA1-C24491F53344"/>
+<colUsage columnID="56B42256-84BC-127D-5F61-B1D3D9E6503E"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="AA5648A0-BAF8-E500-251B-CBD64DB2AEC0" name="Relation_10_Tests_FK">
+<createdBy>xxxx</createdBy>
+<createdTime>2024-11-24 16:10:21 UTC</createdTime>
+<generatorID>0DC33CB8-5ECA-3413-B5E0-3E1365FEC393</generatorID>
+<ownerDesignName>database</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="37099EEE-865D-437E-BAA1-C24491F53344"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="BB443835-7990-B72A-D73D-F46E39FD9B0E" name="Relation_10_Tags_FK">
+<createdBy>xxxx</createdBy>
+<createdTime>2024-11-24 16:10:21 UTC</createdTime>
+<generatorID>0DC33CB8-5ECA-3413-B5E0-3E1365FEC393</generatorID>
+<ownerDesignName>database</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="56B42256-84BC-127D-5F61-B1D3D9E6503E"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

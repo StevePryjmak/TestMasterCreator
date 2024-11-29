@@ -1,0 +1,86 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="466ACBBE-864B-98A9-6E94-4B79B3615B05" name="Groups">
+<createdBy>xxxx</createdBy>
+<createdTime>2024-11-24 15:55:01 UTC</createdTime>
+<ownerDesignName>test</ownerDesignName>
+<engineerTo>
+<item key="E4F36FAA-4899-3BFD-6FE9-375CC3FE6CF7" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="GroupId" id="01087677-E5A8-6264-457D-A7DC0FEF5246">
+<createdBy>xxxx</createdBy>
+<createdTime>2024-11-24 15:55:51 UTC</createdTime>
+<ownerDesignName>test</ownerDesignName>
+<engineerTo>
+<item key="E4F36FAA-4899-3BFD-6FE9-375CC3FE6CF7" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Name" id="41D4A66D-5DFE-33D4-775A-5C958145A248">
+<createdBy>xxxx</createdBy>
+<createdTime>2024-11-24 15:56:04 UTC</createdTime>
+<ownerDesignName>test</ownerDesignName>
+<engineerTo>
+<item key="E4F36FAA-4899-3BFD-6FE9-375CC3FE6CF7" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>20 CHAR</dataTypeSize>
+<ownDataTypeParameters>20 CHAR,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="UserId" id="DEBCAFF5-53C3-4530-7D22-90C5BFFBE67A">
+<createdBy>xxxx</createdBy>
+<createdTime>2024-11-24 16:01:08 UTC</createdTime>
+<generatorID>C1181ED7-93F4-32C2-2E48-57F52B372C0F</generatorID>
+<ownerDesignName>test</ownerDesignName>
+<engineerTo>
+<item key="E4F36FAA-4899-3BFD-6FE9-375CC3FE6CF7" value="true"/>
+</engineerTo>
+<referedAttribute>56A616BB-2095-4EA5-F180-49883B1D8977</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="TestId" id="AD98A011-0B66-A01F-593F-951E601C7F69">
+<createdBy>xxxx</createdBy>
+<createdTime>2024-11-24 16:01:21 UTC</createdTime>
+<generatorID>0B510A03-A721-DFB6-DBA8-4EADF52FD655</generatorID>
+<ownerDesignName>test</ownerDesignName>
+<engineerTo>
+<item key="E4F36FAA-4899-3BFD-6FE9-375CC3FE6CF7" value="true"/>
+</engineerTo>
+<referedAttribute>6182FE63-E5D8-F100-63C9-1D4C492F6EF4</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="6768C841-D9B1-904D-82F1-6AB2D597FCC4" name="Groups PK">
+<createdBy>xxxx</createdBy>
+<createdTime>2024-11-24 15:55:58 UTC</createdTime>
+<ownerDesignName>test</ownerDesignName>
+<engineerTo>
+<item key="E4F36FAA-4899-3BFD-6FE9-375CC3FE6CF7" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>01087677-E5A8-6264-457D-A7DC0FEF5246</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

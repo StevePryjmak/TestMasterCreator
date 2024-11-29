@@ -1,0 +1,60 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="FD89B628-6C5D-B2B9-8EDB-CA077EA5B3EE" name="Answers">
+<createdBy>xxxx</createdBy>
+<createdTime>2024-11-29 16:05:07 UTC</createdTime>
+<ownerDesignName>database</ownerDesignName>
+<engineerTo>
+<item key="8ABA86DC-9BF0-47F9-F89E-40F6A3360E4D" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="AnswerId" id="315C8CAD-7974-3A3F-1F77-1A2DDAA33A4E">
+<createdBy>xxxx</createdBy>
+<createdTime>2024-11-29 16:05:16 UTC</createdTime>
+<ownerDesignName>database</ownerDesignName>
+<engineerTo>
+<item key="8ABA86DC-9BF0-47F9-F89E-40F6A3360E4D" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Text" id="15471D63-1EB3-D76D-0B67-3D48984D9233">
+<createdBy>xxxx</createdBy>
+<createdTime>2024-11-29 16:19:20 UTC</createdTime>
+<ownerDesignName>database</ownerDesignName>
+<engineerTo>
+<item key="8ABA86DC-9BF0-47F9-F89E-40F6A3360E4D" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>80 CHAR</dataTypeSize>
+<ownDataTypeParameters>80 CHAR,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="BFCFF428-7164-7EDF-4DFF-76DA0012A291" name="Answers PK">
+<createdBy>xxxx</createdBy>
+<createdTime>2024-11-29 16:05:26 UTC</createdTime>
+<ownerDesignName>database</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<engineerTo>
+<item key="8ABA86DC-9BF0-47F9-F89E-40F6A3360E4D" value="false"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>315C8CAD-7974-3A3F-1F77-1A2DDAA33A4E</attributeRef>
+<attributeRef>15471D63-1EB3-D76D-0B67-3D48984D9233</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>
