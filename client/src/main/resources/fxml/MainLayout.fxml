@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<ScrollPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fitToWidth="true" fx:controller="com.LerningBara.controller.MainLayoutController">
+    <content>
+        <VBox fx:id="contentBox" spacing="10" style="-fx-padding: 10;">
+            <!-- Search bar section at the top -->
+            <HBox spacing="10" alignment="CENTER_LEFT" style="-fx-padding: 10;">
+                
+                <!-- Rounded search bar -->
+                <TextField fx:id="searchTextField" promptText="Search..." styleClass="rounded-search-bar" prefWidth="200"/>
+
+                <!-- Search button -->
+                <Button fx:id="searchButton" text="Search" styleClass="search-button"/>
+                <!-- Dropdown menu for selecting test field or subject -->
+                <ComboBox fx:id="filterComboBox" promptText="Select Filter" prefWidth="150"/>
+                
+
+
+            </HBox>
+
+            <!-- Placeholder for dynamically added content -->
+            <VBox fx:id="contentBox" spacing="10" style="-fx-padding: 10;">
+                <!-- Dynamically added test boxes will go here -->
+            </VBox>
+        </VBox>
+    </content>
+</ScrollPane>
