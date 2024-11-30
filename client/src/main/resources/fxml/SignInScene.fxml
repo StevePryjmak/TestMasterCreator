@@ -7,8 +7,8 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.LerningBara.controller.SignInSceneControler">
    <children>
-      <PasswordField id="passwordField" layoutX="224.0" layoutY="200.0" promptText="password" />
-      <TextField id="loginField" layoutX="224.0" layoutY="160.0" promptText="login" />
+      <TextField fx:id="loginField" layoutX="224.0" layoutY="160.0" promptText="login" />
+      <PasswordField fx:id="passwordField" layoutX="224.0" layoutY="200.0" promptText="password" />
       <Button layoutX="272.0" layoutY="255.0" mnemonicParsing="false" onAction="#signIn" text="Sign in" />
    </children>
 </AnchorPane>

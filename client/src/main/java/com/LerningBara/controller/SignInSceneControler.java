@@ -6,12 +6,11 @@ import javafx.scene.control.TextField;
 
 
 public class SignInSceneControler {
-   public SignInSceneControler() {
-   }
    @FXML
    private TextField loginField;
    @FXML
    private PasswordField passwordField;
+
 
    @FXML
    public void signIn() {
