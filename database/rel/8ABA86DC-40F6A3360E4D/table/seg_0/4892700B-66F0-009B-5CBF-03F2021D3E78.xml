@@ -3,7 +3,7 @@
 <createdBy>xxxx</createdBy>
 <createdTime>2024-11-24 16:10:21 UTC</createdTime>
 <generatorID>D6BFB30B-D80B-0E60-42EE-7FD86F584B22</generatorID>
-<ownerDesignName>test</ownerDesignName>
+<ownerDesignName>database</ownerDesignName>
 <allowColumnReorder>false</allowColumnReorder>
 <existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
 <parsed>true</parsed>
@@ -12,18 +12,19 @@
 <createdBy>xxxx</createdBy>
 <createdTime>2024-11-24 16:10:21 UTC</createdTime>
 <generatorID>D2D60B98-F702-C621-FB35-9BCEB98C0408</generatorID>
-<ownerDesignName>test</ownerDesignName>
+<ownerDesignName>database</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
 <logicalDatatype>LOGDT011</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
 <Column name="Name" id="586ADA71-A86D-E338-6910-F5AFDF586404">
 <createdBy>xxxx</createdBy>
 <createdTime>2024-11-24 16:10:21 UTC</createdTime>
 <generatorID>632E99EE-05E4-FEFF-B575-1A4EDE1543E0</generatorID>
-<ownerDesignName>test</ownerDesignName>
+<ownerDesignName>database</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
 <logicalDatatype>LOGDT024</logicalDatatype>
@@ -37,7 +38,7 @@
 <createdBy>xxxx</createdBy>
 <createdTime>2024-11-24 16:10:21 UTC</createdTime>
 <generatorID>591F3031-152B-6771-27A8-EE1A3C9D1484</generatorID>
-<ownerDesignName>test</ownerDesignName>
+<ownerDesignName>database</ownerDesignName>
 <pk>true</pk>
 <indexState>Primary Constraint</indexState>
 <isSurrogateKey>false</isSurrogateKey>

@@ -3,7 +3,7 @@
 <createdBy>xxxx</createdBy>
 <createdTime>2024-11-24 16:10:21 UTC</createdTime>
 <generatorID>5598112B-E615-9229-7EB7-5591F385E886</generatorID>
-<ownerDesignName>test</ownerDesignName>
+<ownerDesignName>database</ownerDesignName>
 <allowColumnReorder>false</allowColumnReorder>
 <existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
 <parsed>true</parsed>
@@ -12,18 +12,19 @@
 <createdBy>xxxx</createdBy>
 <createdTime>2024-11-24 16:10:21 UTC</createdTime>
 <generatorID>69837E10-117D-0776-4B9B-28A61CC92FC8</generatorID>
-<ownerDesignName>test</ownerDesignName>
+<ownerDesignName>database</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
 <logicalDatatype>LOGDT011</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
 <Column name="Points" id="11752C25-97AC-7B86-D637-1CE550CBA3A3">
 <createdBy>xxxx</createdBy>
 <createdTime>2024-11-24 16:10:21 UTC</createdTime>
 <generatorID>9D19D6AF-F667-AB0B-A10A-37064175877C</generatorID>
-<ownerDesignName>test</ownerDesignName>
+<ownerDesignName>database</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
 <logicalDatatype>LOGDT011</logicalDatatype>
@@ -34,7 +35,7 @@
 <createdBy>xxxx</createdBy>
 <createdTime>2024-11-24 16:10:21 UTC</createdTime>
 <generatorID>18439641-6965-D70C-6548-CF72B37D52F1</generatorID>
-<ownerDesignName>test</ownerDesignName>
+<ownerDesignName>database</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
 <logicalDatatype>LOGDT008</logicalDatatype>
@@ -45,7 +46,7 @@
 <createdBy>xxxx</createdBy>
 <createdTime>2024-11-24 16:10:21 UTC</createdTime>
 <generatorID>5B337C2C-6733-F10B-5EE7-5A3D2783724F</generatorID>
-<ownerDesignName>test</ownerDesignName>
+<ownerDesignName>database</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
 <logicalDatatype>LOGDT011</logicalDatatype>
@@ -60,7 +61,7 @@
 <createdBy>xxxx</createdBy>
 <createdTime>2024-11-24 16:10:21 UTC</createdTime>
 <generatorID>CAFACD02-B11C-F3D1-E465-F15F7E5644D5</generatorID>
-<ownerDesignName>test</ownerDesignName>
+<ownerDesignName>database</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
 <logicalDatatype>LOGDT011</logicalDatatype>
@@ -77,7 +78,7 @@
 <createdBy>xxxx</createdBy>
 <createdTime>2024-11-24 16:10:21 UTC</createdTime>
 <generatorID>F2E623FB-AF68-CDC5-E690-190843C3780C</generatorID>
-<ownerDesignName>test</ownerDesignName>
+<ownerDesignName>database</ownerDesignName>
 <pk>true</pk>
 <indexState>Primary Constraint</indexState>
 <isSurrogateKey>false</isSurrogateKey>
@@ -89,7 +90,7 @@
 <createdBy>xxxx</createdBy>
 <createdTime>2024-11-24 16:10:21 UTC</createdTime>
 <generatorID>75BCED3F-E3C7-958C-D5E3-04AE20110A7A</generatorID>
-<ownerDesignName>test</ownerDesignName>
+<ownerDesignName>database</ownerDesignName>
 <indexState>Foreign Key</indexState>
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
@@ -100,7 +101,7 @@
 <createdBy>xxxx</createdBy>
 <createdTime>2024-11-24 16:10:21 UTC</createdTime>
 <generatorID>4F4521B4-C92C-F4FB-5AAA-7A8F388A5BBF</generatorID>
-<ownerDesignName>test</ownerDesignName>
+<ownerDesignName>database</ownerDesignName>
 <indexState>Foreign Key</indexState>
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
