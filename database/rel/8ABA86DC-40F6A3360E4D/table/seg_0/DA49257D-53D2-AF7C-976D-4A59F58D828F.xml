@@ -1,0 +1,113 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="DA49257D-53D2-AF7C-976D-4A59F58D828F" name="Question_answerv1">
+<createdBy>xxxx</createdBy>
+<createdTime>2024-12-01 19:46:04 UTC</createdTime>
+<generatorID>3791B769-7177-A765-2DC2-E9FD196221D4</generatorID>
+<ownerDesignName>database</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="QaId" id="07535D60-303D-3DC1-2059-CEE75F063066">
+<createdBy>xxxx</createdBy>
+<createdTime>2024-12-01 19:46:04 UTC</createdTime>
+<generatorID>6F5295DD-3397-FA61-2961-3D0D79336CA6</generatorID>
+<ownerDesignName>database</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Answers_AnswerId" id="A5082B56-A819-3756-0663-CA2248802D49">
+<createdBy>xxxx</createdBy>
+<createdTime>2024-12-01 19:46:04 UTC</createdTime>
+<generatorID>7360C212-E218-8796-DDF4-F0E0D0A6CE26</generatorID>
+<ownerDesignName>database</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="32930CA6-8059-4B84-8D05-D391CA80983A" referredColumn="4D53DE35-13BD-0121-ABCB-0F9BF79C5FFA"/>
+</associations>
+</Column>
+<Column name="Text" id="70D6B42A-CEFD-6E5B-AC9B-C4EEFD4F7433">
+<createdBy>xxxx</createdBy>
+<createdTime>2024-12-01 19:46:04 UTC</createdTime>
+<generatorID>03F7B110-EFFE-CD12-FE22-2E8DF274659B</generatorID>
+<ownerDesignName>database</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Questions_QuestionId" id="19E82291-3491-2E53-BAB0-19D5C8D04065">
+<createdBy>xxxx</createdBy>
+<createdTime>2024-12-01 19:46:04 UTC</createdTime>
+<generatorID>7077A816-6384-48AD-960A-C84D69838963</generatorID>
+<ownerDesignName>database</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="AD32D7AE-78CB-D220-AA1C-721C6A4BFFD0" referredColumn="BADE864F-D1BB-AED8-E63C-6CE01F698662"/>
+</associations>
+</Column>
+<Column name="IsCorrect" id="53AB7E96-D9C2-887B-08D6-D1076F7C7CEF">
+<createdBy>xxxx</createdBy>
+<createdTime>2024-12-01 19:46:04 UTC</createdTime>
+<generatorID>EC89BC8F-E2EF-DAC4-D088-9C8B33E03217</generatorID>
+<ownerDesignName>database</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT006</logicalDatatype>
+<dataTypeSize>1 BYTE</dataTypeSize>
+<ownDataTypeParameters>1 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="9618FF60-20D1-0A8F-9362-C1092D4A35CD" name="Question_answerv1_PK">
+<createdBy>xxxx</createdBy>
+<createdTime>2024-12-01 19:46:04 UTC</createdTime>
+<generatorID>74623A7B-423F-E22B-E222-19594A1D373C</generatorID>
+<ownerDesignName>database</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="07535D60-303D-3DC1-2059-CEE75F063066"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="BF2E126C-F593-E3DE-04F0-654D422C156A" name="Question_answerv1_Answers_FK">
+<createdBy>xxxx</createdBy>
+<createdTime>2024-12-01 19:46:04 UTC</createdTime>
+<generatorID>111B1A09-0FAD-A3E5-9995-7B59C177C882</generatorID>
+<ownerDesignName>database</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="A5082B56-A819-3756-0663-CA2248802D49"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="8F69808D-B630-2E87-A4A9-8CF73880FFEF" name="Question_answerv1_Questions_FK">
+<createdBy>xxxx</createdBy>
+<createdTime>2024-12-01 19:46:04 UTC</createdTime>
+<generatorID>9118AFA1-5E55-B1F7-54D8-7900A19E30D2</generatorID>
+<ownerDesignName>database</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="19E82291-3491-2E53-BAB0-19D5C8D04065"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

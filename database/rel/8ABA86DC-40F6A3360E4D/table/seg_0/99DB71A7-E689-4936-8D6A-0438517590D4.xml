@@ -19,6 +19,18 @@
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
+<Column name="Text" id="3AA1D8D8-CD21-36B9-02F6-56892F08C236">
+<createdBy>xxxx</createdBy>
+<createdTime>2024-12-01 19:46:04 UTC</createdTime>
+<generatorID>15471D63-1EB3-D76D-0B67-3D48984D9233</generatorID>
+<ownerDesignName>database</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>80 CHAR</dataTypeSize>
+<ownDataTypeParameters>80 CHAR,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
 </columns>
 <indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
 <ind_PK_UK id="3FAAE558-0160-4BC6-0113-800F9ACA259F" name="Answers_PK">

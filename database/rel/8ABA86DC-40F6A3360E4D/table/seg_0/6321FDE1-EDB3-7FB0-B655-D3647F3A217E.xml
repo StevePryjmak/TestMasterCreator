@@ -3,7 +3,7 @@
 <createdBy>xxxx</createdBy>
 <createdTime>2024-11-24 16:10:21 UTC</createdTime>
 <generatorID>D8A4D8CA-7D4B-862F-9867-273C7EA9372F</generatorID>
-<ownerDesignName>test</ownerDesignName>
+<ownerDesignName>database</ownerDesignName>
 <allowColumnReorder>false</allowColumnReorder>
 <existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
 <parsed>true</parsed>
@@ -12,18 +12,19 @@
 <createdBy>xxxx</createdBy>
 <createdTime>2024-11-24 16:10:21 UTC</createdTime>
 <generatorID>56A616BB-2095-4EA5-F180-49883B1D8977</generatorID>
-<ownerDesignName>test</ownerDesignName>
+<ownerDesignName>database</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
 <logicalDatatype>LOGDT011</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
 <Column name="Login" id="2BDF52E6-3B31-04A0-4072-F8EF3B4FAF42">
 <createdBy>xxxx</createdBy>
 <createdTime>2024-11-24 16:10:21 UTC</createdTime>
 <generatorID>53089C7B-3DC8-78BB-8695-8694CA51C025</generatorID>
-<ownerDesignName>test</ownerDesignName>
+<ownerDesignName>database</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
 <logicalDatatype>LOGDT024</logicalDatatype>
@@ -35,7 +36,7 @@
 <createdBy>xxxx</createdBy>
 <createdTime>2024-11-24 16:10:21 UTC</createdTime>
 <generatorID>E044344C-1F16-7419-ABF0-4BA284A20024</generatorID>
-<ownerDesignName>test</ownerDesignName>
+<ownerDesignName>database</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
 <logicalDatatype>LOGDT024</logicalDatatype>
@@ -47,7 +48,7 @@
 <createdBy>xxxx</createdBy>
 <createdTime>2024-11-24 16:10:21 UTC</createdTime>
 <generatorID>B50B108E-5653-3ED8-2EFE-27EDB80EA40C</generatorID>
-<ownerDesignName>test</ownerDesignName>
+<ownerDesignName>database</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
 <logicalDatatype>LOGDT024</logicalDatatype>
@@ -61,7 +62,7 @@
 <createdBy>xxxx</createdBy>
 <createdTime>2024-11-24 16:10:21 UTC</createdTime>
 <generatorID>C799B9B9-2815-68E6-8588-489ACAC3BC14</generatorID>
-<ownerDesignName>test</ownerDesignName>
+<ownerDesignName>database</ownerDesignName>
 <pk>true</pk>
 <indexState>Primary Constraint</indexState>
 <isSurrogateKey>false</isSurrogateKey>

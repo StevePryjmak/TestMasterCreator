@@ -1,0 +1,101 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="3791B769-7177-A765-2DC2-E9FD196221D4" name="Question_answer">
+<createdBy>xxxx</createdBy>
+<createdTime>2024-12-01 19:28:20 UTC</createdTime>
+<ownerDesignName>database</ownerDesignName>
+<engineerTo>
+<item key="8ABA86DC-9BF0-47F9-F89E-40F6A3360E4D" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="QaId" id="6F5295DD-3397-FA61-2961-3D0D79336CA6">
+<createdBy>xxxx</createdBy>
+<createdTime>2024-12-01 19:28:36 UTC</createdTime>
+<ownerDesignName>database</ownerDesignName>
+<engineerTo>
+<item key="8ABA86DC-9BF0-47F9-F89E-40F6A3360E4D" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="AnswerId" id="7360C212-E218-8796-DDF4-F0E0D0A6CE26">
+<createdBy>xxxx</createdBy>
+<createdTime>2024-12-01 19:30:24 UTC</createdTime>
+<generatorID>111B1A09-0FAD-A3E5-9995-7B59C177C882</generatorID>
+<ownerDesignName>database</ownerDesignName>
+<engineerTo>
+<item key="8ABA86DC-9BF0-47F9-F89E-40F6A3360E4D" value="true"/>
+</engineerTo>
+<referedAttribute>315C8CAD-7974-3A3F-1F77-1A2DDAA33A4E</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Text" id="03F7B110-EFFE-CD12-FE22-2E8DF274659B">
+<createdBy>xxxx</createdBy>
+<createdTime>2024-12-01 19:30:24 UTC</createdTime>
+<generatorID>111B1A09-0FAD-A3E5-9995-7B59C177C882</generatorID>
+<ownerDesignName>database</ownerDesignName>
+<engineerTo>
+<item key="8ABA86DC-9BF0-47F9-F89E-40F6A3360E4D" value="true"/>
+</engineerTo>
+<referedAttribute>15471D63-1EB3-D76D-0B67-3D48984D9233</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>80 CHAR</dataTypeSize>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="QuestionId" id="7077A816-6384-48AD-960A-C84D69838963">
+<createdBy>xxxx</createdBy>
+<createdTime>2024-12-01 19:30:37 UTC</createdTime>
+<generatorID>9118AFA1-5E55-B1F7-54D8-7900A19E30D2</generatorID>
+<ownerDesignName>database</ownerDesignName>
+<engineerTo>
+<item key="8ABA86DC-9BF0-47F9-F89E-40F6A3360E4D" value="true"/>
+</engineerTo>
+<referedAttribute>EF1CC512-0A17-DF70-753B-448CDF0598EF</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="IsCorrect" id="EC89BC8F-E2EF-DAC4-D088-9C8B33E03217">
+<createdBy>xxxx</createdBy>
+<createdTime>2024-12-01 19:38:01 UTC</createdTime>
+<ownerDesignName>database</ownerDesignName>
+<engineerTo>
+<item key="8ABA86DC-9BF0-47F9-F89E-40F6A3360E4D" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT006</logicalDatatype>
+<dataTypeSize>1 BYTE</dataTypeSize>
+<ownDataTypeParameters>1 BYTE,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="74623A7B-423F-E22B-E222-19594A1D373C" name="Question_answer PK">
+<createdBy>xxxx</createdBy>
+<createdTime>2024-12-01 19:29:29 UTC</createdTime>
+<ownerDesignName>database</ownerDesignName>
+<engineerTo>
+<item key="8ABA86DC-9BF0-47F9-F89E-40F6A3360E4D" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>6F5295DD-3397-FA61-2961-3D0D79336CA6</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

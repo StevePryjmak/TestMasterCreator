@@ -40,6 +40,20 @@
 <dataTypeSize>20 CHAR</dataTypeSize>
 <ownDataTypeParameters>20 CHAR,,</ownDataTypeParameters>
 </Attribute>
+<Attribute name="UserId" id="9F2E69E3-8674-2148-0ABC-68A8D6401921">
+<createdBy>xxxx</createdBy>
+<createdTime>2024-12-01 19:32:34 UTC</createdTime>
+<generatorID>A0E44ED6-B075-FC63-2586-EE5C49206571</generatorID>
+<ownerDesignName>database</ownerDesignName>
+<engineerTo>
+<item key="8ABA86DC-9BF0-47F9-F89E-40F6A3360E4D" value="true"/>
+</engineerTo>
+<referedAttribute>56A616BB-2095-4EA5-F180-49883B1D8977</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
 </attributes>
 <identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
 <identifier id="AC86A73B-7CF0-A046-43D5-9B855D6A008A" name="Tests PK">
