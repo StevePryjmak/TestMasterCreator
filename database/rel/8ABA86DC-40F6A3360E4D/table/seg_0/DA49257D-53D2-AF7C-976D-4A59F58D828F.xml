@@ -1,5 +1,5 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="DA49257D-53D2-AF7C-976D-4A59F58D828F" name="Question_answerv1">
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="DA49257D-53D2-AF7C-976D-4A59F58D828F" name="Question_answer">
 <createdBy>xxxx</createdBy>
 <createdTime>2024-12-01 19:46:04 UTC</createdTime>
 <generatorID>3791B769-7177-A765-2DC2-E9FD196221D4</generatorID>
@@ -17,6 +17,7 @@
 <use>1</use>
 <logicalDatatype>LOGDT011</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
 <Column name="Answers_AnswerId" id="A5082B56-A819-3756-0663-CA2248802D49">
@@ -33,18 +34,6 @@
 <associations>
 <colAssociation fkAssociation="32930CA6-8059-4B84-8D05-D391CA80983A" referredColumn="4D53DE35-13BD-0121-ABCB-0F9BF79C5FFA"/>
 </associations>
-</Column>
-<Column name="Text" id="70D6B42A-CEFD-6E5B-AC9B-C4EEFD4F7433">
-<createdBy>xxxx</createdBy>
-<createdTime>2024-12-01 19:46:04 UTC</createdTime>
-<generatorID>03F7B110-EFFE-CD12-FE22-2E8DF274659B</generatorID>
-<ownerDesignName>database</ownerDesignName>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>LOGDT024</logicalDatatype>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-<previousColumn>false</previousColumn>
-<autoIncrementCycle>false</autoIncrementCycle>
 </Column>
 <Column name="Questions_QuestionId" id="19E82291-3491-2E53-BAB0-19D5C8D04065">
 <createdBy>xxxx</createdBy>
@@ -87,7 +76,7 @@
 <colUsage columnID="07535D60-303D-3DC1-2059-CEE75F063066"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="BF2E126C-F593-E3DE-04F0-654D422C156A" name="Question_answerv1_Answers_FK">
+<ind_PK_UK id="BF2E126C-F593-E3DE-04F0-654D422C156A" name="Question_answer_Answers_FK">
 <createdBy>xxxx</createdBy>
 <createdTime>2024-12-01 19:46:04 UTC</createdTime>
 <generatorID>111B1A09-0FAD-A3E5-9995-7B59C177C882</generatorID>
@@ -98,7 +87,7 @@
 <colUsage columnID="A5082B56-A819-3756-0663-CA2248802D49"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="8F69808D-B630-2E87-A4A9-8CF73880FFEF" name="Question_answerv1_Questions_FK">
+<ind_PK_UK id="8F69808D-B630-2E87-A4A9-8CF73880FFEF" name="Question_answer_Questions_FK">
 <createdBy>xxxx</createdBy>
 <createdTime>2024-12-01 19:46:04 UTC</createdTime>
 <generatorID>9118AFA1-5E55-B1F7-54D8-7900A19E30D2</generatorID>

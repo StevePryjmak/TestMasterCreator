@@ -41,21 +41,6 @@
 <logicalDatatype>LOGDT011</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
-<Attribute name="Text" id="03F7B110-EFFE-CD12-FE22-2E8DF274659B">
-<createdBy>xxxx</createdBy>
-<createdTime>2024-12-01 19:30:24 UTC</createdTime>
-<generatorID>111B1A09-0FAD-A3E5-9995-7B59C177C882</generatorID>
-<ownerDesignName>database</ownerDesignName>
-<engineerTo>
-<item key="8ABA86DC-9BF0-47F9-F89E-40F6A3360E4D" value="true"/>
-</engineerTo>
-<referedAttribute>15471D63-1EB3-D76D-0B67-3D48984D9233</referedAttribute>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>LOGDT024</logicalDatatype>
-<dataTypeSize>80 CHAR</dataTypeSize>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-</Attribute>
 <Attribute name="QuestionId" id="7077A816-6384-48AD-960A-C84D69838963">
 <createdBy>xxxx</createdBy>
 <createdTime>2024-12-01 19:30:37 UTC</createdTime>
@@ -80,8 +65,8 @@
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
 <logicalDatatype>LOGDT006</logicalDatatype>
-<dataTypeSize>1 BYTE</dataTypeSize>
-<ownDataTypeParameters>1 BYTE,,</ownDataTypeParameters>
+<dataTypeSize>1 CHAR</dataTypeSize>
+<ownDataTypeParameters>1 CHAR,,</ownDataTypeParameters>
 </Attribute>
 </attributes>
 <identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
@@ -89,8 +74,9 @@
 <createdBy>xxxx</createdBy>
 <createdTime>2024-12-01 19:29:29 UTC</createdTime>
 <ownerDesignName>database</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
 <engineerTo>
-<item key="8ABA86DC-9BF0-47F9-F89E-40F6A3360E4D" value="true"/>
+<item key="8ABA86DC-9BF0-47F9-F89E-40F6A3360E4D" value="false"/>
 </engineerTo>
 <pk>true</pk>
 <usedAttributes>
