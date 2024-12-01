@@ -1,4 +1,5 @@
 package server;
+
 import java.util.ArrayList;
 
 import QuestionData.MyClass;
@@ -26,14 +27,13 @@ public class ClientHandler implements Runnable {
             e.printStackTrace();
         }
     }
-    
 
     @Override
     public void run() {
         try {
             while (!socket.isClosed()) {
                 Object receivedObject = objectInputStream.readObject();
-                if(receivedObject instanceof Message) {
+                if (receivedObject instanceof Message) {
                     Message message = (Message) receivedObject;
                     System.out.println("Message received: " + message.getMessage());
                     if (message.getMessage().equals("Give me the test")) {
@@ -41,11 +41,10 @@ public class ClientHandler implements Runnable {
                         Message responce = new Message("Here is the test", testData);
                         sendObject(responce);
                     }
-                } 
-                else  {
+                } else {
                     System.err.println("Got not expected object");
                 }
-                
+
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -64,5 +63,4 @@ public class ClientHandler implements Runnable {
         }
     }
 
-    
 }
