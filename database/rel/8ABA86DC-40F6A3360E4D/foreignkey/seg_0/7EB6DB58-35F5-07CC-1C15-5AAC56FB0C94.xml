@@ -1,9 +1,9 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="7EB6DB58-35F5-07CC-1C15-5AAC56FB0C94" containerWithKeyObject="A2C6D663-7AFC-4EB8-89DC-911DAF2D2F79" localFKIndex="2305CDB3-51F7-1A27-F284-0ECBFFC04A80" name="Groups_Tests_FK">
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="7EB6DB58-35F5-07CC-1C15-5AAC56FB0C94" containerWithKeyObject="A2C6D663-7AFC-4EB8-89DC-911DAF2D2F79" localFKIndex="2305CDB3-51F7-1A27-F284-0ECBFFC04A80" name="Likes_Tests_FK">
 <createdBy>xxxx</createdBy>
 <createdTime>2024-11-24 16:10:21 UTC</createdTime>
 <generatorID>0B510A03-A721-DFB6-DBA8-4EADF52FD655</generatorID>
-<ownerDesignName>test</ownerDesignName>
+<ownerDesignName>database</ownerDesignName>
 <referredTableLongName>Tests</referredTableLongName>
 <deleteRule>NO ACTION</deleteRule>
 <referredTableID>D9785424-E702-4678-3E1E-1BD622207F04</referredTableID>

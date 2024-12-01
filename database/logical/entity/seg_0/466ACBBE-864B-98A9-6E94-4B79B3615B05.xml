@@ -27,6 +27,18 @@
 <logicalDatatype>LOGDT011</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
+<Attribute name="Date" id="E394A6E8-7374-794D-E23D-6040723E43E9">
+<createdBy>xxxx</createdBy>
+<createdTime>2024-12-01 19:54:27 UTC</createdTime>
+<ownerDesignName>database</ownerDesignName>
+<engineerTo>
+<item key="8ABA86DC-9BF0-47F9-F89E-40F6A3360E4D" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT008</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
 <Attribute name="UserId" id="DEBCAFF5-53C3-4530-7D22-90C5BFFBE67A">
 <createdBy>xxxx</createdBy>
 <createdTime>2024-11-24 16:01:08 UTC</createdTime>

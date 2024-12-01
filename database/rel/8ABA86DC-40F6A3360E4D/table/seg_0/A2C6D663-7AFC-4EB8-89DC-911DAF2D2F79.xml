@@ -62,6 +62,17 @@
 <colAssociation fkAssociation="7EB6DB58-35F5-07CC-1C15-5AAC56FB0C94" referredColumn="95C436B1-F599-0D72-F34E-E26FB13AC680"/>
 </associations>
 </Column>
+<Column name="Date" id="AC800CED-179C-580E-1C79-48FE7D76C10E">
+<createdBy>xxxx</createdBy>
+<createdTime>2024-12-01 19:54:48 UTC</createdTime>
+<generatorID>E394A6E8-7374-794D-E23D-6040723E43E9</generatorID>
+<ownerDesignName>database</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT008</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
 </columns>
 <indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
 <ind_PK_UK id="206AD6CD-5B26-5894-C3FE-D5C7B374DCB6" name="Groups_PK">
@@ -76,7 +87,7 @@
 <colUsage columnID="2672EC38-9A98-07B9-9E64-00D4E8262AE8"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="24309BE5-C463-074B-3CFC-DDE594A10A35" name="Groups_Users_FK">
+<ind_PK_UK id="24309BE5-C463-074B-3CFC-DDE594A10A35" name="Likes_Users_FK">
 <createdBy>xxxx</createdBy>
 <createdTime>2024-11-24 16:10:21 UTC</createdTime>
 <generatorID>C1181ED7-93F4-32C2-2E48-57F52B372C0F</generatorID>
@@ -87,7 +98,7 @@
 <colUsage columnID="ED2B7761-9A00-A3B2-DFA7-5FD0F645CC60"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="2305CDB3-51F7-1A27-F284-0ECBFFC04A80" name="Groups_Tests_FK">
+<ind_PK_UK id="2305CDB3-51F7-1A27-F284-0ECBFFC04A80" name="Likes_Tests_FK">
 <createdBy>xxxx</createdBy>
 <createdTime>2024-11-24 16:10:21 UTC</createdTime>
 <generatorID>0B510A03-A721-DFB6-DBA8-4EADF52FD655</generatorID>
