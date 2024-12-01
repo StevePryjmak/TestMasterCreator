@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.LerningBara.controller.MultipleChoiceQuestionWithPictureController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.LerningBara.controller.MultipleChoicesQuestionWithPictureController">
    <children>
       <ImageView fx:id="picture" fitHeight="184.0" fitWidth="233.0" layoutX="194.0" layoutY="62.0" pickOnBounds="true" preserveRatio="true" />
       <Label fx:id="question" alignment="CENTER" layoutX="152.0" layoutY="42.0" prefHeight="20.0" prefWidth="317.0" text="question" />

@@ -11,7 +11,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.CheckBox;
 
-public class MultipleChoiceQuestionController {
+public class MultipleChoicesQuestionController {
     @FXML
     private Label question;
     @FXML

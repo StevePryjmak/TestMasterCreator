@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.LerningBara.controller.MultipleChoiceQuestionController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.LerningBara.controller.MultipleChoicesQuestionController">
    <children>
       <Label fx:id="question" alignment="CENTER" layoutX="152.0" layoutY="65.0" prefHeight="45.0" prefWidth="317.0" text="question" />
       <VBox fx:id="Vvox" alignment="CENTER" layoutX="60.0" layoutY="116.0" prefHeight="173.0" prefWidth="501.0">
