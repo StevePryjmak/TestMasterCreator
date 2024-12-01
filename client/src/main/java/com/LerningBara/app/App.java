@@ -14,8 +14,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import client.Client;
 
-public class App extends Application 
-{
+public class App extends Application {
     private static App instance;
     private static Stage stage;
     private Test test;
@@ -26,7 +25,7 @@ public class App extends Application
     public void start(Stage stage) {
         try {
             App.stage = stage;
-            Parent root = FXMLLoader.load(getClass().getResource("/fxml/StartScene.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/fxml/LoginScene.fxml"));
             Scene scene = new Scene(root);
             scene.getStylesheets().add("/css/Styles.css");
             stage.setScene(scene);
@@ -37,7 +36,7 @@ public class App extends Application
     }
 
     public static void setRoot(String fxml) throws IOException {
-        
+
         Parent root = FXMLLoader.load(App.class.getResource("/fxml/" + fxml + ".fxml"));
         Scene scene = new Scene(root);
         stage.setScene(scene);
@@ -48,7 +47,7 @@ public class App extends Application
     }
 
     public static App getInstance() {
-        if(instance == null) {
+        if (instance == null) {
             instance = new App();
         }
         return instance;
@@ -62,16 +61,15 @@ public class App extends Application
         // test = TestInitializer.createExampleTest();
         testIterator = test.iterator();
         nextQuestion();
-    }   
+    }
 
     public void nextQuestion() {
         if (!testIterator.hasNext()) {
-            start(stage); 
+            start(stage);
             return;
         }
         AbstractQuestion question = testIterator.next();
         stage.setScene(question.getScene());
-        
+
     }
 }
-

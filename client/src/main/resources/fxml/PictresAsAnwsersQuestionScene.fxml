@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.LerningBara.controller.PicturesAsAnwsersQuestionController">
+   <children>
+      <Label fx:id="question" alignment="CENTER" layoutX="154.0" layoutY="24.0" prefHeight="29.0" prefWidth="291.0" text="question" />
+      <HBox fx:id="Hbox" layoutX="100.0" layoutY="53.0" prefHeight="265.0" prefWidth="400.0">
+         <children>
+            <VBox fx:id="Vbox1" alignment="CENTER_LEFT" prefHeight="265.0" prefWidth="200.0">
+               <children>
+                  <RadioButton fx:id="picture1" mnemonicParsing="false" text="picture1" />
+                  <RadioButton fx:id="picture3" mnemonicParsing="false" text="picture3" />
+               </children>
+            </VBox>
+            <VBox fx:id="Vbox2" alignment="CENTER_LEFT" prefHeight="265.0" prefWidth="200.0">
+               <children>
+                  <RadioButton fx:id="picture2" mnemonicParsing="false" text="picture2" />
+                  <RadioButton fx:id="picture4" mnemonicParsing="false" text="picture4" />
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+      <Button fx:id="next" layoutX="270.0" layoutY="318.0" mnemonicParsing="false" onMouseReleased="#handleCheckButton" text="next" />
+   </children>
+</AnchorPane>

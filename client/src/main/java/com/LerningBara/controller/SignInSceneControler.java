@@ -4,10 +4,10 @@ import javafx.fxml.FXML;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
-
 public class SignInSceneControler {
    public SignInSceneControler() {
    }
+
    @FXML
    private TextField loginField;
    @FXML
@@ -17,9 +17,9 @@ public class SignInSceneControler {
    public void signIn() {
       String login = loginField.getText();
       String password = passwordField.getText();
-      System.out.println(login+password);
-      //TODO CHECK THE DATABASE
-      //TODO CHANGE SCENE TO MAIN MENU
+      System.out.println(login + password);
+      // TODO CHECK THE DATABASE
+      // TODO CHANGE SCENE TO MAIN MENU
    }
 
 }
