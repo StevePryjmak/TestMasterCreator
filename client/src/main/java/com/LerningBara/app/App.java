@@ -2,17 +2,25 @@ package com.LerningBara.app;
 
 import java.io.IOException;
 import java.util.Iterator;
+import java.util.List;
 
 import com.LerningBara.controller.TestInitializer;
 import com.LerningBara.model.AbstractQuestion;
 import com.LerningBara.model.Test;
 
+import TestData.AvalibleTestsList;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import client.Client;
+import TestData.TestInfoData;
+import javafx.scene.control.ScrollPane;
+import com.LerningBara.controller.MainLayoutController;
+import com.LerningBara.controller.TestBoxController;
+import javafx.scene.layout.VBox;
+import javafx.scene.layout.HBox;
 
 public class App extends Application {
     private static App instance;
@@ -72,4 +80,18 @@ public class App extends Application {
         stage.setScene(question.getScene());
 
     }
+
+
+    public void showTestsList(List<TestInfoData> testsInfo) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/MainLayout.fxml"));
+        ScrollPane root = loader.load();
+        MainLayoutController controller = loader.getController();
+
+        controller.setTests(testsInfo);
+
+        Scene scene = new Scene(root, 600, 600);
+        scene.getStylesheets().add(getClass().getResource("/css/RoundedSearchBar.css").toExternalForm());
+        stage.setScene(scene);
+    }
+
 }

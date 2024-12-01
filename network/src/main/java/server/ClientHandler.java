@@ -2,13 +2,12 @@ package server;
 
 import java.util.ArrayList;
 
-import QuestionData.MyClass;
-import QuestionData.TestData;
-import server.ExampleTest;
+import TestData.*;
 
 import java.io.*;
 import java.net.Socket;
 import connection.Message;
+import database.DataBase;
 
 public class ClientHandler implements Runnable {
 
@@ -37,8 +36,12 @@ public class ClientHandler implements Runnable {
                     Message message = (Message) receivedObject;
                     System.out.println("Message received: " + message.getMessage());
                     if (message.getMessage().equals("Give me the test")) {
-                        TestData testData = ExampleTest.exampleTestData();
+                        TestData testData = DataBase.getTest((String) message.getObject());
                         Message responce = new Message("Here is the test", testData);
+                        sendObject(responce);
+                    } else if (message.getMessage().equals("List of tests")) {
+                        AvalibleTestsList avalibleTestsList = DataBase.getTests();
+                        Message responce = new Message("Here is the list of tests", avalibleTestsList);
                         sendObject(responce);
                     }
                 } else {

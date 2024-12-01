@@ -6,9 +6,8 @@ import java.net.Socket;
 import java.security.MessageDigest;
 import java.util.Scanner;
 
-import QuestionData.TestData;
+import TestData.TestData;
 import connection.Message;
-import QuestionData.MyClass;
 
 import java.util.List;
 import java.util.ArrayList;
