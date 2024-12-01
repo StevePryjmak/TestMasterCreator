@@ -9,7 +9,7 @@ import java.util.List;
 import QuestionData.AbstractQuestionData;
 import QuestionData.SingleChoiceQuestionData;
 import QuestionData.MultipleChoicesQuestionData;
-import QuestionData.TestData;
+import TestData.TestData;
 
 public class ExampleTest {
 
