@@ -1,0 +1,46 @@
+/* Style for the rounded search bar */
+.rounded-search-bar {
+    -fx-background-radius: 15;
+    -fx-border-radius: 15;
+    -fx-border-color: #b0b0b0; 
+    -fx-border-width: 1;
+    -fx-padding: 5 12;
+    -fx-background-color: #ffffff; 
+    -fx-text-fill: #333333; 
+}
+
+.rounded-search-bar:hover {
+    -fx-border-color: #8c8c8c;
+}
+
+.rounded-search-bar:focused {
+    -fx-background-color: #f5f5f5; 
+    -fx-border-color: #005f89; 
+    -fx-text-fill: #333333; 
+}
+
+
+
+
+/* Style for the search button */
+.search-button {
+    -fx-background-color: #4CAF50; /* Green color */
+    -fx-text-fill: white;
+    -fx-padding: 5 15;
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
+    -fx-font-size: 14px;
+}
+
+.search-button:hover {
+    -fx-background-color: #45a049; /* Darker green on hover */
+}
+
+/* Style for the ComboBox dropdown */
+.combo-box {
+    -fx-background-color: #f0f0f0;
+    -fx-border-radius: 10;
+    -fx-border-color: #ccc;
+    -fx-border-width: 2;
+    -fx-padding: 5 10;
+}

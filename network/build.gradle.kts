@@ -4,7 +4,7 @@ plugins {
 
 dependencies {
     implementation ("org.mockito:mockito-junit-jupiter:5.12.0")
-
+    implementation("com.oracle.ojdbc:ojdbc8:19.3.0.0")
     //test
     implementation("org.junit.jupiter:junit-jupiter-api:5.11.0")
     implementation("org.junit.jupiter:junit-jupiter-engine:5.11.0")
