@@ -4,8 +4,6 @@ import com.LerningBara.app.App;
 import javafx.fxml.FXML;
 
 public class LoginSceneControler {
-   public LoginSceneControler() {
-   }
 
    @FXML
    public void signIn() throws Exception{

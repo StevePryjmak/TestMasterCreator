@@ -15,11 +15,11 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <TextField id="loginField" layoutX="225.0" layoutY="75.0" promptText="login" />
-      <TextField id="emailField" layoutX="225.0" layoutY="119.0" promptText="e-mail" />
-      <PasswordField id="passwordField1" layoutX="225.0" layoutY="162.0" promptText="password" />
-      <PasswordField id="passwordField2" layoutX="224.0" layoutY="209.0" promptText="repeat password" />
-      <CheckBox id="termsField" layoutX="225.0" layoutY="252.0" mnemonicParsing="false" text="I agree to terms and conditions" />
-      <Button id="createButton" layoutX="237.0" layoutY="286.0" mnemonicParsing="false" onAction="#createAccount" text="Create your account" />
+      <TextField fx:id="loginField" layoutX="225.0" layoutY="75.0" promptText="login" />
+      <TextField fx:id="emailField" layoutX="225.0" layoutY="119.0" promptText="e-mail" />
+      <PasswordField fx:id="passwordField1" layoutX="225.0" layoutY="162.0" promptText="password" />
+      <PasswordField fx:id="passwordField2" layoutX="224.0" layoutY="209.0" promptText="repeat password" />
+      <CheckBox fx:id="termsField" layoutX="225.0" layoutY="252.0" mnemonicParsing="false" text="I agree to terms and conditions" />
+      <Button fx:id="createButton" layoutX="237.0" layoutY="286.0" mnemonicParsing="false" onAction="#createAccount" text="Create your account" />
    </children>
 </AnchorPane>

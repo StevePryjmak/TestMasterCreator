@@ -8,8 +8,6 @@ import javafx.scene.control.TextField;
 
 
 public class CreateAccountSceneControler {
-    public CreateAccountSceneControler() {
-    }
     @FXML
     private CheckBox termsField;
     @FXML
@@ -21,7 +19,6 @@ public class CreateAccountSceneControler {
     @FXML
     private PasswordField passwordField2;
 
-    @FXML
     public void createAccount() throws Exception{
         if((!termsField.isSelected())){
             System.out.println("You have to accept terms and conditions");
@@ -31,8 +28,9 @@ public class CreateAccountSceneControler {
         String email = emailField.getText();
         String password = passwordField1.getText();
         if(!(password.equals(passwordField2.getText()))){
-            App.setRoot("CreateAccountScene");
+            System.out.println("Password is not matching.");
         }
+        System.out.println(login+email);
         // TODO INSERT INTO DATABASE
         // TODO CHANGE SCENE TO MAIN MENU
 

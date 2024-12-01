@@ -5,9 +5,6 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
 public class SignInSceneControler {
-   public SignInSceneControler() {
-   }
-
    @FXML
    private TextField loginField;
    @FXML
