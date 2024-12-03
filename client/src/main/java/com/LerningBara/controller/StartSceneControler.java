@@ -1,7 +1,6 @@
 package com.LerningBara.controller;
 
 import com.LerningBara.app.App;
-import TestData.TestData;
 import com.LerningBara.model.Test;
 import QuestionData.AbstractQuestionData;
 import javafx.fxml.FXML;
@@ -20,14 +19,20 @@ public class StartSceneControler {
         this.getTestsList();
     }
 
+    @FXML
+    public void createTest() {
+        App.setRoot("CreateTestScene");
+    }
+
+
     public void getTestsList() {
-        System.out.println("Connected to server");
         App.getInstance().client = new Client("localhost", 8080);
-        Message message = new Message("List of tests", null);
-        App.getInstance().client.sendObject(message);
+        System.out.println("Connected to server");
+        App.getInstance().client.sendMessage("List of tests", null);
         System.out.println("Waiting for list of tests");
-        
         Message messageReceived = App.getInstance().client.getOneRecivedObject();;
+        //App.getInstance().client.closeConnection();
+
         Object r = messageReceived.getObject();
         if(r instanceof AvalibleTestsList) {
             AvalibleTestsList avalibleTestsList = (AvalibleTestsList) r;

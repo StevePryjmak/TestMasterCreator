@@ -25,6 +25,10 @@ public class DataBase {
     private static final String PASSWORD = "projektpap2024";
     private static Connection connection = null;
 
+    public static void start() {
+        connect();
+    }
+
     private static void connect(){
         if (connection == null)
             try {
@@ -68,6 +72,11 @@ public class DataBase {
                 System.err.println("Failed to close resources: " + e.getMessage());
             }
         }
+
+        // @TODO: remove this hardcoded data
+        tests.add(new TestInfoData("Devision", "This is math test", "Login1", "Date1", "Math", 1));
+        tests.add(new TestInfoData("Omnivores", "Basic test about omniwores", "Login2", "Date2", "Biology", 2));
+        tests.add(new TestInfoData("Derivative", "Qestion about derivative", "Login3", "Date3", "Math", 3));
         return new AvalibleTestsList(tests);
     }
 

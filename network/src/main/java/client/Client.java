@@ -76,6 +76,11 @@ public class Client {
         }
     }
 
+    public void sendMessage(String text, Object object) {
+        Message message = new Message(text, object);
+        sendObject(message);
+    }
+
 
     public void closeConnection() {
         try {

@@ -43,11 +43,14 @@ public class App extends Application {
         }
     }
 
-    public static void setRoot(String fxml) throws IOException {
-
-        Parent root = FXMLLoader.load(App.class.getResource("/fxml/" + fxml + ".fxml"));
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
+    public static void setRoot(String fxml) {
+        try {
+            Parent root = FXMLLoader.load(App.class.getResource("/fxml/" + fxml + ".fxml"));
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public static void main(String[] args) {

@@ -12,6 +12,7 @@ import java.util.List;
 import TestData.TestInfoData;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import java.util.ArrayList;
 
 import javafx.fxml.FXMLLoader;
 import java.io.IOException;
@@ -32,12 +33,14 @@ public class MainLayoutController {
     private VBox contentBox;
 
     private List<TestInfoData> testsInfo;
+    private List<TestInfoData> filteredTestsInfo;
 
     public void addTestBox(VBox testBox) {
         contentBox.getChildren().add(testBox);
     }
 
     public void setTests(List<TestInfoData> testsInfo) {
+        // @TODO: implement filtering and paging
         this.testsInfo = testsInfo;
         this.updateTests(testsInfo);
     }
@@ -61,14 +64,44 @@ public class MainLayoutController {
 
     @FXML
     private void initialize() {
-        ObservableList<String> filterOptions = FXCollections.observableArrayList("Test Field", "Subject");
+        ObservableList<String> filterOptions = FXCollections.observableArrayList("All", "Math", "Physics", "Chemistry", "Biology");
         filterComboBox.setItems(filterOptions);
     }
 
+    @FXML
     private void handleSearch() {
         String filter = filterComboBox.getValue();
         String searchText = searchTextField.getText();
+        if (filter == null) {
+            filter = "All";
+        }
+        filterTests(filter, testsInfo);
+        filterTestsBySearch(searchText, filteredTestsInfo);
+        updateTests(filteredTestsInfo);
+    }
 
-        System.out.println("Search for: " + searchText + " in " + filter);
+    private void filterTests(String filter, List<TestInfoData> testsInfo) {
+        if(filter == "All") {
+            filteredTestsInfo = testsInfo;
+            return;
+        }
+        filteredTestsInfo = new ArrayList<>();
+        for(TestInfoData testInfo : testsInfo) {
+            if(testInfo.field.equals(filter)) {
+                filteredTestsInfo.add(testInfo);
+            }
+        }
+    }
+
+    private void filterTestsBySearch(String searchText, List<TestInfoData> testsInfo) {
+        if(searchText.isEmpty()) {
+            return;
+        }
+        filteredTestsInfo = new ArrayList<>();
+        for(TestInfoData testInfo : testsInfo) {
+            if(testInfo.name.contains(searchText) || testInfo.description.contains(searchText)) {
+                filteredTestsInfo.add(testInfo);
+            }
+        }
     }
 }

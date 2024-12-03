@@ -1,6 +1,10 @@
 package server;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.Map;
+import java.util.Queue;
 
 import TestData.*;
 
@@ -9,12 +13,16 @@ import java.net.Socket;
 import connection.Message;
 import database.DataBase;
 
+
+
 public class ClientHandler implements Runnable {
 
     public static ArrayList<ClientHandler> clientHandlers = new ArrayList<>();
     private Socket socket;
     private ObjectInputStream objectInputStream;
     private ObjectOutputStream objectOutputStream;
+    private final Map<String, Runnable> functionMap = new HashMap<>();
+    private Queue<Object> recived = new LinkedList<>();
 
     public ClientHandler(Socket socket) {
         this.socket = socket;
@@ -25,6 +33,21 @@ public class ClientHandler implements Runnable {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        intializeFunctionMap();
+    }
+
+    public void intializeFunctionMap() {
+        functionMap.put("List of tests", this::sendTestsList);
+        functionMap.put("Give me the test", this::sendTest);
+        // @TODO add more functions here
+    }
+
+    public void sendTestsList() {
+        sendObject(new Message("List of tests", DataBase.getTests()));
+    }
+
+    public void sendTest() {
+        sendObject(new Message("Give me the test", DataBase.getTest((String) recived.poll())));
     }
 
     @Override
@@ -35,15 +58,12 @@ public class ClientHandler implements Runnable {
                 if (receivedObject instanceof Message) {
                     Message message = (Message) receivedObject;
                     System.out.println("Message received: " + message.getMessage());
-                    if (message.getMessage().equals("Give me the test")) {
-                        TestData testData = DataBase.getTest((String) message.getObject());
-                        Message responce = new Message("Here is the test", testData);
-                        sendObject(responce);
-                    } else if (message.getMessage().equals("List of tests")) {
-                        AvalibleTestsList avalibleTestsList = DataBase.getTests();
-                        Message responce = new Message("Here is the list of tests", avalibleTestsList);
-                        sendObject(responce);
+                    try {
+                        recived.add(message.getObject());
+                    } catch (NullPointerException e) {
+                        System.out.println("Function without arguments good");
                     }
+                    callFromMap(message.getMessage());
                 } else {
                     System.err.println("Got not expected object");
                 }
@@ -54,6 +74,10 @@ public class ClientHandler implements Runnable {
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
+    }
+
+    public void callFromMap(String message) {
+        functionMap.get(message).run();
     }
 
     public void sendObject(Object object) {

@@ -12,7 +12,7 @@
                 <TextField fx:id="searchTextField" promptText="Search..." styleClass="rounded-search-bar" prefWidth="200"/>
 
                 <!-- Search button -->
-                <Button fx:id="searchButton" text="Search" styleClass="search-button"/>
+                <Button fx:id="searchButton" text="Search" styleClass="search-button" onAction="#handleSearch"/>
                 <!-- Dropdown menu for selecting test field or subject -->
                 <ComboBox fx:id="filterComboBox" promptText="Select Filter" prefWidth="150"/>
                 
