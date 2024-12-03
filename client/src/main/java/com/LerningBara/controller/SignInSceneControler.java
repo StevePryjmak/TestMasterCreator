@@ -21,9 +21,8 @@ public class SignInSceneControler {
    @FXML
    private Label loginLabel;
 
-
    @FXML
-   public void signIn() throws Exception{
+   public void signIn() throws Exception {
       String login = loginField.getText();
       String password = passwordField.getText();
       Boolean user_exists = false;
@@ -35,8 +34,8 @@ public class SignInSceneControler {
       System.out.println("Waiting for list of tests");
       Message messageReceived = App.getInstance().client.getOneRecivedObject();
       Object obj = messageReceived.getObject();
-      if (obj instanceof Boolean){
-         user_exists = (Boolean)obj;
+      if (obj instanceof Boolean) {
+         user_exists = (Boolean) obj;
       }
       App.getInstance().client = new Client("localhost", 8080);
       System.out.println("Connected to server");
@@ -44,26 +43,25 @@ public class SignInSceneControler {
       System.out.println("Waiting for list of tests");
       messageReceived = App.getInstance().client.getOneRecivedObject();
       obj = messageReceived.getObject();
-      if (obj instanceof Boolean){
-         corr_pass= (Boolean)obj;
+      if (obj instanceof Boolean) {
+         corr_pass = (Boolean) obj;
       }
 
-      if (user_exists){
+      if (user_exists) {
          loginLabel.setText("");
-         if (DataBase.checkPassword(login, password)){
+         if (corr_pass) {
             App.setRoot("StartScene");
-         }
-         else{
+         } else {
             passLabel.setText("Incorrect password.");
          }
-      }
-      else {
+      } else {
          passLabel.setText("");
          loginLabel.setText("Username not found.");
       }
    }
+
    @FXML
-   public void goBack() throws Exception{
+   public void goBack() throws Exception {
       App.setRoot("LoginScene");
    }
 }
