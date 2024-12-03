@@ -22,7 +22,6 @@ public class SignInSceneControler {
    public void signIn() throws Exception{
       String login = loginField.getText();
       String password = passwordField.getText();
-      System.out.println(login + password);
       if (App.database.userExists(login)){
          if (App.database.checkPassword(login, password)){
             App.setRoot("StartScene");

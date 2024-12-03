@@ -46,8 +46,8 @@ public class DataBase {
         }
     }
 
-    public static AvalibleTestsList getTests() {  
-        connect(); 
+    public static AvalibleTestsList getTests() {
+        connect();
         PreparedStatement statement = null;
         ResultSet resultSet = null;
         List<TestInfoData> tests = new ArrayList<>();
@@ -57,7 +57,7 @@ public class DataBase {
             while (resultSet.next()) {
                 TestInfoData testInfoData3 = new TestInfoData(resultSet.getString("Name"), resultSet.getString("Description"), resultSet.getString("Login"), resultSet.getString("Date"), resultSet.getString("field"),  resultSet.getInt("n"));
                 tests.add(testInfoData3);
-            } 
+            }
         }catch (SQLException e) {
             System.err.println("Query execution failed: " + e.getMessage());
         } finally {
@@ -105,7 +105,7 @@ public class DataBase {
                         break;
                 }
                 questions.add(q);
-            } 
+            }
         } catch (SQLException e) {
             System.err.println("Query execution failed: " + e.getMessage());
         } finally {
@@ -120,27 +120,46 @@ public class DataBase {
         return new TestData(questions);
     }
 
-    public boolean userExists(String username) { 
+    public boolean userExists(String username) {
+        connect();
+        PreparedStatement statement = null;
+        ResultSet userSet = null;
+        boolean exists = false;
+        try{
+            statement = connection.prepareStatement("SELECT COUNT(*) AS EX FROM USERS WHERE LOGIN = ?");
+            statement.setString(1, username);
+            userSet = statement.executeQuery();
+            userSet.next();
+            exists = !(userSet.getString("EX").equals("0"));
+        }
+        catch (SQLException e) {
+            System.err.println("Query execution failed: " + e.getMessage());}
+        finally {
+            try {
+                if (userSet != null) userSet.close();
+                } catch (SQLException e) {
+                    System.err.println("Failed to close resources: " + e.getMessage());
+                }
+            }
+        return exists;
+    }
+
+    public boolean checkPassword(String username, String password) {
         connect();
         return true;
     }
 
-    public boolean checkPassword(String username, String password) { 
-        connect();
-        return true;
-    }
-
-    public void addUser(String username, String password) { 
+    public void addUser(String username, String password) {
         connect();
 
     }
 
-    public void addTest(TestData testData) { 
+    public void addTest(TestData testData) {
         connect();
     }
 
-    // class with user info profile image and some useful information idk ...   
-    // public User getUser(String username) { 
+    // class with user info profile image and some useful information idk ...
+    // public User getUser(String username) {
     //     return new User("username", "password");
     // }
 

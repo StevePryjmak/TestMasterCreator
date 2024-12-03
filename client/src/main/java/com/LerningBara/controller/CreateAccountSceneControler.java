@@ -76,7 +76,6 @@ public class CreateAccountSceneControler {
             termsLabel.setText("");
         }
 
-        System.out.println(login+email);
         if (create_accout) {
             App.database.addUser(login, password);
             App.setRoot("StartScene");
