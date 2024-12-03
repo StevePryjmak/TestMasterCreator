@@ -74,10 +74,10 @@ public class MultipleChoicesQuestionController {
 
         if (selectedAnswers.isEmpty()) {
             System.out.println("Please select an answer.");
+        } else {
+            checkAnswer(selectedAnswers.toArray(new String[0]));
+            App.getInstance().nextQuestion();
         }
-
-        checkAnswer(selectedAnswers.toArray(new String[0]));
-        App.getInstance().nextQuestion();
     }
 
     // Check if the selected answer is correct
