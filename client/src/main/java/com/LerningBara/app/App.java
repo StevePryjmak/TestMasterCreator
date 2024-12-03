@@ -21,19 +21,23 @@ import com.LerningBara.controller.MainLayoutController;
 import com.LerningBara.controller.TestBoxController;
 import javafx.scene.layout.VBox;
 import javafx.scene.layout.HBox;
+import database.DataBase;
 
 public class App extends Application {
     private static App instance;
     private static Stage stage;
     private Test test;
     private static Iterator<AbstractQuestion> testIterator;
+    public static DataBase database;
     public Client client;
+
 
     @Override
     public void start(Stage stage) {
+        database = new DataBase();
         try {
             App.stage = stage;
-            Parent root = FXMLLoader.load(getClass().getResource("/fxml/StartScene.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/fxml/LoginScene.fxml"));
             Scene scene = new Scene(root);
             scene.getStylesheets().add("/css/Styles.css");
             stage.setScene(scene);
