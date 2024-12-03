@@ -7,6 +7,7 @@ import java.util.List;
 import QuestionData.AbstractQuestionData;
 import QuestionData.SingleChoiceQuestionData;
 import QuestionData.MultipleChoicesQuestionData;
+import QuestionData.OpenAnwserQuestionData;
 import TestData.AvalibleTestsList;
 import TestData.TestData;
 import TestData.TestInfoData;
@@ -53,11 +54,12 @@ public class DataBase {
         try {
             statement = connection.prepareStatement(
                     "SELECT LOGIN, T.*, (SELECT COUNT(*) FROM TEST_QUESTION WHERE TESTS_TESTID = T.TESTID) N FROM TESTS T JOIN USERS ON USERID = USERS_USERID");
-            System.out.println("Executing query: " + statement.unwrap(oracle.jdbc.OraclePreparedStatement.class));
             resultSet = statement.executeQuery();
+
             while (resultSet.next()) {
                 TestInfoData testInfoData3 = new TestInfoData(resultSet.getString("Name"),
-                        resultSet.getString("Description"), resultSet.getString("Login"), resultSet.getString("Date"),
+                        resultSet.getString("Description"), resultSet.getString("Login"),
+                        resultSet.getString("CREATIONDATE"),
                         resultSet.getString("field"), resultSet.getInt("n"));
                 tests.add(testInfoData3);
             }
@@ -111,6 +113,9 @@ public class DataBase {
                     case 2:
                         q = new MultipleChoicesQuestionData(questionsSet.getString("Text"), options,
                                 correctAnswers.stream().mapToInt(Integer::intValue).toArray());
+                        break;
+                    case 3:
+                        q = new OpenAnwserQuestionData(questionsSet.getString("Text"), (String) options.toArray()[0]);
                         break;
                 }
                 questions.add(q);
