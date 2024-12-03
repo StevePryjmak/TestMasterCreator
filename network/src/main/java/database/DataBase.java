@@ -146,7 +146,26 @@ public class DataBase {
 
     public boolean checkPassword(String username, String password) {
         connect();
-        return true;
+        PreparedStatement statement = null;
+        ResultSet userSet = null;
+        String correct_pass = "";
+        try{
+            statement = connection.prepareStatement("SELECT PASSWORD FROM USERS WHERE LOGIN = ?");
+            statement.setString(1, username);
+            userSet = statement.executeQuery();
+            userSet.next();
+            correct_pass = userSet.getString("PASSWORD");
+        }
+        catch (SQLException e) {
+            System.err.println("Query execution failed: " + e.getMessage());}
+        finally {
+            try {
+                if (userSet != null) userSet.close();
+                } catch (SQLException e) {
+                    System.err.println("Failed to close resources: " + e.getMessage());
+                }
+            }
+        return password.equals(correct_pass);
     }
 
     public void addUser(String username, String password) {

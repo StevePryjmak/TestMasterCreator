@@ -23,6 +23,7 @@ public class SignInSceneControler {
       String login = loginField.getText();
       String password = passwordField.getText();
       if (App.database.userExists(login)){
+         loginLabel.setText("");
          if (App.database.checkPassword(login, password)){
             App.setRoot("StartScene");
          }
