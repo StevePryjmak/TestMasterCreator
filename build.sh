@@ -5,6 +5,10 @@ docker run -d --name oracle-db -p 1521:1521 container-registry.oracle.com/databa
 
 docker exec oracle-db ./setPassword.sh projektpap2024
 
+docker cp clean_database.sql oracle-db:/tmp/sql_commands.sql
+
+docker exec oracle-db sqlplus system/projektpap2024@localhost/FREEPDB1 @/tmp/sql_commands.sql
+
 docker cp create_database.sql oracle-db:/tmp/sql_commands.sql
 
 docker exec oracle-db sqlplus system/projektpap2024@localhost/FREEPDB1 @/tmp/sql_commands.sql
@@ -24,7 +28,7 @@ fi
 
 # Start the server and client
 
-(./gradlew :client:run ) &
-./gradlew :server:run 
+/usr/bin/dbus-launch /usr/bin/gnome-terminal -- bash -ic "./gradlew :server:run; exec bash"
+./gradlew :client:run 
 
 echo "All tasks completed successfully!"

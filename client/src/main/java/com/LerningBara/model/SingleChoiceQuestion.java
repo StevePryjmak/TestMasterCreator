@@ -17,12 +17,11 @@ public class SingleChoiceQuestion extends AbstractQuestion {
     private SingleChoiceQuestionData questionData;
     private SingleChoiceQuestionController controller;
 
-
     public SingleChoiceQuestion(String question, List<String> options, int correctAnswerIndex) throws IOException {
         questionData = new SingleChoiceQuestionData(question, options, correctAnswerIndex);
         initializeScene();
     }
-    
+
     public SingleChoiceQuestion(SingleChoiceQuestionData questionData) throws IOException {
         this.questionData = questionData;
         initializeScene();
@@ -33,7 +32,8 @@ public class SingleChoiceQuestion extends AbstractQuestion {
         Parent root = loader.load();
 
         controller = loader.getController();
-        controller.setQuestionAndAnswers(questionData.getQuestion(), questionData.getOptions(), questionData.getCorrectAnswer());
+        controller.setQuestionAndAnswers(questionData.getQuestion(), questionData.getOptions(),
+                questionData.getCorrectAnswer());
 
         scene = new Scene(root);
     }

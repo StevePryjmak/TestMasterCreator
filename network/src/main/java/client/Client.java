@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.ArrayList;
 
 public class Client {
-    
+
     private Socket socket;
     private List<Message> recived = new ArrayList<>();
     private ObjectInputStream objectInputStream;
@@ -35,7 +35,7 @@ public class Client {
         new Thread(() -> {
             try {
                 while (!socket.isClosed()) {
-                    Object receivedObject = objectInputStream.readObject(); 
+                    Object receivedObject = objectInputStream.readObject();
                     System.err.println("Received object: ");
 
                     if (receivedObject instanceof Message) {
@@ -52,17 +52,16 @@ public class Client {
             }
         }).start();
     }
-    
-    
-    public Message getOneRecivedObject () {
-        while(true) {
+
+    public Message getOneRecivedObject() {
+        while (true) {
             System.out.println("Waiting for object");
             if (recived.size() > 0) {
                 System.out.println("Object received");
                 return recived.remove(0);
             }
         }
-        //return null;
+        // return null;
     }
 
     public void sendObject(Object object) {
@@ -81,15 +80,13 @@ public class Client {
         sendObject(message);
     }
 
-
     public void closeConnection() {
         try {
             if (socket != null)
-            socket.close();
+                socket.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    
 }
