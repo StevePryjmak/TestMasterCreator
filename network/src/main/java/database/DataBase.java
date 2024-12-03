@@ -121,7 +121,7 @@ public class DataBase {
         return new TestData(questions);
     }
 
-    public boolean userExists(String username) {
+    public static boolean userExists(String username) {
         connect();
         PreparedStatement statement = null;
         ResultSet userSet = null;
@@ -145,7 +145,7 @@ public class DataBase {
         return exists;
     }
 
-    public boolean checkPassword(String username, String password) {
+    public static boolean checkPassword(String username, String password) {
         connect();
         PreparedStatement statement = null;
         ResultSet userSet = null;
@@ -169,7 +169,7 @@ public class DataBase {
         return password.equals(correct_pass);
     }
 
-    public void addUser(String username, String password, String email) {
+    public static void addUser(String username, String password, String email) {
         connect();
         String str_insert = String.format("INSERT INTO Users(Login, Password, Email) VALUES ('%s', '%s', '%s')", username, password, email);
         int rows_insert;
