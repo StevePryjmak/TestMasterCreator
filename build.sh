@@ -22,7 +22,7 @@ else
   error_exit "Gradle wrapper (gradlew) not found in the current directory."
 fi
 
-# Start the server and client in separate terminals
+# Start the server and client
 
 (./gradlew :client:run ) &
 ./gradlew :server:run 
