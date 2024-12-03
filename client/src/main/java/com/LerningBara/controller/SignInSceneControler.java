@@ -2,6 +2,9 @@ package com.LerningBara.controller;
 
 import com.LerningBara.app.App;
 
+import UserData.UserData;
+import client.Client;
+import connection.Message;
 import javafx.fxml.FXML;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -23,7 +26,29 @@ public class SignInSceneControler {
    public void signIn() throws Exception{
       String login = loginField.getText();
       String password = passwordField.getText();
-      if (DataBase.userExists(login)){
+      Boolean user_exists = false;
+      Boolean corr_pass = false;
+      UserData usr = new UserData(login, password);
+      App.getInstance().client = new Client("localhost", 8080);
+      System.out.println("Connected to server");
+      App.getInstance().client.sendMessage("User exists", usr);
+      System.out.println("Waiting for list of tests");
+      Message messageReceived = App.getInstance().client.getOneRecivedObject();
+      Object obj = messageReceived.getObject();
+      if (obj instanceof Boolean){
+         user_exists = (Boolean)obj;
+      }
+      App.getInstance().client = new Client("localhost", 8080);
+      System.out.println("Connected to server");
+      App.getInstance().client.sendMessage("Check password", usr);
+      System.out.println("Waiting for list of tests");
+      messageReceived = App.getInstance().client.getOneRecivedObject();
+      obj = messageReceived.getObject();
+      if (obj instanceof Boolean){
+         corr_pass= (Boolean)obj;
+      }
+
+      if (user_exists){
          loginLabel.setText("");
          if (DataBase.checkPassword(login, password)){
             App.setRoot("StartScene");

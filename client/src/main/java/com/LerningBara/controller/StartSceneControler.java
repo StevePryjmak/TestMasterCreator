@@ -13,7 +13,7 @@ import connection.Message;
 import TestData.*;
 
 public class StartSceneControler {
-    
+
     @FXML
     public void startTest() throws Exception {
         this.getTestsList();
@@ -30,7 +30,7 @@ public class StartSceneControler {
         System.out.println("Connected to server");
         App.getInstance().client.sendMessage("List of tests", null);
         System.out.println("Waiting for list of tests");
-        Message messageReceived = App.getInstance().client.getOneRecivedObject();;
+        Message messageReceived = App.getInstance().client.getOneRecivedObject();
         //App.getInstance().client.closeConnection();
 
         Object r = messageReceived.getObject();
@@ -43,7 +43,7 @@ public class StartSceneControler {
             catch (IOException e) {
                 System.out.println(e);
             }
-            
+
         }
     }
 }

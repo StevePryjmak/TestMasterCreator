@@ -1,12 +1,18 @@
 package com.LerningBara.controller;
 
+
 import com.LerningBara.app.App;
+
+import UserData.UserData;
+import client.Client;
+import connection.Message;
 import javafx.fxml.FXML;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import database.DataBase;
+import UserData.UserData;
 
 
 public class CreateAccountSceneControler {
@@ -34,18 +40,32 @@ public class CreateAccountSceneControler {
     public void createAccount() throws Exception{
         boolean create_accout = true;
         String login = loginField.getText();
+        String email = emailField.getText();
+        String password = passwordField1.getText();
+        Boolean db_resp = false;
+        UserData usr = new UserData(login, password, email);
+        App.getInstance().client = new Client("localhost", 8080);
+        System.out.println("Connected to server");
+        App.getInstance().client.sendMessage("User exists", usr);
+        System.out.println("Waiting for list of tests");
+        Message messageReceived = App.getInstance().client.getOneRecivedObject();
+        Object obj = messageReceived.getObject();
+        if (obj instanceof Boolean){
+            db_resp = (Boolean)obj;
+        }
+
         if (login.equals("")){
             loginLabel.setText("Login cannot be empty.");
             create_accout = false;
         }
-        else if(DataBase.userExists(login)){
+        else if(db_resp){
             loginLabel.setText("Username already taken.");
             create_accout = false;
         }
         else {
             loginLabel.setText("");
         }
-        String email = emailField.getText();
+
         if (email.equals("")){
             emailLabel.setText("E-mail cannot be empty.");
             create_accout = false;
@@ -53,7 +73,7 @@ public class CreateAccountSceneControler {
         else {
             emailLabel.setText("");
         }
-        String password = passwordField1.getText();
+
         if (password.equals("")){
             passLabel.setText("Password cannot be empty.");
             create_accout = false;
@@ -78,7 +98,11 @@ public class CreateAccountSceneControler {
         }
 
         if (create_accout) {
-            DataBase.addUser(login, password, email);
+            App.getInstance().client = new Client("localhost", 8080);
+            System.out.println("Connected to server");
+            App.getInstance().client.sendMessage("Add user", usr);
+            System.out.println("Waiting for list of tests");
+            messageReceived = App.getInstance().client.getOneRecivedObject();
             App.setRoot("StartScene");
         }
     }
