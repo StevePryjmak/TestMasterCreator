@@ -77,7 +77,7 @@ public class CreateAccountSceneControler {
         }
 
         if (create_accout) {
-            App.database.addUser(login, password);
+            App.database.addUser(login, password, email);
             App.setRoot("StartScene");
         }
     }

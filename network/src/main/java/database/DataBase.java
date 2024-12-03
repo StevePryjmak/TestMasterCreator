@@ -12,7 +12,8 @@ import TestData.AvalibleTestsList;
 import TestData.TestData;
 import TestData.TestInfoData;
 import java.util.ArrayList;
-
+import java.io.FileWriter;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -168,9 +169,27 @@ public class DataBase {
         return password.equals(correct_pass);
     }
 
-    public void addUser(String username, String password) {
+    public void addUser(String username, String password, String email) {
         connect();
-
+        String str_insert = String.format("INSERT INTO Users(Login, Password, Email) VALUES ('%s', '%s', '%s')", username, password, email);
+        int rows_insert;
+        PreparedStatement statement = null;
+        try{
+            statement = connection.prepareStatement(str_insert);
+            rows_insert = statement.executeUpdate();
+            if(rows_insert > 0){
+                try (FileWriter fileWriter = new FileWriter("../Insert_data.sql", true)) {
+                    fileWriter.write("\n");
+                    fileWriter.write(str_insert);
+                    fileWriter.write(";\nCOMMIT;");
+                    System.out.println("New user appended to data file.");
+                } catch (IOException e) {
+                    System.err.println("An error occured: " + e.getMessage());
+                }
+            }
+        }
+        catch (SQLException e) {
+            System.err.println("Insert execution failed: " + e.getMessage());}
     }
 
     public void addTest(TestData testData) {
