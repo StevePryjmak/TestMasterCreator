@@ -82,9 +82,6 @@ public class DataBase {
         }
 
         // @TODO: remove this hardcoded data
-        tests.add(new TestInfoData("Devision", "This is math test", "Login1", "Date1", "Math", 1));
-        tests.add(new TestInfoData("Omnivores", "Basic test about omniwores", "Login2", "Date2", "Biology", 2));
-        tests.add(new TestInfoData("Derivative", "Qestion about derivative", "Login3", "Date3", "Math", 3));
         return new AvalibleTestsList(tests);
     }
 
