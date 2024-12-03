@@ -6,6 +6,7 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import database.DataBase;
 
 
 public class CreateAccountSceneControler {
@@ -37,7 +38,7 @@ public class CreateAccountSceneControler {
             loginLabel.setText("Login cannot be empty.");
             create_accout = false;
         }
-        else if(App.database.userExists(login)){
+        else if(DataBase.userExists(login)){
             loginLabel.setText("Username already taken.");
             create_accout = false;
         }
@@ -77,7 +78,7 @@ public class CreateAccountSceneControler {
         }
 
         if (create_accout) {
-            App.database.addUser(login, password, email);
+            DataBase.addUser(login, password, email);
             App.setRoot("StartScene");
         }
     }
