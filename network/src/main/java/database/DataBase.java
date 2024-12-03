@@ -12,7 +12,8 @@ import TestData.AvalibleTestsList;
 import TestData.TestData;
 import TestData.TestInfoData;
 import java.util.ArrayList;
-
+import java.io.FileWriter;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -50,8 +51,8 @@ public class DataBase {
         }
     }
 
-    public static AvalibleTestsList getTests() {  
-        connect(); 
+    public static AvalibleTestsList getTests() {
+        connect();
         PreparedStatement statement = null;
         ResultSet resultSet = null;
         List<TestInfoData> tests = new ArrayList<>();
@@ -61,7 +62,7 @@ public class DataBase {
             while (resultSet.next()) {
                 TestInfoData testInfoData3 = new TestInfoData(resultSet.getString("Name"), resultSet.getString("Description"), resultSet.getString("Login"), resultSet.getString("Date"), resultSet.getString("field"),  resultSet.getInt("n"));
                 tests.add(testInfoData3);
-            } 
+            }
         }catch (SQLException e) {
             System.err.println("Query execution failed: " + e.getMessage());
         } finally {
@@ -114,7 +115,7 @@ public class DataBase {
                         break;
                 }
                 questions.add(q);
-            } 
+            }
         } catch (SQLException e) {
             System.err.println("Query execution failed: " + e.getMessage());
         } finally {
@@ -129,27 +130,83 @@ public class DataBase {
         return new TestData(questions);
     }
 
-    public boolean userExists(String username) { 
+    public static boolean userExists(String username) {
         connect();
-        return true;
+        PreparedStatement statement = null;
+        ResultSet userSet = null;
+        boolean exists = false;
+        try{
+            statement = connection.prepareStatement("SELECT COUNT(*) AS EX FROM USERS WHERE LOGIN = ?");
+            statement.setString(1, username);
+            userSet = statement.executeQuery();
+            userSet.next();
+            exists = !(userSet.getString("EX").equals("0"));
+        }
+        catch (SQLException e) {
+            System.err.println("Query execution failed: " + e.getMessage());}
+        finally {
+            try {
+                if (userSet != null) userSet.close();
+                } catch (SQLException e) {
+                    System.err.println("Failed to close resources: " + e.getMessage());
+                }
+            }
+        return exists;
     }
 
-    public boolean checkPassword(String username, String password) { 
+    public static boolean checkPassword(String username, String password) {
         connect();
-        return true;
+        PreparedStatement statement = null;
+        ResultSet userSet = null;
+        String correct_pass = "";
+        try{
+            statement = connection.prepareStatement("SELECT PASSWORD FROM USERS WHERE LOGIN = ?");
+            statement.setString(1, username);
+            userSet = statement.executeQuery();
+            userSet.next();
+            correct_pass = userSet.getString("PASSWORD");
+        }
+        catch (SQLException e) {
+            System.err.println("Query execution failed: " + e.getMessage());}
+        finally {
+            try {
+                if (userSet != null) userSet.close();
+                } catch (SQLException e) {
+                    System.err.println("Failed to close resources: " + e.getMessage());
+                }
+            }
+        return password.equals(correct_pass);
     }
 
-    public void addUser(String username, String password) { 
+    public static void addUser(String username, String password, String email) {
         connect();
-
+        String str_insert = String.format("INSERT INTO Users(Login, Password, Email) VALUES ('%s', '%s', '%s')", username, password, email);
+        int rows_insert;
+        PreparedStatement statement = null;
+        try{
+            statement = connection.prepareStatement(str_insert);
+            rows_insert = statement.executeUpdate();
+            if(rows_insert > 0){
+                try (FileWriter fileWriter = new FileWriter("../Insert_data.sql", true)) {
+                    fileWriter.write("\n");
+                    fileWriter.write(str_insert);
+                    fileWriter.write(";\nCOMMIT;");
+                    System.out.println("New user appended to data file.");
+                } catch (IOException e) {
+                    System.err.println("An error occured: " + e.getMessage());
+                }
+            }
+        }
+        catch (SQLException e) {
+            System.err.println("Insert execution failed: " + e.getMessage());}
     }
 
-    public void addTest(TestData testData) { 
+    public void addTest(TestData testData) {
         connect();
     }
 
-    // class with user info profile image and some useful information idk ...   
-    // public User getUser(String username) { 
+    // class with user info profile image and some useful information idk ...
+    // public User getUser(String username) {
     //     return new User("username", "password");
     // }
 
