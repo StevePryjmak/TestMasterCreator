@@ -12,6 +12,7 @@ import java.io.*;
 import java.net.Socket;
 import connection.Message;
 import database.DataBase;
+import UserData.UserData;
 
 
 
@@ -39,6 +40,9 @@ public class ClientHandler implements Runnable {
     public void intializeFunctionMap() {
         functionMap.put("List of tests", this::sendTestsList);
         functionMap.put("Give me the test", this::sendTest);
+        functionMap.put("User exists", this::sendUserExists);
+        functionMap.put("Check password", this::sendCheckPassword);
+        functionMap.put("Add user", this::sendAddUser);
         // @TODO add more functions here
     }
 
@@ -48,6 +52,30 @@ public class ClientHandler implements Runnable {
 
     public void sendTest() {
         sendObject(new Message("Give me the test", DataBase.getTest((String) recived.poll())));
+    }
+
+    public void sendUserExists() {
+        Object obj = recived.poll();
+        if(obj instanceof UserData){
+            Boolean res = DataBase.userExists(((UserData)obj).username);
+            sendObject(new Message("Information if user exists", res));
+        }
+    }
+
+    public void sendCheckPassword() {
+        Object obj = recived.poll();
+        if(obj instanceof UserData){
+            Boolean res = DataBase.checkPassword(((UserData)obj).username, ((UserData)obj).password);
+            sendObject(new Message("Check password", res));
+        }
+    }
+
+    public void sendAddUser() {
+        Object obj = recived.poll();
+        if(obj instanceof UserData){
+            DataBase.addUser(((UserData)obj).username, ((UserData)obj).password, ((UserData)obj).email);
+            sendObject(new Message("Information if user exists", (Boolean)true));
+        }
     }
 
     @Override
