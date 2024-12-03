@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Label;
+import database.DataBase;
 
 public class SignInSceneControler {
    @FXML
@@ -22,9 +23,9 @@ public class SignInSceneControler {
    public void signIn() throws Exception{
       String login = loginField.getText();
       String password = passwordField.getText();
-      if (App.database.userExists(login)){
+      if (DataBase.userExists(login)){
          loginLabel.setText("");
-         if (App.database.checkPassword(login, password)){
+         if (DataBase.checkPassword(login, password)){
             App.setRoot("StartScene");
          }
          else{
