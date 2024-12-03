@@ -23,8 +23,8 @@ else
 fi
 
 # Start the server and client in separate terminals
-/usr/bin/dbus-launch /usr/bin/gnome-terminal -- bash -ic "./gradlew :server:run; exec bash"
-./gradlew :client:run 
 
+(./gradlew :client:run ) &
+./gradlew :server:run 
 
 echo "All tasks completed successfully!"
