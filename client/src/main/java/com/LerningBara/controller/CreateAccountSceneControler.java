@@ -103,7 +103,7 @@ public class CreateAccountSceneControler {
             App.getInstance().client.sendMessage("Add user", usr);
             System.out.println("Waiting for list of tests");
             messageReceived = App.getInstance().client.getOneRecivedObject();
-            App.setRoot("StartScene");
+            App.setRoot("QuizMenuScene");
         }
     }
     @FXML

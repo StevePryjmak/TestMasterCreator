@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.LerningBara.controller.QuizMenuSceneControler">
+   <children>
+      <Button fx:id="user_menu" layoutX="257.0" layoutY="348.0" mnemonicParsing="false" onAction="#userMenu" text="User menu" />
+      <Button fx:id="add_quiz" layoutX="262.0" layoutY="71.0" mnemonicParsing="false" onAction="#addQuiz" text="Add quiz" />
+      <Button fx:id="browse_quiz" layoutX="254.0" layoutY="132.0" mnemonicParsing="false" onAction="#browseQuiz" text="Browse quiz" />
+      <Button fx:id="saved_quiz" layoutX="257.0" layoutY="200.0" mnemonicParsing="false" onAction="#savedQuiz" text="Saved quiz" />
+      <Button fx:id="my_quiz" layoutX="264.0" layoutY="272.0" mnemonicParsing="false" onAction="#myQuiz" text="My quiz" />
+   </children>
+</AnchorPane>
