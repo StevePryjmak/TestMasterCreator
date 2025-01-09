@@ -53,7 +53,6 @@ public class CreateAccountSceneControler {
         if (obj instanceof Boolean){
             db_resp = (Boolean)obj;
         }
-
         if (login.equals("")){
             loginLabel.setText("Login cannot be empty.");
             create_accout = false;
@@ -103,6 +102,8 @@ public class CreateAccountSceneControler {
             App.getInstance().client.sendMessage("Add user", usr);
             System.out.println("Waiting for list of tests");
             messageReceived = App.getInstance().client.getOneRecivedObject();
+            App app = App.getInstance();
+            app.user.setAttributes(1, login, email);
             App.setRoot("QuizMenuScene");
         }
     }

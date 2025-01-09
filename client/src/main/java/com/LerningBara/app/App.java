@@ -21,6 +21,7 @@ import com.LerningBara.controller.MainLayoutController;
 import com.LerningBara.controller.TestBoxController;
 import javafx.scene.layout.VBox;
 import javafx.scene.layout.HBox;
+import UserData.User;
 
 
 public class App extends Application {
@@ -29,6 +30,7 @@ public class App extends Application {
     private Test test;
     private static Iterator<AbstractQuestion> testIterator;
     public Client client;
+    public static User user = new User();
 
 
     @Override

@@ -3,6 +3,7 @@ package com.LerningBara.controller;
 import com.LerningBara.app.App;
 
 import UserData.UserData;
+import UserData.User;
 import client.Client;
 import connection.Message;
 import javafx.fxml.FXML;
@@ -49,6 +50,8 @@ public class SignInSceneControler {
       if (user_exists) {
          loginLabel.setText("");
          if (corr_pass) {
+            App app = App.getInstance();
+            app.user.setAttributes(1, "example name", "example email");
             App.setRoot("QuizMenuScene");
          } else {
             passLabel.setText("Incorrect password.");

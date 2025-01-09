@@ -16,7 +16,7 @@ public class UserMenuSceneControler {
    }
 
    public void showProfile() throws Exception{
-    // App.setRoot("ShowProfileScene");
+    App.setRoot("ShowProfileScene");
    }
 
    public void editProfile() throws Exception{
