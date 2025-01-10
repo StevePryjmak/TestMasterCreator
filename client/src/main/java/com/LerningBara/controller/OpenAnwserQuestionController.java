@@ -44,6 +44,8 @@ public class OpenAnwserQuestionController {
 
     // Check if the selected answer is correct
     private void checkAnswer(String selectedAnswer) {
+        System.out.println(correctAnswer);
+        System.out.println(selectedAnswer);
         if (selectedAnswer.equals(correctAnswer)) {
             System.out.println("Correct Answer!");
         } else {

@@ -49,7 +49,7 @@ public class SignInSceneControler {
       if (user_exists) {
          loginLabel.setText("");
          if (corr_pass) {
-            App.setRoot("QuizMenuScene");
+            App.setRoot("StartScene");
          } else {
             passLabel.setText("Incorrect password.");
          }
