@@ -47,7 +47,7 @@ public class CreateAccountSceneControler {
         App.getInstance().client = new Client("localhost", 8080);
         System.out.println("Connected to server");
         App.getInstance().client.sendMessage("User exists", usr);
-        System.out.println("Waiting for list of tests");
+        System.out.println("Waiting for server response");
         Message messageReceived = App.getInstance().client.getOneRecivedObject();
         Object obj = messageReceived.getObject();
         if (obj instanceof Boolean){
@@ -100,10 +100,10 @@ public class CreateAccountSceneControler {
             App.getInstance().client = new Client("localhost", 8080);
             System.out.println("Connected to server");
             App.getInstance().client.sendMessage("Add user", usr);
-            System.out.println("Waiting for list of tests");
+            System.out.println("Waiting for server response");
             messageReceived = App.getInstance().client.getOneRecivedObject();
-            App app = App.getInstance();
-            app.user.setAttributes(1, login, email);
+            // TODO get user id from database
+            App.getInstance().user.setAttributes(1, login, email);
             App.setRoot("QuizMenuScene");
         }
     }

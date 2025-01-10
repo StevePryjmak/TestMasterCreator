@@ -3,7 +3,6 @@ package com.LerningBara.controller;
 import com.LerningBara.app.App;
 
 import UserData.UserData;
-import UserData.User;
 import client.Client;
 import connection.Message;
 import javafx.fxml.FXML;
@@ -31,7 +30,7 @@ public class SignInSceneControler {
       App.getInstance().client = new Client("localhost", 8080);
       System.out.println("Connected to server");
       App.getInstance().client.sendMessage("User exists", usr);
-      System.out.println("Waiting for list of tests");
+      System.out.println("Waiting for server response");
       Message messageReceived = App.getInstance().client.getOneRecivedObject();
       Object obj = messageReceived.getObject();
       if (obj instanceof Boolean) {
@@ -50,8 +49,8 @@ public class SignInSceneControler {
       if (user_exists) {
          loginLabel.setText("");
          if (corr_pass) {
-            App app = App.getInstance();
-            app.user.setAttributes(1, "example name", "example email");
+            // TODO get user id, (username) and email from database
+            App.getInstance().user.setAttributes(1, "example name", "example email");
             App.setRoot("QuizMenuScene");
          } else {
             passLabel.setText("Incorrect password.");

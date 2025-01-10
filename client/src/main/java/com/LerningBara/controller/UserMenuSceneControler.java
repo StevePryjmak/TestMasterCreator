@@ -12,6 +12,7 @@ public class UserMenuSceneControler {
    }
 
    public void logOut() throws Exception{
+    App.getInstance().user.setAttributes(0, null, null);
     App.setRoot("LoginScene");
    }
 
@@ -20,6 +21,6 @@ public class UserMenuSceneControler {
    }
 
    public void editProfile() throws Exception{
-    // App.setRoot("EditProfileScene");
+    App.setRoot("EditProfileScene");
    }
 }
