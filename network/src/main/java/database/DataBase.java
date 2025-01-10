@@ -58,7 +58,7 @@ public class DataBase {
         List<TestInfoData> tests = new ArrayList<>();
         try {
             statement = connection.prepareStatement(
-                    "SELECT LOGIN, T.*, (SELECT COUNT(*) FROM TEST_QUESTION WHERE TESTS_TESTID = T.TESTID) N FROM TESTS T JOIN USERS ON USERID = USERS_USERID");
+                    "SELECT LOGIN, T.*, (SELECT COUNT(*) FROM TEST_QUESTION WHERE TESTS_TESTID = T.TESTID) N FROM TESTS T JOIN USERS ON USERID = T.USERS_USERID");
             resultSet = statement.executeQuery();
 
             while (resultSet.next()) {
@@ -82,6 +82,74 @@ public class DataBase {
         }
 
         // @TODO: remove this hardcoded data
+        return new AvalibleTestsList(tests);
+    }
+
+    public static AvalibleTestsList getLikedTests(int userID) {
+        connect();
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+        List<TestInfoData> tests = new ArrayList<>();
+        try {
+            statement = connection.prepareStatement(
+                    "SELECT LOGIN, T.*, (SELECT COUNT(*) FROM TEST_QUESTION WHERE TESTS_TESTID = T.TESTID) N FROM LIKES L JOIN TESTS T ON L.TESTS_TESTID = T.TESTID JOIN USERS ON USERID = T.USERS_USERID WHERE USERID = ?");
+            statement.setInt(1, userID);
+            resultSet = statement.executeQuery();
+
+            while (resultSet.next()) {
+                TestInfoData testInfoData3 = new TestInfoData(resultSet.getString("Name"),
+                        resultSet.getString("Description"), resultSet.getString("Login"),
+                        resultSet.getString("CREATIONDATE"),
+                        resultSet.getString("field"), resultSet.getInt("n"));
+                tests.add(testInfoData3);
+            }
+        } catch (SQLException e) {
+            System.err.println("Query execution failed: " + e.getMessage());
+        } finally {
+            try {
+                if (resultSet != null)
+                    resultSet.close();
+                if (statement != null)
+                    statement.close();
+            } catch (SQLException e) {
+                System.err.println("Failed to close resources: " + e.getMessage());
+            }
+        }
+
+        return new AvalibleTestsList(tests);
+    }
+
+    public static AvalibleTestsList getUserTests(int userID) {
+        connect();
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+        List<TestInfoData> tests = new ArrayList<>();
+        try {
+            statement = connection.prepareStatement(
+                    "SELECT LOGIN, T.*, (SELECT COUNT(*) FROM TEST_QUESTION WHERE TESTS_TESTID = T.TESTID) N FROM TESTS T JOIN USERS ON USERID = T.USERS_USERID WHERE USERID = ?");
+            statement.setInt(1, userID);
+            resultSet = statement.executeQuery();
+
+            while (resultSet.next()) {
+                TestInfoData testInfoData3 = new TestInfoData(resultSet.getString("Name"),
+                        resultSet.getString("Description"), resultSet.getString("Login"),
+                        resultSet.getString("CREATIONDATE"),
+                        resultSet.getString("field"), resultSet.getInt("n"));
+                tests.add(testInfoData3);
+            }
+        } catch (SQLException e) {
+            System.err.println("Query execution failed: " + e.getMessage());
+        } finally {
+            try {
+                if (resultSet != null)
+                    resultSet.close();
+                if (statement != null)
+                    statement.close();
+            } catch (SQLException e) {
+                System.err.println("Failed to close resources: " + e.getMessage());
+            }
+        }
+
         return new AvalibleTestsList(tests);
     }
 

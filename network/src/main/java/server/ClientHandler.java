@@ -14,8 +14,6 @@ import connection.Message;
 import database.DataBase;
 import UserData.UserData;
 
-
-
 public class ClientHandler implements Runnable {
 
     public static ArrayList<ClientHandler> clientHandlers = new ArrayList<>();
@@ -43,7 +41,17 @@ public class ClientHandler implements Runnable {
         functionMap.put("User exists", this::sendUserExists);
         functionMap.put("Check password", this::sendCheckPassword);
         functionMap.put("Add user", this::sendAddUser);
+        functionMap.put("List of user test", this::sendUserTestList);
+        functionMap.put("List of liked test", this::sendLikedTestList);
         // @TODO add more functions here
+    }
+
+    public void sendLikedTestList() {
+        sendObject(new Message("List of liked tests", DataBase.getLikedTests((int) recived.poll())));
+    }
+
+    public void sendUserTestList() {
+        sendObject(new Message("List of user tests", DataBase.getUserTests((int) recived.poll())));
     }
 
     public void sendTestsList() {
@@ -56,25 +64,25 @@ public class ClientHandler implements Runnable {
 
     public void sendUserExists() {
         Object obj = recived.poll();
-        if(obj instanceof UserData){
-            Boolean res = DataBase.userExists(((UserData)obj).username);
+        if (obj instanceof UserData) {
+            Boolean res = DataBase.userExists(((UserData) obj).username);
             sendObject(new Message("Information if user exists", res));
         }
     }
 
     public void sendCheckPassword() {
         Object obj = recived.poll();
-        if(obj instanceof UserData){
-            Boolean res = DataBase.checkPassword(((UserData)obj).username, ((UserData)obj).password);
+        if (obj instanceof UserData) {
+            Boolean res = DataBase.checkPassword(((UserData) obj).username, ((UserData) obj).password);
             sendObject(new Message("Check password", res));
         }
     }
 
     public void sendAddUser() {
         Object obj = recived.poll();
-        if(obj instanceof UserData){
-            DataBase.addUser(((UserData)obj).username, ((UserData)obj).password, ((UserData)obj).email);
-            sendObject(new Message("Information if user exists", (Boolean)true));
+        if (obj instanceof UserData) {
+            DataBase.addUser(((UserData) obj).username, ((UserData) obj).password, ((UserData) obj).email);
+            sendObject(new Message("Information if user exists", (Boolean) true));
         }
     }
 
