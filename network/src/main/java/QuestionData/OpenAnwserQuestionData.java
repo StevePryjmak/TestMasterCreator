@@ -10,9 +10,9 @@ public class OpenAnwserQuestionData extends AbstractQuestionData implements Seri
     private String question;
     private String correctAnswer;
 
-    public OpenAnwserQuestionData(String question, String correctAnwser) {
+    public OpenAnwserQuestionData(String question, String givenCorrectAnwser) {
         this.question = question;
-        this.correctAnswer = correctAnswer;
+        this.correctAnswer = givenCorrectAnwser;
     }
 
     public String getQuestion() {
