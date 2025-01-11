@@ -12,6 +12,8 @@ import TestData.AvalibleTestsList;
 import TestData.TestData;
 import TestData.TestInfoData;
 import java.util.ArrayList;
+import UserData.User;
+import UserData.UserData;
 
 import static org.junit.jupiter.api.DynamicTest.stream;
 
@@ -220,7 +222,7 @@ public class DataBase {
         }
     }
 
-    public void addTest(TestData testData, int userId, String testName) {
+    public static void addTest(TestData testData, int userId, String testName) {
         connect();
         PreparedStatement statement = null;
         ResultSet resultSet = null;
@@ -254,7 +256,7 @@ public class DataBase {
         }
     }
 
-    private void addQuestion(AbstractQuestionData questionData, int testId) {
+    private static void addQuestion(AbstractQuestionData questionData, int testId) {
         connect();
         PreparedStatement statement = null;
         ResultSet resultSet = null;
@@ -305,7 +307,7 @@ public class DataBase {
         }
     }
 
-    private void addAnswer(AbstractQuestionData questionData, int questionId) {
+    private static void addAnswer(AbstractQuestionData questionData, int questionId) {
         connect();
         PreparedStatement statement = null;
         ResultSet resultSet = null;
@@ -348,6 +350,72 @@ public class DataBase {
             }
         }
     }
+
+    public static void updateUser(UserData user){
+        connect();
+        PreparedStatement statement = null;
+        try {
+            statement = connection.prepareStatement(
+                    "UPDATE Users SET Login = ?, Password = ?, Email = ? WHERE Login = ?");
+            statement.setString(1, user.username);
+            statement.setString(2, user.password);
+            statement.setString(3, user.email);
+            statement.setString(4, user.username);
+            statement.executeUpdate();
+
+        } catch (SQLException e) {
+            System.err.println("Query execution failed: " + e.getMessage());
+        } finally {
+            try {
+                if (statement != null)
+                    statement.close();
+            } catch (SQLException e) {
+                System.err.println("Failed to close resources: " + e.getMessage());
+            }
+        }
+    }
+
+    public static User getUser(String username){
+        connect();
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+        User user = new User();
+        try {
+            statement = connection.prepareStatement(
+                    "SELECT UserId, Login, Email FROM Users WHERE Login = ?");
+            statement.setString(1, username);
+            resultSet = statement.executeQuery();
+            resultSet.next();
+            user.setAttributes(resultSet.getInt("UserId"), resultSet.getString("Login"), resultSet.getString("Email"));
+        } catch (SQLException e) {
+            System.err.println("Query execution failed: " + e.getMessage());
+        } finally {
+            try {
+                if (resultSet != null)
+                    resultSet.close();
+                if (statement != null)
+                    statement.close();
+            } catch (SQLException e) {
+                System.err.println("Failed to close resources: " + e.getMessage());
+            }
+        }
+        return user;
+    }
+
+    //public static void addFavorites(int userId, int testId)
+    //public static AvalibleTestsList getFavourites(int userId)
+    //public static void deleteFavourites(int userId, int testId)
+    //public static void SaveResult(int userId, int testId, points)
+    //public static List<Integer> getResults(int testId, int userId)
+    //public static List<integer> getResults(int testId)
+    //public static void deleteUser(int userId)
+    //public static void deleteTest(int testId)
+
+    //public static void setUserIcon(int userId, Image icon) or use UpdateUser method
+ 
+
+
+
     // class with user info profile image and some useful information idk ...
     // public User getUser(String username) {
     // return new User("username", "password");
