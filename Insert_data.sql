@@ -80,88 +80,53 @@ INSERT INTO QUESTIONS VALUES (
 );
 
 INSERT INTO ANSWERS(
-    TEXT
+    TEXT,
+	ISCORRECT,
+	QUESTIONS_QUESTION
 ) VALUES (
-    'Rome'
+    'Rome',
+	FALSE,
+	1
 ),
 (
-    'Madrid'
+    'Madrid',
+	FALSE,
+	1
 ),
 (
-    'Paris'
+    'Paris',
+	TRUE,
+	1
 ),
 (
-    'Berlin'
+    'Berlin',
+	FALSE,
+	1
 ),
 (
-    'Python'
+    'Python',
+	TRUE,
+	2
 ),
 (
-    'Java'
+    'Java',
+	TRUE,
+	2
 ),
 (
-    'German'
+    'Germany',
+	FALSE,
+	2
 ),
 (
-    'Maven'
+    'Maven',
+	FALSE,
+	2
 ),
 (
-    '1000'
-);
-
-INSERT INTO QUESTION_ANSWER VALUES (
-    1,
-    1,
-    1,
-    'F'
-),
-(
-    2,
-    2,
-    1,
-    'F'
-),
-(
-    3,
-    3,
-    1,
-    'T'
-),
-(
-    4,
-    4,
-    1,
-    'F'
-),
-(
-    5,
-    5,
-    2,
-    'T'
-),
-(
-    6,
-    6,
-    2,
-    'T'
-),
-(
-    7,
-    7,
-    2,
-    'F'
-),
-(
-    8,
-    8,
-    2,
-    'F'
-),
-(
-    9,
-    9,
-    3,
-    'T'
+    '1000',
+	TRUE,
+	3
 );
 
 INSERT INTO TEST_QUESTION VALUES (
