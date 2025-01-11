@@ -476,9 +476,57 @@ public class DataBase {
         return new AvalibleTestsList(tests);
     }
 
-    //public static void SaveResult(int userId, int testId, points)
-    //public static List<Integer> getResults(int testId, int userId)
-    //public static List<integer> getResults(int testId)
+    public static void SaveResult(int userId, int testId,int points){
+        connect();
+        PreparedStatement statement = null;
+        try {
+            statement = connection.prepareStatement(
+                    "INSERT INTO Results (UserId, TestId, Points, Date) VALUES (?, ?, ?, CURRENT_DATE)");
+            statement.setInt(1, userId);
+            statement.setInt(2, testId);
+            statement.setInt(3, points);
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            System.err.println("Query execution failed: " + e.getMessage());
+        } finally {
+            try {
+                if (statement != null)
+                    statement.close();
+            } catch (SQLException e) {
+                System.err.println("Failed to close resources: " + e.getMessage());
+            }
+        }
+    }
+
+    public static List<Integer> getResults(int testId, int userId){
+        connect();
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+        List<Integer> results = new ArrayList<>();
+        try {
+            statement = connection.prepareStatement(
+                    "SELECT Points FROM Results WHERE TestId = ? AND UserId = ?");
+            statement.setInt(1, testId);
+            statement.setInt(2, userId);
+            resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                results.add(resultSet.getInt("Points"));
+            }
+        } catch (SQLException e) {
+            System.err.println("Query execution failed: " + e.getMessage());
+        } finally {
+            try {
+                if (resultSet != null)
+                    resultSet.close();
+                if (statement != null)
+                    statement.close();
+            } catch (SQLException e) {
+                System.err.println("Failed to close resources: " + e.getMessage());
+            }
+        }
+        return results;
+    }
+
     //public static void deleteUser(int userId)
     //public static void deleteTest(int testId)
 
