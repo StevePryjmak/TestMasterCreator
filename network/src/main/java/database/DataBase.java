@@ -12,6 +12,9 @@ import TestData.AvalibleTestsList;
 import TestData.TestData;
 import TestData.TestInfoData;
 import java.util.ArrayList;
+
+import static org.junit.jupiter.api.DynamicTest.stream;
+
 import java.io.FileWriter;
 import java.io.IOException;
 import java.sql.Connection;
@@ -58,7 +61,7 @@ public class DataBase {
         List<TestInfoData> tests = new ArrayList<>();
         try {
             statement = connection.prepareStatement(
-                    "SELECT LOGIN, T.*, (SELECT COUNT(*) FROM TEST_QUESTION WHERE TESTS_TESTID = T.TESTID) N FROM TESTS T JOIN USERS ON USERID = USERS_USERID");
+                    "SELECT LOGIN, T.*, (SELECT COUNT(*) FROM Questions WHERE TESTS_TESTID = T.TESTID) N FROM TESTS T JOIN USERS ON USERID = USERS_USERID");
             resultSet = statement.executeQuery();
 
             while (resultSet.next()) {
@@ -93,7 +96,7 @@ public class DataBase {
         List<AbstractQuestionData> questions = new ArrayList<>();
         try {
             statement = connection.prepareStatement(
-                    "SELECT q.QuestionId, q.Text, q.Types_TypeId FROM Tests t JOIN Test_question tg ON TestID = Tests_TestID JOIN Questions q ON QuestionId = Questions_QuestionId WHERE Name=? ORDER BY QuestionOrder");
+                    "SELECT q.QuestionId, q.Text, q.Types_TypeId FROM Tests t JOIN Questions q ON TestId = Tests_TestId  WHERE Name=? ORDER BY Position");
             statement.setString(1, testName);
             questionsSet = statement.executeQuery();
             while (questionsSet.next()) {
@@ -101,7 +104,7 @@ public class DataBase {
                 List<Integer> correctAnswers = new ArrayList<>();
                 int i = 0;
                 statement = connection.prepareStatement(
-                        "SELECT a.text, qa.IsCorrect FROM Questions q JOIN Question_answer qa ON QuestionId = Questions_QuestionId JOIN Answers a ON AnswerId = Answers_AnswerId WHERE QuestionId=?");
+                        "SELECT a.text, a.IsCorrect FROM Answers a WHERE Questions_QuestionId=?");
                 statement.setInt(1, questionsSet.getInt("QuestionId"));
                 answersSet = statement.executeQuery();
                 while (answersSet.next()) {
@@ -217,10 +220,134 @@ public class DataBase {
         }
     }
 
-    public void addTest(TestData testData) {
+    public void addTest(TestData testData, int userId, String testName) {
         connect();
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+        int testId;
+        try {
+            statement = connection.prepareStatement(
+                    "INSERT INTO Tests(Name, Users_UserId) VALUES (?, ?)");
+            statement.setString(1, testName);
+            statement.setInt(2, userId);
+            statement.executeUpdate();
+            statement = connection.prepareStatement(
+                    "SELECT TestId FROM Tests WHERE Name = ?");
+            statement.setString(1, testName);
+            resultSet = statement.executeQuery();
+            resultSet.next();
+            testId = resultSet.getInt(1);
+            for (var questionData : testData.questions){
+                addQuestion(questionData, testId);
+            }
+        } catch (SQLException e) {
+            System.err.println("Query execution failed: " + e.getMessage());
+        } finally {
+            try {
+                if (resultSet != null)
+                    resultSet.close();
+                if (statement != null)
+                    statement.close();
+            } catch (SQLException e) {
+                System.err.println("Failed to close resources: " + e.getMessage());
+            }
+        }
     }
 
+    private void addQuestion(AbstractQuestionData questionData, int testId) {
+        connect();
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+        int questionId;
+        int position = 1;
+        int type = -1;
+        String text = "nie dziala";
+        try {
+            if (questionData instanceof SingleChoiceQuestionData){
+                type = 1;
+                text = ((SingleChoiceQuestionData)questionData).getQuestion();
+            }
+            else if (questionData instanceof MultipleChoicesQuestionData){
+                type = 2;
+                text = ((MultipleChoicesQuestionData)questionData).getQuestion();
+            }
+            else if (questionData instanceof OpenAnwserQuestionData){
+                type = 3;
+                text = ((OpenAnwserQuestionData)questionData).getQuestion();
+            }
+            statement = connection.prepareStatement(
+                "INSERT INTO Questions(Text, Types_TypeId, Position, Tests_TestId) VALUES (?, ?, ?, ?)");
+            statement.setString(1, text);
+            statement.setInt(2, type);
+            statement.setInt(3, position);
+            statement.setInt(4, testId);
+            statement.executeUpdate();
+            statement = connection.prepareStatement(
+                "SELECT QuestionId FROM Questions WHERE Position = ? AND Tests_TestId = ?");
+            statement.setInt(1, position);
+            statement.setInt(2, testId);
+            resultSet = statement.executeQuery();
+            resultSet.next();
+            questionId = resultSet.getInt(1);
+            addAnswer(questionData, questionId);
+            position++;
+        } catch (SQLException e) {
+            System.err.println("Query execution failed: " + e.getMessage());
+        } finally {
+            try {
+                if (resultSet != null)
+                    resultSet.close();
+                if (statement != null)
+                    statement.close();
+            } catch (SQLException e) {
+                System.err.println("Failed to close resources: " + e.getMessage());
+            }
+        }
+    }
+
+    private void addAnswer(AbstractQuestionData questionData, int questionId) {
+        connect();
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+        List<String> options = new ArrayList<>();;
+        List<Integer> correctAnswerIndexes = new ArrayList<>();;
+        try {
+            if (questionData instanceof SingleChoiceQuestionData){
+                options = ((SingleChoiceQuestionData)questionData).getOptions();
+                correctAnswerIndexes.add((Integer)(((SingleChoiceQuestionData)questionData).getCorrectAnswerIndex()));
+            }
+            else if (questionData instanceof MultipleChoicesQuestionData){
+                options = ((MultipleChoicesQuestionData)questionData).getOptions();
+                for (int i : ((MultipleChoicesQuestionData)questionData).getCorrectAnswerIndexes()){
+                    correctAnswerIndexes.add(i);
+                }
+            }
+            else if (questionData instanceof OpenAnwserQuestionData){
+                options.add(((OpenAnwserQuestionData)questionData).getCorrectAnswer());
+                correctAnswerIndexes.add(1);
+            }
+            for (int i = 0; i < options.size(); i++){
+                statement = connection.prepareStatement(
+                    "INSERT INTO Answers(Text, IsCorrect, Questions_QuestionId) VALUES (?, ?, ?)");
+                statement.setString(1, options.get(0));
+                statement.setBoolean(2, correctAnswerIndexes.contains(i));
+                statement.setInt(3, questionId);
+                statement.executeUpdate();
+            }
+
+        } catch (SQLException e) {
+            System.err.println("Query execution failed: " + e.getMessage());
+        } finally {
+            try {
+                if (resultSet != null)
+                    resultSet.close();
+                if (statement != null)
+                    statement.close();
+            } catch (SQLException e) {
+                System.err.println("Failed to close resources: " + e.getMessage());
+            }
+        }
+    }
     // class with user info profile image and some useful information idk ...
     // public User getUser(String username) {
     // return new User("username", "password");
