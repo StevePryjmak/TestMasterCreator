@@ -40,6 +40,19 @@
 <dataTypeSize>80 CHAR</dataTypeSize>
 <ownDataTypeParameters>80 CHAR,,</ownDataTypeParameters>
 </Attribute>
+<Attribute name="Image" id="C9816216-B16A-4349-FB57-77108F837581">
+<createdBy>xxxx</createdBy>
+<createdTime>2025-01-06 16:57:25 UTC</createdTime>
+<ownerDesignName>database</ownerDesignName>
+<engineerTo>
+<item key="8ABA86DC-9BF0-47F9-F89E-40F6A3360E4D" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT029</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
 </attributes>
 <identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
 <identifier id="BFCFF428-7164-7EDF-4DFF-76DA0012A291" name="Answers PK">
