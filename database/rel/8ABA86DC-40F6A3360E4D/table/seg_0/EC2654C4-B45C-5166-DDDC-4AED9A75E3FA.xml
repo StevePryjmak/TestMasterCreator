@@ -1,16 +1,16 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="D9785424-E702-4678-3E1E-1BD622207F04" name="Tests">
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="EC2654C4-B45C-5166-DDDC-4AED9A75E3FA" name="Tests">
 <createdBy>xxxx</createdBy>
-<createdTime>2024-11-24 16:10:21 UTC</createdTime>
+<createdTime>2025-01-11 13:27:47 UTC</createdTime>
 <generatorID>1BFBD1CE-759F-6536-FCFC-97DF5E8B0920</generatorID>
 <ownerDesignName>database</ownerDesignName>
 <allowColumnReorder>false</allowColumnReorder>
 <existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
 <parsed>true</parsed>
 <columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
-<Column name="TestId" id="95C436B1-F599-0D72-F34E-E26FB13AC680">
+<Column name="TestId" id="B104399B-770A-35DC-0073-E580C5185CDD">
 <createdBy>xxxx</createdBy>
-<createdTime>2024-11-24 16:10:21 UTC</createdTime>
+<createdTime>2025-01-11 13:27:47 UTC</createdTime>
 <generatorID>6182FE63-E5D8-F100-63C9-1D4C492F6EF4</generatorID>
 <ownerDesignName>database</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
@@ -20,9 +20,9 @@
 <autoIncrementColumn>true</autoIncrementColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="Name" id="EE5D72A1-9DA9-FEC4-3D20-AADFEA884D7F">
+<Column name="Name" id="5363CCD7-C22D-55C5-51E2-77D4896ABE4C">
 <createdBy>xxxx</createdBy>
-<createdTime>2024-11-24 16:10:21 UTC</createdTime>
+<createdTime>2025-01-11 13:27:47 UTC</createdTime>
 <generatorID>87E1D137-30FC-D122-CBC4-AFA5FE858206</generatorID>
 <ownerDesignName>database</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
@@ -32,9 +32,9 @@
 <ownDataTypeParameters>20 CHAR,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="Users_UserId" id="7D0F5D98-49A7-8189-D6A9-376AB4235F9A">
+<Column name="Users_UserId" id="18E604AB-FD7D-2DF4-277B-A4154534F533">
 <createdBy>xxxx</createdBy>
-<createdTime>2024-12-01 19:46:04 UTC</createdTime>
+<createdTime>2025-01-11 13:27:47 UTC</createdTime>
 <generatorID>9F2E69E3-8674-2148-0ABC-68A8D6401921</generatorID>
 <ownerDesignName>database</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
@@ -44,12 +44,12 @@
 <previousColumn>false</previousColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
 <associations>
-<colAssociation fkAssociation="19A622C6-9C0B-3BA3-44BC-3B20DDCFD7A8" referredColumn="2171C380-1075-9C6B-4EE0-4E16E9C36AB1"/>
+<colAssociation fkAssociation="C42B2300-BF42-F959-BA32-3184336C4117" referredColumn="24AE964D-09B3-1604-CCF7-063909B9B642"/>
 </associations>
 </Column>
-<Column name="Icon" id="45577C72-2AC7-4F95-C3E8-B27A1221F9DD">
+<Column name="Icon" id="1CBE91F8-261A-F4EC-F6CC-8C43751A99BD">
 <createdBy>xxxx</createdBy>
-<createdTime>2025-01-11 10:22:56 UTC</createdTime>
+<createdTime>2025-01-11 13:27:47 UTC</createdTime>
 <generatorID>6875FA68-0A83-A2B3-F35B-7C42E68EF3AB</generatorID>
 <ownerDesignName>database</ownerDesignName>
 <nullsAllowed>true</nullsAllowed>
@@ -59,9 +59,9 @@
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="Attempts" id="71D03C9C-B77F-A9E8-A839-A7F918DD9987">
+<Column name="Attempts" id="18E35B2C-9026-88FC-7202-18073C65DEC6">
 <createdBy>xxxx</createdBy>
-<createdTime>2025-01-11 10:22:56 UTC</createdTime>
+<createdTime>2025-01-11 13:27:47 UTC</createdTime>
 <generatorID>063D8EB1-4B85-5F87-28AC-5B9EE0BF6367</generatorID>
 <ownerDesignName>database</ownerDesignName>
 <nullsAllowed>true</nullsAllowed>
@@ -71,9 +71,9 @@
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="TimeLimit" id="5B54E8B4-060B-33F8-5D6A-4ED96FC0F645">
+<Column name="TimeLimit" id="055917E3-96F8-BAE5-1F17-9C8B5DE787E2">
 <createdBy>xxxx</createdBy>
-<createdTime>2025-01-11 10:22:56 UTC</createdTime>
+<createdTime>2025-01-11 13:27:47 UTC</createdTime>
 <generatorID>33F047BA-ADBC-FFBB-D507-1F3459416A59</generatorID>
 <ownerDesignName>database</ownerDesignName>
 <nullsAllowed>true</nullsAllowed>
@@ -83,29 +83,64 @@
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
+<Column name="CreationDate" id="A1BA67EE-D097-F4BB-5433-1689100A208F">
+<createdBy>xxxx</createdBy>
+<createdTime>2025-01-11 14:04:10 UTC</createdTime>
+<generatorID>EFB9E5FF-2577-A842-1C49-F53A2B340555</generatorID>
+<ownerDesignName>database</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Field" id="D8745FCB-8F7B-E2F4-0688-0B1C2558A6D4">
+<createdBy>xxxx</createdBy>
+<createdTime>2025-01-11 14:04:10 UTC</createdTime>
+<generatorID>9CE8E084-D99C-63AB-50E5-A65E122C1573</generatorID>
+<ownerDesignName>database</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>100 CHAR</dataTypeSize>
+<ownDataTypeParameters>100 CHAR,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Description" id="2160D6A1-76DB-C496-1DE1-3D657EB56F69">
+<createdBy>xxxx</createdBy>
+<createdTime>2025-01-11 14:04:10 UTC</createdTime>
+<generatorID>5AB67801-3AC1-1F87-1A75-11D49222687C</generatorID>
+<ownerDesignName>database</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>180 CHAR</dataTypeSize>
+<ownDataTypeParameters>180 CHAR,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
 </columns>
 <indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
-<ind_PK_UK id="C40887AC-3F16-32A9-F1DC-51B63ADCB6AC" name="Tests_PK">
+<ind_PK_UK id="D476BE54-BB38-A755-86E2-E2860B96E0EC" name="Tests_PK">
 <createdBy>xxxx</createdBy>
-<createdTime>2024-11-24 16:10:21 UTC</createdTime>
+<createdTime>2025-01-11 13:27:47 UTC</createdTime>
 <generatorID>AC86A73B-7CF0-A046-43D5-9B855D6A008A</generatorID>
 <ownerDesignName>database</ownerDesignName>
 <pk>true</pk>
 <indexState>Primary Constraint</indexState>
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
-<colUsage columnID="95C436B1-F599-0D72-F34E-E26FB13AC680"/>
+<colUsage columnID="B104399B-770A-35DC-0073-E580C5185CDD"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="885F2FBE-1BBC-D933-658E-6431A5DB4A21" name="Tests_Users_FK">
+<ind_PK_UK id="83B8206C-025E-94FF-D58C-D405BC898D07" name="Tests_Users_FK">
 <createdBy>xxxx</createdBy>
-<createdTime>2024-12-01 19:46:04 UTC</createdTime>
+<createdTime>2025-01-11 13:27:47 UTC</createdTime>
 <generatorID>A0E44ED6-B075-FC63-2586-EE5C49206571</generatorID>
 <ownerDesignName>database</ownerDesignName>
 <indexState>Foreign Key</indexState>
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
-<colUsage columnID="7D0F5D98-49A7-8189-D6A9-376AB4235F9A"/>
+<colUsage columnID="18E604AB-FD7D-2DF4-277B-A4154534F533"/>
 </indexColumnUsage>
 </ind_PK_UK>
 </indexes>

@@ -1,16 +1,16 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="0DCD4C0A-3EE0-4CF8-49F1-203A45D8CCAE" name="Hints">
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="42455F18-4718-194E-1A77-D9C5DBD0F5AD" name="Hints">
 <createdBy>xxxx</createdBy>
-<createdTime>2024-11-24 16:10:21 UTC</createdTime>
+<createdTime>2025-01-11 13:27:47 UTC</createdTime>
 <generatorID>AC7F2A8B-6F89-A1E2-5916-089A66D45D83</generatorID>
 <ownerDesignName>database</ownerDesignName>
 <allowColumnReorder>false</allowColumnReorder>
 <existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
 <parsed>true</parsed>
 <columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
-<Column name="HintId" id="3EB11DD3-8177-8EA9-F389-68F3DA661355">
+<Column name="HintId" id="646C2604-B344-191D-34BD-3F978B9A1E54">
 <createdBy>xxxx</createdBy>
-<createdTime>2024-11-24 16:10:21 UTC</createdTime>
+<createdTime>2025-01-11 13:27:47 UTC</createdTime>
 <generatorID>D47944DD-3BA9-EB55-7543-9725E10EB053</generatorID>
 <ownerDesignName>database</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
@@ -20,9 +20,9 @@
 <autoIncrementColumn>true</autoIncrementColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="Text" id="1EAF814B-961A-989D-4448-AA5A5A73970A">
+<Column name="Text" id="A7B4A99B-FCB5-3704-3A57-EAC8E1377816">
 <createdBy>xxxx</createdBy>
-<createdTime>2024-11-24 16:10:21 UTC</createdTime>
+<createdTime>2025-01-11 13:27:47 UTC</createdTime>
 <generatorID>D2ADCBDE-7755-9DCE-A6D9-6AF08F486595</generatorID>
 <ownerDesignName>database</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
@@ -34,16 +34,16 @@
 </Column>
 </columns>
 <indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
-<ind_PK_UK id="4C5D1E2C-06D8-1C3D-33B5-FB4B34EE9FE9" name="Hints_PK">
+<ind_PK_UK id="C297EBB7-0C26-B09B-DDA7-CDC2461E61C2" name="Hints_PK">
 <createdBy>xxxx</createdBy>
-<createdTime>2024-11-24 16:10:21 UTC</createdTime>
+<createdTime>2025-01-11 13:27:47 UTC</createdTime>
 <generatorID>CEDBC355-7A5A-8802-AEC2-C03C0F0740EF</generatorID>
 <ownerDesignName>database</ownerDesignName>
 <pk>true</pk>
 <indexState>Primary Constraint</indexState>
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
-<colUsage columnID="3EB11DD3-8177-8EA9-F389-68F3DA661355"/>
+<colUsage columnID="646C2604-B344-191D-34BD-3F978B9A1E54"/>
 </indexColumnUsage>
 </ind_PK_UK>
 </indexes>
