@@ -21,6 +21,7 @@ public class StartSceneControler {
 
     @FXML
     public void createTest() {
+        App.createTestController = new CreateTestController();
         App.setRoot("CreateTestScene");
     }
 
