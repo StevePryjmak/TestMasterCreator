@@ -32,6 +32,45 @@
 <ownDataTypeParameters>80 CHAR,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
+<Column name="IsCorrect" id="3D817610-BA18-AE46-B15D-269E0A4F0511">
+<createdBy>xxxx</createdBy>
+<createdTime>2025-01-11 10:22:56 UTC</createdTime>
+<generatorID>F1470D70-6260-7CDB-17DE-895E73FA69A2</generatorID>
+<ownerDesignName>database</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT006</logicalDatatype>
+<dataTypeSize>1</dataTypeSize>
+<ownDataTypeParameters>1,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Image" id="61486E73-5CD8-5141-503E-100E1C7785FA">
+<createdBy>xxxx</createdBy>
+<createdTime>2025-01-11 10:22:56 UTC</createdTime>
+<generatorID>C9816216-B16A-4349-FB57-77108F837581</generatorID>
+<ownerDesignName>database</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT029</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Questions_QuestionId" id="EC46801C-2DF7-9D19-0243-0E942E37A865">
+<createdBy>xxxx</createdBy>
+<createdTime>2025-01-11 10:22:56 UTC</createdTime>
+<generatorID>A4BAC763-B447-7EF1-DC22-1D2FAA3E10BA</generatorID>
+<ownerDesignName>database</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="EAC0D615-2663-402B-8502-C61584752481" referredColumn="BADE864F-D1BB-AED8-E63C-6CE01F698662"/>
+</associations>
+</Column>
 </columns>
 <indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
 <ind_PK_UK id="3FAAE558-0160-4BC6-0113-800F9ACA259F" name="Answers_PK">
@@ -44,6 +83,17 @@
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
 <colUsage columnID="4D53DE35-13BD-0121-ABCB-0F9BF79C5FFA"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="704C5F25-9141-19F4-BE8A-9CA267427766" name="Answers_Questions_FK">
+<createdBy>xxxx</createdBy>
+<createdTime>2025-01-11 10:22:56 UTC</createdTime>
+<generatorID>05129B23-CA1B-5821-50E8-6770F5DC87A2</generatorID>
+<ownerDesignName>database</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="EC46801C-2DF7-9D19-0243-0E942E37A865"/>
 </indexColumnUsage>
 </ind_PK_UK>
 </indexes>

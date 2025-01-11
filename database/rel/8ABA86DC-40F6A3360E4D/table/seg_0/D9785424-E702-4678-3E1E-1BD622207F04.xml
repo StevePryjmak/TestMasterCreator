@@ -47,6 +47,42 @@
 <colAssociation fkAssociation="19A622C6-9C0B-3BA3-44BC-3B20DDCFD7A8" referredColumn="2171C380-1075-9C6B-4EE0-4E16E9C36AB1"/>
 </associations>
 </Column>
+<Column name="Icon" id="45577C72-2AC7-4F95-C3E8-B27A1221F9DD">
+<createdBy>xxxx</createdBy>
+<createdTime>2025-01-11 10:22:56 UTC</createdTime>
+<generatorID>6875FA68-0A83-A2B3-F35B-7C42E68EF3AB</generatorID>
+<ownerDesignName>database</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT029</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Attempts" id="71D03C9C-B77F-A9E8-A839-A7F918DD9987">
+<createdBy>xxxx</createdBy>
+<createdTime>2025-01-11 10:22:56 UTC</createdTime>
+<generatorID>063D8EB1-4B85-5F87-28AC-5B9EE0BF6367</generatorID>
+<ownerDesignName>database</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="TimeLimit" id="5B54E8B4-060B-33F8-5D6A-4ED96FC0F645">
+<createdBy>xxxx</createdBy>
+<createdTime>2025-01-11 10:22:56 UTC</createdTime>
+<generatorID>33F047BA-ADBC-FFBB-D507-1F3459416A59</generatorID>
+<ownerDesignName>database</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
 </columns>
 <indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
 <ind_PK_UK id="C40887AC-3F16-32A9-F1DC-51B63ADCB6AC" name="Tests_PK">

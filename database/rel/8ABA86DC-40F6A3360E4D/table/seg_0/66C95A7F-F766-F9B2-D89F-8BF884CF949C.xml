@@ -63,6 +63,30 @@
 <colAssociation fkAssociation="DD4F76B5-6363-7D92-E447-8637121FF12C" referredColumn="54D5ED2D-0CD5-E3F4-2D57-734E9C76F54C"/>
 </associations>
 </Column>
+<Column name="Image" id="488EE4DE-0C9C-100C-BB6D-9B8498F27CE6">
+<createdBy>xxxx</createdBy>
+<createdTime>2025-01-11 10:22:56 UTC</createdTime>
+<generatorID>9918C7E1-73CB-446C-0454-6CBF590A499C</generatorID>
+<ownerDesignName>database</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT029</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="TimeLimit" id="E7A9538A-F3C5-8B26-641A-D2D08CD3D0DA">
+<createdBy>xxxx</createdBy>
+<createdTime>2025-01-11 10:22:56 UTC</createdTime>
+<generatorID>A819DC20-B810-22E2-F53A-8A064CE62A5F</generatorID>
+<ownerDesignName>database</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
 </columns>
 <indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
 <ind_PK_UK id="3909F2A0-5AAF-0C32-5E8C-A42E1BD2335B" name="Questions_PK">

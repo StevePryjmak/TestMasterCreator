@@ -2,9 +2,9 @@
 <Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="AC7F2A8B-6F89-A1E2-5916-089A66D45D83" name="Hints">
 <createdBy>xxxx</createdBy>
 <createdTime>2024-11-24 15:45:42 UTC</createdTime>
-<ownerDesignName>test</ownerDesignName>
+<ownerDesignName>database</ownerDesignName>
 <engineerTo>
-<item key="E4F36FAA-4899-3BFD-6FE9-375CC3FE6CF7" value="true"/>
+<item key="8ABA86DC-9BF0-47F9-F89E-40F6A3360E4D" value="true"/>
 </engineerTo>
 <adequatelyNormalized>NO</adequatelyNormalized>
 <expectedVolumes>0</expectedVolumes>
@@ -18,9 +18,9 @@
 <Attribute name="HintId" id="D47944DD-3BA9-EB55-7543-9725E10EB053">
 <createdBy>xxxx</createdBy>
 <createdTime>2024-11-24 15:45:48 UTC</createdTime>
-<ownerDesignName>test</ownerDesignName>
+<ownerDesignName>database</ownerDesignName>
 <engineerTo>
-<item key="E4F36FAA-4899-3BFD-6FE9-375CC3FE6CF7" value="true"/>
+<item key="8ABA86DC-9BF0-47F9-F89E-40F6A3360E4D" value="true"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
@@ -30,9 +30,9 @@
 <Attribute name="Text" id="D2ADCBDE-7755-9DCE-A6D9-6AF08F486595">
 <createdBy>xxxx</createdBy>
 <createdTime>2024-11-24 15:45:58 UTC</createdTime>
-<ownerDesignName>test</ownerDesignName>
+<ownerDesignName>database</ownerDesignName>
 <engineerTo>
-<item key="E4F36FAA-4899-3BFD-6FE9-375CC3FE6CF7" value="true"/>
+<item key="8ABA86DC-9BF0-47F9-F89E-40F6A3360E4D" value="true"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
@@ -45,9 +45,10 @@
 <identifier id="CEDBC355-7A5A-8802-AEC2-C03C0F0740EF" name="Hints PK">
 <createdBy>xxxx</createdBy>
 <createdTime>2024-11-24 15:45:57 UTC</createdTime>
-<ownerDesignName>test</ownerDesignName>
+<ownerDesignName>database</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
 <engineerTo>
-<item key="E4F36FAA-4899-3BFD-6FE9-375CC3FE6CF7" value="true"/>
+<item key="8ABA86DC-9BF0-47F9-F89E-40F6A3360E4D" value="false"/>
 </engineerTo>
 <pk>true</pk>
 <usedAttributes>
