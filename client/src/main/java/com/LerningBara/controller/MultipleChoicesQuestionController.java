@@ -87,6 +87,7 @@ public class MultipleChoicesQuestionController {
 
         if (Arrays.equals(correctAnswers, selectedAnswers)) {
             System.out.println("Correct Answer!");
+            App.getInstance().testInfoData.result += 1;
         } else {
             System.out.println("Incorrect Answer!");
         }

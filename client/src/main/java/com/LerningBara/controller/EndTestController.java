@@ -2,7 +2,6 @@ package com.LerningBara.controller;
 
 import com.LerningBara.app.App;
 
-import TestData.TestData;
 import TestData.TestInfoData;
 import client.Client;
 import connection.Message;
@@ -37,8 +36,6 @@ public class EndTestController {
         } else {
             likeInfoLabel.setText("Alredy liked");
         }
-
-        App.getInstance().client.closeConnection();
     }
 
     // TODO: check if this works
@@ -49,21 +46,18 @@ public class EndTestController {
 
     // TODO: check if this works
     @FXML
-    private void initialize(int result) {
-        // TODO: implement getting TestInfoData
+    private void initialize() {
+        currentTest = App.getInstance().testInfoData;
+        currentTest.currentUserID = App.getInstance().user.getId();
 
         App.getInstance().client = new Client("localhost", 8080);
         System.out.println("Connected to server");
-        App.getInstance().client.sendMessage("Give me the test", currentTest.name);
-        System.out.println("Waiting for the test");
+        App.getInstance().client.sendMessage("Add result", currentTest);
+        System.out.println("Waiting to add test result to database");
         Message messageReceived = App.getInstance().client.getOneRecivedObject();
-        // App.getInstance().client.closeConnection();
+        Object _ = messageReceived.getObject();
 
-        Object currentTest = messageReceived.getObject();
-        if (currentTest instanceof TestData) {
-            TestData currentTestData = (TestData) currentTest;
-            String text = currentTestData.questions.size() + "/" + result;
-            resultLabel.setText(text);
-        }
+        String text = currentTest.result + "/" + currentTest.questionCount;
+        resultLabel.setText(text);
     }
 }

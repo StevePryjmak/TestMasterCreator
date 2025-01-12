@@ -289,10 +289,9 @@ public class DataBase {
 
     public static void addToLikes(int userID, int testID) {
         connect();
-        int date = 1; // TODO: implement getting current date
         String str_insert = String.format(
-                "INSERT INTO LIKES(date, users_userid , tests_testid ) VALUES ('%d', '%d', '%d')",
-                date, userID, testID);
+                "INSERT INTO LIKES(date, users_userid , tests_testid ) VALUES (CURRENT_DATE, '%d', '%d')",
+                userID, testID);
         int rows_insert;
         PreparedStatement statement = null;
         try {
@@ -565,7 +564,7 @@ public class DataBase {
         return new AvalibleTestsList(tests);
     }
 
-    public static void SaveResult(int userId, int testId, int points) {
+    public static void saveResult(int userId, int testId, int points) {
         connect();
         PreparedStatement statement = null;
         try {

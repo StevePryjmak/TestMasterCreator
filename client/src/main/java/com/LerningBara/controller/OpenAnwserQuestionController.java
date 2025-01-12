@@ -44,6 +44,7 @@ public class OpenAnwserQuestionController {
         System.out.println(selectedAnswer);
         if (selectedAnswer.equals(correctAnswer)) {
             System.out.println("Correct Answer!");
+            App.getInstance().testInfoData.result += 1;
         } else {
             System.out.println("Incorrect Answer!");
         }

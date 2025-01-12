@@ -34,14 +34,14 @@ public class QuizMenuController {
    @FXML
    public void myQuiz() throws Exception {
       String msg = "List of user test";
-      int userID = 0; // TODO: change this to current userID
+      int userID = App.getInstance().user.getId();
       getTestsList(msg, userID);
    }
 
    @FXML
    public void savedQuiz() throws Exception {
       String msg = "List of liked test";
-      int userID = 0; // TODO: change this to current userID
+      int userID = App.getInstance().user.getId();
       getTestsList(msg, userID);
    }
 

@@ -33,17 +33,16 @@ public class SingleChoiceQuestionController {
     @FXML
     private Button checkButton;
 
-    private ToggleGroup toggleGroup = new ToggleGroup();  // To group the radio buttons
-    private String correctAnswer;  
+    private ToggleGroup toggleGroup = new ToggleGroup(); // To group the radio buttons
+    private String correctAnswer;
     private RadioButton[] buttons;
 
     @FXML
     public void initialize() {
-        
-        buttons = new RadioButton[] {answerButton1, answerButton2, answerButton3, answerButton4, 
-                                     answerButton5, answerButton6, answerButton7, answerButton8};
-    
-        
+
+        buttons = new RadioButton[] { answerButton1, answerButton2, answerButton3, answerButton4,
+                answerButton5, answerButton6, answerButton7, answerButton8 };
+
         for (RadioButton button : buttons) {
             button.setToggleGroup(toggleGroup);
         }
@@ -60,26 +59,24 @@ public class SingleChoiceQuestionController {
                 buttons[i].setText(options.get(i));
                 buttons[i].setVisible(true);
             } else {
-                buttons[i].setVisible(false);  
+                buttons[i].setVisible(false);
             }
         }
 
-        
         toggleGroup.selectToggle(null);
     }
 
-    
     @FXML
     private void handleCheckButton() {
-        
+
         RadioButton selectedButton = (RadioButton) toggleGroup.getSelectedToggle();
 
         if (selectedButton == null) {
             System.out.println("Please select an answer.");
         } else {
-            
+
             String selectedAnswer = selectedButton.getText();
-            checkAnswer(selectedAnswer); 
+            checkAnswer(selectedAnswer);
             App.getInstance().nextQuestion();
         }
     }
@@ -88,6 +85,7 @@ public class SingleChoiceQuestionController {
     private void checkAnswer(String selectedAnswer) {
         if (selectedAnswer.equals(correctAnswer)) {
             System.out.println("Correct!");
+            App.getInstance().testInfoData.result += 1;
         } else {
             System.out.println("Wrong answer.");
         }

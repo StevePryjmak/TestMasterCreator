@@ -25,6 +25,7 @@ public class App extends Application {
     private static Iterator<AbstractQuestion> testIterator;
     public Client client;
     public User user = new User();
+    public TestInfoData testInfoData;
 
     @Override
     public void start(Stage stage) {
@@ -73,13 +74,13 @@ public class App extends Application {
 
     public void nextQuestion() {
         if (!testIterator.hasNext()) {
-            // TODO: go to end test scene before returning
-            start(stage);
-            return;
+            // start(stage);
+            // return;
+            setRoot("EndTestController");
+        } else {
+            AbstractQuestion question = testIterator.next();
+            stage.setScene(question.getScene());
         }
-        AbstractQuestion question = testIterator.next();
-        stage.setScene(question.getScene());
-
     }
 
     public void showTestsList(List<TestInfoData> testsInfo) throws IOException {

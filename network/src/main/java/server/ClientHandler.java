@@ -10,6 +10,7 @@ import TestData.*;
 
 import java.io.*;
 import java.net.Socket;
+
 import connection.Message;
 import database.DataBase;
 import UserData.UserData;
@@ -46,18 +47,31 @@ public class ClientHandler implements Runnable {
         functionMap.put("List of user test", this::sendUserTestList);
         functionMap.put("List of liked test", this::sendLikedTestList);
         functionMap.put("Add to likes", this::sendAddToLikes);
+        functionMap.put("Add result", this::sendAddResult);
         // TODO add more functions here
+    }
+
+    public void sendAddResult() {
+        Object obj = recived.poll();
+        try {
+            DataBase.saveResult(
+                    ((TestInfoData) obj).currentUserID,
+                    ((TestInfoData) obj).testID,
+                    ((TestInfoData) obj).result);
+            sendObject(new Message("Added the result", (Boolean) true));
+        } catch (Exception e) {
+            sendObject(new Message("Failed to add teh result", (Boolean) false));
+        }
     }
 
     public void sendAddToLikes() {
         Object obj = recived.poll();
         if (obj instanceof TestInfoData) {
-            int currentUserID = 0; // TODO: get current userID
 
-            if (DataBase.getLikedTests(currentUserID).getTests().contains((TestInfoData) obj)) {
+            if (DataBase.getLikedTests(((TestInfoData) obj).currentUserID).getTests().contains((TestInfoData) obj)) {
                 sendObject(new Message("Already liked", (Boolean) false));
             } else {
-                DataBase.addToLikes(currentUserID, ((TestInfoData) obj).testID);
+                DataBase.addToLikes(((TestInfoData) obj).currentUserID, ((TestInfoData) obj).testID);
                 sendObject(new Message("Adding to liked", (Boolean) true));
             }
 
