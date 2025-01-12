@@ -94,33 +94,6 @@
 <logicalDatatype>LOGDT029</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
-<Attribute name="TimeLimit" id="A819DC20-B810-22E2-F53A-8A064CE62A5F">
-<createdBy>xxxx</createdBy>
-<createdTime>2025-01-08 18:56:51 UTC</createdTime>
-<ownerDesignName>database</ownerDesignName>
-<engineerTo>
-<item key="8ABA86DC-9BF0-47F9-F89E-40F6A3360E4D" value="true"/>
-</engineerTo>
-<nullsAllowed>true</nullsAllowed>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>LOGDT011</logicalDatatype>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-</Attribute>
-<Attribute name="TestId" id="5681FEF6-5768-C81E-6084-AEE0281429E2">
-<createdBy>xxxx</createdBy>
-<createdTime>2025-01-11 13:42:04 UTC</createdTime>
-<generatorID>E7A920E7-915E-B8B5-48D6-339FC0EE96AB</generatorID>
-<ownerDesignName>database</ownerDesignName>
-<engineerTo>
-<item key="8ABA86DC-9BF0-47F9-F89E-40F6A3360E4D" value="true"/>
-</engineerTo>
-<referedAttribute>6182FE63-E5D8-F100-63C9-1D4C492F6EF4</referedAttribute>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>LOGDT011</logicalDatatype>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-</Attribute>
 </attributes>
 <identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
 <identifier id="A6EFEAC7-B84B-B91F-6DE6-2C1114AB7BFF" name="Questions PK">

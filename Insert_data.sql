@@ -87,51 +87,72 @@ INSERT INTO QUESTIONS(
 INSERT INTO ANSWERS(
     TEXT,
 	ISCORRECT,
-	QUESTIONS_QUESTIONID
+	QUESTIONS_QUESTION
 ) VALUES (
     'Rome',
-	'F',
+	FALSE,
 	1
 ),
 (
     'Madrid',
-	'F',
+	FALSE,
 	1
 ),
 (
     'Paris',
-	'T',
+	TRUE,
 	1
 ),
 (
     'Berlin',
-	'F',
+	FALSE,
 	1
 ),
 (
     'Python',
-	'T',
+	TRUE,
 	2
 ),
 (
     'Java',
-	'T',
+	TRUE,
 	2
 ),
 (
     'Germany',
-	'F',
+	FALSE,
 	2
 ),
 (
     'Maven',
-	'F',
+	FALSE,
 	2
 ),
 (
     '1000',
-	'T',
+	TRUE,
 	3
 );
 
+INSERT INTO TEST_QUESTION VALUES (
+    1,
+    1,
+    1,
+    1
+),
+(
+    2,
+    2,
+    2,
+    1
+),
+(
+    3,
+    3,
+    3,
+    1
+);
+
+COMMIT;
+INSERT INTO Users(Login, Password, Email) VALUES ('abcc', 'aaa', 'abc@gmail.com');
 COMMIT;

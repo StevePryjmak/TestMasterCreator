@@ -46,9 +46,8 @@
 <createdBy>xxxx</createdBy>
 <createdTime>2024-11-24 15:45:57 UTC</createdTime>
 <ownerDesignName>database</ownerDesignName>
-<shouldEngineer>false</shouldEngineer>
 <engineerTo>
-<item key="8ABA86DC-9BF0-47F9-F89E-40F6A3360E4D" value="false"/>
+<item key="8ABA86DC-9BF0-47F9-F89E-40F6A3360E4D" value="true"/>
 </engineerTo>
 <pk>true</pk>
 <usedAttributes>
