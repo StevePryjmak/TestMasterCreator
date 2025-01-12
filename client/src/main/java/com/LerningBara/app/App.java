@@ -22,14 +22,12 @@ import com.LerningBara.controller.TestBoxController;
 import javafx.scene.layout.VBox;
 import javafx.scene.layout.HBox;
 
-
 public class App extends Application {
     private static App instance;
     private static Stage stage;
     private Test test;
     private static Iterator<AbstractQuestion> testIterator;
     public Client client;
-
 
     @Override
     public void start(Stage stage) {
@@ -78,6 +76,7 @@ public class App extends Application {
 
     public void nextQuestion() {
         if (!testIterator.hasNext()) {
+            // TODO: go to end test scene before returning
             start(stage);
             return;
         }
@@ -85,7 +84,6 @@ public class App extends Application {
         stage.setScene(question.getScene());
 
     }
-
 
     public void showTestsList(List<TestInfoData> testsInfo) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/MainLayout.fxml"));
