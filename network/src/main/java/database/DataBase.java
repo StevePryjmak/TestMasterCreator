@@ -13,8 +13,6 @@ import TestData.TestInfoData;
 import UserData.User;
 import UserData.UserData;
 
-import static org.junit.jupiter.api.DynamicTest.stream;
-
 import java.io.FileWriter;
 import java.io.IOException;
 import java.sql.Connection;
