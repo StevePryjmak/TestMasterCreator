@@ -354,13 +354,23 @@ public class DataBase {
     public static void updateUser(UserData user){
         connect();
         PreparedStatement statement = null;
+        String str;
+        int i = 1;
+        if (user.password.isEmpty()){
+            str = "UPDATE Users SET Login = ?, Email = ? WHERE Login = ?";
+        }
+        else{
+            str = "UPDATE Users SET Login = ?, Password = ?, Email = ? WHERE Login = ?";
+        }
         try {
             statement = connection.prepareStatement(
-                    "UPDATE Users SET Login = ?, Password = ?, Email = ? WHERE Login = ?");
-            statement.setString(1, user.username);
-            statement.setString(2, user.password);
-            statement.setString(3, user.email);
-            statement.setString(4, user.username);
+                    str);
+            statement.setString(i++, user.username);
+            if (!user.password.isEmpty()){
+                statement.setString(i++, user.password);
+            }
+            statement.setString(i++, user.email);
+            statement.setString(i++, user.username);
             statement.executeUpdate();
 
         } catch (SQLException e) {
