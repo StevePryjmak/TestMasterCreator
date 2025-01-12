@@ -1,5 +1,7 @@
 package com.LerningBara.controller;
 
+import javax.swing.text.StyledEditorKit.BoldAction;
+
 import com.LerningBara.app.App;
 
 import TestData.TestData;
@@ -18,6 +20,8 @@ public class EndTestController {
     private Button likeButton;
     @FXML
     private Label resultLabel;
+    @FXML
+    private Label likeInfoLabel;
 
     private TestInfoData currentTest;
 
@@ -28,7 +32,14 @@ public class EndTestController {
         System.out.println("Connected to server");
         App.getInstance().client.sendMessage("Add to likes", currentTest);
         System.out.println("Waiting to add test to likes");
-        App.getInstance().client.getOneRecivedObject();
+        Message messageReceived = App.getInstance().client.getOneRecivedObject();
+        Object obj = messageReceived.getObject();
+        if ((Boolean) obj) {
+            likeInfoLabel.setText("Added to liked");
+        } else {
+            likeInfoLabel.setText("Alredy liked");
+        }
+
         App.getInstance().client.closeConnection();
     }
 

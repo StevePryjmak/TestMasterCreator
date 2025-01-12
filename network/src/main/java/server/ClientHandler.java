@@ -53,7 +53,7 @@ public class ClientHandler implements Runnable {
             int currentUserID = 0; // TODO: get current userID
 
             if (DataBase.getLikedTests(currentUserID).getTests().contains((TestInfoData) obj)) {
-                sendObject(new Message("Already liked", (Boolean) true));
+                sendObject(new Message("Already liked", (Boolean) false));
             } else {
                 DataBase.addToLikes(currentUserID, ((TestInfoData) obj).testID);
                 sendObject(new Message("Adding to liked", (Boolean) true));
