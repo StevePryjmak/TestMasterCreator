@@ -11,7 +11,7 @@ import client.Client;
 import connection.Message;
 import javafx.fxml.FXML;
 
-public class QuizMenuSceneControler {
+public class QuizMenuController {
 
    @FXML
    public void userMenu() throws Exception {
@@ -39,7 +39,7 @@ public class QuizMenuSceneControler {
    }
 
    @FXML
-   public void likedQuiz() throws Exception {
+   public void savedQuiz() throws Exception {
       String msg = "List of liked test";
       int userID = 0; // TODO: change this to current userID
       getTestsList(msg, userID);
