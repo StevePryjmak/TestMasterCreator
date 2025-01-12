@@ -62,7 +62,7 @@ public class DataBase {
             resultSet = statement.executeQuery();
 
             while (resultSet.next()) {
-                TestInfoData testInfoData3 = new TestInfoData(resultSet.getString("Name"),
+                TestInfoData testInfoData3 = new TestInfoData(resultSet.getInt("testid"), resultSet.getString("Name"),
                         resultSet.getString("Description"), resultSet.getString("Login"),
                         resultSet.getString("CREATIONDATE"),
                         resultSet.getString("field"), resultSet.getInt("n"));
@@ -81,7 +81,7 @@ public class DataBase {
             }
         }
 
-        // @TODO: remove this hardcoded data
+        // TODO: remove this hardcoded data
         return new AvalibleTestsList(tests);
     }
 
@@ -97,7 +97,7 @@ public class DataBase {
             resultSet = statement.executeQuery();
 
             while (resultSet.next()) {
-                TestInfoData testInfoData3 = new TestInfoData(resultSet.getString("Name"),
+                TestInfoData testInfoData3 = new TestInfoData(resultSet.getInt("testid"), resultSet.getString("Name"),
                         resultSet.getString("Description"), resultSet.getString("Login"),
                         resultSet.getString("CREATIONDATE"),
                         resultSet.getString("field"), resultSet.getInt("n"));
@@ -131,7 +131,7 @@ public class DataBase {
             resultSet = statement.executeQuery();
 
             while (resultSet.next()) {
-                TestInfoData testInfoData3 = new TestInfoData(resultSet.getString("Name"),
+                TestInfoData testInfoData3 = new TestInfoData(resultSet.getInt("testid"), resultSet.getString("Name"),
                         resultSet.getString("Description"), resultSet.getString("Login"),
                         resultSet.getString("CREATIONDATE"),
                         resultSet.getString("field"), resultSet.getInt("n"));
@@ -161,9 +161,10 @@ public class DataBase {
         List<AbstractQuestionData> questions = new ArrayList<>();
         try {
             statement = connection.prepareStatement(
-                    "SELECT q.QuestionId, q.Text, q.Types_TypeId FROM Tests t JOIN Test_question tg ON TestID = Tests_TestID JOIN Questions q ON QuestionId = Questions_QuestionId WHERE Name=? ORDER BY QuestionOrder");
+                    "SELECT q.Tests_TestID q.QuestionId, q.Text, q.Types_TypeId FROM Tests t JOIN Test_question tg ON TestID = Tests_TestID JOIN Questions q ON QuestionId = Questions_QuestionId WHERE Name=? ORDER BY QuestionOrder");
             statement.setString(1, testName);
             questionsSet = statement.executeQuery();
+
             while (questionsSet.next()) {
                 List<String> options = new ArrayList<>();
                 List<Integer> correctAnswers = new ArrayList<>();
@@ -276,6 +277,32 @@ public class DataBase {
                     fileWriter.write(str_insert);
                     fileWriter.write(";\nCOMMIT;");
                     System.out.println("New user appended to data file.");
+                } catch (IOException e) {
+                    System.err.println("An error occured: " + e.getMessage());
+                }
+            }
+        } catch (SQLException e) {
+            System.err.println("Insert execution failed: " + e.getMessage());
+        }
+    }
+
+    public static void addToLikes(int userID, int testID) {
+        connect();
+        int date = 1; // TODO: implement getting current date
+        String str_insert = String.format(
+                "INSERT INTO LIKES(date, users_userid , tests_testid ) VALUES ('%d', '%d', '%d')",
+                date, userID, testID);
+        int rows_insert;
+        PreparedStatement statement = null;
+        try {
+            statement = connection.prepareStatement(str_insert);
+            rows_insert = statement.executeUpdate();
+            if (rows_insert > 0) {
+                try (FileWriter fileWriter = new FileWriter("../Insert_data.sql", true)) {
+                    fileWriter.write("\n");
+                    fileWriter.write(str_insert);
+                    fileWriter.write(";\nCOMMIT;");
+                    System.out.println("Successfully added test to liked.");
                 } catch (IOException e) {
                     System.err.println("An error occured: " + e.getMessage());
                 }

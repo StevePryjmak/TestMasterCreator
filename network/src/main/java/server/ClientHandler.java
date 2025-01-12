@@ -6,6 +6,8 @@ import java.util.LinkedList;
 import java.util.Map;
 import java.util.Queue;
 
+import org.junit.jupiter.api.Test;
+
 import TestData.*;
 
 import java.io.*;
@@ -43,7 +45,24 @@ public class ClientHandler implements Runnable {
         functionMap.put("Add user", this::sendAddUser);
         functionMap.put("List of user test", this::sendUserTestList);
         functionMap.put("List of liked test", this::sendLikedTestList);
-        // @TODO add more functions here
+        functionMap.put("Add to likes", this::sendAddToLikes);
+        // TODO add more functions here
+    }
+
+    public void sendAddToLikes() {
+        Object obj = recived.poll();
+        if (obj instanceof TestInfoData) {
+            int currentUserID = 0; // TODO: get current userID
+
+            if (DataBase.getLikedTests(currentUserID).getTests().contains((TestInfoData) obj)) {
+                sendObject(new Message("Already liked", (Boolean) true));
+            } else {
+                DataBase.addToLikes(currentUserID, ((TestInfoData) obj).testID);
+                sendObject(new Message("Adding to liked", (Boolean) true));
+            }
+
+        }
+
     }
 
     public void sendLikedTestList() {
