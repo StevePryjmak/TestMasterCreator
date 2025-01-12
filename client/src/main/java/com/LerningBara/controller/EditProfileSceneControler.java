@@ -100,7 +100,7 @@ public class EditProfileSceneControler {
         }
         // TODO naprawić
         User curr_user = App.getInstance().user;
-        usr = new UserData(usernameStr, "", curr_user.getEmail());
+        usr = new UserData(usernameStr, "", curr_user.getEmail(), curr_user.getId());
         App.getInstance().client.sendMessage("Update user", usr);
         System.out.println("Waiting for server response");
         messageReceived = App.getInstance().client.getOneRecivedObject();
