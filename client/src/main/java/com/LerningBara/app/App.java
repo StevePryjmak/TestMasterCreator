@@ -4,11 +4,9 @@ import java.io.IOException;
 import java.util.Iterator;
 import java.util.List;
 
-import com.LerningBara.controller.TestInitializer;
 import com.LerningBara.model.AbstractQuestion;
 import com.LerningBara.model.Test;
 
-import TestData.AvalibleTestsList;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -18,9 +16,6 @@ import client.Client;
 import TestData.TestInfoData;
 import javafx.scene.control.ScrollPane;
 import com.LerningBara.controller.MainLayoutController;
-import com.LerningBara.controller.TestBoxController;
-import javafx.scene.layout.VBox;
-import javafx.scene.layout.HBox;
 
 public class App extends Application {
     private static App instance;

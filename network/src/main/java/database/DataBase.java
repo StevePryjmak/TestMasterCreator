@@ -1,7 +1,6 @@
 package database;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import QuestionData.AbstractQuestionData;
@@ -11,7 +10,6 @@ import QuestionData.OpenAnwserQuestionData;
 import TestData.AvalibleTestsList;
 import TestData.TestData;
 import TestData.TestInfoData;
-import java.util.ArrayList;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.sql.Connection;
@@ -161,7 +159,7 @@ public class DataBase {
         List<AbstractQuestionData> questions = new ArrayList<>();
         try {
             statement = connection.prepareStatement(
-                    "SELECT q.Tests_TestID q.QuestionId, q.Text, q.Types_TypeId FROM Tests t JOIN Test_question tg ON TestID = Tests_TestID JOIN Questions q ON QuestionId = Questions_QuestionId WHERE Name=? ORDER BY QuestionOrder");
+                    "SELECT t.TestID, q.QuestionId, q.Text, q.Types_TypeId FROM Tests t JOIN Test_question tg ON TestID = Tests_TestID JOIN Questions q ON QuestionId = Questions_QuestionId WHERE Name=? ORDER BY QuestionOrder");
             statement.setString(1, testName);
             questionsSet = statement.executeQuery();
 

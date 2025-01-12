@@ -1,12 +1,8 @@
 package client;
 
 import java.io.*;
-import java.net.ServerSocket;
 import java.net.Socket;
-import java.security.MessageDigest;
-import java.util.Scanner;
 
-import TestData.TestData;
 import connection.Message;
 
 import java.util.List;

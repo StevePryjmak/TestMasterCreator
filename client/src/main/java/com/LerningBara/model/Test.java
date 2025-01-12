@@ -3,19 +3,18 @@ package com.LerningBara.model;
 import java.util.*;
 
 import QuestionData.AbstractQuestionData;
-import com.LerningBara.model.QuestionConventor;
-
 
 public class Test implements Iterable<AbstractQuestion> {
     private List<AbstractQuestion> questions = new ArrayList<>();
     private boolean shuffle = false;
 
-    public Test() {}
+    public Test() {
+    }
 
     public Test(List<AbstractQuestion> questions) {
         this.questions = questions;
     }
-    
+
     public Test(AbstractQuestion[] questions) {
         for (AbstractQuestion question : questions) {
             this.questions.add(question);
@@ -29,10 +28,11 @@ public class Test implements Iterable<AbstractQuestion> {
     }
 
     // public Test(List<AbstractQuestionData> questionDataList) {
-    //     for (AbstractQuestionData questionData : questionDataList) {
-    //         AbstractQuestion question = QuestionConventor.convertToQuestion(questionData);
-    //         this.questions.add(question);
-    //     }
+    // for (AbstractQuestionData questionData : questionDataList) {
+    // AbstractQuestion question =
+    // QuestionConventor.convertToQuestion(questionData);
+    // this.questions.add(question);
+    // }
     // }
 
     public List<AbstractQuestion> getQuestions() {
@@ -46,7 +46,7 @@ public class Test implements Iterable<AbstractQuestion> {
     public void removeQuestion(int index) {
         questions.remove(index);
     }
-    
+
     public void addQuestion(AbstractQuestion question) {
         questions.add(question);
     }
@@ -76,7 +76,7 @@ public class Test implements Iterable<AbstractQuestion> {
 
         public ShuffledQuestionIterator() {
             shuffledQuestions = new ArrayList<>(questions);
-            Collections.shuffle(shuffledQuestions);  // Shuffle the questions list
+            Collections.shuffle(shuffledQuestions); // Shuffle the questions list
         }
 
         @Override
@@ -92,7 +92,6 @@ public class Test implements Iterable<AbstractQuestion> {
             return shuffledQuestions.get(currentIndex++);
         }
     }
-
 
     @Override
     public Iterator<AbstractQuestion> iterator() {
