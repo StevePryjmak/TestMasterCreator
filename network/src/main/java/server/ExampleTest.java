@@ -52,6 +52,6 @@ public class ExampleTest {
         SingleChoiceQuestionData q5 = new SingleChoiceQuestionData(question5, options5, correctAnswerIndex5);
         questions.add(q5);
 
-        return new TestData(questions);
+        return new TestData(questions, 0);
     }
 }
