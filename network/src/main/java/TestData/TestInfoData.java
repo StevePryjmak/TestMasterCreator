@@ -3,6 +3,7 @@ package TestData;
 import java.io.Serializable;
 
 public class TestInfoData implements Serializable {
+    public int testID;
     public String name;
     public String description;
     public String author;
@@ -10,8 +11,9 @@ public class TestInfoData implements Serializable {
     public String field;
     public int questionCount;
 
-    public TestInfoData(String name, String description, String author, String date, String field,
+    public TestInfoData(int testID, String name, String description, String author, String date, String field,
             int questionCount) {
+        this.testID = testID;
         this.name = name;
         this.description = description;
         this.author = author;
