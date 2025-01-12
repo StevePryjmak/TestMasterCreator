@@ -1,29 +1,67 @@
 package com.LerningBara.controller;
 
+import java.io.IOException;
+import java.util.List;
+
 import com.LerningBara.app.App;
+
+import TestData.AvalibleTestsList;
+import TestData.TestInfoData;
+import client.Client;
+import connection.Message;
 import javafx.fxml.FXML;
 
 public class QuizMenuSceneControler {
 
    @FXML
-   public void userMenu() throws Exception{
-    System.out.println("Go to user menu");
-    App.setRoot("UserMenuScene");
+   public void userMenu() throws Exception {
+      System.out.println("Go to user menu");
+      App.setRoot("UserMenuScene");
    }
 
-   public void browseQuiz() throws Exception{
-    //można tu wstawić funkcje z start scene, ogólnie bym się pozbyła tej scenki i tu przeniosła
+   @FXML
+   public void browseQuiz() throws Exception {
+      // można tu wstawić funkcje z start scene, ogólnie bym się pozbyła tej scenki i
+      // tu przeniosła
    }
 
-   public void addQuiz() throws Exception{
-    // App.setRoot("AddQuizScene");
+   @FXML
+   public void addQuiz() throws Exception {
+      // App.setRoot("AddQuizScene");
    }
 
-   public void myQuiz() throws Exception{
-    // App.setRoot("MyQuizScene");
+   @FXML
+   public void myQuiz() throws Exception {
+      String msg = "List of user test";
+      int userID = 0; // change this to current userID
+      getTestsList(msg, userID);
    }
 
-   public void savedQuiz() throws Exception{
-    // App.setRoot("SavedQuizScene");
+   @FXML
+   public void likedQuiz() throws Exception {
+      String msg = "List of liked test";
+      int userID = 0; // change this to current userID
+      getTestsList(msg, userID);
+   }
+
+   public void getTestsList(String msg, int userID) {
+      App.getInstance().client = new Client("localhost", 8080);
+      System.out.println("Connected to server");
+      App.getInstance().client.sendMessage(msg, userID);
+      System.out.println("Waiting for list of tests");
+      Message messageReceived = App.getInstance().client.getOneRecivedObject();
+      // App.getInstance().client.closeConnection();
+
+      Object r = messageReceived.getObject();
+      if (r instanceof AvalibleTestsList) {
+         AvalibleTestsList avalibleTestsList = (AvalibleTestsList) r;
+         List<TestInfoData> tests = avalibleTestsList.getTests();
+         try {
+            App.getInstance().showTestsList(tests);
+         } catch (IOException e) {
+            System.out.println(e);
+         }
+
+      }
    }
 }
