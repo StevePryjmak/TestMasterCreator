@@ -21,6 +21,7 @@ public class QuizMenuSceneControler {
 
    @FXML
    public void browseQuiz() throws Exception {
+      // TODO: browseQuiz implementation
       // można tu wstawić funkcje z start scene, ogólnie bym się pozbyła tej scenki i
       // tu przeniosła
    }
@@ -33,14 +34,14 @@ public class QuizMenuSceneControler {
    @FXML
    public void myQuiz() throws Exception {
       String msg = "List of user test";
-      int userID = 0; // change this to current userID
+      int userID = 0; // TODO: change this to current userID
       getTestsList(msg, userID);
    }
 
    @FXML
    public void likedQuiz() throws Exception {
       String msg = "List of liked test";
-      int userID = 0; // change this to current userID
+      int userID = 0; // TODO: change this to current userID
       getTestsList(msg, userID);
    }
 
