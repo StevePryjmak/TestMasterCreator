@@ -2,6 +2,7 @@ package com.LerningBara.controller;
 
 import com.LerningBara.app.App;
 
+import UserData.User;
 import UserData.UserData;
 import client.Client;
 import connection.Message;
@@ -43,7 +44,7 @@ public class CreateAccountSceneControler {
         App.getInstance().client = new Client("localhost", 8080);
         System.out.println("Connected to server");
         App.getInstance().client.sendMessage("User exists", usr);
-        System.out.println("Waiting for list of tests");
+        System.out.println("Waiting for server response");
         Message messageReceived = App.getInstance().client.getOneRecivedObject();
         Object obj = messageReceived.getObject();
         if (obj instanceof Boolean) {
@@ -88,11 +89,19 @@ public class CreateAccountSceneControler {
         }
 
         if (create_accout) {
-            App.getInstance().client = new Client("localhost", 8080);
-            System.out.println("Connected to server");
+            // add user to db
             App.getInstance().client.sendMessage("Add user", usr);
-            System.out.println("Waiting to add user");
+            System.out.println("Waiting for server response");
             messageReceived = App.getInstance().client.getOneRecivedObject();
+
+            // get user id from db
+            App.getInstance().client.sendMessage("Get user", usr);
+            System.out.println("Waiting for server response");
+            messageReceived = App.getInstance().client.getOneRecivedObject();
+            obj = messageReceived.getObject();
+            if (obj instanceof User) {
+                App.getInstance().user.setAttributes((User) obj);
+            }
             App.setRoot("QuizMenuScene");
         }
     }

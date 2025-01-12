@@ -1,17 +1,17 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="99DB71A7-E689-4936-8D6A-0438517590D4" name="Answers">
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="1F4BE4BF-D811-BC93-3911-EC8B070B9E5D" name="Tags">
 <createdBy>xxxx</createdBy>
-<createdTime>2024-11-29 16:14:30 UTC</createdTime>
-<generatorID>FD89B628-6C5D-B2B9-8EDB-CA077EA5B3EE</generatorID>
+<createdTime>2025-01-11 13:27:47 UTC</createdTime>
+<generatorID>D6BFB30B-D80B-0E60-42EE-7FD86F584B22</generatorID>
 <ownerDesignName>database</ownerDesignName>
 <allowColumnReorder>false</allowColumnReorder>
 <existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
 <parsed>true</parsed>
 <columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
-<Column name="AnswerId" id="4D53DE35-13BD-0121-ABCB-0F9BF79C5FFA">
+<Column name="TagId" id="E1386CB3-B93A-A0C0-ACD3-B54B9872BF57">
 <createdBy>xxxx</createdBy>
-<createdTime>2024-11-29 16:14:30 UTC</createdTime>
-<generatorID>315C8CAD-7974-3A3F-1F77-1A2DDAA33A4E</generatorID>
+<createdTime>2025-01-11 13:27:47 UTC</createdTime>
+<generatorID>D2D60B98-F702-C621-FB35-9BCEB98C0408</generatorID>
 <ownerDesignName>database</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
@@ -20,30 +20,30 @@
 <autoIncrementColumn>true</autoIncrementColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="Text" id="3AA1D8D8-CD21-36B9-02F6-56892F08C236">
+<Column name="Name" id="0AEDB759-A6B3-A97B-75E0-53BFD2CC17C3">
 <createdBy>xxxx</createdBy>
-<createdTime>2024-12-01 19:46:04 UTC</createdTime>
-<generatorID>15471D63-1EB3-D76D-0B67-3D48984D9233</generatorID>
+<createdTime>2025-01-11 13:27:47 UTC</createdTime>
+<generatorID>632E99EE-05E4-FEFF-B575-1A4EDE1543E0</generatorID>
 <ownerDesignName>database</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
 <logicalDatatype>LOGDT024</logicalDatatype>
-<dataTypeSize>80 CHAR</dataTypeSize>
-<ownDataTypeParameters>80 CHAR,,</ownDataTypeParameters>
+<dataTypeSize>20 CHAR</dataTypeSize>
+<ownDataTypeParameters>20 CHAR,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
 </columns>
 <indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
-<ind_PK_UK id="3FAAE558-0160-4BC6-0113-800F9ACA259F" name="Answers_PK">
+<ind_PK_UK id="526EA634-32A1-11CF-F3FF-3BEDF8D489A4" name="Tags_PK">
 <createdBy>xxxx</createdBy>
-<createdTime>2024-11-29 16:14:30 UTC</createdTime>
-<generatorID>BFCFF428-7164-7EDF-4DFF-76DA0012A291</generatorID>
+<createdTime>2025-01-11 13:27:47 UTC</createdTime>
+<generatorID>591F3031-152B-6771-27A8-EE1A3C9D1484</generatorID>
 <ownerDesignName>database</ownerDesignName>
 <pk>true</pk>
 <indexState>Primary Constraint</indexState>
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
-<colUsage columnID="4D53DE35-13BD-0121-ABCB-0F9BF79C5FFA"/>
+<colUsage columnID="E1386CB3-B93A-A0C0-ACD3-B54B9872BF57"/>
 </indexColumnUsage>
 </ind_PK_UK>
 </indexes>

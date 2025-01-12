@@ -16,6 +16,7 @@ import client.Client;
 import TestData.TestInfoData;
 import javafx.scene.control.ScrollPane;
 import com.LerningBara.controller.MainLayoutController;
+import UserData.User;
 
 public class App extends Application {
     private static App instance;
@@ -23,6 +24,7 @@ public class App extends Application {
     private Test test;
     private static Iterator<AbstractQuestion> testIterator;
     public Client client;
+    public static User user = new User();
 
     @Override
     public void start(Stage stage) {

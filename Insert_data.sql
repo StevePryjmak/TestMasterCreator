@@ -60,127 +60,78 @@ INSERT INTO HINTS VALUES (
     'Hint3'
 );
 
-INSERT INTO QUESTIONS VALUES (
-    1,
+INSERT INTO QUESTIONS(
+	TEXT,
+	TYPES_TYPEID,
+	POSITION,
+	TESTS_TESTID
+) VALUES (
     'What is the capital city of France?',
     1,
-    1
+    1,
+	1
 ),
 (
-    2,
     'Which of the following are programming languages?',
     2,
-    2
+    2,
+	1
 ),
 (
-    3,
     'How many meters are in a kilometer?',
     3,
-    3
+    3,
+	1
 );
 
 INSERT INTO ANSWERS(
-    TEXT
+    TEXT,
+	ISCORRECT,
+	QUESTIONS_QUESTIONID
 ) VALUES (
-    'Rome'
+    'Rome',
+	'F',
+	1
 ),
 (
-    'Madrid'
+    'Madrid',
+	'F',
+	1
 ),
 (
-    'Paris'
+    'Paris',
+	'T',
+	1
 ),
 (
-    'Berlin'
+    'Berlin',
+	'F',
+	1
 ),
 (
-    'Python'
+    'Python',
+	'T',
+	2
 ),
 (
-    'Java'
+    'Java',
+	'T',
+	2
 ),
 (
-    'German'
+    'Germany',
+	'F',
+	2
 ),
 (
-    'Maven'
+    'Maven',
+	'F',
+	2
 ),
 (
-    '1000'
-);
-
-INSERT INTO QUESTION_ANSWER VALUES (
-    1,
-    1,
-    1,
-    'F'
-),
-(
-    2,
-    2,
-    1,
-    'F'
-),
-(
-    3,
-    3,
-    1,
-    'T'
-),
-(
-    4,
-    4,
-    1,
-    'F'
-),
-(
-    5,
-    5,
-    2,
-    'T'
-),
-(
-    6,
-    6,
-    2,
-    'T'
-),
-(
-    7,
-    7,
-    2,
-    'F'
-),
-(
-    8,
-    8,
-    2,
-    'F'
-),
-(
-    9,
-    9,
-    3,
-    'T'
-);
-
-INSERT INTO TEST_QUESTION VALUES (
-    1,
-    1,
-    1,
-    1
-),
-(
-    2,
-    2,
-    2,
-    1
-),
-(
-    3,
-    3,
-    3,
-    1
+    '1000',
+	'T',
+	3
 );
 
 COMMIT;

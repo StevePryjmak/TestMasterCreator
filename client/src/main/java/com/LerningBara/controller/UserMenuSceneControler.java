@@ -11,18 +11,16 @@ public class UserMenuSceneControler {
       App.setRoot("QuizMenuScene");
    }
 
-   @FXML
    public void logOut() throws Exception {
+      App.getInstance().user.setAttributes(0, null, null);
       App.setRoot("LoginScene");
    }
 
-   @FXML
    public void showProfile() throws Exception {
-      // App.setRoot("ShowProfileScene");
+      App.setRoot("ShowProfileScene");
    }
 
-   @FXML
    public void editProfile() throws Exception {
-      // App.setRoot("EditProfileScene");
+      App.setRoot("EditProfileScene");
    }
 }
