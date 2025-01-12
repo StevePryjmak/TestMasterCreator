@@ -6,10 +6,8 @@ import QuestionData.AbstractQuestionData;
 
 public class TestData implements Serializable {
     public List<AbstractQuestionData> questions;
-    public int testID;
 
-    public TestData(List<AbstractQuestionData> questions, int testID) {
+    public TestData(List<AbstractQuestionData> questions) {
         this.questions = questions;
-        this.testID = testID;
     }
 }

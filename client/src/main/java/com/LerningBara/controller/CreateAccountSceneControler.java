@@ -1,6 +1,5 @@
 package com.LerningBara.controller;
 
-
 import com.LerningBara.app.App;
 
 import UserData.UserData;
@@ -13,7 +12,6 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import database.DataBase;
 import UserData.UserData;
-
 
 public class CreateAccountSceneControler {
     @FXML
@@ -37,7 +35,7 @@ public class CreateAccountSceneControler {
     @FXML
     private Label termsLabel;
 
-    public void createAccount() throws Exception{
+    public void createAccount() throws Exception {
         boolean create_accout = true;
         String login = loginField.getText();
         String email = emailField.getText();
@@ -50,50 +48,44 @@ public class CreateAccountSceneControler {
         System.out.println("Waiting for list of tests");
         Message messageReceived = App.getInstance().client.getOneRecivedObject();
         Object obj = messageReceived.getObject();
-        if (obj instanceof Boolean){
-            db_resp = (Boolean)obj;
+        if (obj instanceof Boolean) {
+            db_resp = (Boolean) obj;
         }
 
-        if (login.equals("")){
+        if (login.equals("")) {
             loginLabel.setText("Login cannot be empty.");
             create_accout = false;
-        }
-        else if(db_resp){
+        } else if (db_resp) {
             loginLabel.setText("Username already taken.");
             create_accout = false;
-        }
-        else {
+        } else {
             loginLabel.setText("");
         }
 
-        if (email.equals("")){
+        if (email.equals("")) {
             emailLabel.setText("E-mail cannot be empty.");
             create_accout = false;
-        }
-        else {
+        } else {
             emailLabel.setText("");
         }
 
-        if (password.equals("")){
+        if (password.equals("")) {
             passLabel.setText("Password cannot be empty.");
             create_accout = false;
-        }
-        else {
+        } else {
             passLabel.setText("");
         }
-        if(!(password.equals(passwordField2.getText()))){
+        if (!(password.equals(passwordField2.getText()))) {
             repeatLabel.setText("Different password.");
             create_accout = false;
-        }
-        else {
+        } else {
             repeatLabel.setText("");
         }
 
-        if((!termsField.isSelected())){
+        if ((!termsField.isSelected())) {
             termsLabel.setText("You have to accept terms and conditions.");
             create_accout = false;
-        }
-        else {
+        } else {
             termsLabel.setText("");
         }
 
@@ -101,13 +93,14 @@ public class CreateAccountSceneControler {
             App.getInstance().client = new Client("localhost", 8080);
             System.out.println("Connected to server");
             App.getInstance().client.sendMessage("Add user", usr);
-            System.out.println("Waiting for list of tests");
+            System.out.println("Waiting to add user");
             messageReceived = App.getInstance().client.getOneRecivedObject();
             App.setRoot("QuizMenuScene");
         }
     }
+
     @FXML
-    public void goBack() throws Exception{
-       App.setRoot("LoginScene");
+    public void goBack() throws Exception {
+        App.setRoot("LoginScene");
     }
 }
