@@ -1,7 +1,5 @@
 package com.LerningBara.controller;
 
-import javax.swing.text.StyledEditorKit.BoldAction;
-
 import com.LerningBara.app.App;
 
 import TestData.TestData;
