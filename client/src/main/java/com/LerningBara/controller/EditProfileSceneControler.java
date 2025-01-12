@@ -2,6 +2,7 @@ package com.LerningBara.controller;
 
 import com.LerningBara.app.App;
 
+import UserData.User;
 import UserData.UserData;
 import client.Client;
 import connection.Message;
@@ -42,6 +43,7 @@ public class EditProfileSceneControler {
     public void changeEmail(){
         passLabel.setText("");
         usernameLabel.setText("");
+        User curr_user = App.getInstance().user;
 
         String emailStr = emailField.getText();
         if (emailStr.equals("")){
@@ -50,13 +52,24 @@ public class EditProfileSceneControler {
             return;
         }
 
-        int id = App.getInstance().user.getId();
-        String usernameStr = App.getInstance().user.getUsername();
-        App.getInstance().user.setAttributes(id, usernameStr, emailStr);
-        // TODO change email in database
-        email.setText(emailStr);
-        emailLabel.setStyle("-fx-text-fill: blue");
-        emailLabel.setText("Email changed.");
+        UserData usr = new UserData(curr_user.getUsername(), "", emailStr);
+        App.getInstance().client = new Client("localhost", 8080);
+        System.out.println("Connected to server");
+        App.getInstance().client.sendMessage("Update user", usr);
+        System.out.println("Waiting for server response");
+        Message messageReceived = App.getInstance().client.getOneRecivedObject();
+        Object obj = messageReceived.getObject();
+        if ((Boolean)obj) {
+            App.getInstance().user.setAttributes(curr_user.getId(), curr_user.getUsername(), emailStr);
+            email.setText(emailStr);
+            emailLabel.setStyle("-fx-text-fill: blue");
+            emailLabel.setText("Email changed.");
+        }
+        else {
+            emailLabel.setStyle("-fx-text-fill: red");
+            emailLabel.setText("Database failure.");
+        }
+
     }
 
     public void changeUsername(){
@@ -85,23 +98,32 @@ public class EditProfileSceneControler {
             usernameLabel.setText("Username already taken.");
             return;
         }
-
-        int id = App.getInstance().user.getId();
-        String emailStr = App.getInstance().user.getEmail();
-        App.getInstance().user.setAttributes(id, usernameStr, emailStr);
-        // TODO change username in database
-        username.setText(usernameStr);
-        usernameLabel.setStyle("-fx-text-fill: blue");
-        usernameLabel.setText("Username changed.");
+        // TODO naprawić
+        User curr_user = App.getInstance().user;
+        usr = new UserData(usernameStr, "", curr_user.getEmail());
+        App.getInstance().client.sendMessage("Update user", usr);
+        System.out.println("Waiting for server response");
+        messageReceived = App.getInstance().client.getOneRecivedObject();
+        obj = messageReceived.getObject();
+        if ((Boolean)obj) {
+            App.getInstance().user.setAttributes(curr_user.getId(), usernameStr, curr_user.getEmail());
+            username.setText(usernameStr);
+            usernameLabel.setStyle("-fx-text-fill: blue");
+            usernameLabel.setText("Username changed.");
+        }
+        else {
+            usernameLabel.setStyle("-fx-text-fill: red");
+            usernameLabel.setText("Database failure.");
+        }
     }
 
     public void changePassword(){
         usernameLabel.setText("");
         emailLabel.setText("");
-        String usernameStr = App.getInstance().user.getUsername();
+        User curr_user = App.getInstance().user;
         String passStr = newPassField.getText();
         Boolean db_resp = false;
-        UserData usr = new UserData(usernameStr, oldPassField.getText());
+        UserData usr = new UserData(curr_user.getUsername(), oldPassField.getText());
         App.getInstance().client = new Client("localhost", 8080);
         System.out.println("Connected to server");
         App.getInstance().client.sendMessage("Check password", usr);
@@ -123,9 +145,19 @@ public class EditProfileSceneControler {
             return;
         }
 
-        // TODO change password in database
-        passLabel.setStyle("-fx-text-fill: blue");
-        passLabel.setText("Password changed.");
+        usr = new UserData(curr_user.getUsername(), passStr, curr_user.getEmail());
+        App.getInstance().client.sendMessage("Update user", usr);
+        System.out.println("Waiting for server response");
+        messageReceived = App.getInstance().client.getOneRecivedObject();
+        obj = messageReceived.getObject();
+        if ((Boolean)obj) {
+            passLabel.setStyle("-fx-text-fill: blue");
+            passLabel.setText("Password changed.");
+        }
+        else {
+            passLabel.setStyle("-fx-text-fill: red");
+            passLabel.setText("Database failure.");
+        }
     }
 
     public void goBack() throws Exception{

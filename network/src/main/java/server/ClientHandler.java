@@ -77,15 +77,21 @@ public class ClientHandler implements Runnable {
 
     public void sendGetUser() {
         Object obj = recived.poll();
-        sendObject(new Message("User object: ", DataBase.getUser(((UserData)obj).username)));
+        try{
+            sendObject(new Message("User object: ", DataBase.getUser(((UserData)obj).username)));
+        }
+        catch (Exception e){
+            sendObject(new Message("Information if user exists", (Boolean)false));
+        }
+
     }
 
     private void sendUpdateUser() {
         try {
             DataBase.updateUser((UserData)recived.poll());
-            sendObject(new Message("Information if user updated", (Boolean)true));}
+            sendObject(new Message("Information if user is updated", (Boolean)true));}
         catch (Exception e){
-            sendObject(new Message("Information if user updated", (Boolean)false));
+            sendObject(new Message("Information if user is updated", (Boolean)false));
         }
     }
 
