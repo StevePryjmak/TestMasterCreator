@@ -62,6 +62,8 @@ public class App extends Application {
             }
             Parent root = loader.load();
             Scene scene = new Scene(root);
+            // scene.getStylesheets().add("/css/Styles.css");
+            scene.getStylesheets().add("/css/CreateTest.css");
             stage.setScene(scene);
         } catch (IOException e) {
             e.printStackTrace();

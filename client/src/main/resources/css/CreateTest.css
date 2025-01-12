@@ -1,0 +1,44 @@
+/* Encapsulated style for the VBox containing the question and answers */
+.question-box {
+    -fx-background-color: #f9f9f9;  /* Light background color */
+    -fx-border-color: #dcdcdc;      /* Subtle border */
+    -fx-border-radius: 10px;        /* Rounded corners */
+    -fx-padding: 20px;              /* Padding around the content */
+    -fx-spacing: 20px;              /* Increased spacing between question and answers */
+    -fx-alignment: TOP_LEFT;        /* Align content to the top-left */
+}
+
+/* Question label style */
+.question-label {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-fill: black;
+}
+
+/* Style for correct answers */
+.correct-answer {
+    -fx-background-color: green;
+    -fx-text-fill: white;
+}
+
+/* Style for incorrect answers */
+.incorrect-answer {
+    -fx-background-color: transparent;
+    -fx-text-fill: black;
+}
+
+/* Styling for RadioButtons */
+.radio-button {
+    -fx-font-size: 14px;
+    -fx-padding: 10px;
+}
+
+/* Make the disabled buttons appear grayed out */
+.radio-button:disabled {
+    -fx-opacity: 0.5;
+}
+
+/* Align radio buttons in HBox to the left */
+.hbox {
+    -fx-alignment: CENTER_LEFT;
+}  

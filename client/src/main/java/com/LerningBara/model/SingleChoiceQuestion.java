@@ -11,6 +11,13 @@ import com.LerningBara.app.App;
 import com.LerningBara.controller.SingleChoiceQuestionController;
 
 import QuestionData.SingleChoiceQuestionData;
+import javafx.scene.layout.VBox;
+import javafx.scene.layout.HBox;
+import javafx.scene.control.Label;
+import javafx.scene.control.RadioButton;
+
+import javafx.geometry.Pos;
+
 
 public class SingleChoiceQuestion extends AbstractQuestion {
 
@@ -43,4 +50,53 @@ public class SingleChoiceQuestion extends AbstractQuestion {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'checkAnswer'");
     }
+
+    @Override
+    public VBox getDetailsBox(int index) {
+        VBox questionBox = new VBox(10);
+        questionBox.getStyleClass().add("question-box");
+        questionBox.setOnMouseClicked(event -> {
+            App.createTestController.handleQuestionEdit(index);
+        });
+    
+        Label questionLabel = new Label("Question #" + (index + 1) + ": " + questionData.getQuestion());
+        questionLabel.getStyleClass().add("question-label");
+        questionBox.getChildren().add(questionLabel);
+
+        List<String> options = questionData.getOptions();
+        
+
+        HBox answerHBox = new HBox(10);
+        answerHBox.getStyleClass().add("hbox");
+        answerHBox.setAlignment(Pos.CENTER_LEFT);
+    
+        for (int i = 0; i < options.size(); i++) {
+            RadioButton answerButton = new RadioButton(options.get(i));
+            answerButton.setUserData(i);
+    
+            if (i == questionData.getCorrectAnswerIndex()) {
+                answerButton.getStyleClass().add("correct-answer");
+                answerButton.setSelected(true);
+            } else {
+                answerButton.getStyleClass().add("incorrect-answer");
+            }
+
+            answerButton.setDisable(true);
+            answerHBox.getChildren().add(answerButton);
+    
+            if (i % 2 == 1 || i == options.size() - 1) {
+                questionBox.getChildren().add(answerHBox);
+                answerHBox = new HBox(10); 
+                answerHBox.getStyleClass().add("hbox");
+                answerHBox.setAlignment(Pos.CENTER_LEFT);
+            }
+        }
+    
+        return questionBox;
+    }
+    
+    
+    
+    
+    
 }

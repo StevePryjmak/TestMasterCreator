@@ -12,6 +12,19 @@ import QuestionData.*;
 import java.util.ArrayList;
 import java.util.List;
 
+
+import com.LerningBara.model.AbstractQuestion;
+import com.LerningBara.model.QuestionConventor;
+import javafx.scene.Scene;
+
+
+import javafx.scene.Node;
+import javafx.scene.layout.VBox;
+import javafx.scene.control.Label;
+import javafx.scene.control.RadioButton;
+import javafx.scene.control.Button;
+
+
 public class CreateTestController {
 
     @FXML
@@ -22,26 +35,27 @@ public class CreateTestController {
 
     private List<AbstractQuestionData> questions;
 
+    @FXML
+    public void initialize() {
+        System.out.println("CreateTestController initialized");
+  
+        if (questionList == null) {
+            questionList = new VBox();
+        }
+        if(questions == null) {
+            questions = new ArrayList<>();
+        }      
+        System.out.println(questions.size());
+        updateQuestionList();
+    }
 
     @FXML
     public void handleAddQuestion() {
-        if(questions == null) {
-            questions = new ArrayList<>();
-        }
-        System.out.println(questions.size());
         System.out.println("Add Question Button Clicked");
         
         FXMLLoader questionBoxLoader = new FXMLLoader(getClass().getResource("/fxml/QuestionBox.fxml"));
 
-        App.setRoot("CreateTests/SingleChoiceQuestionScene1");
-
-        // App.setRoot("CreateTestScene");
-        try {
-            VBox questionBox = questionBoxLoader.load();
-            questionList.getChildren().add(questionBox);
-        } catch (IOException e) {
-            System.out.println("Error loading QuestionBox.fxml: " + e);
-        }
+        App.setRoot("CreateTests/SingleChoiceQuestionScene");
         App.createTestController = this;
     }
 
@@ -54,4 +68,25 @@ public class CreateTestController {
         System.out.println("Question added successfully!");
     }
 
+
+    public void updateQuestionList() {
+        questionList.getChildren().clear();
+        int index = 1;
+        for (AbstractQuestionData question : questions) {
+            questionList.getChildren().add( createQuestionBox(question, index++) );
+            
+        }
+    }
+    
+    private VBox createQuestionBox(AbstractQuestionData question, int index) {
+        AbstractQuestion tempQestion = QuestionConventor.convertToQuestion(question);
+        return tempQestion.getDetailsBox(index);
+    }
+    
+    public void handleQuestionEdit(int index){
+        System.out.println("Question #" + index + " clicked");
+
+    }
+    
+    
 }
