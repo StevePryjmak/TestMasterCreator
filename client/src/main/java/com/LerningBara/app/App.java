@@ -24,7 +24,7 @@ public class App extends Application {
     private Test test;
     private static Iterator<AbstractQuestion> testIterator;
     public Client client;
-    public static User user = new User();
+    public User user = new User();
 
     @Override
     public void start(Stage stage) {
