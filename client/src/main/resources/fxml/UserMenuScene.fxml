@@ -9,5 +9,6 @@
       <Button fx:id="show_profile" layoutX="252.0" layoutY="70.0" mnemonicParsing="false" onAction="#showProfile" text="Show profile" />
       <Button fx:id="edit_profile" layoutX="254.0" layoutY="132.0" mnemonicParsing="false" onAction="#editProfile" prefHeight="26.0" prefWidth="82.0" text="Edit profile" />
       <Button fx:id="log_out" layoutX="265.0" layoutY="200.0" mnemonicParsing="false" onAction="#logOut" text="Log out" />
+      <Button layoutX="242.0" layoutY="262.0" mnemonicParsing="false" onAction="#deleteAccount" prefHeight="26.0" prefWidth="102.0" text="Delete account" />
    </children>
 </AnchorPane>

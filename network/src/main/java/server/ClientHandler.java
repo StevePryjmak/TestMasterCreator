@@ -45,6 +45,7 @@ public class ClientHandler implements Runnable {
         functionMap.put("Add user", this::sendAddUser);
         functionMap.put("Get user", this::sendGetUser);
         functionMap.put("Update user", this::sendUpdateUser);
+        functionMap.put("Delete user", this::sendDeleteUser);
         // @TODO add more functions here
     }
 
@@ -92,6 +93,16 @@ public class ClientHandler implements Runnable {
             sendObject(new Message("Information if user is updated", (Boolean)true));}
         catch (Exception e){
             sendObject(new Message("Information if user is updated", (Boolean)false));
+        }
+    }
+
+    private void sendDeleteUser() {
+        Object obj = recived.poll();
+        try {
+            DataBase.deleteUser(((UserData)obj).username);
+            sendObject(new Message("Information if user is deleted", (Boolean)true));}
+        catch (Exception e){
+            sendObject(new Message("Information if user is deleted", (Boolean)false));
         }
     }
 
