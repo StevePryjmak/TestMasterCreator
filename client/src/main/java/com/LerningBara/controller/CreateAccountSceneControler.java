@@ -3,6 +3,7 @@ package com.LerningBara.controller;
 
 import com.LerningBara.app.App;
 
+import UserData.User;
 import UserData.UserData;
 import client.Client;
 import connection.Message;
@@ -11,8 +12,6 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import database.DataBase;
-import UserData.UserData;
 
 
 public class CreateAccountSceneControler {
@@ -47,13 +46,12 @@ public class CreateAccountSceneControler {
         App.getInstance().client = new Client("localhost", 8080);
         System.out.println("Connected to server");
         App.getInstance().client.sendMessage("User exists", usr);
-        System.out.println("Waiting for list of tests");
+        System.out.println("Waiting for server response");
         Message messageReceived = App.getInstance().client.getOneRecivedObject();
         Object obj = messageReceived.getObject();
         if (obj instanceof Boolean){
             db_resp = (Boolean)obj;
         }
-
         if (login.equals("")){
             loginLabel.setText("Login cannot be empty.");
             create_accout = false;
@@ -98,11 +96,19 @@ public class CreateAccountSceneControler {
         }
 
         if (create_accout) {
-            App.getInstance().client = new Client("localhost", 8080);
-            System.out.println("Connected to server");
+            //add user to db
             App.getInstance().client.sendMessage("Add user", usr);
-            System.out.println("Waiting for list of tests");
+            System.out.println("Waiting for server response");
             messageReceived = App.getInstance().client.getOneRecivedObject();
+
+            //get user id from db
+            App.getInstance().client.sendMessage("Get user", usr);
+            System.out.println("Waiting for server response");
+            messageReceived = App.getInstance().client.getOneRecivedObject();
+            obj = messageReceived.getObject();
+            if (obj instanceof User) {
+               App.getInstance().user.setAttributes((User)obj);
+            }
             App.setRoot("QuizMenuScene");
         }
     }

@@ -1,0 +1,17 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="610B3511-5F62-5F46-C23F-763EBB0A4624" containerWithKeyObject="1DF3C20A-9C2E-1860-5071-A2BE94381B14" localFKIndex="D1846ED5-413C-E710-5A06-8725D29679D7" name="Questions_Hints_FK">
+<createdBy>xxxx</createdBy>
+<createdTime>2025-01-11 13:27:47 UTC</createdTime>
+<generatorID>635578F7-656F-D8BA-FD5A-82F368A22F46</generatorID>
+<ownerDesignName>database</ownerDesignName>
+<referredTableLongName>Hints</referredTableLongName>
+<deleteRule>NO ACTION</deleteRule>
+<referredTableID>42455F18-4718-194E-1A77-D9C5DBD0F5AD</referredTableID>
+<keyObject>C297EBB7-0C26-B09B-DDA7-CDC2461E61C2</keyObject>
+<referredKeyID>C297EBB7-0C26-B09B-DDA7-CDC2461E61C2</referredKeyID>
+<mandatory>false</mandatory>
+<refColNames>HintId</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>

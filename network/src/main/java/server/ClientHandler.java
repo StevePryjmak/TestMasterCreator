@@ -43,6 +43,9 @@ public class ClientHandler implements Runnable {
         functionMap.put("User exists", this::sendUserExists);
         functionMap.put("Check password", this::sendCheckPassword);
         functionMap.put("Add user", this::sendAddUser);
+        functionMap.put("Get user", this::sendGetUser);
+        functionMap.put("Update user", this::sendUpdateUser);
+        functionMap.put("Delete user", this::sendDeleteUser);
         // @TODO add more functions here
     }
 
@@ -55,26 +58,51 @@ public class ClientHandler implements Runnable {
     }
 
     public void sendUserExists() {
-        Object obj = recived.poll();
-        if(obj instanceof UserData){
-            Boolean res = DataBase.userExists(((UserData)obj).username);
-            sendObject(new Message("Information if user exists", res));
-        }
+        sendObject(new Message("Information if user exists", DataBase.userExists(((UserData)recived.poll()).username)));
     }
 
     public void sendCheckPassword() {
         Object obj = recived.poll();
-        if(obj instanceof UserData){
-            Boolean res = DataBase.checkPassword(((UserData)obj).username, ((UserData)obj).password);
-            sendObject(new Message("Check password", res));
-        }
+        sendObject(new Message("Information if user exists", DataBase.checkPassword(((UserData)obj).username, ((UserData)obj).password)));
     }
 
     public void sendAddUser() {
         Object obj = recived.poll();
-        if(obj instanceof UserData){
+        try {
             DataBase.addUser(((UserData)obj).username, ((UserData)obj).password, ((UserData)obj).email);
-            sendObject(new Message("Information if user exists", (Boolean)true));
+            sendObject(new Message("Information if user exists", (Boolean)true));}
+        catch (Exception e){
+            sendObject(new Message("Information if user exists", (Boolean)false));
+        }
+    }
+
+    public void sendGetUser() {
+        Object obj = recived.poll();
+        try{
+            sendObject(new Message("User object: ", DataBase.getUser(((UserData)obj).username)));
+        }
+        catch (Exception e){
+            sendObject(new Message("Information if user exists", (Boolean)false));
+        }
+
+    }
+
+    private void sendUpdateUser() {
+        try {
+            DataBase.updateUser((UserData)recived.poll());
+            sendObject(new Message("Information if user is updated", (Boolean)true));}
+        catch (Exception e){
+            sendObject(new Message("Information if user is updated", (Boolean)false));
+        }
+    }
+
+    private void sendDeleteUser() {
+        Object obj = recived.poll();
+        try {
+            DataBase.deleteUser(((UserData)obj).username);
+            sendObject(new Message("Information if user is deleted", (Boolean)true));}
+        catch (Exception e){
+            sendObject(new Message("Information if user is deleted", (Boolean)false));
         }
     }
 
@@ -117,5 +145,7 @@ public class ClientHandler implements Runnable {
             e.printStackTrace();
         }
     }
+
+
 
 }

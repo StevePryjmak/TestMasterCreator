@@ -2,6 +2,7 @@ package com.LerningBara.controller;
 
 import com.LerningBara.app.App;
 
+import UserData.User;
 import UserData.UserData;
 import client.Client;
 import connection.Message;
@@ -30,14 +31,12 @@ public class SignInSceneControler {
       App.getInstance().client = new Client("localhost", 8080);
       System.out.println("Connected to server");
       App.getInstance().client.sendMessage("User exists", usr);
-      System.out.println("Waiting for list of tests");
+      System.out.println("Waiting for server response");
       Message messageReceived = App.getInstance().client.getOneRecivedObject();
       Object obj = messageReceived.getObject();
       if (obj instanceof Boolean) {
          user_exists = (Boolean) obj;
       }
-      App.getInstance().client = new Client("localhost", 8080);
-      System.out.println("Connected to server");
       App.getInstance().client.sendMessage("Check password", usr);
       System.out.println("Waiting for list of tests");
       messageReceived = App.getInstance().client.getOneRecivedObject();
@@ -49,7 +48,14 @@ public class SignInSceneControler {
       if (user_exists) {
          loginLabel.setText("");
          if (corr_pass) {
-            App.setRoot("StartScene");
+            App.getInstance().client.sendMessage("Get user", usr);
+            System.out.println("Waiting for server response");
+            messageReceived = App.getInstance().client.getOneRecivedObject();
+            obj = messageReceived.getObject();
+            if (obj instanceof User) {
+               App.getInstance().user.setAttributes((User)obj);
+            }
+            App.setRoot("QuizMenuScene");
          } else {
             passLabel.setText("Incorrect password.");
          }
