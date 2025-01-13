@@ -25,7 +25,7 @@
             </AnchorPane>
         </content>
       </ScrollPane>
-      <ScrollPane >
+      <ScrollPane fx:id="scrollPane" >
         <content>
           <AnchorPane minHeight="0.0">
                <children>

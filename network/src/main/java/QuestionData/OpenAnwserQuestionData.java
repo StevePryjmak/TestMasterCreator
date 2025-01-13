@@ -15,6 +15,7 @@ public class OpenAnwserQuestionData extends AbstractQuestionData implements Seri
         this.correctAnswer = givenCorrectAnwser;
     }
 
+    @Override
     public String getQuestion() {
         return question;
     }

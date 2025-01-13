@@ -23,6 +23,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.Button;
+import javafx.scene.control.ScrollPane;
 
 
 public class CreateTestController {
@@ -32,7 +33,12 @@ public class CreateTestController {
 
     @FXML
     private VBox questionList;
+
+    @FXML
     private VBox questionsShortcuts;
+
+    @FXML
+    private ScrollPane scrollPane;
 
     private List<AbstractQuestionData> questions;
 
@@ -48,6 +54,7 @@ public class CreateTestController {
         }      
         System.out.println(questions.size());
         updateQuestionList();
+        updateQuestionShortcuts();
     }
 
     @FXML
@@ -83,6 +90,27 @@ public class CreateTestController {
         AbstractQuestion tempQestion = QuestionConventor.convertToQuestion(question);
         return tempQestion.getDetailsBox(index);
     }
+
+    public void updateQuestionShortcuts() {
+        questionsShortcuts.getChildren().clear();
+        for (int i = 0; i < questions.size(); i++) {
+            Button shortcutButton = new Button(questions.get(i).getQuestion() + (i + 1));
+            int questionIndex = i;
+
+            shortcutButton.setOnAction(event -> scrollToQuestion(questionIndex));
+            questionsShortcuts.getChildren().add(shortcutButton);
+        }
+    }
+
+    private void scrollToQuestion(int index) {
+        if (index < 0 || index >= questionList.getChildren().size()) return;
+        Node targetNode = questionList.getChildren().get(index);
+        scrollPane.layout();
+        double targetY = targetNode.getLayoutY();
+        double scrollRatio = targetY / (questionList.getHeight() - scrollPane.getViewportBounds().getHeight());
+        scrollPane.setVvalue(scrollRatio);
+    }
+    
     
     public void handleQuestionEdit(int index){
         System.out.println("Question #" + (index+1) + " clicked");
@@ -92,6 +120,8 @@ public class CreateTestController {
     public void handleDeleteQuestion(int index) {
         System.out.println("Question #" + (index+1) + " deleted");
     }
+
+
 
     
 }
