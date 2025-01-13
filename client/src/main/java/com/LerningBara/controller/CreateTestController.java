@@ -32,6 +32,7 @@ public class CreateTestController {
 
     @FXML
     private VBox questionList;
+    private VBox questionsShortcuts;
 
     private List<AbstractQuestionData> questions;
 
@@ -71,7 +72,7 @@ public class CreateTestController {
 
     public void updateQuestionList() {
         questionList.getChildren().clear();
-        int index = 1;
+        int index = 0;
         for (AbstractQuestionData question : questions) {
             questionList.getChildren().add( createQuestionBox(question, index++) );
             
@@ -84,9 +85,13 @@ public class CreateTestController {
     }
     
     public void handleQuestionEdit(int index){
-        System.out.println("Question #" + index + " clicked");
+        System.out.println("Question #" + (index+1) + " clicked");
 
     }
-    
+
+    public void handleDeleteQuestion(int index) {
+        System.out.println("Question #" + (index+1) + " deleted");
+    }
+
     
 }

@@ -12,30 +12,28 @@
     xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx"
     >
    <items>
-      <ScrollPane prefHeight="200.0" prefWidth="200.0">
+      <ScrollPane >
         <content>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="385.0" prefWidth="200.0">
+           <AnchorPane> <!-- minHeight="0.0" minWidth="0.0" prefHeight="385.0" prefWidth="200.0" because make panel not scroleble and buged a liite -->
                <children>
-                  <VBox layoutX="3.0" layoutY="51.0" prefHeight="327.0" prefWidth="193.0">
+                  <VBox fx:id="questionsShortcuts" layoutX="3.0" layoutY="51.0" > <!-- prefHeight="327.0" prefWidth="193.0" -->
                      <children>
-                        <Label text="Label" />
-                        <Label text="Label" />
-                        <Label text="Label" />
+                     <!-- Add here image icon for acount -->
                      </children>
                   </VBox>
                </children>
             </AnchorPane>
         </content>
       </ScrollPane>
-      <ScrollPane prefHeight="200.0" prefWidth="200.0">
+      <ScrollPane >
         <content>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="385.0" prefWidth="377.0">
+          <AnchorPane minHeight="0.0">
                <children>
 
                   
-                  <VBox fx:id="page" prefHeight="383.0" prefWidth="377.0">
+                  <VBox fx:id="page" >
                      <Button fx:id="addQuestionButton" onAction="#handleAddQuestion" text="Add Question" />
-                     <VBox fx:id="questionList" prefHeight="200.0" prefWidth="200.0" >
+                     <VBox fx:id="questionList"  >
 
                      </VBox>
                   </VBox> 
