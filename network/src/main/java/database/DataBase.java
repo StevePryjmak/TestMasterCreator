@@ -537,12 +537,57 @@ public class DataBase {
         return results;
     }
 
+    public static byte[] getUserIcon(String username){
+        connect();
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+        byte[] image = null;
+        try {
+            statement = connection.prepareStatement(
+                    "SELECT Icon FROM Users WHERE Login = ?");
+            statement.setString(1, username);
+            resultSet = statement.executeQuery();
+            resultSet.next();
+            image = resultSet.getBytes("Icon");
+        } catch (SQLException e) {
+            System.err.println("Query execution failed: " + e.getMessage());
+        } finally {
+            try {
+                if (resultSet != null)
+                    resultSet.close();
+                if (statement != null)
+                    statement.close();
+            } catch (SQLException e) {
+                System.err.println("Failed to close resources: " + e.getMessage());
+            }
+        }
+        return image;
+    }
+
+    public static void setUserIcon(String username, byte[] image){
+        connect();
+        PreparedStatement statement = null;
+        try {
+            statement = connection.prepareStatement(
+                    "UPDATE Users SET Icon = ? WHERE Login = ?");
+            statement.setBytes(1, image);
+            statement.setString(2, username);
+            statement.executeUpdate();
+
+        } catch (SQLException e) {
+            System.err.println("Query execution failed: " + e.getMessage());
+        } finally {
+            try {
+                if (statement != null)
+                    statement.close();
+            } catch (SQLException e) {
+                System.err.println("Failed to close resources: " + e.getMessage());
+            }
+        }
+    }
+
     //public static void deleteUser(int userId)
     //public static void deleteTest(int testId)
-
-    //public static void setUserIcon(int userId, Image icon) or use UpdateUser method
- 
-
 
 
     // class with user info profile image and some useful information idk ...
