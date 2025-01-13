@@ -357,10 +357,10 @@ public class DataBase {
         String str;
         int i = 1;
         if (user.password.isEmpty()){
-            str = "UPDATE Users SET Login = ?, Email = ? WHERE Login = ? AND IsActive = 'T'";
+            str = "UPDATE Users SET Login = ?, Email = ? WHERE UserId = ? AND IsActive = 'T'";
         }
         else{
-            str = "UPDATE Users SET Login = ?, Password = ?, Email = ? WHERE Login = ? AND IsActive = 'T'";
+            str = "UPDATE Users SET Login = ?, Password = ?, Email = ? WHERE UserId = ? AND IsActive = 'T'";
         }
         try {
             statement = connection.prepareStatement(
@@ -370,7 +370,7 @@ public class DataBase {
                 statement.setString(i++, user.password);
             }
             statement.setString(i++, user.email);
-            statement.setString(i++, user.username);
+            statement.setInt(i++, user.id);
             statement.executeUpdate();
 
         } catch (SQLException e) {
@@ -453,7 +453,7 @@ public class DataBase {
             }
         }
     }
-    
+
     public static AvalibleTestsList getFavorites(int userId){
         connect();
         PreparedStatement statement = null;

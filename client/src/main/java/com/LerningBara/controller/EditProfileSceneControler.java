@@ -52,7 +52,7 @@ public class EditProfileSceneControler {
             return;
         }
 
-        UserData usr = new UserData(curr_user.getUsername(), "", emailStr);
+        UserData usr = new UserData(curr_user.getUsername(), "", emailStr, curr_user.getId());
         App.getInstance().client = new Client("localhost", 8080);
         System.out.println("Connected to server");
         App.getInstance().client.sendMessage("Update user", usr);
@@ -98,7 +98,7 @@ public class EditProfileSceneControler {
             usernameLabel.setText("Username already taken.");
             return;
         }
-        // TODO naprawić
+
         User curr_user = App.getInstance().user;
         usr = new UserData(usernameStr, "", curr_user.getEmail(), curr_user.getId());
         App.getInstance().client.sendMessage("Update user", usr);
@@ -145,7 +145,7 @@ public class EditProfileSceneControler {
             return;
         }
 
-        usr = new UserData(curr_user.getUsername(), passStr, curr_user.getEmail());
+        usr = new UserData(curr_user.getUsername(), passStr, curr_user.getEmail(), curr_user.getId());
         App.getInstance().client.sendMessage("Update user", usr);
         System.out.println("Waiting for server response");
         messageReceived = App.getInstance().client.getOneRecivedObject();
