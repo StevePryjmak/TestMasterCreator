@@ -17,6 +17,8 @@ import javafx.stage.Stage;
 import client.Client;
 import TestData.TestInfoData;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.image.Image;
+
 import com.LerningBara.controller.MainLayoutController;
 import com.LerningBara.controller.TestBoxController;
 import javafx.scene.layout.VBox;
@@ -37,9 +39,12 @@ public class App extends Application {
     public void start(Stage stage) {
         try {
             App.stage = stage;
+            Image icon = new Image("/kapibara.jpg");
+            stage.getIcons().add(icon);
+            stage.setTitle("LearningBara");
             Parent root = FXMLLoader.load(getClass().getResource("/fxml/LoginScene.fxml"));
             Scene scene = new Scene(root);
-            scene.getStylesheets().add("/css/Styles.css");
+            scene.getStylesheets().add("/css/DefaultStyle.css");
             stage.setScene(scene);
             stage.show();
         } catch (Exception e) {
@@ -51,7 +56,9 @@ public class App extends Application {
         try {
             Parent root = FXMLLoader.load(App.class.getResource("/fxml/" + fxml + ".fxml"));
             Scene scene = new Scene(root);
+            scene.getStylesheets().add("/css/DefaultStyle.css");
             stage.setScene(scene);
+
         } catch (IOException e) {
             e.printStackTrace();
         }
