@@ -357,10 +357,10 @@ public class DataBase {
         String str;
         int i = 1;
         if (user.password.isEmpty()){
-            str = "UPDATE Users SET Login = ?, Email = ? WHERE Login = ?";
+            str = "UPDATE Users SET Login = ?, Email = ? WHERE Login = ? AND IsActive = 'T'";
         }
         else{
-            str = "UPDATE Users SET Login = ?, Password = ?, Email = ? WHERE Login = ?";
+            str = "UPDATE Users SET Login = ?, Password = ?, Email = ? WHERE Login = ? AND IsActive = 'T'";
         }
         try {
             statement = connection.prepareStatement(
@@ -392,7 +392,7 @@ public class DataBase {
         User user = new User();
         try {
             statement = connection.prepareStatement(
-                    "SELECT UserId, Login, Email FROM Users WHERE Login = ?");
+                    "SELECT UserId, Login, Email FROM Users WHERE Login = ? AND IsActive = 'T'");
             statement.setString(1, username);
             resultSet = statement.executeQuery();
             resultSet.next();
@@ -544,7 +544,7 @@ public class DataBase {
         byte[] image = null;
         try {
             statement = connection.prepareStatement(
-                    "SELECT Icon FROM Users WHERE Login = ?");
+                    "SELECT Icon FROM Users WHERE Login = ? AND IsActive = 'T'");
             statement.setString(1, username);
             resultSet = statement.executeQuery();
             resultSet.next();
@@ -569,7 +569,7 @@ public class DataBase {
         PreparedStatement statement = null;
         try {
             statement = connection.prepareStatement(
-                    "UPDATE Users SET Icon = ? WHERE Login = ?");
+                    "UPDATE Users SET Icon = ? WHERE Login = ? AND IsActive = 'T'");
             statement.setBytes(1, image);
             statement.setString(2, username);
             statement.executeUpdate();
@@ -591,7 +591,7 @@ public class DataBase {
         PreparedStatement statement = null;
         try {
             statement = connection.prepareStatement(
-                    "UPDATE Users SET IsActive = 'F' WHERE Login = ?");
+                    "UPDATE Users SET IsActive = 'F' WHERE Login = ? AND IsActive = 'T'");
             statement.setString(1, username);
             statement.executeUpdate();
 
