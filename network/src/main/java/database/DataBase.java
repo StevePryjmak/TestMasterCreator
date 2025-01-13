@@ -156,7 +156,7 @@ public class DataBase {
         ResultSet userSet = null;
         boolean exists = false;
         try {
-            statement = connection.prepareStatement("SELECT COUNT(*) AS EX FROM USERS WHERE LOGIN = ?");
+            statement = connection.prepareStatement("SELECT COUNT(*) AS EX FROM USERS WHERE LOGIN = ? AND ISACTIVE = 'T'");
             statement.setString(1, username);
             userSet = statement.executeQuery();
             userSet.next();
@@ -180,7 +180,7 @@ public class DataBase {
         ResultSet userSet = null;
         String correct_pass = "";
         try {
-            statement = connection.prepareStatement("SELECT PASSWORD FROM USERS WHERE LOGIN = ?");
+            statement = connection.prepareStatement("SELECT PASSWORD FROM USERS WHERE LOGIN = ? AND ISACTIVE = 'T'");
             statement.setString(1, username);
             userSet = statement.executeQuery();
             userSet.next();
@@ -586,7 +586,28 @@ public class DataBase {
         }
     }
 
-    //public static void deleteUser(int userId)
+    public static void deleteUser(String username){
+        connect();
+        PreparedStatement statement = null;
+        try {
+            statement = connection.prepareStatement(
+                    "UPDATE Users SET IsActive = 'F' WHERE Login = ?");
+            statement.setString(1, username);
+            statement.executeUpdate();
+
+        } catch (SQLException e) {
+            System.err.println("Query execution failed: " + e.getMessage());
+        } finally {
+            try {
+                if (statement != null)
+                    statement.close();
+            } catch (SQLException e) {
+                System.err.println("Failed to close resources: " + e.getMessage());
+            }
+        }
+    }
+
+
     //public static void deleteTest(int testId)
 
 
