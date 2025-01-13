@@ -1,5 +1,7 @@
 package com.LerningBara.controller.CreateTests;
 
-public class CreateAbstractQestionController {
-    
+import QuestionData.AbstractQuestionData;
+
+public abstract class CreateAbstractQestionController {
+    public abstract AbstractQuestionData getQuestionData();
 }

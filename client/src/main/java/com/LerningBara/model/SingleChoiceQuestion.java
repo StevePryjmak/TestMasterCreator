@@ -64,7 +64,7 @@ public class SingleChoiceQuestion extends AbstractQuestion {
         VBox questionBox = new VBox(10);
         questionBox.getStyleClass().add("question-box");
         questionBox.setOnMouseClicked(event -> {
-            App.createTestController.handleQuestionEdit(index);
+            App.createTestController.handleQuestionEdit(index, false);
         });
 
         Label questionLabel = new Label("Question #" + (index + 1) + ": " + questionData.getQuestion());

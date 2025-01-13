@@ -27,11 +27,12 @@ import com.LerningBara.controller.CreateTestController;
 
 public class App extends Application {
     private static App instance;
-    private static Stage stage;
+    public static Stage stage;
     private Test test;
     private static Iterator<AbstractQuestion> testIterator;
     public Client client;
     public static CreateTestController createTestController;
+    
 
 
     @Override

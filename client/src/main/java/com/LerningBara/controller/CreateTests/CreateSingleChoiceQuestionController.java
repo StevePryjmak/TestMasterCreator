@@ -13,7 +13,7 @@ import QuestionData.*;
 import com.LerningBara.app.App;
 
 
-public class SingleChoiceQuestionController extends CreateAbstractQestionController {
+public class CreateSingleChoiceQuestionController extends CreateAbstractQestionController {
 
     @FXML
     private TextField questionInput;
@@ -28,6 +28,10 @@ public class SingleChoiceQuestionController extends CreateAbstractQestionControl
     private Button saveButton;
 
     private ToggleGroup toggleGroup;
+
+    private String questionText;
+    private List<String>answers;
+    private int correctAnswerIndex;
 
     @FXML
     public void initialize() {
@@ -61,14 +65,14 @@ public class SingleChoiceQuestionController extends CreateAbstractQestionControl
 
     @FXML
     public void handleSaveQuestion() {
-        String questionText = questionInput.getText().trim();
+        questionText = questionInput.getText().trim();
         if (questionText.isEmpty()) {
             System.out.println("Please provide a valid question.");
             return;
         }
 
-        List<String> answers = new ArrayList<>();
-        int correctAnswerIndex = -1;
+        answers = new ArrayList<>();
+        correctAnswerIndex = -1;
 
         for (int i = 0; i < answerList.getChildren().size(); i++) {
             if (answerList.getChildren().get(i) instanceof HBox) {
@@ -97,16 +101,17 @@ public class SingleChoiceQuestionController extends CreateAbstractQestionControl
             return;
         }
 
-        SingleChoiceQuestionData question = new SingleChoiceQuestionData(
-            questionText, answers, correctAnswerIndex
-        );
 
-        App.createTestController.addQuestion(question);
+
+        App.createTestController.addQuestion(this);
         App.setRoot("CreateTestScene");
         System.out.println("Question saved successfully!");
     }
 
+    @Override
     public AbstractQuestionData getQuestionData() {
-        return null;
+        return  (AbstractQuestionData) new SingleChoiceQuestionData(
+            questionText, answers, correctAnswerIndex
+        );
     }
 }

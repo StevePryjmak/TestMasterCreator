@@ -25,6 +25,10 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 
+import com.LerningBara.controller.CreateTests.CreateAbstractQestionController;
+import com.LerningBara.controller.CreateTests.CreateSingleChoiceQuestionController;
+import javafx.scene.Parent;
+
 
 public class CreateTestController {
 
@@ -40,7 +44,7 @@ public class CreateTestController {
     @FXML
     private ScrollPane scrollPane;
 
-    private List<AbstractQuestionData> questions;
+    private List<CreateAbstractQestionController> questions;
 
     @FXML
     public void initialize() {
@@ -61,27 +65,26 @@ public class CreateTestController {
     public void handleAddQuestion() {
         System.out.println("Add Question Button Clicked");
         
-        FXMLLoader questionBoxLoader = new FXMLLoader(getClass().getResource("/fxml/QuestionBox.fxml"));
-
-        App.setRoot("CreateTests/SingleChoiceQuestionScene");
+        handleQuestionEdit(questions.size(), true);
         App.createTestController = this;
     }
 
-    public void addQuestion(SingleChoiceQuestionData question) {
+    public void addQuestion(CreateAbstractQestionController questionController) {
         if (this.questions == null) {
             this.questions = new ArrayList<>();
         }
         
-        this.questions.add(question); 
+        this.questions.add(questionController); 
         System.out.println("Question added successfully!");
     }
+
 
 
     public void updateQuestionList() {
         questionList.getChildren().clear();
         int index = 0;
-        for (AbstractQuestionData question : questions) {
-            questionList.getChildren().add( createQuestionBox(question, index++) );
+        for (CreateAbstractQestionController question : questions) {
+            questionList.getChildren().add( createQuestionBox(question.getQuestionData(), index++) );
             
         }
     }
@@ -94,7 +97,7 @@ public class CreateTestController {
     public void updateQuestionShortcuts() {
         questionsShortcuts.getChildren().clear();
         for (int i = 0; i < questions.size(); i++) {
-            Button shortcutButton = new Button(questions.get(i).getQuestion() + (i + 1));
+            Button shortcutButton = new Button((i+1) + ". " + questions.get(i).getQuestionData().getQuestion());
             int questionIndex = i;
 
             shortcutButton.setOnAction(event -> scrollToQuestion(questionIndex));
@@ -111,14 +114,38 @@ public class CreateTestController {
         scrollPane.setVvalue(scrollRatio);
     }
     
-    
-    public void handleQuestionEdit(int index){
-        System.out.println("Question #" + (index+1) + " clicked");
-
+    // @TODO incapsulat seting state and add funciotn of initilizing with controler to App
+    public void handleQuestionEdit(int index, boolean create) {
+        System.out.println("Question #" + (index + 1) + " clicked");
+        CreateAbstractQestionController questionController;
+        if(create) {
+            questionController = new CreateSingleChoiceQuestionController(); // @TODO Add convertor class later
+        }
+        
+        else 
+            questionController = questions.get(index);
+        
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/CreateTests/CreateSingleChoiceQuestionScene.fxml")); // @TODO Add convertor class later
+            
+            loader.setController(questionController);
+            Parent root = loader.load();
+            
+            Scene editScene = new Scene(root);
+            App.stage.setScene(editScene);
+            App.stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.out.println("Failed to load the edit window.");
+        }
     }
+    
 
     public void handleDeleteQuestion(int index) {
         System.out.println("Question #" + (index+1) + " deleted");
+        questions.remove(index);
+        // @TODO only neded update funciotin if initilize changes to overvriting some values this need to be change only to update
+        initialize();
     }
 
 
