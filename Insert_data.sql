@@ -1,21 +1,25 @@
 INSERT INTO USERS(
     LOGIN,
     PASSWORD,
-    EMAIL
+    EMAIL,
+	ISACTIVE
 ) VALUES (
     'system',
     'projektpap2024',
-    'email@pw.edu.pl'
+    'email@pw.edu.pl',
+	'T'
 ),
 (
     'Jacek15',
     'haslo',
-    'jacek@pw.edu.pl'
+    'jacek@pw.edu.pl',
+	'T'
 ),
 (
     'Kropka',
     'Maven',
-    'najlepszy@pw.edu.pl'
+    'najlepszy@pw.edu.pl',
+	'T'
 );
 
 INSERT INTO TESTS(

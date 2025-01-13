@@ -221,7 +221,8 @@ public class DataBase {
         ResultSet userSet = null;
         boolean exists = false;
         try {
-            statement = connection.prepareStatement("SELECT COUNT(*) AS EX FROM USERS WHERE LOGIN = ?");
+            statement = connection
+                    .prepareStatement("SELECT COUNT(*) AS EX FROM USERS WHERE LOGIN = ? AND ISACTIVE = 'T'");
             statement.setString(1, username);
             userSet = statement.executeQuery();
             userSet.next();
@@ -245,7 +246,7 @@ public class DataBase {
         ResultSet userSet = null;
         String correct_pass = "";
         try {
-            statement = connection.prepareStatement("SELECT PASSWORD FROM USERS WHERE LOGIN = ?");
+            statement = connection.prepareStatement("SELECT PASSWORD FROM USERS WHERE LOGIN = ? AND ISACTIVE = 'T'");
             statement.setString(1, username);
             userSet = statement.executeQuery();
             userSet.next();
@@ -442,13 +443,22 @@ public class DataBase {
     public static void updateUser(UserData user) {
         connect();
         PreparedStatement statement = null;
+        String str;
+        int i = 1;
+        if (user.password.isEmpty()) {
+            str = "UPDATE Users SET Login = ?, Email = ? WHERE UserId = ? AND IsActive = 'T'";
+        } else {
+            str = "UPDATE Users SET Login = ?, Password = ?, Email = ? WHERE UserId = ? AND IsActive = 'T'";
+        }
         try {
             statement = connection.prepareStatement(
-                    "UPDATE Users SET Login = ?, Password = ?, Email = ? WHERE Login = ?");
-            statement.setString(1, user.username);
-            statement.setString(2, user.password);
-            statement.setString(3, user.email);
-            statement.setString(4, user.username);
+                    str);
+            statement.setString(i++, user.username);
+            if (!user.password.isEmpty()) {
+                statement.setString(i++, user.password);
+            }
+            statement.setString(i++, user.email);
+            statement.setInt(i++, user.id);
             statement.executeUpdate();
 
         } catch (SQLException e) {
@@ -470,7 +480,7 @@ public class DataBase {
         User user = new User();
         try {
             statement = connection.prepareStatement(
-                    "SELECT UserId, Login, Email FROM Users WHERE Login = ?");
+                    "SELECT UserId, Login, Email FROM Users WHERE Login = ? AND IsActive = 'T'");
             statement.setString(1, username);
             resultSet = statement.executeQuery();
             resultSet.next();
@@ -615,11 +625,77 @@ public class DataBase {
         return results;
     }
 
-    // public static void deleteUser(int userId)
-    // public static void deleteTest(int testId)
+    public static byte[] getUserIcon(String username) {
+        connect();
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+        byte[] image = null;
+        try {
+            statement = connection.prepareStatement(
+                    "SELECT Icon FROM Users WHERE Login = ? AND IsActive = 'T'");
+            statement.setString(1, username);
+            resultSet = statement.executeQuery();
+            resultSet.next();
+            image = resultSet.getBytes("Icon");
+        } catch (SQLException e) {
+            System.err.println("Query execution failed: " + e.getMessage());
+        } finally {
+            try {
+                if (resultSet != null)
+                    resultSet.close();
+                if (statement != null)
+                    statement.close();
+            } catch (SQLException e) {
+                System.err.println("Failed to close resources: " + e.getMessage());
+            }
+        }
+        return image;
+    }
 
-    // public static void setUserIcon(int userId, Image icon) or use UpdateUser
-    // method
+    public static void setUserIcon(String username, byte[] image) {
+        connect();
+        PreparedStatement statement = null;
+        try {
+            statement = connection.prepareStatement(
+                    "UPDATE Users SET Icon = ? WHERE Login = ? AND IsActive = 'T'");
+            statement.setBytes(1, image);
+            statement.setString(2, username);
+            statement.executeUpdate();
+
+        } catch (SQLException e) {
+            System.err.println("Query execution failed: " + e.getMessage());
+        } finally {
+            try {
+                if (statement != null)
+                    statement.close();
+            } catch (SQLException e) {
+                System.err.println("Failed to close resources: " + e.getMessage());
+            }
+        }
+    }
+
+    public static void deleteUser(String username) {
+        connect();
+        PreparedStatement statement = null;
+        try {
+            statement = connection.prepareStatement(
+                    "UPDATE Users SET IsActive = 'F' WHERE Login = ? AND IsActive = 'T'");
+            statement.setString(1, username);
+            statement.executeUpdate();
+
+        } catch (SQLException e) {
+            System.err.println("Query execution failed: " + e.getMessage());
+        } finally {
+            try {
+                if (statement != null)
+                    statement.close();
+            } catch (SQLException e) {
+                System.err.println("Failed to close resources: " + e.getMessage());
+            }
+        }
+    }
+
+    // public static void deleteTest(int testId)
 
     // class with user info profile image and some useful information idk ...
     // public User getUser(String username) {

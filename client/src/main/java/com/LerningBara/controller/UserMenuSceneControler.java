@@ -23,4 +23,8 @@ public class UserMenuSceneControler {
    public void editProfile() throws Exception {
       App.setRoot("EditProfileScene");
    }
+
+   public void deleteAccount()throws Exception{
+      App.setRoot("DeleteAccountScene");
+   }
 }

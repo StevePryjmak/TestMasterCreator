@@ -68,6 +68,19 @@
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
+<Column name="IsActive" id="7609871E-0AEA-E2E8-B49D-35198D67167B">
+<createdBy>xxxx</createdBy>
+<createdTime>2025-01-13 16:58:56 UTC</createdTime>
+<generatorID>6CB8B529-3B21-EC80-C8D5-81E5B6FAE4A0</generatorID>
+<ownerDesignName>database</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT006</logicalDatatype>
+<dataTypeSize>1 CHAR</dataTypeSize>
+<defaultValue>T</defaultValue>
+<ownDataTypeParameters>1 CHAR,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
 </columns>
 <indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
 <ind_PK_UK id="B735DE0B-5BEC-C14C-3658-2CBDBD4C4C48" name="Users_PK">

@@ -44,6 +44,7 @@ public class ClientHandler implements Runnable {
         functionMap.put("Add user", this::sendAddUser);
         functionMap.put("Get user", this::sendGetUser);
         functionMap.put("Update user", this::sendUpdateUser);
+        functionMap.put("Delete user", this::sendDeleteUser);
         functionMap.put("List of user test", this::sendUserTestList);
         functionMap.put("List of liked test", this::sendLikedTestList);
         functionMap.put("Add to likes", this::sendAddToLikes);
@@ -118,15 +119,30 @@ public class ClientHandler implements Runnable {
 
     public void sendGetUser() {
         Object obj = recived.poll();
-        sendObject(new Message("User object: ", DataBase.getUser(((UserData) obj).username)));
+        try {
+            sendObject(new Message("User object: ", DataBase.getUser(((UserData) obj).username)));
+        } catch (Exception e) {
+            sendObject(new Message("Information if user exists", (Boolean) false));
+        }
+
     }
 
     private void sendUpdateUser() {
         try {
             DataBase.updateUser((UserData) recived.poll());
-            sendObject(new Message("Information if user updated", (Boolean) true));
+            sendObject(new Message("Information if user is updated", (Boolean) true));
         } catch (Exception e) {
-            sendObject(new Message("Information if user updated", (Boolean) false));
+            sendObject(new Message("Information if user is updated", (Boolean) false));
+        }
+    }
+
+    private void sendDeleteUser() {
+        Object obj = recived.poll();
+        try {
+            DataBase.deleteUser(((UserData) obj).username);
+            sendObject(new Message("Information if user is deleted", (Boolean) true));
+        } catch (Exception e) {
+            sendObject(new Message("Information if user is deleted", (Boolean) false));
         }
     }
 
