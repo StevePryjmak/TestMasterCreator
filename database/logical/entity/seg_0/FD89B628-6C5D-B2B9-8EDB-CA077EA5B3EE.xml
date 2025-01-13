@@ -53,6 +53,20 @@
 <logicalDatatype>LOGDT029</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
+<Attribute name="QuestionId" id="CA4B2BCE-0425-28FB-4344-70A9CEB5430B">
+<createdBy>xxxx</createdBy>
+<createdTime>2025-01-13 06:56:41 UTC</createdTime>
+<generatorID>05B1554B-997C-63F4-0B15-4B04ADD1CBE0</generatorID>
+<ownerDesignName>database</ownerDesignName>
+<engineerTo>
+<item key="8ABA86DC-9BF0-47F9-F89E-40F6A3360E4D" value="true"/>
+</engineerTo>
+<referedAttribute>EF1CC512-0A17-DF70-753B-448CDF0598EF</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
 </attributes>
 <identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
 <identifier id="BFCFF428-7164-7EDF-4DFF-76DA0012A291" name="Answers PK">

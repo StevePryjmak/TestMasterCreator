@@ -1,17 +1,17 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="42455F18-4718-194E-1A77-D9C5DBD0F5AD" name="Hints">
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="B87F8BBB-7125-BCB2-79A1-2439C82B5EAF" name="Types">
 <createdBy>xxxx</createdBy>
-<createdTime>2025-01-11 13:27:47 UTC</createdTime>
-<generatorID>AC7F2A8B-6F89-A1E2-5916-089A66D45D83</generatorID>
+<createdTime>2025-01-13 06:58:22 UTC</createdTime>
+<generatorID>DCD6292A-5D27-42E5-966E-D1E72AC99745</generatorID>
 <ownerDesignName>database</ownerDesignName>
 <allowColumnReorder>false</allowColumnReorder>
 <existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
 <parsed>true</parsed>
 <columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
-<Column name="HintId" id="646C2604-B344-191D-34BD-3F978B9A1E54">
+<Column name="TypeId" id="9B4A521D-8ECD-D9CA-C101-9C61A394471A">
 <createdBy>xxxx</createdBy>
-<createdTime>2025-01-11 13:27:47 UTC</createdTime>
-<generatorID>D47944DD-3BA9-EB55-7543-9725E10EB053</generatorID>
+<createdTime>2025-01-13 06:58:22 UTC</createdTime>
+<generatorID>BC2BD744-8E38-A9E2-8396-7623634748F7</generatorID>
 <ownerDesignName>database</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
@@ -20,10 +20,10 @@
 <autoIncrementColumn>true</autoIncrementColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="Text" id="A7B4A99B-FCB5-3704-3A57-EAC8E1377816">
+<Column name="Description" id="17FDDFCD-CA29-DC9D-B581-0FB28005CF36">
 <createdBy>xxxx</createdBy>
-<createdTime>2025-01-11 13:27:47 UTC</createdTime>
-<generatorID>D2ADCBDE-7755-9DCE-A6D9-6AF08F486595</generatorID>
+<createdTime>2025-01-13 06:58:22 UTC</createdTime>
+<generatorID>A5DD2876-8EC3-30DB-EC93-9782A32EAC40</generatorID>
 <ownerDesignName>database</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
@@ -34,16 +34,16 @@
 </Column>
 </columns>
 <indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
-<ind_PK_UK id="C297EBB7-0C26-B09B-DDA7-CDC2461E61C2" name="Hints_PK">
+<ind_PK_UK id="B12D6F25-A044-1F7B-CD5C-6045D0D6DC7F" name="Types_PK">
 <createdBy>xxxx</createdBy>
-<createdTime>2025-01-11 13:27:47 UTC</createdTime>
-<generatorID>CEDBC355-7A5A-8802-AEC2-C03C0F0740EF</generatorID>
+<createdTime>2025-01-13 06:58:22 UTC</createdTime>
+<generatorID>A6C0BE05-AB64-1B8D-27BE-50A083CF01F2</generatorID>
 <ownerDesignName>database</ownerDesignName>
 <pk>true</pk>
 <indexState>Primary Constraint</indexState>
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
-<colUsage columnID="646C2604-B344-191D-34BD-3F978B9A1E54"/>
+<colUsage columnID="9B4A521D-8ECD-D9CA-C101-9C61A394471A"/>
 </indexColumnUsage>
 </ind_PK_UK>
 </indexes>
