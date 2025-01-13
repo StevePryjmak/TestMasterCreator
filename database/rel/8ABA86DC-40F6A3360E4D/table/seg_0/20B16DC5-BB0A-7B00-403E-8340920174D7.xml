@@ -1,16 +1,16 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="A9292891-926D-9F29-4CD9-80F6069D6643" name="Answers">
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="20B16DC5-BB0A-7B00-403E-8340920174D7" name="Answers">
 <createdBy>xxxx</createdBy>
-<createdTime>2025-01-13 06:58:22 UTC</createdTime>
+<createdTime>2025-01-11 13:27:47 UTC</createdTime>
 <generatorID>FD89B628-6C5D-B2B9-8EDB-CA077EA5B3EE</generatorID>
 <ownerDesignName>database</ownerDesignName>
 <allowColumnReorder>false</allowColumnReorder>
 <existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
 <parsed>true</parsed>
 <columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
-<Column name="AnswerId" id="912DE559-313A-BBF0-35AB-CE9CEF048104">
+<Column name="AnswerId" id="0C54A09A-FB24-1098-D7B1-D6E121A27782">
 <createdBy>xxxx</createdBy>
-<createdTime>2025-01-13 06:58:22 UTC</createdTime>
+<createdTime>2025-01-11 13:27:47 UTC</createdTime>
 <generatorID>315C8CAD-7974-3A3F-1F77-1A2DDAA33A4E</generatorID>
 <ownerDesignName>database</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
@@ -20,9 +20,9 @@
 <autoIncrementColumn>true</autoIncrementColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="Text" id="F0197D28-80F1-309F-1783-CCE774DAD6A3">
+<Column name="Text" id="EECCB1AE-FCFB-B118-08C2-81CA42529185">
 <createdBy>xxxx</createdBy>
-<createdTime>2025-01-13 06:58:22 UTC</createdTime>
+<createdTime>2025-01-11 13:27:47 UTC</createdTime>
 <generatorID>15471D63-1EB3-D76D-0B67-3D48984D9233</generatorID>
 <ownerDesignName>database</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
@@ -32,9 +32,21 @@
 <ownDataTypeParameters>80 CHAR,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="Image" id="583F6BAD-B46C-82B5-8D73-568D1362134A">
+<Column name="IsCorrect" id="C7C8A563-7184-0ADF-65DB-EA932E2FB2A3">
 <createdBy>xxxx</createdBy>
-<createdTime>2025-01-13 06:58:22 UTC</createdTime>
+<createdTime>2025-01-11 13:27:47 UTC</createdTime>
+<generatorID>F1470D70-6260-7CDB-17DE-895E73FA69A2</generatorID>
+<ownerDesignName>database</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT006</logicalDatatype>
+<dataTypeSize>1</dataTypeSize>
+<ownDataTypeParameters>1,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Image" id="68F15A54-A6E4-260D-3E04-5A9CC55AB785">
+<createdBy>xxxx</createdBy>
+<createdTime>2025-01-11 13:27:47 UTC</createdTime>
 <generatorID>C9816216-B16A-4349-FB57-77108F837581</generatorID>
 <ownerDesignName>database</ownerDesignName>
 <nullsAllowed>true</nullsAllowed>
@@ -44,10 +56,10 @@
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="Questions_QuestionId" id="68B93467-05E4-79DA-D268-A7BBD5A82933">
+<Column name="Questions_QuestionId" id="99E779D3-442D-BEAB-217F-25B427AD8B88">
 <createdBy>xxxx</createdBy>
-<createdTime>2025-01-13 06:58:22 UTC</createdTime>
-<generatorID>CA4B2BCE-0425-28FB-4344-70A9CEB5430B</generatorID>
+<createdTime>2025-01-11 13:27:47 UTC</createdTime>
+<generatorID>A4BAC763-B447-7EF1-DC22-1D2FAA3E10BA</generatorID>
 <ownerDesignName>database</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
@@ -56,32 +68,32 @@
 <previousColumn>false</previousColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
 <associations>
-<colAssociation fkAssociation="9E548721-203D-1FEE-A1A7-AD28A7DD948A" referredColumn="1B98A527-261A-B747-0699-C90B1B02F44D"/>
+<colAssociation fkAssociation="55565FFC-B178-0EBF-9D0C-4040E835A1A2" referredColumn="87501748-FB1B-8B8B-3832-A183072CA1F8"/>
 </associations>
 </Column>
 </columns>
 <indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
-<ind_PK_UK id="B8951409-79E0-F5D3-8C57-80A5F4B735CF" name="Answers_PK">
+<ind_PK_UK id="0144A5F4-095B-548D-19EF-25669C07551F" name="Answers_PK">
 <createdBy>xxxx</createdBy>
-<createdTime>2025-01-13 06:58:22 UTC</createdTime>
+<createdTime>2025-01-11 13:27:47 UTC</createdTime>
 <generatorID>BFCFF428-7164-7EDF-4DFF-76DA0012A291</generatorID>
 <ownerDesignName>database</ownerDesignName>
 <pk>true</pk>
 <indexState>Primary Constraint</indexState>
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
-<colUsage columnID="912DE559-313A-BBF0-35AB-CE9CEF048104"/>
+<colUsage columnID="0C54A09A-FB24-1098-D7B1-D6E121A27782"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="9BE46468-CC52-9825-FCF4-DE46BFE2E147" name="Answers_Questions_FK">
+<ind_PK_UK id="0FCC6E11-D393-7171-B85B-5DA301C44133" name="Answers_Questions_FK">
 <createdBy>xxxx</createdBy>
-<createdTime>2025-01-13 06:58:22 UTC</createdTime>
-<generatorID>05B1554B-997C-63F4-0B15-4B04ADD1CBE0</generatorID>
+<createdTime>2025-01-11 13:27:47 UTC</createdTime>
+<generatorID>05129B23-CA1B-5821-50E8-6770F5DC87A2</generatorID>
 <ownerDesignName>database</ownerDesignName>
 <indexState>Foreign Key</indexState>
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
-<colUsage columnID="68B93467-05E4-79DA-D268-A7BBD5A82933"/>
+<colUsage columnID="99E779D3-442D-BEAB-217F-25B427AD8B88"/>
 </indexColumnUsage>
 </ind_PK_UK>
 </indexes>

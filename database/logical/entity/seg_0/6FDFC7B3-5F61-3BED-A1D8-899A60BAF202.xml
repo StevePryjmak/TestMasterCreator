@@ -94,10 +94,23 @@
 <logicalDatatype>LOGDT029</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
-<Attribute name="TestId" id="EF3FF6D2-129E-B54A-CE50-6AE900F38C88">
+<Attribute name="TimeLimit" id="A819DC20-B810-22E2-F53A-8A064CE62A5F">
 <createdBy>xxxx</createdBy>
-<createdTime>2025-01-13 06:56:35 UTC</createdTime>
-<generatorID>9FE21E04-256C-D13A-8BFA-31CEBA344D4F</generatorID>
+<createdTime>2025-01-08 18:56:51 UTC</createdTime>
+<ownerDesignName>database</ownerDesignName>
+<engineerTo>
+<item key="8ABA86DC-9BF0-47F9-F89E-40F6A3360E4D" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="TestId" id="5681FEF6-5768-C81E-6084-AEE0281429E2">
+<createdBy>xxxx</createdBy>
+<createdTime>2025-01-11 13:42:04 UTC</createdTime>
+<generatorID>E7A920E7-915E-B8B5-48D6-339FC0EE96AB</generatorID>
 <ownerDesignName>database</ownerDesignName>
 <engineerTo>
 <item key="8ABA86DC-9BF0-47F9-F89E-40F6A3360E4D" value="true"/>
