@@ -31,12 +31,11 @@
                <children>
 
                   
-                  <VBox fx:id="page" >
-                     <Button fx:id="addQuestionButton" onAction="#handleAddQuestion" text="Add Question" />
-                     <VBox fx:id="questionList"  >
+               <VBox fx:id="page" maxWidth="Infinity">
+                  <Button fx:id="addQuestionButton" onAction="#handleAddQuestion" text="Add Question" />
+                  <VBox fx:id="questionList" />
+               </VBox>
 
-                     </VBox>
-                  </VBox> 
                </children>
             </AnchorPane>
         </content>

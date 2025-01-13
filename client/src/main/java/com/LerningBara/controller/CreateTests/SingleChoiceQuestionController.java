@@ -1,65 +1,112 @@
 package com.LerningBara.controller.CreateTests;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import QuestionData.SingleChoiceQuestionData;
-
-import java.util.Arrays;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
+import java.util.ArrayList;
 import java.util.List;
-
+import javafx.scene.control.RadioButton;
+import javafx.scene.control.ToggleGroup;
+import QuestionData.*;
 import com.LerningBara.app.App;
 
-public class SingleChoiceQuestionController {
+
+public class SingleChoiceQuestionController extends CreateAbstractQestionController {
 
     @FXML
     private TextField questionInput;
 
     @FXML
-    private TextField answerInput1;
+    private VBox answerList;
 
     @FXML
-    private TextField answerInput2;
+    private Button addAnswerButton;
 
     @FXML
-    private TextField answerInput3;
+    private Button saveButton;
+
+    private ToggleGroup toggleGroup;
 
     @FXML
-    private TextField answerInput4;
+    public void initialize() {
+        toggleGroup = new ToggleGroup();
+        addAnswerField();
+        addAnswerField();
+
+        addAnswerButton.setOnAction(event -> addAnswerField());
+        saveButton.setOnAction(event -> handleSaveQuestion());
+    }
+
+    private void addAnswerField() {
+        HBox answerBox = new HBox(10);
+
+        TextField answerInput = new TextField();
+        answerInput.setPromptText("Enter answer option");
+
+        RadioButton correctAnswerButton = new RadioButton();
+        correctAnswerButton.setToggleGroup(toggleGroup);
+
+        
+        Button deleteButton = new Button("Remove");
+        deleteButton.setOnAction(event -> {
+            answerList.getChildren().remove(answerBox);
+            toggleGroup.getToggles().remove(correctAnswerButton);
+        });
+
+        answerBox.getChildren().addAll(correctAnswerButton, answerInput, deleteButton);
+        answerList.getChildren().add(answerBox);
+    }
 
     @FXML
     public void handleSaveQuestion() {
-        String questionText = questionInput.getText();
-        String answer1 = answerInput1.getText();
-        String answer2 = answerInput2.getText();
-        String answer3 = answerInput3.getText();
-        String answer4 = answerInput4.getText();
-
-        // Validate inputs
-        if (questionText.isEmpty() || answer1.isEmpty() || answer2.isEmpty()) {
-            System.out.println("Please fill in the question and at least two answers.");
+        String questionText = questionInput.getText().trim();
+        if (questionText.isEmpty()) {
+            System.out.println("Please provide a valid question.");
             return;
         }
 
-        // Save or process the question data
-        System.out.println("Question saved:");
-        System.out.println("Question: " + questionText);
-        System.out.println("Answers: " + answer1 + ", " + answer2 + ", " + answer3 + ", " + answer4);
+        List<String> answers = new ArrayList<>();
+        int correctAnswerIndex = -1;
 
-        List<String> answers = Arrays.asList(answer1, answer2, answer3, answer4);
+        for (int i = 0; i < answerList.getChildren().size(); i++) {
+            if (answerList.getChildren().get(i) instanceof HBox) {
+                HBox answerBox = (HBox) answerList.getChildren().get(i);
+                TextField answerInput = (TextField) answerBox.getChildren().get(1);
+                RadioButton correctAnswerButton = (RadioButton) answerBox.getChildren().get(0);
+
+                String answer = answerInput.getText().trim();
+                if (!answer.isEmpty()) {
+                    answers.add(answer);
+                    if (correctAnswerButton.isSelected()) {
+                        correctAnswerIndex = answers.size() - 1;
+                    }
+                }
+            }
+        }
+
+
+        if (answers.size() < 2) {
+            System.out.println("Please provide at least two valid answers.");
+            return;
+        }
+
+        if (correctAnswerIndex == -1) {
+            System.out.println("Please select the correct answer.");
+            return;
+        }
+
         SingleChoiceQuestionData question = new SingleChoiceQuestionData(
-            questionText,
-            answers,
-            1 // @TODO CORRECT THIS LATER
+            questionText, answers, correctAnswerIndex
         );
+
         App.createTestController.addQuestion(question);
         App.setRoot("CreateTestScene");
+        System.out.println("Question saved successfully!");
+    }
 
-
-        // Clear inputs for a new question
-        questionInput.clear();
-        answerInput1.clear();
-        answerInput2.clear();
-        answerInput3.clear();
-        answerInput4.clear();
+    public AbstractQuestionData getQuestionData() {
+        return null;
     }
 }

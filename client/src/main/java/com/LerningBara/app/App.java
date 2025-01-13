@@ -110,7 +110,7 @@ public class App extends Application {
 
         controller.setTests(testsInfo);
 
-        Scene scene = new Scene(root, 600, 600);
+        Scene scene = new Scene(root);
         scene.getStylesheets().add(getClass().getResource("/css/RoundedSearchBar.css").toExternalForm());
         stage.setScene(scene);
     }
