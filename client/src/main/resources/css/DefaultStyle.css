@@ -6,6 +6,5 @@
 .button {
     -fx-background-color: #fd8700;
     -fx-text-fill: white;
-    -fx-font-size: 12px;
     -fx-alignment: center;
 }

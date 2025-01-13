@@ -172,7 +172,7 @@ public class EditProfileSceneControler {
 
     public void uploadPicture() throws Exception {
         FileChooser fileChooser = new FileChooser();
-        fileChooser.setTitle("Wybierz obraz");
+        fileChooser.setTitle("Choose a picture");
         fileChooser.getExtensionFilters().addAll(
             new FileChooser.ExtensionFilter("Obrazy", "*.png", "*.jpg", "*.jpeg", "*.gif")
         );
@@ -185,7 +185,6 @@ public class EditProfileSceneControler {
             ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
             ImageIO.write(bufferedImage, "png", outputStream);
             byte[] imageBytes = outputStream.toByteArray();
-
 
             ImageData img = new ImageData();
             img.map = imageBytes;

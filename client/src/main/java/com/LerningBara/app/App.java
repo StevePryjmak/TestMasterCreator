@@ -39,7 +39,7 @@ public class App extends Application {
     public void start(Stage stage) {
         try {
             App.stage = stage;
-            Image icon = new Image("/kapibara.jpg");
+            Image icon = new Image("/kapibara.png");
             stage.getIcons().add(icon);
             stage.setTitle("LearningBara");
             Parent root = FXMLLoader.load(getClass().getResource("/fxml/LoginScene.fxml"));
