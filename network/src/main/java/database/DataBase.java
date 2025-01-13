@@ -127,7 +127,7 @@ public class DataBase {
         List<TestInfoData> tests = new ArrayList<>();
         try {
             statement = connection.prepareStatement(
-                    "SELECT LOGIN, T.*, (SELECT COUNT(*) FROM TEST_QUESTION WHERE TESTS_TESTID = T.TESTID) N FROM TESTS T JOIN USERS ON USERID = T.USERS_USERID WHERE USERID = ?");
+                    "SELECT LOGIN, T.*, (SELECT COUNT(*) FROM QUESTIONS WHERE TESTS_TESTID = T.TESTID) N FROM TESTS T JOIN USERS ON USERID = T.USERS_USERID WHERE USERID = ?");
             statement.setInt(1, userID);
             resultSet = statement.executeQuery();
 
@@ -162,7 +162,7 @@ public class DataBase {
         List<AbstractQuestionData> questions = new ArrayList<>();
         try {
             statement = connection.prepareStatement(
-                    "SELECT q.QuestionId, q.Text, q.Types_TypeId FROM Tests t JOIN Test_question tg ON TestID = Tests_TestID JOIN Questions q ON QuestionId = Questions_QuestionId WHERE Name=? ORDER BY QuestionOrder");
+                    "SELECT q.QuestionId, q.Text, q.Types_TypeId FROM Tests t JOIN questions q ON t.TestID = q.Tests_TestID JOIN Questions q ON QuestionId = Questions_QuestionId WHERE Name=? ORDER BY QuestionOrder");
             statement.setString(1, testName);
             questionsSet = statement.executeQuery();
 
