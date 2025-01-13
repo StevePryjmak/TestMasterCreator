@@ -8,11 +8,13 @@ import java.util.Queue;
 
 import TestData.*;
 
+import java.awt.Image;
 import java.io.*;
 import java.net.Socket;
 import connection.Message;
 import database.DataBase;
 import UserData.UserData;
+import ImageData.ImageData;
 
 
 
@@ -46,6 +48,8 @@ public class ClientHandler implements Runnable {
         functionMap.put("Get user", this::sendGetUser);
         functionMap.put("Update user", this::sendUpdateUser);
         functionMap.put("Delete user", this::sendDeleteUser);
+        functionMap.put("Add profile icon", this::sendAddIcon);
+        functionMap.put("Get profile icon", this::sendGetIcon);
         // @TODO add more functions here
     }
 
@@ -103,6 +107,28 @@ public class ClientHandler implements Runnable {
             sendObject(new Message("Information if user is deleted", (Boolean)true));}
         catch (Exception e){
             sendObject(new Message("Information if user is deleted", (Boolean)false));
+        }
+    }
+
+    private void sendAddIcon() {
+        Object obj = recived.poll();
+        try {
+            DataBase.setUserIcon(((ImageData)obj).username, ((ImageData)obj).map);
+            sendObject(new Message("Information if icon is added", (Boolean)true));}
+        catch (Exception e){
+            sendObject(new Message("Information if icon is added", (Boolean)false));
+        }
+    }
+
+    private void sendGetIcon() {
+        Object obj = recived.poll();
+        ImageData img = new ImageData();
+        try {
+            img.map =DataBase.getUserIcon(((UserData)obj).username);
+            sendObject(new Message("Icon info", img));
+        }
+        catch (Exception e){
+            sendObject(new Message("Icon info", "blad"));
         }
     }
 

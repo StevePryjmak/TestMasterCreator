@@ -101,4 +101,8 @@ public class App extends Application {
         stage.setScene(scene);
     }
 
+    public Stage getPrimaryStage() {
+        return stage;
+    }
+
 }

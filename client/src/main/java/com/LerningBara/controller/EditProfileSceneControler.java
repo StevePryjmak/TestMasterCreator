@@ -1,9 +1,15 @@
 package com.LerningBara.controller;
 
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+
+import javax.imageio.ImageIO;
+
 import com.LerningBara.app.App;
 
 import UserData.User;
 import UserData.UserData;
+import ImageData.ImageData;
 import client.Client;
 import connection.Message;
 import javafx.fxml.FXML;
@@ -11,6 +17,10 @@ import javafx.scene.control.Label;
 //import javafx.scene.control.ImageView;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.stage.FileChooser;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayOutputStream;
 
 
 public class EditProfileSceneControler {
@@ -159,6 +169,44 @@ public class EditProfileSceneControler {
             passLabel.setText("Database failure.");
         }
     }
+
+    public void uploadPicture() throws Exception {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Wybierz obraz");
+        fileChooser.getExtensionFilters().addAll(
+            new FileChooser.ExtensionFilter("Obrazy", "*.png", "*.jpg", "*.jpeg", "*.gif")
+        );
+        File file = fileChooser.showOpenDialog(App.getInstance().getPrimaryStage());
+
+        if (file != null) {
+            Image image = new Image(file.toURI().toString());
+            BufferedImage bufferedImage = javafx.embed.swing.SwingFXUtils.fromFXImage(image, null);
+
+            ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+            ImageIO.write(bufferedImage, "png", outputStream);
+            byte[] imageBytes = outputStream.toByteArray();
+
+
+            ImageData img = new ImageData();
+            img.map = imageBytes;
+            img.username = App.getInstance().user.getUsername();
+
+            App.getInstance().client = new Client("localhost", 8080);
+            System.out.println("Connected to server");
+            App.getInstance().client.sendMessage("Add profile icon", img);
+            System.out.println("Waiting for server response");
+            Message messageReceived = App.getInstance().client.getOneRecivedObject();
+            Object obj = messageReceived.getObject();
+
+            if((Boolean)obj){
+                System.out.println("Image has been sent succesfully.");
+            }
+
+        } else {
+            System.out.println("No file has been chosen.");
+        }
+    }
+
 
     public void goBack() throws Exception{
         App.setRoot("UserMenuScene");
