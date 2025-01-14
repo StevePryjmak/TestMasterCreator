@@ -8,7 +8,7 @@ public class TestData implements Serializable {
     private String name;
     private String filed;
     private String description;
-    private List<AbstractQuestionData> questions;
+    public List<AbstractQuestionData> questions;
 
     public TestData(List<AbstractQuestionData> questions) {
         this.questions = questions;

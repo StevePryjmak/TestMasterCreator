@@ -9,6 +9,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.ComboBox?>
 
 
 <BorderPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx"
@@ -26,9 +27,10 @@
                <Label text="Field:" />
                <ComboBox fx:id="setTestField" prefWidth="150" promptText="Select test field" />
          </HBox>
-         <Label text="Description:" />
-         <TextField fx:id="descrioption" promptText="Enter test description here" />
-         
+         <HBox  spacing="10.0" alignment="CENTER">
+            <Label text="Description:" />
+            <TextField fx:id="descriptionField" promptText="Enter test description here" />
+         </HBox>
       </VBox>
    </top>
 

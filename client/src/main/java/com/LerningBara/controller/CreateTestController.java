@@ -28,6 +28,8 @@ import javafx.scene.Parent;
 import com.LerningBara.model.Test;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ComboBox;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 public class CreateTestController {
 
@@ -50,12 +52,15 @@ public class CreateTestController {
     private ComboBox<String> setTestField;
 
     @FXML
-    private TextField descrioption;
+    private TextField descriptionField;
 
     @FXML
     private ComboBox<String> choseQuestionType;
 
     private String prevTestName;
+    private String prevDescription;
+    private String prevTestField;
+    private String prevTestType;
 
     private List<CreateAbstractQestionController> questions;
 
@@ -69,12 +74,20 @@ public class CreateTestController {
         if (questions == null) {
             questions = new ArrayList<>();
         }
-        System.out.println(questions.size());
+        // Populate ComboBoxes
+        ObservableList<String> filterOptions = FXCollections.observableArrayList("All", "Math", "Physics", "Chemistry", "Biology");
+        setTestField.setItems(filterOptions);
+
+        ObservableList<String> questionTypes = FXCollections.observableArrayList("Single Choice", "Multiple Choice", "True/False");
+        choseQuestionType.setItems(questionTypes);
         update();
     }
 
     public void update() {
         testNameField.setText(prevTestName);
+        descriptionField.setText(prevDescription);
+        setTestField.setValue(prevTestField);
+        choseQuestionType.setValue(prevTestType);
         updateQuestionList();
         updateQuestionShortcuts();
     }
@@ -82,9 +95,15 @@ public class CreateTestController {
     @FXML
     public void handleAddQuestion() {
         System.out.println("Add Question Button Clicked");
-        prevTestName = testNameField.getText();
         handleQuestionEdit(questions.size(), true);
         App.createTestController = this;
+    }
+
+    private void saveCurrentState() {
+        prevTestName = testNameField.getText();
+        prevDescription = descriptionField.getText();
+        prevTestField = setTestField.getValue();
+        prevTestType = choseQuestionType.getValue();
     }
 
     public void addQuestion(CreateAbstractQestionController questionController) {
@@ -101,13 +120,12 @@ public class CreateTestController {
         int index = 0;
         for (CreateAbstractQestionController question : questions) {
             questionList.getChildren().add(createQuestionBox(question.getQuestionData(), index++));
-
         }
     }
 
     private VBox createQuestionBox(AbstractQuestionData question, int index) {
-        AbstractQuestion tempQestion = QuestionConventor.convertToQuestion(question);
-        return tempQestion.getDetailsBox(index);
+        AbstractQuestion tempQuestion = QuestionConventor.convertToQuestion(question);
+        return tempQuestion.getDetailsBox(index);
     }
 
     public void updateQuestionShortcuts() {
@@ -136,20 +154,17 @@ public class CreateTestController {
     // to App
     public void handleQuestionEdit(int index, boolean create) {
         System.out.println("Question #" + (index + 1) + " clicked");
+        saveCurrentState();
         CreateAbstractQestionController questionController;
         if (create) {
-            questionController = new CreateSingleChoiceQuestionController(); // TODO Add convertor class later
+            questionController = new CreateSingleChoiceQuestionController();
+        } else {
+            questionController = questions.get(index);
         }
 
-        else
-            questionController = questions.get(index);
-
-        // handleDeleteQuestion(index);
         try {
             FXMLLoader loader = new FXMLLoader(
-                    getClass().getResource("/fxml/CreateTests/CreateSingleChoiceQuestionScene.fxml")); // TODO Add
-                                                                                                       // convertor
-                                                                                                       // class later
+                    getClass().getResource("/fxml/CreateTests/CreateSingleChoiceQuestionScene.fxml")); // TODO add conwertor
             questionController.isEdit = true;
             loader.setController(questionController);
             Parent root = loader.load();
@@ -175,8 +190,8 @@ public class CreateTestController {
     // to database
     @FXML
     private void handleSaveTest() {
-        System.out.println("Add Test button clicked!");
-        if(testNameField.getText().isEmpty()) {
+        System.out.println("Save Test Button Clicked!");
+        if (testNameField.getText().isEmpty()) {
             System.out.println("Test name is empty!");
             return;
         }
@@ -185,25 +200,18 @@ public class CreateTestController {
         for (CreateAbstractQestionController question : questions) {
             questionsData.add(question.getQuestionData());
         }
-        TestData testdata = new TestData(questionsData);
-        Test test = new Test(questionsData, true);
-        testdata.setName(testNameField.getText());
+        TestData testData = new TestData(questionsData);
+        testData.setName(testNameField.getText());
+        testData.setFiled(setTestField.getValue());
+        testData.setDescription(descriptionField.getText());
 
-        App.getInstance().setTest(test);
-        App.getInstance().runExampleTest();
-        // App.addTest(test);
-        App.getInstance().client.sendMessage("Save test", testdata);
+        App.getInstance().client.sendMessage("Save test", testData);
         App.setRoot("QuizMenuScene");
-        // App.getInstance().runExampleTest();
-        // App.addTest(test);
-
     }
 
     @FXML
     private void handleGoBack() {
-        System.out.println("Cancel button clicked!");
-        // @TODO add pop up do you whana to discard changes...
+        System.out.println("Cancel Button Clicked!");
         App.setRoot("QuizMenuScene");
     }
-
 }
