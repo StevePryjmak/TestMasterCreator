@@ -39,9 +39,8 @@ public class App extends Application {
     public void start(Stage stage) {
         try {
             App.stage = stage;
-            // Parent root = FXMLLoader.load(getClass().getResource("/fxml/LoginScene.fxml"));
-            // Parent root = FXMLLoader.load(getClass().getResource("/fxml/CreateTestScene.fxml"));
-            Parent root = FXMLLoader.load(getClass().getResource("/fxml/StartScene.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/fxml/LoginScene.fxml"));
+            // Parent root = FXMLLoader.load(getClass().getResource("/fxml/StartScene.fxml"));
             Scene scene = new Scene(root);
             scene.getStylesheets().add("/css/Styles.css");
             stage.setScene(scene);
