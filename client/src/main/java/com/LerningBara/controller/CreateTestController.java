@@ -181,8 +181,6 @@ public class CreateTestController {
         App.getInstance().setTest(test);
         App.getInstance().runExampleTest();
         // App.addTest(test);
-        App.getInstance().client = new Client("localhost", 8080);
-        System.out.println("Connected to server");
         App.getInstance().client.sendMessage("Save test", testdata);
         App.setRoot("QuizMenuScene");
         // App.getInstance().runExampleTest();
