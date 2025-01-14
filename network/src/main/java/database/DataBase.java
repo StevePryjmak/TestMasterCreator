@@ -323,8 +323,8 @@ public class DataBase {
         ResultSet resultSet = null;
         int testId;
         String testName = testData.getName();
-        String testDescription = "hardcoded"; // TODO change this to actually work
-        String testField = "Math"; // TODO change this to actually work
+        String testDescription = testData.getDescription();
+        String testField = testData.getFiled();
         try {
             statement = connection.prepareStatement(
                     "INSERT INTO Tests(Name, Users_UserId, creationdate, field, description) VALUES (?, ?, CURRENT_DATE, ?, ?)");
