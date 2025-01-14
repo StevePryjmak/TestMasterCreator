@@ -168,8 +168,8 @@ public class ClientHandler implements Runnable {
         boolean correct_pass = DataBase.checkPassword(((UserData) obj).username, ((UserData) obj).password);
         if (correct_pass) {
             user = DataBase.getUser(((UserData) obj).username);
+            System.out.println("current user: " + user + " userID: " + user.getId());
         }
-        System.out.println("current user: " + user + " userID: " + user.getId());
         sendObject(new Message("Information if user exists", correct_pass));
     }
 
@@ -241,14 +241,15 @@ public class ClientHandler implements Runnable {
     public void sendSetVisibility() {
         Object obj = recived.poll();
         int change = 0;
-        if ((((UserData)obj).password).equals("Public")){
+        if ((((UserData) obj).password).equals("Public")) {
             change = 1;
         }
-        try{
+        try {
             DataBase.setUserVisibility(((UserData) obj).username, change);
-            sendObject(new Message("Information if visibility is changed", (Boolean) true));}
-        catch (Exception e){
-            sendObject(new Message("Information if visibility is changed", (Boolean) false));}
+            sendObject(new Message("Information if visibility is changed", (Boolean) true));
+        } catch (Exception e) {
+            sendObject(new Message("Information if visibility is changed", (Boolean) false));
+        }
     }
 
     @Override
