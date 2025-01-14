@@ -726,6 +726,34 @@ public class DataBase {
         }
     }
 
+    public static Boolean getUserVisibility(String username){
+        connect();
+        ResultSet resultSet = null;
+        PreparedStatement statement = null;
+        Boolean result = false;
+        try {
+            statement = connection.prepareStatement(
+                    "SELECT VisibilityLevel FROM Users WHERE Login = ? AND IsActive = 'T'");
+            statement.setString(1, username);
+            resultSet = statement.executeQuery();
+            resultSet.next();
+            if(resultSet.getInt("VisibilityLevel") == 1){
+                result = true;
+            }
+
+        } catch (SQLException e) {
+            System.err.println("Query execution failed: " + e.getMessage());
+        } finally {
+            try {
+                if (statement != null)
+                    statement.close();
+            } catch (SQLException e) {
+                System.err.println("Failed to close resources: " + e.getMessage());
+            }
+        }
+        return result;
+    }
+
     // public static void deleteTest(int testId)
 
     // class with user info profile image and some useful information idk ...
