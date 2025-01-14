@@ -11,6 +11,7 @@ fi
 # Start the server and client
 
 /usr/bin/dbus-launch /usr/bin/gnome-terminal -- bash -ic "./gradlew :server:run; exec bash"
+sleep 5
 ./gradlew :client:run 
 
 echo "All tasks completed successfully!"
