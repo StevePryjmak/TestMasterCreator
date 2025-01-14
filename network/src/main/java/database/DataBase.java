@@ -7,6 +7,8 @@ import QuestionData.AbstractQuestionData;
 import QuestionData.SingleChoiceQuestionData;
 import QuestionData.MultipleChoicesQuestionData;
 import QuestionData.OpenAnwserQuestionData;
+import QuestionData.SingleChoiceQuestionWithPictureData;
+import QuestionData.MultipleChoicesQuestionWithPictureData;
 import TestData.AvalibleTestsList;
 import TestData.TestData;
 import TestData.TestInfoData;
@@ -222,6 +224,15 @@ public class DataBase {
                         break;
                     case 3:
                         q = new OpenAnwserQuestionData(questionsSet.getString("Text"), (String) options.toArray()[0]);
+                        break;
+                    case 4:
+                        q = new MultipleChoicesQuestionWithPictureData(questionsSet.getString("Text"), options,
+                                correctAnswers.stream().mapToInt(Integer::intValue).toArray(),
+                                questionsSet.getBytes("image"));
+                        break;
+                    case 5:
+                        q = new SingleChoiceQuestionWithPictureData(questionsSet.getString("Text"), options,
+                                (int) (correctAnswers.toArray()[0]), questionsSet.getBytes("image"));
                         break;
                 }
                 questions.add(q);
@@ -704,7 +715,7 @@ public class DataBase {
         }
     }
 
-    public static void setUserVisibility(String username, int visibilityLevel){
+    public static void setUserVisibility(String username, int visibilityLevel) {
         connect();
         PreparedStatement statement = null;
         try {
