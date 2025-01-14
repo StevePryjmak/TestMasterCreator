@@ -1,7 +1,6 @@
 package database;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import QuestionData.AbstractQuestionData;
@@ -11,7 +10,9 @@ import QuestionData.OpenAnwserQuestionData;
 import TestData.AvalibleTestsList;
 import TestData.TestData;
 import TestData.TestInfoData;
-import java.util.ArrayList;
+import UserData.User;
+import UserData.UserData;
+
 import java.io.FileWriter;
 import java.io.IOException;
 import java.sql.Connection;
@@ -51,6 +52,69 @@ public class DataBase {
         }
     }
 
+    public static List<Integer> getUserTestResults(int userID, int testID) {
+        connect();
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+        List<Integer> result = new ArrayList<>();
+        try {
+            statement = connection.prepareStatement(
+                    "SELECT points from results where tests_testid = ? and users_userid = ?");
+            statement.setInt(1, testID);
+            statement.setInt(2, userID);
+            resultSet = statement.executeQuery();
+
+            while (resultSet.next()) {
+                result.add(resultSet.getInt("points"));
+            }
+
+        } catch (SQLException e) {
+            System.err.println("Query execution failed: " + e.getMessage());
+        } finally {
+            try {
+                if (resultSet != null)
+                    resultSet.close();
+                if (statement != null)
+                    statement.close();
+            } catch (SQLException e) {
+                System.err.println("Failed to close resources: " + e.getMessage());
+            }
+        }
+
+        return result;
+    }
+
+    public static int getTestLikeCount(int testID) {
+        connect();
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+        int result = 0;
+        try {
+            statement = connection.prepareStatement(
+                    "SELECT count(*) from likes where tests_testid = ?");
+            statement.setInt(1, testID);
+            resultSet = statement.executeQuery();
+
+            if (resultSet.next()) {
+                result = resultSet.getInt(1);
+            }
+
+        } catch (SQLException e) {
+            System.err.println("Query execution failed: " + e.getMessage());
+        } finally {
+            try {
+                if (resultSet != null)
+                    resultSet.close();
+                if (statement != null)
+                    statement.close();
+            } catch (SQLException e) {
+                System.err.println("Failed to close resources: " + e.getMessage());
+            }
+        }
+
+        return result;
+    }
+
     public static AvalibleTestsList getTests() {
         connect();
         PreparedStatement statement = null;
@@ -58,11 +122,11 @@ public class DataBase {
         List<TestInfoData> tests = new ArrayList<>();
         try {
             statement = connection.prepareStatement(
-                    "SELECT LOGIN, T.*, (SELECT COUNT(*) FROM TEST_QUESTION WHERE TESTS_TESTID = T.TESTID) N FROM TESTS T JOIN USERS ON USERID = USERS_USERID");
+                    "SELECT LOGIN, T.*, (SELECT COUNT(*) FROM Questions WHERE TESTS_TESTID = T.TESTID) N FROM TESTS T JOIN USERS ON USERID = USERS_USERID");
             resultSet = statement.executeQuery();
 
             while (resultSet.next()) {
-                TestInfoData testInfoData3 = new TestInfoData(resultSet.getString("Name"),
+                TestInfoData testInfoData3 = new TestInfoData(resultSet.getInt("testid"), resultSet.getString("Name"),
                         resultSet.getString("Description"), resultSet.getString("Login"),
                         resultSet.getString("CREATIONDATE"),
                         resultSet.getString("field"), resultSet.getInt("n"));
@@ -81,7 +145,41 @@ public class DataBase {
             }
         }
 
-        // @TODO: remove this hardcoded data
+        // TODO: remove this hardcoded data
+        return new AvalibleTestsList(tests);
+    }
+
+    public static AvalibleTestsList getUserTests(int userID) {
+        connect();
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+        List<TestInfoData> tests = new ArrayList<>();
+        try {
+            statement = connection.prepareStatement(
+                    "SELECT LOGIN, T.*, (SELECT COUNT(*) FROM QUESTIONS WHERE TESTS_TESTID = T.TESTID) N FROM TESTS T JOIN USERS ON USERID = T.USERS_USERID WHERE USERID = ?");
+            statement.setInt(1, userID);
+            resultSet = statement.executeQuery();
+
+            while (resultSet.next()) {
+                TestInfoData testInfoData3 = new TestInfoData(resultSet.getInt("testid"), resultSet.getString("Name"),
+                        resultSet.getString("Description"), resultSet.getString("Login"),
+                        resultSet.getString("CREATIONDATE"),
+                        resultSet.getString("field"), resultSet.getInt("n"));
+                tests.add(testInfoData3);
+            }
+        } catch (SQLException e) {
+            System.err.println("Query execution failed: " + e.getMessage());
+        } finally {
+            try {
+                if (resultSet != null)
+                    resultSet.close();
+                if (statement != null)
+                    statement.close();
+            } catch (SQLException e) {
+                System.err.println("Failed to close resources: " + e.getMessage());
+            }
+        }
+
         return new AvalibleTestsList(tests);
     }
 
@@ -93,15 +191,16 @@ public class DataBase {
         List<AbstractQuestionData> questions = new ArrayList<>();
         try {
             statement = connection.prepareStatement(
-                    "SELECT q.QuestionId, q.Text, q.Types_TypeId FROM Tests t JOIN Test_question tg ON TestID = Tests_TestID JOIN Questions q ON QuestionId = Questions_QuestionId WHERE Name=? ORDER BY QuestionOrder");
+                    "SELECT q.QuestionId, q.Text, q.Types_TypeId FROM Tests t JOIN Questions q ON TestId = Tests_TestId  WHERE Name=? ORDER BY Position");
             statement.setString(1, testName);
             questionsSet = statement.executeQuery();
+
             while (questionsSet.next()) {
                 List<String> options = new ArrayList<>();
                 List<Integer> correctAnswers = new ArrayList<>();
                 int i = 0;
                 statement = connection.prepareStatement(
-                        "SELECT a.text, qa.IsCorrect FROM Questions q JOIN Question_answer qa ON QuestionId = Questions_QuestionId JOIN Answers a ON AnswerId = Answers_AnswerId WHERE QuestionId=?");
+                        "SELECT a.text, a.IsCorrect FROM Answers a WHERE Questions_QuestionId=?");
                 statement.setInt(1, questionsSet.getInt("QuestionId"));
                 answersSet = statement.executeQuery();
                 while (answersSet.next()) {
@@ -151,7 +250,8 @@ public class DataBase {
         ResultSet userSet = null;
         boolean exists = false;
         try {
-            statement = connection.prepareStatement("SELECT COUNT(*) AS EX FROM USERS WHERE LOGIN = ?");
+            statement = connection
+                    .prepareStatement("SELECT COUNT(*) AS EX FROM USERS WHERE LOGIN = ? AND ISACTIVE = 'T'");
             statement.setString(1, username);
             userSet = statement.executeQuery();
             userSet.next();
@@ -175,7 +275,7 @@ public class DataBase {
         ResultSet userSet = null;
         String correct_pass = "";
         try {
-            statement = connection.prepareStatement("SELECT PASSWORD FROM USERS WHERE LOGIN = ?");
+            statement = connection.prepareStatement("SELECT PASSWORD FROM USERS WHERE LOGIN = ? AND ISACTIVE = 'T'");
             statement.setString(1, username);
             userSet = statement.executeQuery();
             userSet.next();
@@ -217,9 +317,389 @@ public class DataBase {
         }
     }
 
-    public static void addTest(TestData testData) {
+    public static void addTest(TestData testData, int userId, String testName) {
         connect();
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+        int testId;
+        try {
+            statement = connection.prepareStatement(
+                    "INSERT INTO Tests(Name, Users_UserId) VALUES (?, ?)");
+            statement.setString(1, testName);
+            statement.setInt(2, userId);
+            statement.executeUpdate();
+            statement = connection.prepareStatement(
+                    "SELECT TestId FROM Tests WHERE Name = ?");
+            statement.setString(1, testName);
+            resultSet = statement.executeQuery();
+            resultSet.next();
+            testId = resultSet.getInt(1);
+            for (var questionData : testData.questions) {
+                addQuestion(questionData, testId);
+            }
+        } catch (SQLException e) {
+            System.err.println("Query execution failed: " + e.getMessage());
+        } finally {
+            try {
+                if (resultSet != null)
+                    resultSet.close();
+                if (statement != null)
+                    statement.close();
+            } catch (SQLException e) {
+                System.err.println("Failed to close resources: " + e.getMessage());
+            }
+        }
     }
+
+    private static void addQuestion(AbstractQuestionData questionData, int testId) {
+        connect();
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+        int questionId;
+        int position = 1;
+        int type = -1;
+        String text = "nie dziala";
+        try {
+            if (questionData instanceof SingleChoiceQuestionData) {
+                type = 1;
+                text = ((SingleChoiceQuestionData) questionData).getQuestion();
+            } else if (questionData instanceof MultipleChoicesQuestionData) {
+                type = 2;
+                text = ((MultipleChoicesQuestionData) questionData).getQuestion();
+            } else if (questionData instanceof OpenAnwserQuestionData) {
+                type = 3;
+                text = ((OpenAnwserQuestionData) questionData).getQuestion();
+            }
+            statement = connection.prepareStatement(
+                    "INSERT INTO Questions(Text, Types_TypeId, Position, Tests_TestId) VALUES (?, ?, ?, ?)");
+            statement.setString(1, text);
+            statement.setInt(2, type);
+            statement.setInt(3, position);
+            statement.setInt(4, testId);
+            statement.executeUpdate();
+            statement = connection.prepareStatement(
+                    "SELECT QuestionId FROM Questions WHERE Position = ? AND Tests_TestId = ?");
+            statement.setInt(1, position);
+            statement.setInt(2, testId);
+            resultSet = statement.executeQuery();
+            resultSet.next();
+            questionId = resultSet.getInt(1);
+            addAnswer(questionData, questionId);
+            position++;
+        } catch (SQLException e) {
+            System.err.println("Query execution failed: " + e.getMessage());
+        } finally {
+            try {
+                if (resultSet != null)
+                    resultSet.close();
+                if (statement != null)
+                    statement.close();
+            } catch (SQLException e) {
+                System.err.println("Failed to close resources: " + e.getMessage());
+            }
+        }
+    }
+
+    private static void addAnswer(AbstractQuestionData questionData, int questionId) {
+        connect();
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+        List<String> options = new ArrayList<>();
+        ;
+        List<Integer> correctAnswerIndexes = new ArrayList<>();
+        ;
+        try {
+            if (questionData instanceof SingleChoiceQuestionData) {
+                options = ((SingleChoiceQuestionData) questionData).getOptions();
+                correctAnswerIndexes.add((Integer) (((SingleChoiceQuestionData) questionData).getCorrectAnswerIndex()));
+            } else if (questionData instanceof MultipleChoicesQuestionData) {
+                options = ((MultipleChoicesQuestionData) questionData).getOptions();
+                for (int i : ((MultipleChoicesQuestionData) questionData).getCorrectAnswerIndexes()) {
+                    correctAnswerIndexes.add(i);
+                }
+            } else if (questionData instanceof OpenAnwserQuestionData) {
+                options.add(((OpenAnwserQuestionData) questionData).getCorrectAnswer());
+                correctAnswerIndexes.add(1);
+            }
+            for (int i = 0; i < options.size(); i++) {
+                statement = connection.prepareStatement(
+                        "INSERT INTO Answers(Text, IsCorrect, Questions_QuestionId) VALUES (?, ?, ?)");
+                statement.setString(1, options.get(0));
+                statement.setBoolean(2, correctAnswerIndexes.contains(i));
+                statement.setInt(3, questionId);
+                statement.executeUpdate();
+            }
+
+        } catch (SQLException e) {
+            System.err.println("Query execution failed: " + e.getMessage());
+        } finally {
+            try {
+                if (resultSet != null)
+                    resultSet.close();
+                if (statement != null)
+                    statement.close();
+            } catch (SQLException e) {
+                System.err.println("Failed to close resources: " + e.getMessage());
+            }
+        }
+    }
+
+    public static void updateUser(UserData user) {
+        connect();
+        PreparedStatement statement = null;
+        String str;
+        int i = 1;
+        if (user.password.isEmpty()) {
+            str = "UPDATE Users SET Login = ?, Email = ? WHERE UserId = ? AND IsActive = 'T'";
+        } else {
+            str = "UPDATE Users SET Login = ?, Password = ?, Email = ? WHERE UserId = ? AND IsActive = 'T'";
+        }
+        try {
+            statement = connection.prepareStatement(
+                    str);
+            statement.setString(i++, user.username);
+            if (!user.password.isEmpty()) {
+                statement.setString(i++, user.password);
+            }
+            statement.setString(i++, user.email);
+            statement.setInt(i++, user.id);
+            statement.executeUpdate();
+
+        } catch (SQLException e) {
+            System.err.println("Query execution failed: " + e.getMessage());
+        } finally {
+            try {
+                if (statement != null)
+                    statement.close();
+            } catch (SQLException e) {
+                System.err.println("Failed to close resources: " + e.getMessage());
+            }
+        }
+    }
+
+    public static User getUser(String username) {
+        connect();
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+        User user = new User();
+        try {
+            statement = connection.prepareStatement(
+                    "SELECT UserId, Login, Email FROM Users WHERE Login = ? AND IsActive = 'T'");
+            statement.setString(1, username);
+            resultSet = statement.executeQuery();
+            resultSet.next();
+            user.setAttributes(resultSet.getInt("UserId"), resultSet.getString("Login"), resultSet.getString("Email"));
+        } catch (SQLException e) {
+            System.err.println("Query execution failed: " + e.getMessage());
+        } finally {
+            try {
+                if (resultSet != null)
+                    resultSet.close();
+                if (statement != null)
+                    statement.close();
+            } catch (SQLException e) {
+                System.err.println("Failed to close resources: " + e.getMessage());
+            }
+        }
+        return user;
+    }
+
+    public static void addFavorites(int userId, int testId) {
+        connect();
+        PreparedStatement statement = null;
+        try {
+            statement = connection.prepareStatement(
+                    "INSERT INTO Likes (users_UserId, tests_TestId, \"Date\") VALUES (?, ?, CURRENT_DATE)");
+            statement.setInt(1, userId);
+            statement.setInt(2, testId);
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            System.err.println("Query execution failed: " + e.getMessage());
+        } finally {
+            try {
+                if (statement != null)
+                    statement.close();
+            } catch (SQLException e) {
+                System.err.println("Failed to close resources: " + e.getMessage());
+            }
+        }
+    }
+
+    public static void deleteFavorites(int userId, int testId) {
+        connect();
+        PreparedStatement statement = null;
+        try {
+            statement = connection.prepareStatement(
+                    "DELETE FROM Likes WHERE users_UserId = ? AND tests_TestId = ?");
+            statement.setInt(1, userId);
+            statement.setInt(2, testId);
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            System.err.println("Query execution failed: " + e.getMessage());
+        } finally {
+            try {
+                if (statement != null)
+                    statement.close();
+            } catch (SQLException e) {
+                System.err.println("Failed to close resources: " + e.getMessage());
+            }
+        }
+    }
+
+    public static AvalibleTestsList getFavorites(int userId) {
+        connect();
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+        List<TestInfoData> tests = new ArrayList<>();
+        try {
+            statement = connection.prepareStatement(
+                    "SELECT lu.LOGIN, T.*, (SELECT COUNT(*) FROM Questions q WHERE q.TESTS_TESTID = T.testid) N FROM LIKES L JOIN USERS LU ON LU.USERID = L.USERS_USERID JOIN TESTS T ON L.TESTS_TESTID = T.testid JOIN USERS U ON U.USERID = T.USERS_USERID WHERE LU.USERID = ?");
+            statement.setInt(1, userId);
+            resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                TestInfoData testInfoData3 = new TestInfoData(resultSet.getInt("testid"), resultSet.getString("Name"),
+                        resultSet.getString("Description"), resultSet.getString("Login"),
+                        resultSet.getString("CREATIONDATE"),
+                        resultSet.getString("field"), resultSet.getInt("n"));
+                tests.add(testInfoData3);
+            }
+        } catch (SQLException e) {
+            System.err.println("Query execution failed: " + e.getMessage());
+        } finally {
+            try {
+                if (resultSet != null)
+                    resultSet.close();
+                if (statement != null)
+                    statement.close();
+            } catch (SQLException e) {
+                System.err.println("Failed to close resources: " + e.getMessage());
+            }
+        }
+        return new AvalibleTestsList(tests);
+    }
+
+    public static void saveResult(int userId, int testId, int points) {
+        connect();
+        PreparedStatement statement = null;
+        try {
+            statement = connection.prepareStatement(
+                    "INSERT INTO Results (users_userid, tests_testid, Points, \"Date\") VALUES (?, ?, ?, CURRENT_DATE)");
+            statement.setInt(1, userId);
+            statement.setInt(2, testId);
+            statement.setInt(3, points);
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            System.err.println("Query execution failed: " + e.getMessage());
+        } finally {
+            try {
+                if (statement != null)
+                    statement.close();
+            } catch (SQLException e) {
+                System.err.println("Failed to close resources: " + e.getMessage());
+            }
+        }
+    }
+
+    public static List<Integer> getResults(int testId, int userId) {
+        connect();
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+        List<Integer> results = new ArrayList<>();
+        try {
+            statement = connection.prepareStatement(
+                    "SELECT Points FROM Results WHERE tests_TestId = ? AND users_UserId = ?");
+            statement.setInt(1, testId);
+            statement.setInt(2, userId);
+            resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                results.add(resultSet.getInt("Points"));
+            }
+        } catch (SQLException e) {
+            System.err.println("Query execution failed: " + e.getMessage());
+        } finally {
+            try {
+                if (resultSet != null)
+                    resultSet.close();
+                if (statement != null)
+                    statement.close();
+            } catch (SQLException e) {
+                System.err.println("Failed to close resources: " + e.getMessage());
+            }
+        }
+        return results;
+    }
+
+    public static byte[] getUserIcon(String username) {
+        connect();
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+        byte[] image = null;
+        try {
+            statement = connection.prepareStatement(
+                    "SELECT Icon FROM Users WHERE Login = ? AND IsActive = 'T'");
+            statement.setString(1, username);
+            resultSet = statement.executeQuery();
+            resultSet.next();
+            image = resultSet.getBytes("Icon");
+        } catch (SQLException e) {
+            System.err.println("Query execution failed: " + e.getMessage());
+        } finally {
+            try {
+                if (resultSet != null)
+                    resultSet.close();
+                if (statement != null)
+                    statement.close();
+            } catch (SQLException e) {
+                System.err.println("Failed to close resources: " + e.getMessage());
+            }
+        }
+        return image;
+    }
+
+    public static void setUserIcon(String username, byte[] image) {
+        connect();
+        PreparedStatement statement = null;
+        try {
+            statement = connection.prepareStatement(
+                    "UPDATE Users SET Icon = ? WHERE Login = ? AND IsActive = 'T'");
+            statement.setBytes(1, image);
+            statement.setString(2, username);
+            statement.executeUpdate();
+
+        } catch (SQLException e) {
+            System.err.println("Query execution failed: " + e.getMessage());
+        } finally {
+            try {
+                if (statement != null)
+                    statement.close();
+            } catch (SQLException e) {
+                System.err.println("Failed to close resources: " + e.getMessage());
+            }
+        }
+    }
+
+    public static void deleteUser(String username) {
+        connect();
+        PreparedStatement statement = null;
+        try {
+            statement = connection.prepareStatement(
+                    "UPDATE Users SET IsActive = 'F' WHERE Login = ? AND IsActive = 'T'");
+            statement.setString(1, username);
+            statement.executeUpdate();
+
+        } catch (SQLException e) {
+            System.err.println("Query execution failed: " + e.getMessage());
+        } finally {
+            try {
+                if (statement != null)
+                    statement.close();
+            } catch (SQLException e) {
+                System.err.println("Failed to close resources: " + e.getMessage());
+            }
+        }
+    }
+
+    // public static void deleteTest(int testId)
 
     // class with user info profile image and some useful information idk ...
     // public User getUser(String username) {

@@ -40,6 +40,19 @@
 <dataTypeSize>80 CHAR</dataTypeSize>
 <ownDataTypeParameters>80 CHAR,,</ownDataTypeParameters>
 </Attribute>
+<Attribute name="IsCorrect" id="F1470D70-6260-7CDB-17DE-895E73FA69A2">
+<createdBy>xxxx</createdBy>
+<createdTime>2025-01-11 10:16:50 UTC</createdTime>
+<ownerDesignName>database</ownerDesignName>
+<engineerTo>
+<item key="8ABA86DC-9BF0-47F9-F89E-40F6A3360E4D" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT006</logicalDatatype>
+<dataTypeSize>1</dataTypeSize>
+<ownDataTypeParameters>1,,</ownDataTypeParameters>
+</Attribute>
 <Attribute name="Image" id="C9816216-B16A-4349-FB57-77108F837581">
 <createdBy>xxxx</createdBy>
 <createdTime>2025-01-06 16:57:25 UTC</createdTime>
@@ -51,6 +64,20 @@
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
 <logicalDatatype>LOGDT029</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="QuestionId" id="A4BAC763-B447-7EF1-DC22-1D2FAA3E10BA">
+<createdBy>xxxx</createdBy>
+<createdTime>2025-01-11 10:18:32 UTC</createdTime>
+<generatorID>05129B23-CA1B-5821-50E8-6770F5DC87A2</generatorID>
+<ownerDesignName>database</ownerDesignName>
+<engineerTo>
+<item key="8ABA86DC-9BF0-47F9-F89E-40F6A3360E4D" value="true"/>
+</engineerTo>
+<referedAttribute>EF1CC512-0A17-DF70-753B-448CDF0598EF</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
 </attributes>
