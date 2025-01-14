@@ -38,10 +38,46 @@ public class CreateSingleChoiceQuestionController extends CreateAbstractQestionC
         toggleGroup = new ToggleGroup();
         addAnswerField();
         addAnswerField();
+        initializeFields();
 
         addAnswerButton.setOnAction(event -> addAnswerField());
         saveButton.setOnAction(event -> handleSaveQuestion());
     }
+
+    private void initializeFields() {
+        if (questionText != null && !questionText.isEmpty()) {
+            questionInput.setText(questionText);
+        }
+        else isEdit = false;
+    
+        if (answers != null && !answers.isEmpty()) {
+            answerList.getChildren().clear();
+            toggleGroup = new ToggleGroup();
+    
+            for (int i = 0; i < answers.size(); i++) {
+                HBox answerBox = new HBox(10);
+    
+                TextField answerInput = new TextField(answers.get(i));
+                answerInput.setPromptText("Enter answer option");
+    
+                RadioButton correctAnswerButton = new RadioButton();
+                correctAnswerButton.setToggleGroup(toggleGroup);
+                if (i == correctAnswerIndex) {
+                    correctAnswerButton.setSelected(true);
+                }
+    
+                Button deleteButton = new Button("Remove");
+                deleteButton.setOnAction(event -> {
+                    answerList.getChildren().remove(answerBox);
+                    toggleGroup.getToggles().remove(correctAnswerButton);
+                });
+    
+                answerBox.getChildren().addAll(correctAnswerButton, answerInput, deleteButton);
+                answerList.getChildren().add(answerBox);
+            }
+        }
+    }
+    
 
     private void addAnswerField() {
         HBox answerBox = new HBox(10);
@@ -102,8 +138,9 @@ public class CreateSingleChoiceQuestionController extends CreateAbstractQestionC
         }
 
 
-
-        App.createTestController.addQuestion(this);
+        if(!isEdit) {
+            App.createTestController.addQuestion(this);
+        }
         App.setRoot("CreateTestScene");
         System.out.println("Question saved successfully!");
     }

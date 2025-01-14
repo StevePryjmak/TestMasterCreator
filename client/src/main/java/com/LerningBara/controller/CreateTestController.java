@@ -124,10 +124,11 @@ public class CreateTestController {
         
         else 
             questionController = questions.get(index);
-        
+
+        // handleDeleteQuestion(index);
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/CreateTests/CreateSingleChoiceQuestionScene.fxml")); // @TODO Add convertor class later
-            
+            questionController.isEdit = true;
             loader.setController(questionController);
             Parent root = loader.load();
             
