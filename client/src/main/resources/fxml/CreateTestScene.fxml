@@ -16,12 +16,20 @@
     
    <!-- Top Panel -->
    <top>
-      <HBox  spacing="10.0" alignment="CENTER">
-            <Button fx:id="goBackButton" onAction="#handleGoBack" text="Go Back" />
+      <VBox  spacing="10.0" alignment="CENTER">
 
-            <Label text="Test Name:" />
-            <TextField fx:id="testNameField" promptText="Enter test name here" />
-      </HBox>
+         <HBox  spacing="10.0" alignment="CENTER">
+
+               <Label text="Test Name:" />
+               <TextField fx:id="testNameField" promptText="Enter test name here" />
+
+               <Label text="Field:" />
+               <ComboBox fx:id="setTestField" prefWidth="150" promptText="Select test field" />
+         </HBox>
+         <Label text="Description:" />
+         <TextField fx:id="descrioption" promptText="Enter test description here" />
+         
+      </VBox>
    </top>
 
 
@@ -49,7 +57,11 @@
                         <AnchorPane>
                             <children>
                               <VBox fx:id="page" maxWidth="Infinity">
-                                 <Button fx:id="addQuestionButton" onAction="#handleAddQuestion" text="Add Question" />
+                                 <HBox spacing="10.0">
+                                    <Button fx:id="addQuestionButton" onAction="#handleAddQuestion" text="Add Question" />
+                                    <ComboBox fx:id="choseQuestionType" prefWidth="150" promptText="Chose qustion type" />
+                                 </HBox>
+                                
                                  <VBox fx:id="questionList" />
                               </VBox>
                             </children>
@@ -62,6 +74,9 @@
    
       <!-- Bottom Panel -->
    <bottom>
-      <Button fx:id="saveButton" onAction="#handleSaveTest" text="Save Test" />
+      <HBox  spacing="10.0" alignment="CENTER">
+         <Button fx:id="goBackButton" onAction="#handleGoBack" text="Go Back" />
+         <Button fx:id="saveButton" onAction="#handleSaveTest" text="Save Test" />
+      </HBox>
    </bottom>
 </BorderPane>

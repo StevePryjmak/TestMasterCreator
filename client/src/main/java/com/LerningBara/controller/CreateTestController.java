@@ -27,6 +27,7 @@ import com.LerningBara.controller.CreateTests.CreateSingleChoiceQuestionControll
 import javafx.scene.Parent;
 import com.LerningBara.model.Test;
 import javafx.scene.control.TextField;
+import javafx.scene.control.ComboBox;
 
 public class CreateTestController {
 
@@ -44,6 +45,16 @@ public class CreateTestController {
 
     @FXML
     private TextField testNameField;
+
+    @FXML
+    private ComboBox<String> setTestField;
+
+    @FXML
+    private TextField descrioption;
+
+    @FXML
+    private ComboBox<String> choseQuestionType;
+
     private String prevTestName;
 
     private List<CreateAbstractQestionController> questions;

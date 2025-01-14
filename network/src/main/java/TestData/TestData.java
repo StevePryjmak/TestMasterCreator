@@ -6,10 +6,28 @@ import QuestionData.AbstractQuestionData;
 
 public class TestData implements Serializable {
     private String name;
-    public List<AbstractQuestionData> questions;
+    private String filed;
+    private String description;
+    private List<AbstractQuestionData> questions;
 
     public TestData(List<AbstractQuestionData> questions) {
         this.questions = questions;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setFiled(String filed) {
+        this.filed = filed;
+    }
+
+    public String getFiled() {
+        return filed;
     }
 
     public void setName(String name) {
