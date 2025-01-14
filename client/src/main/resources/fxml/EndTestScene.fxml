@@ -6,9 +6,9 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.LerningBara.controller.EndTestController">
    <children>
-      <Button layoutX="233.0" layoutY="234.0" mnemonicParsing="false" onAction="#addToLiked" prefHeight="42.0" prefWidth="133.0" text="like" />
-      <Button layoutX="233.0" layoutY="179.0" mnemonicParsing="false" onAction="#returnToBrowsing" prefHeight="42.0" prefWidth="133.0" text="quiz browser" />
-      <Label alignment="CENTER" layoutX="233.0" layoutY="129.0" prefHeight="42.0" prefWidth="133.0" text="result" />
-      <Label alignment="CENTER" layoutX="232.0" layoutY="289.0" prefHeight="20.0" prefWidth="133.0" text="likeInfo" textFill="#e20b0b" />
+      <Button fx:id="likeButton" layoutX="233.0" layoutY="234.0" mnemonicParsing="false" onAction="#addToLiked" prefHeight="42.0" prefWidth="133.0" text="like" />
+      <Button fx:id="quizBrowserButton" layoutX="233.0" layoutY="179.0" mnemonicParsing="false" onAction="#returnToBrowsing" prefHeight="42.0" prefWidth="133.0" text="quiz browser" />
+      <Label fx:id="resultLabel" alignment="CENTER" layoutX="233.0" layoutY="129.0" prefHeight="42.0" prefWidth="133.0" text="result" />
+      <Label fx:id="likeInfoLabel" alignment="CENTER" layoutX="232.0" layoutY="289.0" prefHeight="20.0" prefWidth="133.0" text="likeInfo" textFill="#e20b0b" />
    </children>
 </AnchorPane>
