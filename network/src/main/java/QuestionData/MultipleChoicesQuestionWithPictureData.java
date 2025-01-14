@@ -7,11 +7,18 @@ public class MultipleChoicesQuestionWithPictureData extends AbstractQuestionData
     private String question;
     private List<String> options;
     private int[] correctAnswerIndexes;
+    private byte[] image;
 
-    public MultipleChoicesQuestionWithPictureData(String question, List<String> options, int[] correctAnswerIndex) {
+    public MultipleChoicesQuestionWithPictureData(String question, List<String> options, int[] correctAnswerIndex,
+            byte[] image) {
         this.question = question;
         this.options = options;
         this.correctAnswerIndexes = correctAnswerIndex;
+        this.image = image;
+    }
+
+    public byte[] getImage() {
+        return image;
     }
 
     @Override

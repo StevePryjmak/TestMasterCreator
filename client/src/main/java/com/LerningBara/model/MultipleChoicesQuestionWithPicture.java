@@ -20,25 +20,29 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
+import java.io.ByteArrayInputStream;
+
 public class MultipleChoicesQuestionWithPicture extends AbstractQuestion {
 
     private MultipleChoicesQuestionWithPictureData questionData;
     private MultipleChoicesQuestionWithPictureController controller;
-    private Image image;
 
     public MultipleChoicesQuestionWithPicture(String question, List<String> options, int[] correctAnswerIndexes,
-            Image image)
+            byte[] image)
             throws IOException {
-        questionData = new MultipleChoicesQuestionWithPictureData(question, options, correctAnswerIndexes);
-        this.image = image;
+        questionData = new MultipleChoicesQuestionWithPictureData(question, options, correctAnswerIndexes, image);
         initializeScene();
     }
 
-    public MultipleChoicesQuestionWithPicture(MultipleChoicesQuestionWithPictureData questionData, Image image)
+    public MultipleChoicesQuestionWithPicture(MultipleChoicesQuestionWithPictureData questionData)
             throws IOException {
         this.questionData = questionData;
-        this.image = image;
         initializeScene();
+    }
+
+    private Image byteArrayToImage(byte[] byteArray) {
+        ByteArrayInputStream inputStream = new ByteArrayInputStream(byteArray);
+        return new Image(inputStream);
     }
 
     private void initializeScene() throws IOException {
@@ -47,7 +51,7 @@ public class MultipleChoicesQuestionWithPicture extends AbstractQuestion {
 
         controller = loader.getController();
         controller.setQuestionAndAnswers(questionData.getQuestion(), questionData.getOptions(),
-                questionData.getCorrectAnswers(), image);
+                questionData.getCorrectAnswers(), byteArrayToImage(questionData.getImage()));
 
         scene = new Scene(root);
     }
@@ -64,7 +68,7 @@ public class MultipleChoicesQuestionWithPicture extends AbstractQuestion {
         questionBox.getStyleClass().add("question-box");
 
         ImageView imageView = new ImageView();
-        imageView.setImage(image);
+        imageView.setImage(byteArrayToImage(questionData.getImage()));
         questionBox.getChildren().add(imageView);
 
         Label questionLabel = new Label("Question #" + (index + 1) + ": " + questionData.getQuestion());

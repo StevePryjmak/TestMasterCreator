@@ -1,10 +1,11 @@
 package com.LerningBara.model;
 
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.util.List;
 
 import com.LerningBara.app.App;
-import com.LerningBara.controller.SingleChoiceQuestionController;
+import com.LerningBara.controller.SingleChoiceQuestionWithPictureController;
 
 import QuestionData.SingleChoiceQuestionWithPictureData;
 import javafx.fxml.FXMLLoader;
@@ -21,30 +22,32 @@ import javafx.scene.layout.VBox;
 public class SingleChoiceQuestionWithPicture extends AbstractQuestion {
 
     private SingleChoiceQuestionWithPictureData questionData;
-    private SingleChoiceQuestionController controller;
-    private Image image;
+    private SingleChoiceQuestionWithPictureController controller;
 
-    public SingleChoiceQuestionWithPicture(String question, List<String> options, int correctAnswerIndex, Image image)
+    public SingleChoiceQuestionWithPicture(String question, List<String> options, int correctAnswerIndex, byte[] image)
             throws IOException {
-        questionData = new SingleChoiceQuestionWithPictureData(question, options, correctAnswerIndex);
-        this.image = image;
+        questionData = new SingleChoiceQuestionWithPictureData(question, options, correctAnswerIndex, image);
         initializeScene();
     }
 
-    public SingleChoiceQuestionWithPicture(SingleChoiceQuestionWithPictureData questionData, Image image)
+    public SingleChoiceQuestionWithPicture(SingleChoiceQuestionWithPictureData questionData)
             throws IOException {
         this.questionData = questionData;
-        this.image = image;
         initializeScene();
+    }
+
+    private Image byteArrayToImage(byte[] byteArray) {
+        ByteArrayInputStream inputStream = new ByteArrayInputStream(byteArray);
+        return new Image(inputStream);
     }
 
     private void initializeScene() throws IOException {
-        FXMLLoader loader = new FXMLLoader(App.class.getResource("/fxml/SingleChoiceQuestionScene.fxml"));
+        FXMLLoader loader = new FXMLLoader(App.class.getResource("/fxml/SingleChoiceQuestionWithPictureScene.fxml"));
         Parent root = loader.load();
 
         controller = loader.getController();
         controller.setQuestionAndAnswers(questionData.getQuestion(), questionData.getOptions(),
-                questionData.getCorrectAnswer());
+                questionData.getCorrectAnswer(), byteArrayToImage(questionData.getImage()));
 
         scene = new Scene(root);
     }
@@ -64,7 +67,7 @@ public class SingleChoiceQuestionWithPicture extends AbstractQuestion {
         });
 
         ImageView imageView = new ImageView();
-        imageView.setImage(image);
+        imageView.setImage(byteArrayToImage(questionData.getImage()));
         questionBox.getChildren().add(imageView);
 
         Label questionLabel = new Label("Question #" + (index + 1) + ": " + questionData.getQuestion());

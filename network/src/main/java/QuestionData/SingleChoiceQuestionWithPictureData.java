@@ -7,11 +7,18 @@ public class SingleChoiceQuestionWithPictureData extends AbstractQuestionData {
     private String question;
     private List<String> options;
     private int correctAnswerIndex;
+    private byte[] image;
 
-    public SingleChoiceQuestionWithPictureData(String question, List<String> options, int correctAnswerIndex) {
+    public SingleChoiceQuestionWithPictureData(String question, List<String> options, int correctAnswerIndex,
+            byte[] image) {
         this.question = question;
         this.options = options;
         this.correctAnswerIndex = correctAnswerIndex;
+        this.image = image;
+    }
+
+    public byte[] getImage() {
+        return image;
     }
 
     @Override
