@@ -3,7 +3,6 @@ package com.LerningBara.controller;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.layout.VBox;
-import main.java.com.LerningBara.controller.CreateTests.CreateQestionConventor;
 import javafx.fxml.FXMLLoader;
 
 import java.io.IOException;
@@ -160,15 +159,17 @@ public class CreateTestController {
         saveCurrentState();
         CreateAbstractQestionController questionController;
         if (create) {
-            questionController = CreateQestionConventor.getController(questionType);
+            questionController = CreateQuestionConventor.getController(questionType);
+            questionController.isEdit = false;
         } else {
             questionController = questions.get(index);
+            questionController.isEdit = true;
         }
 
         try {
             FXMLLoader loader = new FXMLLoader(
-                    getClass().getResource(CreateQestionConventor.getFXMLLocation(questionType)));
-            questionController.isEdit = true;
+                    getClass().getResource(CreateQuestionConventor.getFXMLLocation(questionType)));
+            
             loader.setController(questionController);
             Parent root = loader.load();
 
@@ -198,6 +199,18 @@ public class CreateTestController {
             System.out.println("Test name is empty!");
             return;
         }
+        if (setTestField.getValue() == null) {
+            System.out.println("Test field is empty!");
+            return;
+        }
+        if (descriptionField.getText().isEmpty()) {
+            System.out.println("Test description is empty!");
+            return;
+        }
+        if (questions.isEmpty()) {
+            System.out.println("Test has no questions!");
+            return;
+        } // For now good enoth
 
         List<AbstractQuestionData> questionsData = new ArrayList<>();
         for (CreateAbstractQestionController question : questions) {
