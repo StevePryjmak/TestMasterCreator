@@ -141,3 +141,9 @@ INSERT INTO ANSWERS(
 COMMIT;
 INSERT INTO Users(Login, Password, Email) VALUES ('ala', 'ma kota', 'xd');
 COMMIT;
+INSERT INTO Users(Login, Password, Email) VALUES ('newuser', 'newpass', 'newemail@example.com');
+COMMIT;
+INSERT INTO Users(Login, Password, Email) VALUES ('newuser', 'newpass', 'newemail@example.com');
+COMMIT;
+INSERT INTO Users(Login, Password, Email) VALUES ('newuser', 'newpass', 'newemail@example.com');
+COMMIT;

@@ -81,6 +81,18 @@
 <ownDataTypeParameters>1 CHAR,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
+<Column name="VisibilityLevel" id="57966748-E063-2C67-4B7B-D70FB1B9D254">
+<createdBy>xxxx</createdBy>
+<createdTime>2025-01-14 19:52:42 UTC</createdTime>
+<generatorID>1C9D7786-9D5A-E7F3-AA72-124D4D92B51D</generatorID>
+<ownerDesignName>database</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<defaultValue>0</defaultValue>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
 </columns>
 <indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
 <ind_PK_UK id="B735DE0B-5BEC-C14C-3658-2CBDBD4C4C48" name="Users_PK">
