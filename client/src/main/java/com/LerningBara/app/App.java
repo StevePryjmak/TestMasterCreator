@@ -78,6 +78,7 @@ public class App extends Application {
 
 
     public static void main(String[] args) {
+        App.getInstance().client = new Client("localhost", 8080);
         launch(args);
     }
 

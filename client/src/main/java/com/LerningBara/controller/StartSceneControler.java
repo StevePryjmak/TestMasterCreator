@@ -24,8 +24,6 @@ public class StartSceneControler {
     }
 
     public void getTestsList() {
-        App.getInstance().client = new Client("localhost", 8080);
-        System.out.println("Connected to server");
         App.getInstance().client.sendMessage("List of tests", null);
         System.out.println("Waiting for list of tests");
         Message messageReceived = App.getInstance().client.getOneRecivedObject();

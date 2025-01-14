@@ -37,7 +37,6 @@ public class TestBoxController {
 
     private void setLikes() {
         System.out.println("Connected to server");
-        App.getInstance().client = new Client("localhost", 8080);
         Message message = new Message("Get test like count", testData.testID);
         App.getInstance().client.sendObject(message);
         System.out.println("Waiting for like count");
@@ -58,8 +57,6 @@ public class TestBoxController {
 
     @FXML
     public void handleUnlike() {
-        App.getInstance().client = new Client("localhost", 8080);
-        System.out.println("Connected to server");
         App.getInstance().client.sendMessage("Remove from likes", testData);
         System.out.println("Waiting to remove test from likes");
         Message messageReceived = App.getInstance().client.getOneRecivedObject();
@@ -75,8 +72,6 @@ public class TestBoxController {
 
     @FXML
     public void handleLike() {
-        App.getInstance().client = new Client("localhost", 8080);
-        System.out.println("Connected to server");
         App.getInstance().client.sendMessage("Add to likes", testData);
         System.out.println("Waiting to add test to likes");
         Message messageReceived = App.getInstance().client.getOneRecivedObject();
@@ -100,7 +95,6 @@ public class TestBoxController {
 
     public void getTest() {
         System.out.println("Connected to server");
-        App.getInstance().client = new Client("localhost", 8080);
         Message message = new Message("Give me the test", new String(testData.name));
         App.getInstance().client.sendObject(message);
         System.out.println("Waiting for test");

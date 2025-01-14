@@ -7,12 +7,25 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
 
 
 <BorderPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx"
     prefHeight="400.0" prefWidth="600.0">
     
-    
+   <!-- Top Panel -->
+   <top>
+      <HBox  spacing="10.0" alignment="CENTER">
+            <Button fx:id="goBackButton" onAction="#handleGoBack" text="Go Back" />
+
+            <Label text="Test Name:" />
+            <TextField fx:id="testNameField" promptText="Enter test name here" />
+      </HBox>
+   </top>
+
+
+
     <!-- Split Panel in the Top -->
     <center>
         <SplitPane dividerPositions="0.35">

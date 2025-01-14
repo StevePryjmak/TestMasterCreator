@@ -20,8 +20,6 @@ public class DeleteAccountController {
    public void deleteAccount() throws Exception {
       String password = passwordField.getText();
       UserData usr = new UserData(App.getInstance().user.getUsername(), password);
-      App.getInstance().client = new Client("localhost", 8080);
-      System.out.println("Connected to server");
 
       App.getInstance().client.sendMessage("Check password", usr);
       System.out.println("Waiting for password confirmation");

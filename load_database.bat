@@ -1,4 +1,4 @@
-#!/bin/bash
+
 
 docker exec oracle-db ./setPassword.sh projektpap2024
 

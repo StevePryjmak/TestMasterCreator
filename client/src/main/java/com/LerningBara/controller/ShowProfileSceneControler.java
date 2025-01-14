@@ -30,8 +30,6 @@ public class ShowProfileSceneControler {
         UserData usr = new UserData(app.user.getUsername());
         ImageData img;
         Image loaded_image = null;
-        App.getInstance().client = new Client("localhost", 8080);
-        System.out.println("Connected to server");
         App.getInstance().client.sendMessage("Get profile icon", usr);
         System.out.println("Waiting for server response");
         Message messageReceived = App.getInstance().client.getOneRecivedObject();

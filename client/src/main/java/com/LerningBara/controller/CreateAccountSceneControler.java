@@ -41,8 +41,7 @@ public class CreateAccountSceneControler {
         String password = passwordField1.getText();
         Boolean db_resp = false;
         UserData usr = new UserData(login, password, email);
-        App.getInstance().client = new Client("localhost", 8080);
-        System.out.println("Connected to server");
+        
         App.getInstance().client.sendMessage("User exists", usr);
         System.out.println("Waiting for server response");
         Message messageReceived = App.getInstance().client.getOneRecivedObject();

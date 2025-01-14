@@ -30,8 +30,6 @@ public class EndTestController {
 
     @FXML
     public void addToLiked() {
-        App.getInstance().client = new Client("localhost", 8080);
-        System.out.println("Connected to server");
         App.getInstance().client.sendMessage("Add to likes", currentTest);
         System.out.println("Waiting to add test to likes");
         Message messageReceived = App.getInstance().client.getOneRecivedObject();
@@ -45,8 +43,6 @@ public class EndTestController {
 
     @FXML
     public void returnToBrowsing() {
-        App.getInstance().client = new Client("localhost", 8080);
-        System.out.println("Connected to server");
         App.getInstance().client.sendMessage("List of tests", null);
         System.out.println("Waiting for list of tests");
         Message messageReceived = App.getInstance().client.getOneRecivedObject();
@@ -70,8 +66,6 @@ public class EndTestController {
         currentTest = App.getInstance().testInfoData;
         currentTest.currentUserID = App.getInstance().user.getId();
 
-        App.getInstance().client = new Client("localhost", 8080);
-        System.out.println("Connected to server");
         App.getInstance().client.sendMessage("Add result", currentTest);
         System.out.println("Waiting to add test result to database");
         Message messageReceived = App.getInstance().client.getOneRecivedObject();
@@ -85,8 +79,6 @@ public class EndTestController {
             System.out.println("Failed to add the result");
         }
 
-        App.getInstance().client = new Client("localhost", 8080);
-        System.out.println("Connected to server");
         App.getInstance().client.sendMessage("Get user's test results", currentTest);
         System.out.println("Waiting to user's test results");
         messageReceived = App.getInstance().client.getOneRecivedObject();
