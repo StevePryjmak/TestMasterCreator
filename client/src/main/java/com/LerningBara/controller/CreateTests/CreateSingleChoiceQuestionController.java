@@ -47,7 +47,6 @@ public class CreateSingleChoiceQuestionController extends CreateAbstractQestionC
         if (questionText != null && !questionText.isEmpty()) {
             questionInput.setText(questionText);
         } else
-            isEdit = false;
 
         if (answers != null && !answers.isEmpty()) {
             answerList.getChildren().clear();
