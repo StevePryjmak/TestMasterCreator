@@ -37,7 +37,7 @@ public class EndTestController {
         if ((Boolean) obj) {
             likeInfoLabel.setText("Added to liked");
         } else {
-            likeInfoLabel.setText("Alredy liked");
+            likeInfoLabel.setText("Already liked");
         }
     }
 
@@ -82,7 +82,7 @@ public class EndTestController {
             System.out.println("Failed to add the result");
         }
 
-        //  TODO: add label with best result (change current result label to lates
+        // TODO: add label with best result (change current result label to lates
         // esult label)
 
         String text = currentTest.result + "/" + currentTest.questionCount;
