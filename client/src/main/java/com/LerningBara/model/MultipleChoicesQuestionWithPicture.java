@@ -8,7 +8,7 @@ import java.util.Set;
 import com.LerningBara.app.App;
 import com.LerningBara.controller.MultipleChoicesQuestionWithPictureController;
 
-import QuestionData.MultipleChoicesQuestionWithPicturesData;
+import QuestionData.MultipleChoicesQuestionWithPictureData;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
@@ -20,21 +20,21 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
-public class MultipleChoicesQuestionWithPictures extends AbstractQuestion {
+public class MultipleChoicesQuestionWithPicture extends AbstractQuestion {
 
-    private MultipleChoicesQuestionWithPicturesData questionData;
+    private MultipleChoicesQuestionWithPictureData questionData;
     private MultipleChoicesQuestionWithPictureController controller;
     private Image image;
 
-    public MultipleChoicesQuestionWithPictures(String question, List<String> options, int[] correctAnswerIndexes,
+    public MultipleChoicesQuestionWithPicture(String question, List<String> options, int[] correctAnswerIndexes,
             Image image)
             throws IOException {
-        questionData = new MultipleChoicesQuestionWithPicturesData(question, options, correctAnswerIndexes);
+        questionData = new MultipleChoicesQuestionWithPictureData(question, options, correctAnswerIndexes);
         this.image = image;
         initializeScene();
     }
 
-    public MultipleChoicesQuestionWithPictures(MultipleChoicesQuestionWithPicturesData questionData, Image image)
+    public MultipleChoicesQuestionWithPicture(MultipleChoicesQuestionWithPictureData questionData, Image image)
             throws IOException {
         this.questionData = questionData;
         this.image = image;
