@@ -20,7 +20,9 @@ public class EndTestController {
     @FXML
     private Button likeButton;
     @FXML
-    private Label resultLabel;
+    private Label bestResultLabel;
+    @FXML
+    private Label latestResultLabel;
     @FXML
     private Label likeInfoLabel;
 
@@ -63,6 +65,7 @@ public class EndTestController {
     }
 
     @FXML
+    @SuppressWarnings("unchecked")
     private void initialize() {
         currentTest = App.getInstance().testInfoData;
         currentTest.currentUserID = App.getInstance().user.getId();
@@ -82,11 +85,25 @@ public class EndTestController {
             System.out.println("Failed to add the result");
         }
 
-        // TODO: add label with best result (change current result label to lates
-        // esult label)
+        App.getInstance().client = new Client("localhost", 8080);
+        System.out.println("Connected to server");
+        App.getInstance().client.sendMessage("Get user's test results", currentTest);
+        System.out.println("Waiting to user's test results");
+        messageReceived = App.getInstance().client.getOneRecivedObject();
+        obj = messageReceived.getObject();
 
-        String text = currentTest.result + "/" + currentTest.questionCount;
-        resultLabel.setText(text);
+        int bestResult = 0;
+        for (int i : (List<Integer>) obj) {
+            if (i > bestResult) {
+                bestResult = i;
+            }
+        }
+        String text = "Best result: " + String.valueOf(bestResult) + "/" + currentTest.questionCount;
+        bestResultLabel.setText(text);
+
+        text = "Latest result: " + currentTest.result + "/" + currentTest.questionCount;
+        latestResultLabel.setText(text);
         likeInfoLabel.setText("");
+
     }
 }
