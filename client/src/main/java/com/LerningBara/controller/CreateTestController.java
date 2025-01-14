@@ -8,6 +8,7 @@ import java.io.IOException;
 import com.LerningBara.app.App;
 
 import QuestionData.*;
+import TestData.TestData;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,6 +29,7 @@ import javafx.scene.control.ScrollPane;
 import com.LerningBara.controller.CreateTests.CreateAbstractQestionController;
 import com.LerningBara.controller.CreateTests.CreateSingleChoiceQuestionController;
 import javafx.scene.Parent;
+import com.LerningBara.model.Test;
 
 
 public class CreateTestController {
@@ -151,6 +153,21 @@ public class CreateTestController {
         initialize();
     }
 
+    // @TODO save it to corect location and do corect logic after also send and save to database
+    @FXML
+    private void handleSaveTest() {
+        System.out.println("Add Test button clicked!");
+
+        List<AbstractQuestionData> questionsData = new ArrayList<>();
+        for (CreateAbstractQestionController question : questions) {
+            questionsData.add(question.getQuestionData());
+        }
+        TestData testdata = new TestData(questionsData);
+        Test test = new Test(questionsData, true);
+        App.getInstance().setTest(test);
+        App.getInstance().runExampleTest();
+        //App.addTest(test);
+    }
 
 
     
