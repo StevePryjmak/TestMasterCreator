@@ -18,9 +18,6 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 
 import com.LerningBara.controller.MainLayoutController;
-import com.LerningBara.controller.TestBoxController;
-import javafx.scene.layout.VBox;
-import javafx.scene.layout.HBox;
 
 import com.LerningBara.controller.CreateTestController;
 
@@ -45,7 +42,8 @@ public class App extends Application {
             stage.getIcons().add(icon);
             stage.setTitle("LearningBara");
             Parent root = FXMLLoader.load(getClass().getResource("/fxml/LoginScene.fxml"));
-            // Parent root = FXMLLoader.load(getClass().getResource("/fxml/StartScene.fxml"));
+            // Parent root =
+            // FXMLLoader.load(getClass().getResource("/fxml/StartScene.fxml"));
             Scene scene = new Scene(root);
             scene.getStylesheets().add("/css/DefaultStyle.css");
             stage.setScene(scene);
@@ -61,9 +59,9 @@ public class App extends Application {
             if (fxml.equals("CreateTestScene")) {
                 System.out.println("CreateTestScene loaded");
                 if (createTestController == null) {
-                    createTestController = new CreateTestController();  // Create if not already created
+                    createTestController = new CreateTestController(); // Create if not already created
                 }
-                loader.setController(createTestController);  // Set controller
+                loader.setController(createTestController); // Set controller
             }
             Parent root = loader.load();
             Scene scene = new Scene(root);
@@ -75,7 +73,6 @@ public class App extends Application {
             e.printStackTrace();
         }
     }
-
 
     public static void main(String[] args) {
         App.getInstance().client = new Client("localhost", 8080);

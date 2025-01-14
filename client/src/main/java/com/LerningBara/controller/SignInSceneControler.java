@@ -4,7 +4,6 @@ import com.LerningBara.app.App;
 
 import UserData.User;
 import UserData.UserData;
-import client.Client;
 import connection.Message;
 import javafx.fxml.FXML;
 import javafx.scene.control.PasswordField;

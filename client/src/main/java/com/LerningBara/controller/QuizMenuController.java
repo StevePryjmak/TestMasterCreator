@@ -7,7 +7,6 @@ import com.LerningBara.app.App;
 
 import TestData.AvalibleTestsList;
 import TestData.TestInfoData;
-import client.Client;
 import connection.Message;
 import javafx.fxml.FXML;
 

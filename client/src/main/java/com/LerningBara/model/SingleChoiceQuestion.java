@@ -7,7 +7,6 @@ import javafx.scene.Scene;
 import java.io.IOException;
 import java.util.List;
 
-
 import com.LerningBara.app.App;
 import com.LerningBara.controller.SingleChoiceQuestionController;
 
@@ -17,15 +16,9 @@ import javafx.scene.layout.HBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 
-import javafx.scene.control.Label;
-import javafx.scene.control.RadioButton;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
 import javafx.geometry.Pos;
-
 
 public class SingleChoiceQuestion extends AbstractQuestion {
 
@@ -63,7 +56,7 @@ public class SingleChoiceQuestion extends AbstractQuestion {
     public VBox getDetailsBox(int index) {
         VBox questionBox = new VBox(10);
         questionBox.getStyleClass().add("question-box");
-        questionBox.setOnMouseClicked(event -> {
+        questionBox.setOnMouseClicked(_ -> {
             App.createTestController.handleQuestionEdit(index, false);
         });
 
@@ -112,9 +105,4 @@ public class SingleChoiceQuestion extends AbstractQuestion {
         return questionBox;
     }
 
-    
-    
-    
-    
-    
 }

@@ -5,7 +5,6 @@ import javafx.fxml.FXML;
 
 import java.io.IOException;
 import java.util.List;
-import client.Client;
 import connection.Message;
 
 import TestData.*;

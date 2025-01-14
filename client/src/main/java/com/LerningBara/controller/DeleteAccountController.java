@@ -3,7 +3,6 @@ package com.LerningBara.controller;
 import com.LerningBara.app.App;
 
 import UserData.UserData;
-import client.Client;
 import connection.Message;
 import javafx.fxml.FXML;
 import javafx.scene.control.PasswordField;
@@ -26,16 +25,15 @@ public class DeleteAccountController {
       Message messageReceived = App.getInstance().client.getOneRecivedObject();
       Object obj = messageReceived.getObject();
 
-      if ((Boolean)obj) {
+      if ((Boolean) obj) {
          App.getInstance().client.sendMessage("Delete user", usr);
          System.out.println("Waiting for database response");
          messageReceived = App.getInstance().client.getOneRecivedObject();
          obj = messageReceived.getObject();
-         if((Boolean)obj){
+         if ((Boolean) obj) {
             App.getInstance().user.setAttributes(0, "unknown", "unknown");
             App.setRoot("LoginScene");
-         }
-         else{
+         } else {
             passLabel.setText("Something went wrong.");
          }
       } else {
