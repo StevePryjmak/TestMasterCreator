@@ -25,7 +25,7 @@ public class ClientHandler implements Runnable {
     private ObjectOutputStream objectOutputStream;
     private final Map<String, Runnable> functionMap = new HashMap<>();
     private Queue<Object> recived = new LinkedList<>();
-    private User user;
+    private static User user;
 
     public ClientHandler(Socket socket) {
         this.socket = socket;
@@ -139,8 +139,8 @@ public class ClientHandler implements Runnable {
     public void saveTest() {
         Object obj = recived.poll();
         if (obj instanceof TestData) {
-            System.out.println("Test not saved in bd need to be implemented here");
-            DataBase.addTest((TestData)obj, user.getId());
+            System.out.println("Test not saved in bd need to be implemented here " + user);
+            DataBase.addTest((TestData) obj, user.getId());
         }
     }
 
@@ -160,10 +160,11 @@ public class ClientHandler implements Runnable {
     public void sendCheckPassword() {
         Object obj = recived.poll();
         boolean correct_pass = DataBase.checkPassword(((UserData) obj).username, ((UserData) obj).password);
-        sendObject(new Message("Information if user exists",correct_pass));
-        if(correct_pass){
+        if (correct_pass) {
             user = DataBase.getUser(((UserData) obj).username);
         }
+        System.out.println("current user: " + user + " userID: " + user.getId());
+        sendObject(new Message("Information if user exists", correct_pass));
     }
 
     public void sendAddUser() {
