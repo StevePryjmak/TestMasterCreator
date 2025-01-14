@@ -3,12 +3,12 @@ package QuestionData;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MultipleChoicesQuestionWithPicturesData extends AbstractQuestionData {
+public class MultipleChoicesQuestionWithPictureData extends AbstractQuestionData {
     private String question;
     private List<String> options;
     private int[] correctAnswerIndexes;
 
-    public MultipleChoicesQuestionWithPicturesData(String question, List<String> options, int[] correctAnswerIndex) {
+    public MultipleChoicesQuestionWithPictureData(String question, List<String> options, int[] correctAnswerIndex) {
         this.question = question;
         this.options = options;
         this.correctAnswerIndexes = correctAnswerIndex;
