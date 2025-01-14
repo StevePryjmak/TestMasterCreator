@@ -42,8 +42,6 @@ public class App extends Application {
             stage.getIcons().add(icon);
             stage.setTitle("LearningBara");
             Parent root = FXMLLoader.load(getClass().getResource("/fxml/LoginScene.fxml"));
-            // Parent root =
-            // FXMLLoader.load(getClass().getResource("/fxml/StartScene.fxml"));
             Scene scene = new Scene(root);
             scene.getStylesheets().add("/css/DefaultStyle.css");
             stage.setScene(scene);
@@ -114,7 +112,7 @@ public class App extends Application {
 
         controller.setTests(testsInfo);
 
-        Scene scene = new Scene(root);
+        Scene scene = new Scene(root, 600, 600);
         scene.getStylesheets().add(getClass().getResource("/css/RoundedSearchBar.css").toExternalForm());
         stage.setScene(scene);
     }
