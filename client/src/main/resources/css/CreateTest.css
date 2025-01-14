@@ -1,5 +1,34 @@
 /* Encapsulated style for the VBox containing the question and answers */
 /* Style for the question-box */
+
+.full-size {
+    -fx-pref-width: 100%; /* 100% width of the parent */
+    -fx-min-width: 100%; /* Minimum width for smaller screens */
+    -fx-max-width: 100%; /* Maximum width for larger screens */
+}
+
+/* problem with this is peret is not coret parent is 0 dont  know why*/
+.sticker-button {
+    -fx-background-color: #d3d3d3; /* Light gray background */
+    -fx-border-color: #a9a9a9; /* Darker gray border */
+    -fx-border-width: 1px;
+    -fx-background-radius: 0 15 15 0; /* Rounded on the right */
+    -fx-border-radius: 0 15 15 0; /* Matches background radius */
+    -fx-padding: 5 15 5 10; /* Padding for text spacing */
+    -fx-font-size: 14px; /* Adjust text size */
+    -fx-text-fill: #333; /* Dark gray text */
+    -fx-alignment: center-left; /* Align text to the left */
+    -fx-pref-width: 90%; /* Set the width to 90% of the parent */
+    -fx-min-width: 200; /* Minimum width for smaller screens */
+    /* -fx-max-width: ; Maximum width for larger screens */
+}
+
+.sticker-button:hover {
+    -fx-background-color: #c0c0c0; /* Slightly darker gray on hover */
+    -fx-cursor: hand; /* Change cursor to hand on hover */
+}
+
+
 .question-box {
     -fx-background-color: #f9f9f9;       /* Light background color */
     -fx-border-color: #dcdcdc;           /* Subtle border */

@@ -97,13 +97,15 @@ public class CreateTestController {
     public void updateQuestionShortcuts() {
         questionsShortcuts.getChildren().clear();
         for (int i = 0; i < questions.size(); i++) {
-            Button shortcutButton = new Button((i+1) + ". " + questions.get(i).getQuestionData().getQuestion());
+            Button shortcutButton = new Button((i + 1) + ". " + questions.get(i).getQuestionData().getQuestion());
             int questionIndex = i;
-
+    
+            shortcutButton.getStyleClass().add("sticker-button");
             shortcutButton.setOnAction(event -> scrollToQuestion(questionIndex));
             questionsShortcuts.getChildren().add(shortcutButton);
         }
     }
+    
 
     private void scrollToQuestion(int index) {
         if (index < 0 || index >= questionList.getChildren().size()) return;

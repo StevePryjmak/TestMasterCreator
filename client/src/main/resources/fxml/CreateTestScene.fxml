@@ -12,11 +12,11 @@
     xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx"
     >
    <items>
-      <ScrollPane >
+      <ScrollPane>
         <content>
-           <AnchorPane> <!-- minHeight="0.0" minWidth="0.0" prefHeight="385.0" prefWidth="200.0" because make panel not scroleble and buged a liite -->
+           <AnchorPane styleClass="full-size"> <!-- minHeight="0.0" minWidth="0.0" prefHeight="385.0" prefWidth="200.0" because make panel not scroleble and buged a liite -->
                <children>
-                  <VBox fx:id="questionsShortcuts" layoutX="3.0" layoutY="51.0" > <!-- prefHeight="327.0" prefWidth="193.0" -->
+                  <VBox fx:id="questionsShortcuts"  layoutY="51.0" styleClass="full-size"> <!-- layoutX="3.0" prefHeight="327.0" prefWidth="193.0" -->
                      <children>
                      <!-- Add here image icon for acount -->
                      </children>
@@ -31,7 +31,7 @@
                <children>
 
                   
-               <VBox fx:id="page" maxWidth="Infinity">
+               <VBox fx:id="page" maxWidth="Infinity" >
                   <Button fx:id="addQuestionButton" onAction="#handleAddQuestion" text="Add Question" />
                   <VBox fx:id="questionList" />
                </VBox>
