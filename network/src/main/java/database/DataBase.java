@@ -191,7 +191,7 @@ public class DataBase {
         List<AbstractQuestionData> questions = new ArrayList<>();
         try {
             statement = connection.prepareStatement(
-                    "SELECT q.QuestionId, q.Text, q.Types_TypeId FROM Tests t JOIN Questions q ON TestId = Tests_TestId  WHERE Name=? ORDER BY Position");
+                    "SELECT q.QuestionId, q.Text, q.Types_TypeId q.image FROM Tests t JOIN Questions q ON TestId = Tests_TestId  WHERE Name=? ORDER BY Position");
             statement.setString(1, testName);
             questionsSet = statement.executeQuery();
 
