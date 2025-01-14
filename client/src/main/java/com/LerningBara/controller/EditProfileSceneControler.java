@@ -20,8 +20,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.stage.FileChooser;
 import java.awt.image.BufferedImage;
-import java.io.ByteArrayOutputStream;
-
 
 public class EditProfileSceneControler {
     @FXML
@@ -44,19 +42,19 @@ public class EditProfileSceneControler {
     private PasswordField newPassField;
 
     @FXML
-    public void initialize(){
+    public void initialize() {
         App app = App.getInstance();
         email.setText(app.user.getEmail());
         username.setText(app.user.getUsername());
     }
 
-    public void changeEmail(){
+    public void changeEmail() {
         passLabel.setText("");
         usernameLabel.setText("");
         User curr_user = App.getInstance().user;
 
         String emailStr = emailField.getText();
-        if (emailStr.equals("")){
+        if (emailStr.equals("")) {
             emailLabel.setStyle("-fx-text-fill: red");
             emailLabel.setText("Email cannot be empty.");
             return;
@@ -69,20 +67,19 @@ public class EditProfileSceneControler {
         System.out.println("Waiting for server response");
         Message messageReceived = App.getInstance().client.getOneRecivedObject();
         Object obj = messageReceived.getObject();
-        if ((Boolean)obj) {
+        if ((Boolean) obj) {
             App.getInstance().user.setAttributes(curr_user.getId(), curr_user.getUsername(), emailStr);
             email.setText(emailStr);
             emailLabel.setStyle("-fx-text-fill: blue");
             emailLabel.setText("Email changed.");
-        }
-        else {
+        } else {
             emailLabel.setStyle("-fx-text-fill: red");
             emailLabel.setText("Database failure.");
         }
 
     }
 
-    public void changeUsername(){
+    public void changeUsername() {
         passLabel.setText("");
         emailLabel.setText("");
         String usernameStr = usernameField.getText();
@@ -94,16 +91,15 @@ public class EditProfileSceneControler {
         System.out.println("Waiting for server response");
         Message messageReceived = App.getInstance().client.getOneRecivedObject();
         Object obj = messageReceived.getObject();
-        if (obj instanceof Boolean){
-            db_resp = (Boolean)obj;
+        if (obj instanceof Boolean) {
+            db_resp = (Boolean) obj;
         }
 
-        if (usernameStr.equals("")){
+        if (usernameStr.equals("")) {
             usernameLabel.setStyle("-fx-text-fill: red");
             usernameLabel.setText("Username cannot be empty.");
             return;
-        }
-        else if(db_resp){
+        } else if (db_resp) {
             usernameLabel.setStyle("-fx-text-fill: red");
             usernameLabel.setText("Username already taken.");
             return;
@@ -115,19 +111,18 @@ public class EditProfileSceneControler {
         System.out.println("Waiting for server response");
         messageReceived = App.getInstance().client.getOneRecivedObject();
         obj = messageReceived.getObject();
-        if ((Boolean)obj) {
+        if ((Boolean) obj) {
             App.getInstance().user.setAttributes(curr_user.getId(), usernameStr, curr_user.getEmail());
             username.setText(usernameStr);
             usernameLabel.setStyle("-fx-text-fill: blue");
             usernameLabel.setText("Username changed.");
-        }
-        else {
+        } else {
             usernameLabel.setStyle("-fx-text-fill: red");
             usernameLabel.setText("Database failure.");
         }
     }
 
-    public void changePassword(){
+    public void changePassword() {
         usernameLabel.setText("");
         emailLabel.setText("");
         User curr_user = App.getInstance().user;
@@ -140,16 +135,15 @@ public class EditProfileSceneControler {
         System.out.println("Waiting for server response");
         Message messageReceived = App.getInstance().client.getOneRecivedObject();
         Object obj = messageReceived.getObject();
-        if (obj instanceof Boolean){
-            db_resp = (Boolean)obj;
+        if (obj instanceof Boolean) {
+            db_resp = (Boolean) obj;
         }
 
-        if (passStr.equals("")){
+        if (passStr.equals("")) {
             passLabel.setStyle("-fx-text-fill: red");
             passLabel.setText("New password cannot be empty.");
             return;
-        }
-        else if(!db_resp){
+        } else if (!db_resp) {
             passLabel.setStyle("-fx-text-fill: red");
             passLabel.setText("Incorrect password.");
             return;
@@ -160,11 +154,10 @@ public class EditProfileSceneControler {
         System.out.println("Waiting for server response");
         messageReceived = App.getInstance().client.getOneRecivedObject();
         obj = messageReceived.getObject();
-        if ((Boolean)obj) {
+        if ((Boolean) obj) {
             passLabel.setStyle("-fx-text-fill: blue");
             passLabel.setText("Password changed.");
-        }
-        else {
+        } else {
             passLabel.setStyle("-fx-text-fill: red");
             passLabel.setText("Database failure.");
         }
@@ -174,8 +167,7 @@ public class EditProfileSceneControler {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Choose a picture");
         fileChooser.getExtensionFilters().addAll(
-            new FileChooser.ExtensionFilter("Obrazy", "*.png", "*.jpg", "*.jpeg", "*.gif")
-        );
+                new FileChooser.ExtensionFilter("Obrazy", "*.png", "*.jpg", "*.jpeg", "*.gif"));
         File file = fileChooser.showOpenDialog(App.getInstance().getPrimaryStage());
 
         if (file != null) {
@@ -197,7 +189,7 @@ public class EditProfileSceneControler {
             Message messageReceived = App.getInstance().client.getOneRecivedObject();
             Object obj = messageReceived.getObject();
 
-            if((Boolean)obj){
+            if ((Boolean) obj) {
                 System.out.println("Image has been sent succesfully.");
             }
 
@@ -206,8 +198,7 @@ public class EditProfileSceneControler {
         }
     }
 
-
-    public void goBack() throws Exception{
+    public void goBack() throws Exception {
         App.setRoot("UserMenuScene");
     }
 }

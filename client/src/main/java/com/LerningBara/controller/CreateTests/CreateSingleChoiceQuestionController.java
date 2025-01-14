@@ -12,7 +12,6 @@ import javafx.scene.control.ToggleGroup;
 import QuestionData.*;
 import com.LerningBara.app.App;
 
-
 public class CreateSingleChoiceQuestionController extends CreateAbstractQestionController {
 
     @FXML
@@ -30,7 +29,7 @@ public class CreateSingleChoiceQuestionController extends CreateAbstractQestionC
     private ToggleGroup toggleGroup;
 
     private String questionText;
-    private List<String>answers;
+    private List<String> answers;
     private int correctAnswerIndex;
 
     @FXML
@@ -40,44 +39,43 @@ public class CreateSingleChoiceQuestionController extends CreateAbstractQestionC
         addAnswerField();
         initializeFields();
 
-        addAnswerButton.setOnAction(event -> addAnswerField());
-        saveButton.setOnAction(event -> handleSaveQuestion());
+        addAnswerButton.setOnAction(_ -> addAnswerField());
+        saveButton.setOnAction(_ -> handleSaveQuestion());
     }
 
     private void initializeFields() {
         if (questionText != null && !questionText.isEmpty()) {
             questionInput.setText(questionText);
-        }
-        else isEdit = false;
-    
+        } else
+            isEdit = false;
+
         if (answers != null && !answers.isEmpty()) {
             answerList.getChildren().clear();
             toggleGroup = new ToggleGroup();
-    
+
             for (int i = 0; i < answers.size(); i++) {
                 HBox answerBox = new HBox(10);
-    
+
                 TextField answerInput = new TextField(answers.get(i));
                 answerInput.setPromptText("Enter answer option");
-    
+
                 RadioButton correctAnswerButton = new RadioButton();
                 correctAnswerButton.setToggleGroup(toggleGroup);
                 if (i == correctAnswerIndex) {
                     correctAnswerButton.setSelected(true);
                 }
-    
+
                 Button deleteButton = new Button("Remove");
-                deleteButton.setOnAction(event -> {
+                deleteButton.setOnAction(_ -> {
                     answerList.getChildren().remove(answerBox);
                     toggleGroup.getToggles().remove(correctAnswerButton);
                 });
-    
+
                 answerBox.getChildren().addAll(correctAnswerButton, answerInput, deleteButton);
                 answerList.getChildren().add(answerBox);
             }
         }
     }
-    
 
     private void addAnswerField() {
         HBox answerBox = new HBox(10);
@@ -88,9 +86,8 @@ public class CreateSingleChoiceQuestionController extends CreateAbstractQestionC
         RadioButton correctAnswerButton = new RadioButton();
         correctAnswerButton.setToggleGroup(toggleGroup);
 
-        
         Button deleteButton = new Button("Remove");
-        deleteButton.setOnAction(event -> {
+        deleteButton.setOnAction(_ -> {
             answerList.getChildren().remove(answerBox);
             toggleGroup.getToggles().remove(correctAnswerButton);
         });
@@ -126,7 +123,6 @@ public class CreateSingleChoiceQuestionController extends CreateAbstractQestionC
             }
         }
 
-
         if (answers.size() < 2) {
             System.out.println("Please provide at least two valid answers.");
             return;
@@ -137,8 +133,7 @@ public class CreateSingleChoiceQuestionController extends CreateAbstractQestionC
             return;
         }
 
-
-        if(!isEdit) {
+        if (!isEdit) {
             App.createTestController.addQuestion(this);
         }
         App.setRoot("CreateTestScene");
@@ -147,8 +142,7 @@ public class CreateSingleChoiceQuestionController extends CreateAbstractQestionC
 
     @Override
     public AbstractQuestionData getQuestionData() {
-        return  (AbstractQuestionData) new SingleChoiceQuestionData(
-            questionText, answers, correctAnswerIndex
-        );
+        return (AbstractQuestionData) new SingleChoiceQuestionData(
+                questionText, answers, correctAnswerIndex);
     }
 }

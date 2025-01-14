@@ -8,7 +8,6 @@ import java.util.Queue;
 
 import TestData.*;
 
-import java.awt.Image;
 import java.io.*;
 import java.net.Socket;
 
@@ -137,7 +136,7 @@ public class ClientHandler implements Runnable {
 
     public void saveTest() {
         Object obj = recived.poll();
-        if(obj instanceof TestData){
+        if (obj instanceof TestData) {
             System.out.println("Test not saved in bd need to be implemented here");
             // DataBase.addTest((TestData)obj);
         }
@@ -204,10 +203,10 @@ public class ClientHandler implements Runnable {
     private void sendAddIcon() {
         Object obj = recived.poll();
         try {
-            DataBase.setUserIcon(((ImageData)obj).username, ((ImageData)obj).map);
-            sendObject(new Message("Information if icon is added", (Boolean)true));}
-        catch (Exception e){
-            sendObject(new Message("Information if icon is added", (Boolean)false));
+            DataBase.setUserIcon(((ImageData) obj).username, ((ImageData) obj).map);
+            sendObject(new Message("Information if icon is added", (Boolean) true));
+        } catch (Exception e) {
+            sendObject(new Message("Information if icon is added", (Boolean) false));
         }
     }
 
@@ -215,10 +214,9 @@ public class ClientHandler implements Runnable {
         Object obj = recived.poll();
         ImageData img = new ImageData();
         try {
-            img.map =DataBase.getUserIcon(((UserData)obj).username);
+            img.map = DataBase.getUserIcon(((UserData) obj).username);
             sendObject(new Message("Icon info", img));
-        }
-        catch (Exception e){
+        } catch (Exception e) {
             sendObject(new Message("Icon info", "blad"));
         }
     }
