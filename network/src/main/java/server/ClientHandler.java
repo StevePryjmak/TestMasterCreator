@@ -61,19 +61,26 @@ public class ClientHandler implements Runnable {
                     ((TestInfoData) obj).result);
             sendObject(new Message("Added the result", (Boolean) true));
         } catch (Exception e) {
-            sendObject(new Message("Failed to add teh result", (Boolean) false));
+            sendObject(new Message("Failed to add the result", (Boolean) false));
         }
     }
 
     public void sendAddToLikes() {
         Object obj = recived.poll();
         if (obj instanceof TestInfoData) {
+            boolean already_liked = false;
+            for (TestInfoData i : DataBase.getFavorites(((TestInfoData) obj).currentUserID).getTests()) {
+                if (i.testID == ((TestInfoData) obj).testID) {
+                    already_liked = true;
+                    break;
+                }
+            }
 
-            if (DataBase.getLikedTests(((TestInfoData) obj).currentUserID).getTests().contains((TestInfoData) obj)) {
-                sendObject(new Message("Already liked", (Boolean) false));
+            if (!already_liked) {
+                DataBase.addFavorites(((TestInfoData) obj).currentUserID, ((TestInfoData) obj).testID);
+                sendObject(new Message("Adding to liked", Boolean.TRUE));
             } else {
-                DataBase.addToLikes(((TestInfoData) obj).currentUserID, ((TestInfoData) obj).testID);
-                sendObject(new Message("Adding to liked", (Boolean) true));
+                sendObject(new Message("Already liked", Boolean.FALSE));
             }
 
         }
@@ -81,7 +88,7 @@ public class ClientHandler implements Runnable {
     }
 
     public void sendLikedTestList() {
-        sendObject(new Message("List of liked tests", DataBase.getLikedTests((int) recived.poll())));
+        sendObject(new Message("List of liked tests", DataBase.getFavorites((int) recived.poll())));
     }
 
     public void sendUserTestList() {

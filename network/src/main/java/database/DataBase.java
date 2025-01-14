@@ -59,7 +59,7 @@ public class DataBase {
         List<TestInfoData> tests = new ArrayList<>();
         try {
             statement = connection.prepareStatement(
-                    "SELECT LOGIN, T.*, (SELECT COUNT(*) FROM TEST_QUESTION WHERE TESTS_TESTID = T.TESTID) N FROM TESTS T JOIN USERS ON USERID = T.USERS_USERID");
+                    "SELECT LOGIN, T.*, (SELECT COUNT(*) FROM Questions WHERE TESTS_TESTID = T.TESTID) N FROM TESTS T JOIN USERS ON USERID = USERS_USERID");
             resultSet = statement.executeQuery();
 
             while (resultSet.next()) {
@@ -526,7 +526,7 @@ public class DataBase {
         PreparedStatement statement = null;
         try {
             statement = connection.prepareStatement(
-                    "DELETE FROM Likes WHERE UserId = ? AND TestId = ?");
+                    "DELETE FROM Likes WHERE users_UserId = ? AND tests_TestId = ?");
             statement.setInt(1, userId);
             statement.setInt(2, testId);
             statement.executeUpdate();
@@ -603,7 +603,7 @@ public class DataBase {
         List<Integer> results = new ArrayList<>();
         try {
             statement = connection.prepareStatement(
-                    "SELECT Points FROM Results WHERE TestId = ? AND UserId = ?");
+                    "SELECT Points FROM Results WHERE tests_TestId = ? AND users_UserId = ?");
             statement.setInt(1, testId);
             statement.setInt(2, userId);
             resultSet = statement.executeQuery();
