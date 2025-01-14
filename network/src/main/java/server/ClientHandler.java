@@ -10,11 +10,10 @@ import TestData.*;
 
 import java.io.*;
 import java.net.Socket;
+
 import connection.Message;
 import database.DataBase;
 import UserData.UserData;
-
-
 
 public class ClientHandler implements Runnable {
 
@@ -44,7 +43,94 @@ public class ClientHandler implements Runnable {
         functionMap.put("Check password", this::sendCheckPassword);
         functionMap.put("Add user", this::sendAddUser);
         functionMap.put("Save test", this::saveTest);
+
         // @TODO add more functions here
+        functionMap.put("Get user", this::sendGetUser);
+        functionMap.put("Update user", this::sendUpdateUser);
+        functionMap.put("Delete user", this::sendDeleteUser);
+        functionMap.put("List of user test", this::sendUserTestList);
+        functionMap.put("List of liked test", this::sendLikedTestList);
+        functionMap.put("Add to likes", this::sendAddFavorites);
+        functionMap.put("Add result", this::sendSaveResult);
+        functionMap.put("Get test like count", this::sendTestLikeCount);
+        functionMap.put("Remove from likes", this::sendDeleteFavorites);
+        functionMap.put("Get user's test results", this::sendUserTestResult);
+        // TODO add more functions here
+    }
+
+    public void sendUserTestResult() {
+        Object obj = recived.poll();
+        sendObject(new Message("User test results",
+                DataBase.getUserTestResults(((TestInfoData) obj).currentUserID, ((TestInfoData) obj).testID)));
+    }
+
+    public void sendTestLikeCount() {
+        sendObject(new Message("Test like count", DataBase.getTestLikeCount((int) recived.poll())));
+    }
+
+    public void sendSaveResult() {
+        Object obj = recived.poll();
+        try {
+            DataBase.saveResult(
+                    ((TestInfoData) obj).currentUserID,
+                    ((TestInfoData) obj).testID,
+                    ((TestInfoData) obj).result);
+            sendObject(new Message("Added the result", (Boolean) true));
+        } catch (Exception e) {
+            sendObject(new Message("Failed to add the result", (Boolean) false));
+        }
+    }
+
+    public void sendDeleteFavorites() {
+        Object obj = recived.poll();
+        if (obj instanceof TestInfoData) {
+            boolean already_liked = false;
+            for (TestInfoData i : DataBase.getFavorites(((TestInfoData) obj).currentUserID).getTests()) {
+                if (i.testID == ((TestInfoData) obj).testID) {
+                    already_liked = true;
+                    break;
+                }
+            }
+
+            if (already_liked) {
+                DataBase.deleteFavorites(((TestInfoData) obj).currentUserID, ((TestInfoData) obj).testID);
+                sendObject(new Message("Removed from liked", Boolean.TRUE));
+            } else {
+                sendObject(new Message("Failed to removed from liked", Boolean.FALSE));
+            }
+
+        }
+
+    }
+
+    public void sendAddFavorites() {
+        Object obj = recived.poll();
+        if (obj instanceof TestInfoData) {
+            boolean already_liked = false;
+            for (TestInfoData i : DataBase.getFavorites(((TestInfoData) obj).currentUserID).getTests()) {
+                if (i.testID == ((TestInfoData) obj).testID) {
+                    already_liked = true;
+                    break;
+                }
+            }
+
+            if (!already_liked) {
+                DataBase.addFavorites(((TestInfoData) obj).currentUserID, ((TestInfoData) obj).testID);
+                sendObject(new Message("Adding to liked", Boolean.TRUE));
+            } else {
+                sendObject(new Message("Failed to add to liked", Boolean.FALSE));
+            }
+
+        }
+
+    }
+
+    public void sendLikedTestList() {
+        sendObject(new Message("List of liked tests", DataBase.getFavorites((int) recived.poll())));
+    }
+
+    public void sendUserTestList() {
+        sendObject(new Message("List of user tests", DataBase.getUserTests((int) recived.poll())));
     }
 
     public void saveTest() {
@@ -63,26 +149,52 @@ public class ClientHandler implements Runnable {
     }
 
     public void sendUserExists() {
-        Object obj = recived.poll();
-        if(obj instanceof UserData){
-            Boolean res = DataBase.userExists(((UserData)obj).username);
-            sendObject(new Message("Information if user exists", res));
-        }
+        sendObject(
+                new Message("Information if user exists", DataBase.userExists(((UserData) recived.poll()).username)));
     }
 
     public void sendCheckPassword() {
         Object obj = recived.poll();
-        if(obj instanceof UserData){
-            Boolean res = DataBase.checkPassword(((UserData)obj).username, ((UserData)obj).password);
-            sendObject(new Message("Check password", res));
-        }
+        sendObject(new Message("Information if user exists",
+                DataBase.checkPassword(((UserData) obj).username, ((UserData) obj).password)));
     }
 
     public void sendAddUser() {
         Object obj = recived.poll();
-        if(obj instanceof UserData){
-            DataBase.addUser(((UserData)obj).username, ((UserData)obj).password, ((UserData)obj).email);
-            sendObject(new Message("Information if user exists", (Boolean)true));
+        try {
+            DataBase.addUser(((UserData) obj).username, ((UserData) obj).password, ((UserData) obj).email);
+            sendObject(new Message("Information if user exists", (Boolean) true));
+        } catch (Exception e) {
+            sendObject(new Message("Information if user exists", (Boolean) false));
+        }
+    }
+
+    public void sendGetUser() {
+        Object obj = recived.poll();
+        try {
+            sendObject(new Message("User object: ", DataBase.getUser(((UserData) obj).username)));
+        } catch (Exception e) {
+            sendObject(new Message("Information if user exists", (Boolean) false));
+        }
+
+    }
+
+    private void sendUpdateUser() {
+        try {
+            DataBase.updateUser((UserData) recived.poll());
+            sendObject(new Message("Information if user is updated", (Boolean) true));
+        } catch (Exception e) {
+            sendObject(new Message("Information if user is updated", (Boolean) false));
+        }
+    }
+
+    private void sendDeleteUser() {
+        Object obj = recived.poll();
+        try {
+            DataBase.deleteUser(((UserData) obj).username);
+            sendObject(new Message("Information if user is deleted", (Boolean) true));
+        } catch (Exception e) {
+            sendObject(new Message("Information if user is deleted", (Boolean) false));
         }
     }
 

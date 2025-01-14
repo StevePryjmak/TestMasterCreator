@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.LerningBara.controller.EditProfileSceneControler">
+   <children>
+      <Button layoutX="274.0" layoutY="344.0" mnemonicParsing="false" onAction="#goBack" text="Back" />
+      <Label layoutX="73.0" layoutY="124.0" prefHeight="18.0" prefWidth="68.0" text="email:">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="73.0" layoutY="59.0" prefHeight="18.0" prefWidth="68.0" text="username:">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="email" layoutX="156.0" layoutY="125.0" prefHeight="18.0" prefWidth="199.0" />
+      <Label fx:id="username" layoutX="156.0" layoutY="59.0" prefHeight="18.0" prefWidth="199.0" />
+      <TextField fx:id="usernameField" layoutX="156.0" layoutY="79.0" prefHeight="26.0" prefWidth="199.0" promptText="new username" />
+      <Button layoutX="406.0" layoutY="80.0" mnemonicParsing="false" onAction="#changeUsername" text="Confirm" />
+      <TextField fx:id="emailField" layoutX="156.0" layoutY="144.0" prefHeight="26.0" prefWidth="199.0" promptText="new email" />
+      <Button layoutX="406.0" layoutY="144.0" mnemonicParsing="false" onAction="#changeEmail" text="Confirm" />
+      <Label fx:id="usernameLabel" layoutX="152.0" layoutY="106.0" prefHeight="18.0" prefWidth="199.0" textFill="RED">
+         <font>
+            <Font size="11.0" />
+         </font>
+      </Label>
+      <Label fx:id="emailLabel" layoutX="156.0" layoutY="174.0" prefHeight="18.0" prefWidth="199.0" textFill="RED">
+         <font>
+            <Font size="11.0" />
+         </font>
+      </Label>
+      <Label layoutX="73.0" layoutY="200.0" prefHeight="18.0" prefWidth="68.0" text="password:">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <PasswordField fx:id="newPassField" layoutX="156.0" layoutY="198.0" prefHeight="26.0" prefWidth="199.0" promptText="new password" />
+      <PasswordField fx:id="oldPassField" layoutX="156.0" layoutY="238.0" prefHeight="26.0" prefWidth="199.0" promptText="old password" />
+      <Button layoutX="406.0" layoutY="238.0" mnemonicParsing="false" onAction="#changePassword" text="Confirm" />
+      <Button layoutX="228.0" layoutY="304.0" mnemonicParsing="false" text="Upload profile picture" />
+      <Label fx:id="passLabel" layoutX="156.0" layoutY="271.0" prefHeight="18.0" prefWidth="199.0" textFill="RED">
+         <font>
+            <Font size="11.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

@@ -4,11 +4,9 @@ import java.io.IOException;
 import java.util.Iterator;
 import java.util.List;
 
-import com.LerningBara.controller.TestInitializer;
 import com.LerningBara.model.AbstractQuestion;
 import com.LerningBara.model.Test;
 
-import TestData.AvalibleTestsList;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -24,6 +22,7 @@ import javafx.scene.layout.HBox;
 
 import com.LerningBara.controller.CreateTestController;
 
+import UserData.User;
 
 public class App extends Application {
     private static App instance;
@@ -32,8 +31,9 @@ public class App extends Application {
     private static Iterator<AbstractQuestion> testIterator;
     public Client client;
     public static CreateTestController createTestController;
-    
 
+    public User user = new User();
+    public TestInfoData testInfoData;
 
     @Override
     public void start(Stage stage) {
@@ -95,14 +95,14 @@ public class App extends Application {
 
     public void nextQuestion() {
         if (!testIterator.hasNext()) {
-            start(stage);
-            return;
+            // start(stage);
+            // return;
+            App.setRoot("EndTestScene");
+        } else {
+            AbstractQuestion question = testIterator.next();
+            stage.setScene(question.getScene());
         }
-        AbstractQuestion question = testIterator.next();
-        stage.setScene(question.getScene());
-
     }
-
 
     public void showTestsList(List<TestInfoData> testsInfo) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/MainLayout.fxml"));

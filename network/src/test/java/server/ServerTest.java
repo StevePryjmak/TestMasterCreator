@@ -47,12 +47,13 @@ public class ServerTest {
         client2.close();
     }
 
-
     @Test
+    @SuppressWarnings("unused")
     public void testServerDoesNotAcceptConnectionsAfterShutdown() {
         server.closeServer();
         assertThrows(IOException.class, () -> {
-            Socket socket = new Socket("localhost", port);
+            try (Socket socket = new Socket("localhost", port)) {
+            }
         });
     }
 }

@@ -2,9 +2,9 @@ package TestData;
 
 import java.io.Serializable;
 import java.util.List;
-import QuestionData.AbstractQuestionData; 
+import QuestionData.AbstractQuestionData;
 
-public class TestData implements Serializable{
+public class TestData implements Serializable {
     public List<AbstractQuestionData> questions;
 
     public TestData(List<AbstractQuestionData> questions) {

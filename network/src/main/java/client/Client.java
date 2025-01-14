@@ -1,12 +1,8 @@
 package client;
 
 import java.io.*;
-import java.net.ServerSocket;
 import java.net.Socket;
-import java.security.MessageDigest;
-import java.util.Scanner;
 
-import TestData.TestData;
 import connection.Message;
 
 import java.util.List;
@@ -42,7 +38,7 @@ public class Client {
                         Message message = (Message) receivedObject;
                         recived.add(message);
                         System.out.println(recived.size());
-                        System.out.println("Received a TestData object");
+                        System.out.println("Received a TestData object"); // TODO change naming here
                     } else {
                         System.out.println("Received an unknown type of object");
                     }
