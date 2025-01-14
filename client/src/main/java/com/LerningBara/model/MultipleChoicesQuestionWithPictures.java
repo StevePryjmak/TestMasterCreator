@@ -1,50 +1,53 @@
 package com.LerningBara.model;
 
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-
 import java.io.IOException;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 import com.LerningBara.app.App;
-import com.LerningBara.controller.MultipleChoicesQuestionController;
+import com.LerningBara.controller.MultipleChoicesQuestionWithPictureController;
 
-import QuestionData.MultipleChoicesQuestionData;
-
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.CheckBox;
+import QuestionData.MultipleChoicesQuestionWithPicturesData;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.CheckBox;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 
-public class MultipleChoicesQuestion extends AbstractQuestion {
+public class MultipleChoicesQuestionWithPictures extends AbstractQuestion {
 
-    private MultipleChoicesQuestionData questionData;
-    private MultipleChoicesQuestionController controller;
+    private MultipleChoicesQuestionWithPicturesData questionData;
+    private MultipleChoicesQuestionWithPictureController controller;
+    private Image image;
 
-    public MultipleChoicesQuestion(String question, List<String> options, int[] correctAnswerIndexes)
+    public MultipleChoicesQuestionWithPictures(String question, List<String> options, int[] correctAnswerIndexes,
+            Image image)
             throws IOException {
-        questionData = new MultipleChoicesQuestionData(question, options, correctAnswerIndexes);
+        questionData = new MultipleChoicesQuestionWithPicturesData(question, options, correctAnswerIndexes);
+        this.image = image;
         initializeScene();
     }
 
-    public MultipleChoicesQuestion(MultipleChoicesQuestionData questionData) throws IOException {
+    public MultipleChoicesQuestionWithPictures(MultipleChoicesQuestionWithPicturesData questionData, Image image)
+            throws IOException {
         this.questionData = questionData;
+        this.image = image;
         initializeScene();
     }
 
     private void initializeScene() throws IOException {
-        FXMLLoader loader = new FXMLLoader(App.class.getResource("/fxml/MultipleChoicesQuestionScene.fxml"));
+        FXMLLoader loader = new FXMLLoader(App.class.getResource("/fxml/MultipleChoicesQuestionWithPictureScene.fxml"));
         Parent root = loader.load();
 
         controller = loader.getController();
         controller.setQuestionAndAnswers(questionData.getQuestion(), questionData.getOptions(),
-                questionData.getCorrectAnswers());
+                questionData.getCorrectAnswers(), image);
 
         scene = new Scene(root);
     }
@@ -59,6 +62,10 @@ public class MultipleChoicesQuestion extends AbstractQuestion {
     public VBox getDetailsBox(int index) {
         VBox questionBox = new VBox(10);
         questionBox.getStyleClass().add("question-box");
+
+        ImageView imageView = new ImageView();
+        imageView.setImage(image);
+        questionBox.getChildren().add(imageView);
 
         Label questionLabel = new Label("Question #" + (index + 1) + ": " + questionData.getQuestion());
         questionLabel.getStyleClass().add("question-label");
