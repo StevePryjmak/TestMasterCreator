@@ -58,6 +58,8 @@ public class ClientHandler implements Runnable {
         functionMap.put("Get test like count", this::sendTestLikeCount);
         functionMap.put("Remove from likes", this::sendDeleteFavorites);
         functionMap.put("Get user's test results", this::sendUserTestResult);
+        functionMap.put("Get visibility", this::sendGetVisibility);
+        functionMap.put("Set visibility", this::sendSetVisibility);
         // TODO add more functions here
     }
 
@@ -230,6 +232,23 @@ public class ClientHandler implements Runnable {
         } catch (Exception e) {
             sendObject(new Message("Icon info", "blad"));
         }
+    }
+
+    public void sendGetVisibility() {
+        sendObject(new Message("List of user tests", DataBase.getUserVisibility(((UserData) recived.poll()).username)));
+    }
+
+    public void sendSetVisibility() {
+        Object obj = recived.poll();
+        int change = 0;
+        if ((((UserData)obj).password).equals("Public")){
+            change = 1;
+        }
+        try{
+            DataBase.setUserVisibility(((UserData) obj).username, change);
+            sendObject(new Message("Information if visibility is changed", (Boolean) true));}
+        catch (Exception e){
+            sendObject(new Message("Information if visibility is changed", (Boolean) false));}
     }
 
     @Override

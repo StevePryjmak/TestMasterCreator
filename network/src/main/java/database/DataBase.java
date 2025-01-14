@@ -27,7 +27,7 @@ public class DataBase {
     private static final String URL = "jdbc:oracle:thin:@//localhost:1521/FREEPDB1";
     private static final String USER = "System";
     private static final String PASSWORD = "projektpap2024";
-    private static Connection connection = null;
+    public static Connection connection = null;
 
     public static void start() {
         connect();
@@ -124,7 +124,7 @@ public class DataBase {
         List<TestInfoData> tests = new ArrayList<>();
         try {
             statement = connection.prepareStatement(
-                    "SELECT LOGIN, T.*, (SELECT COUNT(*) FROM Questions WHERE TESTS_TESTID = T.TESTID) N FROM TESTS T JOIN USERS ON USERID = USERS_USERID");
+                    "SELECT LOGIN, T.*, (SELECT COUNT(*) FROM Questions WHERE TESTS_TESTID = T.TESTID) N FROM TESTS T JOIN USERS ON USERID = USERS_USERID WHERE visibilitylevel = 0");
             resultSet = statement.executeQuery();
 
             while (resultSet.next()) {
@@ -334,8 +334,8 @@ public class DataBase {
         ResultSet resultSet = null;
         int testId;
         String testName = testData.getName();
-        String testDescription = "hardcoded"; // TODO change this to actually work
-        String testField = "Math"; // TODO change this to actually work
+        String testDescription = testData.getDescription();
+        String testField = testData.getFiled();
         try {
             statement = connection.prepareStatement(
                     "INSERT INTO Tests(Name, Users_UserId, creationdate, field, description) VALUES (?, ?, CURRENT_DATE, ?, ?)");
@@ -735,6 +735,34 @@ public class DataBase {
                 System.err.println("Failed to close resources: " + e.getMessage());
             }
         }
+    }
+
+    public static Boolean getUserVisibility(String username){
+        connect();
+        ResultSet resultSet = null;
+        PreparedStatement statement = null;
+        Boolean result = false;
+        try {
+            statement = connection.prepareStatement(
+                    "SELECT VisibilityLevel FROM Users WHERE Login = ? AND IsActive = 'T'");
+            statement.setString(1, username);
+            resultSet = statement.executeQuery();
+            resultSet.next();
+            if(resultSet.getInt("VisibilityLevel") == 1){
+                result = true;
+            }
+
+        } catch (SQLException e) {
+            System.err.println("Query execution failed: " + e.getMessage());
+        } finally {
+            try {
+                if (statement != null)
+                    statement.close();
+            } catch (SQLException e) {
+                System.err.println("Failed to close resources: " + e.getMessage());
+            }
+        }
+        return result;
     }
 
     // public static void deleteTest(int testId)
