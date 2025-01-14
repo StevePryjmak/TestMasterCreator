@@ -44,4 +44,6 @@ public class MultipleChoicesQuestion extends AbstractQuestion {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'checkAnswer'");
     }
+
+    
 }

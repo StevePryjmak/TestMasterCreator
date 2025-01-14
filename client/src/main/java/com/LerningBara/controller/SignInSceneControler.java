@@ -53,7 +53,7 @@ public class SignInSceneControler {
             messageReceived = App.getInstance().client.getOneRecivedObject();
             obj = messageReceived.getObject();
             if (obj instanceof User) {
-               App.getInstance().user.setAttributes((User)obj);
+               App.getInstance().user.setAttributes((User) obj);
             }
             App.setRoot("QuizMenuScene");
          } else {

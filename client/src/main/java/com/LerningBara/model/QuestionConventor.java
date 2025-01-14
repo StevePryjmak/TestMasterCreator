@@ -1,8 +1,5 @@
 package com.LerningBara.model;
 
-import com.LerningBara.model.SingleChoiceQuestion;
-import com.LerningBara.model.MultipleChoicesQuestion;
-import com.LerningBara.model.OpenAnwserQuestion;
 import QuestionData.SingleChoiceQuestionData;
 import QuestionData.MultipleChoicesQuestionData;
 import QuestionData.OpenAnwserQuestionData;

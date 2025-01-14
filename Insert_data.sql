@@ -139,3 +139,5 @@ INSERT INTO ANSWERS(
 );
 
 COMMIT;
+INSERT INTO Users(Login, Password, Email) VALUES ('ala', 'ma kota', 'xd');
+COMMIT;

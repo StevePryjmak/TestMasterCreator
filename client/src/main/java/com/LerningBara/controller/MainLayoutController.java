@@ -9,6 +9,8 @@ import javafx.scene.layout.VBox;
 
 import java.util.List;
 
+import com.LerningBara.app.App;
+
 import TestData.TestInfoData;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -16,7 +18,6 @@ import java.util.ArrayList;
 
 import javafx.fxml.FXMLLoader;
 import java.io.IOException;
-
 
 public class MainLayoutController {
 
@@ -32,15 +33,22 @@ public class MainLayoutController {
     @FXML
     private VBox contentBox;
 
+    @FXML
+    private Button returnButton;
+
     private List<TestInfoData> testsInfo;
     private List<TestInfoData> filteredTestsInfo;
+
+    public void handleReturn() {
+        App.setRoot("QuizMenuScene");
+    }
 
     public void addTestBox(VBox testBox) {
         contentBox.getChildren().add(testBox);
     }
 
     public void setTests(List<TestInfoData> testsInfo) {
-        // @TODO: implement filtering and paging
+        // TODO: implement filtering and paging
         this.testsInfo = testsInfo;
         this.updateTests(testsInfo);
     }
@@ -52,7 +60,7 @@ public class MainLayoutController {
             try {
                 VBox testBox = testBoxLoader.load();
                 TestBoxController testBoxController = testBoxLoader.getController();
-                
+
                 testBoxController.setData(testInfo);
                 addTestBox(testBox);
             } catch (IOException e) {
@@ -61,10 +69,10 @@ public class MainLayoutController {
         }
     }
 
-
     @FXML
     private void initialize() {
-        ObservableList<String> filterOptions = FXCollections.observableArrayList("All", "Math", "Physics", "Chemistry", "Biology");
+        ObservableList<String> filterOptions = FXCollections.observableArrayList("All", "Math", "Physics", "Chemistry",
+                "Biology");
         filterComboBox.setItems(filterOptions);
     }
 
@@ -81,25 +89,25 @@ public class MainLayoutController {
     }
 
     private void filterTests(String filter, List<TestInfoData> testsInfo) {
-        if(filter == "All") {
+        if (filter == "All") {
             filteredTestsInfo = testsInfo;
             return;
         }
         filteredTestsInfo = new ArrayList<>();
-        for(TestInfoData testInfo : testsInfo) {
-            if(testInfo.field.equals(filter)) {
+        for (TestInfoData testInfo : testsInfo) {
+            if (testInfo.field.equals(filter)) {
                 filteredTestsInfo.add(testInfo);
             }
         }
     }
 
     private void filterTestsBySearch(String searchText, List<TestInfoData> testsInfo) {
-        if(searchText.isEmpty()) {
+        if (searchText.isEmpty()) {
             return;
         }
         filteredTestsInfo = new ArrayList<>();
-        for(TestInfoData testInfo : testsInfo) {
-            if(testInfo.name.contains(searchText) || testInfo.description.contains(searchText)) {
+        for (TestInfoData testInfo : testsInfo) {
+            if (testInfo.name.contains(searchText) || testInfo.description.contains(searchText)) {
                 filteredTestsInfo.add(testInfo);
             }
         }

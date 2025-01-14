@@ -1,11 +1,6 @@
 package QuestionData;
 
-import QuestionData.AbstractQuestionData;
-
-import java.io.Serializable;
-import java.util.List;
-
-public class OpenAnwserQuestionData extends AbstractQuestionData implements Serializable {
+public class OpenAnwserQuestionData extends AbstractQuestionData {
 
     private String question;
     private String correctAnswer;
@@ -15,6 +10,7 @@ public class OpenAnwserQuestionData extends AbstractQuestionData implements Seri
         this.correctAnswer = givenCorrectAnwser;
     }
 
+    @Override
     public String getQuestion() {
         return question;
     }

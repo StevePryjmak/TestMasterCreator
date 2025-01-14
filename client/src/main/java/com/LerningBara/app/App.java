@@ -4,11 +4,9 @@ import java.io.IOException;
 import java.util.Iterator;
 import java.util.List;
 
-import com.LerningBara.controller.TestInitializer;
 import com.LerningBara.model.AbstractQuestion;
 import com.LerningBara.model.Test;
 
-import TestData.AvalibleTestsList;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -23,17 +21,21 @@ import com.LerningBara.controller.MainLayoutController;
 import com.LerningBara.controller.TestBoxController;
 import javafx.scene.layout.VBox;
 import javafx.scene.layout.HBox;
-import UserData.User;
 
+import com.LerningBara.controller.CreateTestController;
+
+import UserData.User;
 
 public class App extends Application {
     private static App instance;
-    private static Stage stage;
+    public static Stage stage;
     private Test test;
     private static Iterator<AbstractQuestion> testIterator;
     public Client client;
-    public static User user = new User();
+    public static CreateTestController createTestController;
 
+    public User user = new User();
+    public TestInfoData testInfoData;
 
     @Override
     public void start(Stage stage) {
@@ -43,6 +45,7 @@ public class App extends Application {
             stage.getIcons().add(icon);
             stage.setTitle("LearningBara");
             Parent root = FXMLLoader.load(getClass().getResource("/fxml/LoginScene.fxml"));
+            // Parent root = FXMLLoader.load(getClass().getResource("/fxml/StartScene.fxml"));
             Scene scene = new Scene(root);
             scene.getStylesheets().add("/css/DefaultStyle.css");
             stage.setScene(scene);
@@ -54,15 +57,25 @@ public class App extends Application {
 
     public static void setRoot(String fxml) {
         try {
-            Parent root = FXMLLoader.load(App.class.getResource("/fxml/" + fxml + ".fxml"));
+            FXMLLoader loader = new FXMLLoader(App.class.getResource("/fxml/" + fxml + ".fxml"));
+            if (fxml.equals("CreateTestScene")) {
+                System.out.println("CreateTestScene loaded");
+                if (createTestController == null) {
+                    createTestController = new CreateTestController();  // Create if not already created
+                }
+                loader.setController(createTestController);  // Set controller
+            }
+            Parent root = loader.load();
             Scene scene = new Scene(root);
-            scene.getStylesheets().add("/css/DefaultStyle.css");
+            // scene.getStylesheets().add("/css/Styles.css");
+            scene.getStylesheets().add("/css/CreateTest.css");
             stage.setScene(scene);
 
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
+    
 
     public static void main(String[] args) {
         launch(args);
@@ -87,14 +100,14 @@ public class App extends Application {
 
     public void nextQuestion() {
         if (!testIterator.hasNext()) {
-            start(stage);
-            return;
+            // start(stage);
+            // return;
+            App.setRoot("EndTestScene");
+        } else {
+            AbstractQuestion question = testIterator.next();
+            stage.setScene(question.getScene());
         }
-        AbstractQuestion question = testIterator.next();
-        stage.setScene(question.getScene());
-
     }
-
 
     public void showTestsList(List<TestInfoData> testsInfo) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/MainLayout.fxml"));
@@ -103,7 +116,7 @@ public class App extends Application {
 
         controller.setTests(testsInfo);
 
-        Scene scene = new Scene(root, 600, 600);
+        Scene scene = new Scene(root);
         scene.getStylesheets().add(getClass().getResource("/css/RoundedSearchBar.css").toExternalForm());
         stage.setScene(scene);
     }

@@ -1,12 +1,8 @@
 package QuestionData;
 
-import QuestionData.AbstractQuestionData;
-
-import java.io.Serializable;
 import java.util.List;
 
-
-public class SingleChoiceQuestionData extends AbstractQuestionData implements Serializable{
+public class SingleChoiceQuestionData extends AbstractQuestionData {
 
     private String question;
     private List<String> options;
@@ -18,6 +14,7 @@ public class SingleChoiceQuestionData extends AbstractQuestionData implements Se
         this.correctAnswerIndex = correctAnswerIndex;
     }
 
+    @Override
     public String getQuestion() {
         return question;
     }

@@ -1,9 +1,5 @@
 package com.LerningBara.controller;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
 import com.LerningBara.app.App;
 
 import javafx.fxml.FXML;
@@ -48,6 +44,7 @@ public class OpenAnwserQuestionController {
         System.out.println(selectedAnswer);
         if (selectedAnswer.equals(correctAnswer)) {
             System.out.println("Correct Answer!");
+            App.getInstance().testInfoData.result += 1;
         } else {
             System.out.println("Incorrect Answer!");
         }

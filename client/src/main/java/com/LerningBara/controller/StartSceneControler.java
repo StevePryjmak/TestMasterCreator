@@ -1,8 +1,6 @@
 package com.LerningBara.controller;
 
 import com.LerningBara.app.App;
-import com.LerningBara.model.Test;
-import QuestionData.AbstractQuestionData;
 import javafx.fxml.FXML;
 
 import java.io.IOException;
@@ -21,9 +19,9 @@ public class StartSceneControler {
 
     @FXML
     public void createTest() {
+        App.createTestController = new CreateTestController();
         App.setRoot("CreateTestScene");
     }
-
 
     public void getTestsList() {
         App.getInstance().client = new Client("localhost", 8080);
@@ -31,16 +29,15 @@ public class StartSceneControler {
         App.getInstance().client.sendMessage("List of tests", null);
         System.out.println("Waiting for list of tests");
         Message messageReceived = App.getInstance().client.getOneRecivedObject();
-        //App.getInstance().client.closeConnection();
+        // App.getInstance().client.closeConnection();
 
         Object r = messageReceived.getObject();
-        if(r instanceof AvalibleTestsList) {
+        if (r instanceof AvalibleTestsList) {
             AvalibleTestsList avalibleTestsList = (AvalibleTestsList) r;
             List<TestInfoData> tests = avalibleTestsList.getTests();
             try {
                 App.getInstance().showTestsList(tests);
-            }
-            catch (IOException e) {
+            } catch (IOException e) {
                 System.out.println(e);
             }
 
