@@ -52,6 +52,37 @@ public class DataBase {
         }
     }
 
+    public static int getTestLikeCount(int testID) {
+        connect();
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+        int result = 0;
+        try {
+            statement = connection.prepareStatement(
+                    "SELECT count(*) from likes where tests_testid = ?");
+            statement.setInt(1, testID);
+            resultSet = statement.executeQuery();
+
+            if (resultSet.next()) {
+                result = resultSet.getInt(1);
+            }
+
+        } catch (SQLException e) {
+            System.err.println("Query execution failed: " + e.getMessage());
+        } finally {
+            try {
+                if (resultSet != null)
+                    resultSet.close();
+                if (statement != null)
+                    statement.close();
+            } catch (SQLException e) {
+                System.err.println("Failed to close resources: " + e.getMessage());
+            }
+        }
+
+        return result;
+    }
+
     public static AvalibleTestsList getTests() {
         connect();
         PreparedStatement statement = null;
