@@ -151,6 +151,7 @@ public class ClientHandler implements Runnable {
     }
 
     public void sendTestsList() {
+        recived.poll();
         sendObject(new Message("List of tests", DataBase.getTests()));
     }
 
