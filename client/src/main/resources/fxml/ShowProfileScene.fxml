@@ -27,6 +27,7 @@
          <font>
             <Font size="15.0" />
          </font></Label>
-      <ImageView fx:id="profile_pic" fitHeight="150.0" fitWidth="150.0" layoutX="219.0" layoutY="142.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="profile_pic" fitHeight="150.0" fitWidth="150.0" layoutX="144.0" layoutY="150.0" pickOnBounds="true" preserveRatio="true" />
+      <Button fx:id="visibleButton" layoutX="386.0" layoutY="212.0" mnemonicParsing="false" onAction="#changeVisibility" prefHeight="26.0" prefWidth="82.0" text="Private" />
    </children>
 </AnchorPane>
