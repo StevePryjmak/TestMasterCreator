@@ -67,7 +67,7 @@ public class App extends Application {
             }
             Parent root = loader.load();
             Scene scene = new Scene(root);
-            // scene.getStylesheets().add("/css/Styles.css");
+            scene.getStylesheets().add("/css/DefaultStyle.css");
             scene.getStylesheets().add("/css/CreateTest.css");
             stage.setScene(scene);
 
@@ -75,7 +75,7 @@ public class App extends Application {
             e.printStackTrace();
         }
     }
-    
+
 
     public static void main(String[] args) {
         launch(args);

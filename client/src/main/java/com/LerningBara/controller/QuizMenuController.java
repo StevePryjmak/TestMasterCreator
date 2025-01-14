@@ -26,7 +26,8 @@ public class QuizMenuController {
 
    @FXML
    public void addQuiz() throws Exception {
-      // App.setRoot("AddQuizScene");
+      //App.createTestController = new CreateTestController();
+      //App.setRoot("CreateTestScene");
    }
 
    @FXML
