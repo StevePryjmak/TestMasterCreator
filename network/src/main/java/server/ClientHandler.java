@@ -51,7 +51,14 @@ public class ClientHandler implements Runnable {
         functionMap.put("Add result", this::sendSaveResult);
         functionMap.put("Get test like count", this::sendTestLikeCount);
         functionMap.put("Remove from likes", this::sendDeleteFavorites);
+        functionMap.put("Get user's test results", this::sendUserTestResult);
         // TODO add more functions here
+    }
+
+    public void sendUserTestResult() {
+        Object obj = recived.poll();
+        sendObject(new Message("User test results",
+                DataBase.getUserTestResults(((TestInfoData) obj).currentUserID, ((TestInfoData) obj).testID)));
     }
 
     public void sendTestLikeCount() {

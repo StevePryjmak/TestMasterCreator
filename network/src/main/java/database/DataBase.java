@@ -52,6 +52,38 @@ public class DataBase {
         }
     }
 
+    public static List<Integer> getUserTestResults(int userID, int testID) {
+        connect();
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+        List<Integer> result = new ArrayList<>();
+        try {
+            statement = connection.prepareStatement(
+                    "SELECT points from results where tests_testid = ? and users_userid = ?");
+            statement.setInt(1, testID);
+            statement.setInt(2, userID);
+            resultSet = statement.executeQuery();
+
+            while (resultSet.next()) {
+                result.add(resultSet.getInt("points"));
+            }
+
+        } catch (SQLException e) {
+            System.err.println("Query execution failed: " + e.getMessage());
+        } finally {
+            try {
+                if (resultSet != null)
+                    resultSet.close();
+                if (statement != null)
+                    statement.close();
+            } catch (SQLException e) {
+                System.err.println("Failed to close resources: " + e.getMessage());
+            }
+        }
+
+        return result;
+    }
+
     public static int getTestLikeCount(int testID) {
         connect();
         PreparedStatement statement = null;
