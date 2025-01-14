@@ -133,7 +133,7 @@
 <backgroundColor>-16777216</backgroundColor>
 <lineWidth>1</lineWidth>
 <points>
-<point x="449" y="369"/>
+<point x="449" y="384"/>
 <point x="727" y="369"/>
 </points>
 </Connector>
@@ -142,7 +142,7 @@
 <backgroundColor>-16777216</backgroundColor>
 <lineWidth>1</lineWidth>
 <points>
-<point x="449" y="445"/>
+<point x="449" y="430"/>
 <point x="533" y="445"/>
 </points>
 </Connector>
@@ -151,7 +151,7 @@
 <backgroundColor>-16777216</backgroundColor>
 <lineWidth>1</lineWidth>
 <points>
-<point x="449" y="292"/>
+<point x="449" y="307"/>
 <point x="537" y="292"/>
 </points>
 </Connector>

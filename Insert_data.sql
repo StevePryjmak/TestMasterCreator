@@ -23,14 +23,12 @@ INSERT INTO USERS(
 );
 
 INSERT INTO TESTS(
-    TESTID,
     NAME,
     USERS_USERID,
     DESCRIPTION,
     CREATIONDATE,
     FIELD
 ) VALUES (
-    1,
     'Testowy test',
     1,
     'Opis',
@@ -38,29 +36,23 @@ INSERT INTO TESTS(
     'Programowanie aplikacyjne'
 );
 
-INSERT INTO TYPES VALUES (
-    1,
+INSERT INTO TYPES(Description) VALUES (
     'Single choice'
 ),
 (
-    2,
     'Multiple choice'
 ),
 (
-    3,
     'Open'
 );
 
-INSERT INTO HINTS VALUES (
-    1,
+INSERT INTO HINTS(Text) VALUES (
     'Hint1'
 ),
 (
-    2,
     'Hint2'
 ),
 (
-    3,
     'Hint3'
 );
 
@@ -140,4 +132,10 @@ INSERT INTO ANSWERS(
 
 COMMIT;
 INSERT INTO Users(Login, Password, Email) VALUES ('ala', 'ma kota', 'xd');
+COMMIT;
+INSERT INTO Users(Login, Password, Email) VALUES ('newuser', 'newpass', 'newemail@example.com');
+COMMIT;
+INSERT INTO Users(Login, Password, Email) VALUES ('newuser', 'newpass', 'newemail@example.com');
+COMMIT;
+INSERT INTO Users(Login, Password, Email) VALUES ('newuser', 'newpass', 'newemail@example.com');
 COMMIT;
