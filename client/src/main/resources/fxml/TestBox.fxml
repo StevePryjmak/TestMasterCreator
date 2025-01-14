@@ -1,15 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.control.*?>
 
-<VBox xmlns="http://javafx.com/javafx"
-      xmlns:fx="http://javafx.com/fxml"
-      fx:controller="com.LerningBara.controller.TestBoxController"
-      fx:id="testBoxContainer"
-      onMouseClicked="#handleTestClick"
-      spacing="10"
-      style="-fx-border-color: #ccc; -fx-padding: 10; -fx-background-color: #f9f9f9; -fx-border-radius: 5; -fx-background-radius: 5; -fx-cursor: hand;">
-    <Label fx:id="titleLabel" style="-fx-font-size: 16px; -fx-font-weight: bold;"/>
-    <Label fx:id="infoLabel" style="-fx-font-size: 14px; -fx-text-fill: #555;"/>
-    <Label fx:id="questionCountLabel" style="-fx-font-size: 12px; -fx-font-style: italic;"/>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox fx:id="testBoxContainer" onMouseClicked="#handleTestClick" prefHeight="140.0" prefWidth="23.0" spacing="10" style="-fx-border-color: #ccc; -fx-padding: 10; -fx-background-color: #f9f9f9; -fx-border-radius: 5; -fx-background-radius: 5; -fx-cursor: hand;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.LerningBara.controller.TestBoxController">
+    <Label fx:id="titleLabel" style="-fx-font-size: 16px; -fx-font-weight: bold;" />
+    <Label fx:id="infoLabel" style="-fx-font-size: 14px; -fx-text-fill: #555;" />
+    <Label fx:id="questionCountLabel" style="-fx-font-size: 12px; -fx-font-style: italic;" />
+   <Label fx:id="likeCountLabel" />
 </VBox>

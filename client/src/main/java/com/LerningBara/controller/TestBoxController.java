@@ -21,14 +21,26 @@ public class TestBoxController {
     private Label infoLabel;
     @FXML
     private Label questionCountLabel;
+    @FXML
+    private Label likeCountLabel;
 
     private TestInfoData testData;
 
     public void setData(TestInfoData testData) {
         this.testData = testData;
+
+        System.out.println("Connected to server");
+        App.getInstance().client = new Client("localhost", 8080);
+        Message message = new Message("Get test like count", testData.testID);
+        App.getInstance().client.sendObject(message);
+        System.out.println("Waiting for like count");
+        Message messageReceived = App.getInstance().client.getOneRecivedObject();
+        Object likes = messageReceived.getObject();
+
         titleLabel.setText(testData.name);
         infoLabel.setText(testData.description + " | " + testData.field + " | " + testData.date);
         questionCountLabel.setText("Questions: " + testData.questionCount);
+        likeCountLabel.setText("Likes: " + (int) likes);
     }
 
     @FXML
