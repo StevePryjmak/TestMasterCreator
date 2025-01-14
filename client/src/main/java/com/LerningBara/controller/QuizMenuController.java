@@ -20,7 +20,7 @@ public class QuizMenuController {
 
    @FXML
    public void browseQuiz() throws Exception {
-      getTestsList("List of tests", 0);
+      getTestsList("List of tests", -1);
    }
 
    @FXML
@@ -44,7 +44,11 @@ public class QuizMenuController {
    }
 
    public void getTestsList(String msg, int userID) {
-      App.getInstance().client.sendMessage(msg, userID);
+      if (userID == -1)
+         App.getInstance().client.sendMessage(msg, null);
+      else
+         App.getInstance().client.sendMessage(msg, userID);
+
       System.out.println("Waiting for list of tests");
       Message messageReceived = App.getInstance().client.getOneRecivedObject();
       // App.getInstance().client.closeConnection();
