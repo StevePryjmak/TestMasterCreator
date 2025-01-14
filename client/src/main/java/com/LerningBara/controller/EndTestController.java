@@ -26,7 +26,6 @@ public class EndTestController {
 
     private TestInfoData currentTest;
 
-    // TODO: check if this works
     @FXML
     public void addToLiked() {
         App.getInstance().client = new Client("localhost", 8080);
@@ -42,7 +41,6 @@ public class EndTestController {
         }
     }
 
-    // TODO: check if this works
     @FXML
     public void returnToBrowsing() {
         App.getInstance().client = new Client("localhost", 8080);
@@ -76,12 +74,16 @@ public class EndTestController {
         Message messageReceived = App.getInstance().client.getOneRecivedObject();
         Object obj = messageReceived.getObject();
         // TODO: change this into some sort of feedback to server or sth
+
         if ((Boolean) obj) {
             System.out.println(
                     "Successfuly added the result, result: " + currentTest.result + "/" + currentTest.questionCount);
         } else {
             System.out.println("Failed to add the result");
         }
+
+        //  TODO: add label with best result (change current result label to lates
+        // esult label)
 
         String text = currentTest.result + "/" + currentTest.questionCount;
         resultLabel.setText(text);
