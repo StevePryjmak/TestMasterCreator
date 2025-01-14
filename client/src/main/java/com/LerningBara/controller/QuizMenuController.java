@@ -21,9 +21,7 @@ public class QuizMenuController {
 
    @FXML
    public void browseQuiz() throws Exception {
-      // TODO: browseQuiz implementation
-      // można tu wstawić funkcje z start scene, ogólnie bym się pozbyła tej scenki i
-      // tu przeniosła
+      getTestsList("List of tests", 0);
    }
 
    @FXML
