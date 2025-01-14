@@ -38,7 +38,7 @@ public class Client {
                         Message message = (Message) receivedObject;
                         recived.add(message);
                         System.out.println(recived.size());
-                        System.out.println("Received a TestData object");
+                        System.out.println("Received a TestData object"); // TODO naming here
                     } else {
                         System.out.println("Received an unknown type of object");
                     }
