@@ -9,6 +9,8 @@ import javafx.scene.layout.VBox;
 
 import java.util.List;
 
+import com.LerningBara.app.App;
+
 import TestData.TestInfoData;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -31,8 +33,15 @@ public class MainLayoutController {
     @FXML
     private VBox contentBox;
 
+    @FXML
+    private Button returnButton;
+
     private List<TestInfoData> testsInfo;
     private List<TestInfoData> filteredTestsInfo;
+
+    public void handleReturn() {
+        App.setRoot("QuizMenuScene");
+    }
 
     public void addTestBox(VBox testBox) {
         contentBox.getChildren().add(testBox);
