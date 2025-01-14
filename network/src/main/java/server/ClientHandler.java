@@ -50,6 +50,7 @@ public class ClientHandler implements Runnable {
         functionMap.put("Add to likes", this::sendAddFavorites);
         functionMap.put("Add result", this::sendSaveResult);
         functionMap.put("Get test like count", this::sendTestLikeCount);
+        functionMap.put("Remove from likes", this::sendDeleteFavorites);
         // TODO add more functions here
     }
 
@@ -70,6 +71,28 @@ public class ClientHandler implements Runnable {
         }
     }
 
+    public void sendDeleteFavorites() {
+        Object obj = recived.poll();
+        if (obj instanceof TestInfoData) {
+            boolean already_liked = false;
+            for (TestInfoData i : DataBase.getFavorites(((TestInfoData) obj).currentUserID).getTests()) {
+                if (i.testID == ((TestInfoData) obj).testID) {
+                    already_liked = true;
+                    break;
+                }
+            }
+
+            if (already_liked) {
+                DataBase.deleteFavorites(((TestInfoData) obj).currentUserID, ((TestInfoData) obj).testID);
+                sendObject(new Message("Removed from liked", Boolean.TRUE));
+            } else {
+                sendObject(new Message("Failed to removed from liked", Boolean.FALSE));
+            }
+
+        }
+
+    }
+
     public void sendAddFavorites() {
         Object obj = recived.poll();
         if (obj instanceof TestInfoData) {
@@ -85,7 +108,7 @@ public class ClientHandler implements Runnable {
                 DataBase.addFavorites(((TestInfoData) obj).currentUserID, ((TestInfoData) obj).testID);
                 sendObject(new Message("Adding to liked", Boolean.TRUE));
             } else {
-                sendObject(new Message("Already liked", Boolean.FALSE));
+                sendObject(new Message("Failed to add to liked", Boolean.FALSE));
             }
 
         }
