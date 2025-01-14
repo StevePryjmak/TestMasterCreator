@@ -14,6 +14,7 @@ public class SingleChoiceQuestionData extends AbstractQuestionData {
         this.correctAnswerIndex = correctAnswerIndex;
     }
 
+    @Override
     public String getQuestion() {
         return question;
     }

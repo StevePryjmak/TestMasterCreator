@@ -1,5 +1,6 @@
 package com.LerningBara.model;
 
+import javafx.scene.layout.VBox;
 import javafx.scene.Scene;
 
 public abstract class AbstractQuestion {
@@ -10,4 +11,8 @@ public abstract class AbstractQuestion {
     }
 
     public abstract boolean checkAnswer(String answer);
+
+    public VBox getDetailsBox(int index){
+        return (new VBox());
+    }
 }

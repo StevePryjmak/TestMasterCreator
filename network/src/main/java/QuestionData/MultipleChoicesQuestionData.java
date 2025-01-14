@@ -15,6 +15,7 @@ public class MultipleChoicesQuestionData extends AbstractQuestionData {
         this.correctAnswerIndexes = correctAnswerIndex;
     }
 
+    @Override
     public String getQuestion() {
         return question;
     }

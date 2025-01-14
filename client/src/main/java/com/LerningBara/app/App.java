@@ -16,14 +16,22 @@ import client.Client;
 import TestData.TestInfoData;
 import javafx.scene.control.ScrollPane;
 import com.LerningBara.controller.MainLayoutController;
+import com.LerningBara.controller.TestBoxController;
+import javafx.scene.layout.VBox;
+import javafx.scene.layout.HBox;
+
+import com.LerningBara.controller.CreateTestController;
+
 import UserData.User;
 
 public class App extends Application {
     private static App instance;
-    private static Stage stage;
+    public static Stage stage;
     private Test test;
     private static Iterator<AbstractQuestion> testIterator;
     public Client client;
+    public static CreateTestController createTestController;
+
     public User user = new User();
     public TestInfoData testInfoData;
 
@@ -31,7 +39,9 @@ public class App extends Application {
     public void start(Stage stage) {
         try {
             App.stage = stage;
-            Parent root = FXMLLoader.load(getClass().getResource("/fxml/LoginScene.fxml"));
+            // Parent root = FXMLLoader.load(getClass().getResource("/fxml/LoginScene.fxml"));
+            // Parent root = FXMLLoader.load(getClass().getResource("/fxml/CreateTestScene.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/fxml/StartScene.fxml"));
             Scene scene = new Scene(root);
             scene.getStylesheets().add("/css/Styles.css");
             stage.setScene(scene);
@@ -43,13 +53,24 @@ public class App extends Application {
 
     public static void setRoot(String fxml) {
         try {
-            Parent root = FXMLLoader.load(App.class.getResource("/fxml/" + fxml + ".fxml"));
+            FXMLLoader loader = new FXMLLoader(App.class.getResource("/fxml/" + fxml + ".fxml"));
+            if (fxml.equals("CreateTestScene")) {
+                System.out.println("CreateTestScene loaded");
+                if (createTestController == null) {
+                    createTestController = new CreateTestController();  // Create if not already created
+                }
+                loader.setController(createTestController);  // Set controller
+            }
+            Parent root = loader.load();
             Scene scene = new Scene(root);
+            // scene.getStylesheets().add("/css/Styles.css");
+            scene.getStylesheets().add("/css/CreateTest.css");
             stage.setScene(scene);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
+    
 
     public static void main(String[] args) {
         launch(args);
@@ -90,7 +111,7 @@ public class App extends Application {
 
         controller.setTests(testsInfo);
 
-        Scene scene = new Scene(root, 600, 600);
+        Scene scene = new Scene(root);
         scene.getStylesheets().add(getClass().getResource("/css/RoundedSearchBar.css").toExternalForm());
         stage.setScene(scene);
     }

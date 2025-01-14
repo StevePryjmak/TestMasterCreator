@@ -10,6 +10,7 @@ public class OpenAnwserQuestionData extends AbstractQuestionData {
         this.correctAnswer = givenCorrectAnwser;
     }
 
+    @Override
     public String getQuestion() {
         return question;
     }
