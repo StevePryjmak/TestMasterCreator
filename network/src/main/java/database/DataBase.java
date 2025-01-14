@@ -162,7 +162,7 @@ public class DataBase {
         List<AbstractQuestionData> questions = new ArrayList<>();
         try {
             statement = connection.prepareStatement(
-                    "SELECT q.QuestionId, q.Text, q.Types_TypeId FROM Tests t JOIN questions q ON t.TestID = q.Tests_TestID JOIN Questions q ON QuestionId = Questions_QuestionId WHERE Name=? ORDER BY QuestionOrder");
+                    "SELECT q.QuestionId, q.Text, q.Types_TypeId FROM Tests t JOIN Questions q ON TestId = Tests_TestId  WHERE Name=? ORDER BY Position");
             statement.setString(1, testName);
             questionsSet = statement.executeQuery();
 
@@ -505,7 +505,7 @@ public class DataBase {
         PreparedStatement statement = null;
         try {
             statement = connection.prepareStatement(
-                    "INSERT INTO Likes (UserId, TestId, Date) VALUES (?, ?, CURRENT_DATE)");
+                    "INSERT INTO Likes (users_UserId, tests_TestId, \"Date\") VALUES (?, ?, CURRENT_DATE)");
             statement.setInt(1, userId);
             statement.setInt(2, testId);
             statement.executeUpdate();
@@ -549,7 +549,7 @@ public class DataBase {
         List<TestInfoData> tests = new ArrayList<>();
         try {
             statement = connection.prepareStatement(
-                    "SELECT LOGIN, T.*, (SELECT COUNT(*) FROM Questions WHERE TESTS_TESTID = T.TESTID) N FROM LIKES L JOIN USERS LU ON LU.USERID = L.USERS_USERID JOIN TESTS T ON L.TESTS_TESTID = T.TESTID JOIN USERS U ON U.USERID = T.USERS_USERID WHERE LU.USERID = ?");
+                    "SELECT lu.LOGIN, T.*, (SELECT COUNT(*) FROM Questions q WHERE q.TESTS_TESTID = T.testid) N FROM LIKES L JOIN USERS LU ON LU.USERID = L.USERS_USERID JOIN TESTS T ON L.TESTS_TESTID = T.testid JOIN USERS U ON U.USERID = T.USERS_USERID WHERE LU.USERID = ?");
             statement.setInt(1, userId);
             resultSet = statement.executeQuery();
             while (resultSet.next()) {
@@ -579,7 +579,7 @@ public class DataBase {
         PreparedStatement statement = null;
         try {
             statement = connection.prepareStatement(
-                    "INSERT INTO Results (UserId, TestId, Points, Date) VALUES (?, ?, ?, CURRENT_DATE)");
+                    "INSERT INTO Results (users_userid, tests_testid, Points, \"Date\") VALUES (?, ?, ?, CURRENT_DATE)");
             statement.setInt(1, userId);
             statement.setInt(2, testId);
             statement.setInt(3, points);
