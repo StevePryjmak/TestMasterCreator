@@ -217,7 +217,7 @@ public class DataBase {
         }
     }
 
-    public void addTest(TestData testData) {
+    public static void addTest(TestData testData) {
         connect();
     }
 

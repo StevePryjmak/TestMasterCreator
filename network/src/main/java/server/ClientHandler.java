@@ -43,7 +43,15 @@ public class ClientHandler implements Runnable {
         functionMap.put("User exists", this::sendUserExists);
         functionMap.put("Check password", this::sendCheckPassword);
         functionMap.put("Add user", this::sendAddUser);
+        functionMap.put("Save test", this::saveTest);
         // @TODO add more functions here
+    }
+
+    public void saveTest() {
+        Object obj = recived.poll();
+        if(obj instanceof TestData){
+            DataBase.addTest((TestData)obj);
+        }
     }
 
     public void sendTestsList() {

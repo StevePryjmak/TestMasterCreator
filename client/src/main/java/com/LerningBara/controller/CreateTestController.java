@@ -9,6 +9,7 @@ import com.LerningBara.app.App;
 
 import QuestionData.*;
 import TestData.TestData;
+import client.Client;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -167,6 +168,9 @@ public class CreateTestController {
         App.getInstance().setTest(test);
         App.getInstance().runExampleTest();
         //App.addTest(test);
+        App.getInstance().client = new Client("localhost", 8080);
+        System.out.println("Connected to server");
+        App.getInstance().client.sendMessage("Save test", testdata);
     }
 
 
