@@ -15,6 +15,7 @@ import connection.Message;
 import database.DataBase;
 import UserData.UserData;
 import ImageData.ImageData;
+import UserData.User;
 
 public class ClientHandler implements Runnable {
 
@@ -24,6 +25,7 @@ public class ClientHandler implements Runnable {
     private ObjectOutputStream objectOutputStream;
     private final Map<String, Runnable> functionMap = new HashMap<>();
     private Queue<Object> recived = new LinkedList<>();
+    private User user;
 
     public ClientHandler(Socket socket) {
         this.socket = socket;
@@ -138,7 +140,7 @@ public class ClientHandler implements Runnable {
         Object obj = recived.poll();
         if (obj instanceof TestData) {
             System.out.println("Test not saved in bd need to be implemented here");
-            // DataBase.addTest((TestData)obj);
+            DataBase.addTest((TestData)obj, user.getId());
         }
     }
 
@@ -157,14 +159,18 @@ public class ClientHandler implements Runnable {
 
     public void sendCheckPassword() {
         Object obj = recived.poll();
-        sendObject(new Message("Information if user exists",
-                DataBase.checkPassword(((UserData) obj).username, ((UserData) obj).password)));
+        boolean correct_pass = DataBase.checkPassword(((UserData) obj).username, ((UserData) obj).password);
+        sendObject(new Message("Information if user exists",correct_pass));
+        if(correct_pass){
+            user = DataBase.getUser(((UserData) obj).username);
+        }
     }
 
     public void sendAddUser() {
         Object obj = recived.poll();
         try {
             DataBase.addUser(((UserData) obj).username, ((UserData) obj).password, ((UserData) obj).email);
+            user = DataBase.getUser(((UserData) obj).username);
             sendObject(new Message("Information if user exists", (Boolean) true));
         } catch (Exception e) {
             sendObject(new Message("Information if user exists", (Boolean) false));

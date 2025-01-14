@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.layout.VBox;
 import javafx.fxml.FXMLLoader;
+
 import java.io.IOException;
 import com.LerningBara.app.App;
 
@@ -25,6 +26,7 @@ import com.LerningBara.controller.CreateTests.CreateAbstractQestionController;
 import com.LerningBara.controller.CreateTests.CreateSingleChoiceQuestionController;
 import javafx.scene.Parent;
 import com.LerningBara.model.Test;
+import javafx.scene.control.TextField;
 
 public class CreateTestController {
 
@@ -40,6 +42,10 @@ public class CreateTestController {
     @FXML
     private ScrollPane scrollPane;
 
+    @FXML
+    private TextField testNameField;
+    private String prevTestName;
+
     private List<CreateAbstractQestionController> questions;
 
     @FXML
@@ -53,6 +59,11 @@ public class CreateTestController {
             questions = new ArrayList<>();
         }
         System.out.println(questions.size());
+        update();
+    }
+
+    public void update() {
+        testNameField.setText(prevTestName);
         updateQuestionList();
         updateQuestionShortcuts();
     }
@@ -60,7 +71,7 @@ public class CreateTestController {
     @FXML
     public void handleAddQuestion() {
         System.out.println("Add Question Button Clicked");
-
+        prevTestName = testNameField.getText();
         handleQuestionEdit(questions.size(), true);
         App.createTestController = this;
     }
@@ -161,12 +172,25 @@ public class CreateTestController {
         }
         TestData testdata = new TestData(questionsData);
         Test test = new Test(questionsData, true);
+        testdata.setName(testNameField.getText());
+
         App.getInstance().setTest(test);
         App.getInstance().runExampleTest();
         // App.addTest(test);
         App.getInstance().client = new Client("localhost", 8080);
         System.out.println("Connected to server");
         App.getInstance().client.sendMessage("Save test", testdata);
+        App.setRoot("QuizMenuScene");
+        // App.getInstance().runExampleTest();
+        // App.addTest(test);
+
+    }
+
+    @FXML
+    private void handleGoBack() {
+        System.out.println("Cancel button clicked!");
+        // @TODO add pop up do you whana to discard changes...
+        App.setRoot("QuizMenuScene");
     }
 
 }

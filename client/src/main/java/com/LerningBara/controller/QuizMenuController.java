@@ -7,7 +7,6 @@ import com.LerningBara.app.App;
 
 import TestData.AvalibleTestsList;
 import TestData.TestInfoData;
-import client.Client;
 import connection.Message;
 import javafx.fxml.FXML;
 
@@ -26,8 +25,8 @@ public class QuizMenuController {
 
    @FXML
    public void addQuiz() throws Exception {
-      //App.createTestController = new CreateTestController();
-      //App.setRoot("CreateTestScene");
+      App.createTestController = new CreateTestController();
+      App.setRoot("CreateTestScene");
    }
 
    @FXML
@@ -45,8 +44,6 @@ public class QuizMenuController {
    }
 
    public void getTestsList(String msg, int userID) {
-      App.getInstance().client = new Client("localhost", 8080);
-      System.out.println("Connected to server");
       App.getInstance().client.sendMessage(msg, userID);
       System.out.println("Waiting for list of tests");
       Message messageReceived = App.getInstance().client.getOneRecivedObject();

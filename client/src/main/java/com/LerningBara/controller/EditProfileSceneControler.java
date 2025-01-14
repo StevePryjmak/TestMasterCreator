@@ -10,7 +10,6 @@ import com.LerningBara.app.App;
 import UserData.User;
 import UserData.UserData;
 import ImageData.ImageData;
-import client.Client;
 import connection.Message;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -61,8 +60,6 @@ public class EditProfileSceneControler {
         }
 
         UserData usr = new UserData(curr_user.getUsername(), "", emailStr, curr_user.getId());
-        App.getInstance().client = new Client("localhost", 8080);
-        System.out.println("Connected to server");
         App.getInstance().client.sendMessage("Update user", usr);
         System.out.println("Waiting for server response");
         Message messageReceived = App.getInstance().client.getOneRecivedObject();
@@ -85,8 +82,6 @@ public class EditProfileSceneControler {
         String usernameStr = usernameField.getText();
         Boolean db_resp = false;
         UserData usr = new UserData(usernameStr);
-        App.getInstance().client = new Client("localhost", 8080);
-        System.out.println("Connected to server");
         App.getInstance().client.sendMessage("User exists", usr);
         System.out.println("Waiting for server response");
         Message messageReceived = App.getInstance().client.getOneRecivedObject();
@@ -129,8 +124,6 @@ public class EditProfileSceneControler {
         String passStr = newPassField.getText();
         Boolean db_resp = false;
         UserData usr = new UserData(curr_user.getUsername(), oldPassField.getText());
-        App.getInstance().client = new Client("localhost", 8080);
-        System.out.println("Connected to server");
         App.getInstance().client.sendMessage("Check password", usr);
         System.out.println("Waiting for server response");
         Message messageReceived = App.getInstance().client.getOneRecivedObject();
@@ -182,8 +175,6 @@ public class EditProfileSceneControler {
             img.map = imageBytes;
             img.username = App.getInstance().user.getUsername();
 
-            App.getInstance().client = new Client("localhost", 8080);
-            System.out.println("Connected to server");
             App.getInstance().client.sendMessage("Add profile icon", img);
             System.out.println("Waiting for server response");
             Message messageReceived = App.getInstance().client.getOneRecivedObject();

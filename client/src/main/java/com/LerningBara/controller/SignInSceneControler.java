@@ -4,7 +4,6 @@ import com.LerningBara.app.App;
 
 import UserData.User;
 import UserData.UserData;
-import client.Client;
 import connection.Message;
 import javafx.fxml.FXML;
 import javafx.scene.control.PasswordField;
@@ -28,8 +27,6 @@ public class SignInSceneControler {
       Boolean user_exists = false;
       Boolean corr_pass = false;
       UserData usr = new UserData(login, password);
-      App.getInstance().client = new Client("localhost", 8080);
-      System.out.println("Connected to server");
       App.getInstance().client.sendMessage("User exists", usr);
       System.out.println("Waiting for server response");
       Message messageReceived = App.getInstance().client.getOneRecivedObject();

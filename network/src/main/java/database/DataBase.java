@@ -317,11 +317,12 @@ public class DataBase {
         }
     }
 
-    public static void addTest(TestData testData, int userId, String testName) {
+    public static void addTest(TestData testData, int userId) {
         connect();
         PreparedStatement statement = null;
         ResultSet resultSet = null;
         int testId;
+        String testName = testData.getName();
         try {
             statement = connection.prepareStatement(
                     "INSERT INTO Tests(Name, Users_UserId) VALUES (?, ?)");
