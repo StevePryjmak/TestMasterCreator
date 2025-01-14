@@ -86,40 +86,6 @@ public class DataBase {
         return new AvalibleTestsList(tests);
     }
 
-    public static AvalibleTestsList getLikedTests(int userID) {
-        connect();
-        PreparedStatement statement = null;
-        ResultSet resultSet = null;
-        List<TestInfoData> tests = new ArrayList<>();
-        try {
-            statement = connection.prepareStatement(
-                    "SELECT LOGIN, T.*, (SELECT COUNT(*) FROM TEST_QUESTION WHERE TESTS_TESTID = T.TESTID) N FROM LIKES L JOIN TESTS T ON L.TESTS_TESTID = T.TESTID JOIN USERS ON USERID = T.USERS_USERID WHERE USERID = ?");
-            statement.setInt(1, userID);
-            resultSet = statement.executeQuery();
-
-            while (resultSet.next()) {
-                TestInfoData testInfoData3 = new TestInfoData(resultSet.getInt("testid"), resultSet.getString("Name"),
-                        resultSet.getString("Description"), resultSet.getString("Login"),
-                        resultSet.getString("CREATIONDATE"),
-                        resultSet.getString("field"), resultSet.getInt("n"));
-                tests.add(testInfoData3);
-            }
-        } catch (SQLException e) {
-            System.err.println("Query execution failed: " + e.getMessage());
-        } finally {
-            try {
-                if (resultSet != null)
-                    resultSet.close();
-                if (statement != null)
-                    statement.close();
-            } catch (SQLException e) {
-                System.err.println("Failed to close resources: " + e.getMessage());
-            }
-        }
-
-        return new AvalibleTestsList(tests);
-    }
-
     public static AvalibleTestsList getUserTests(int userID) {
         connect();
         PreparedStatement statement = null;
@@ -279,31 +245,6 @@ public class DataBase {
                     fileWriter.write(str_insert);
                     fileWriter.write(";\nCOMMIT;");
                     System.out.println("New user appended to data file.");
-                } catch (IOException e) {
-                    System.err.println("An error occured: " + e.getMessage());
-                }
-            }
-        } catch (SQLException e) {
-            System.err.println("Insert execution failed: " + e.getMessage());
-        }
-    }
-
-    public static void addToLikes(int userID, int testID) {
-        connect();
-        String str_insert = String.format(
-                "INSERT INTO LIKES(date, users_userid , tests_testid ) VALUES (CURRENT_DATE, '%d', '%d')",
-                userID, testID);
-        int rows_insert;
-        PreparedStatement statement = null;
-        try {
-            statement = connection.prepareStatement(str_insert);
-            rows_insert = statement.executeUpdate();
-            if (rows_insert > 0) {
-                try (FileWriter fileWriter = new FileWriter("../Insert_data.sql", true)) {
-                    fileWriter.write("\n");
-                    fileWriter.write(str_insert);
-                    fileWriter.write(";\nCOMMIT;");
-                    System.out.println("Successfully added test to liked.");
                 } catch (IOException e) {
                     System.err.println("An error occured: " + e.getMessage());
                 }

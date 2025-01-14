@@ -47,12 +47,12 @@ public class ClientHandler implements Runnable {
         functionMap.put("Delete user", this::sendDeleteUser);
         functionMap.put("List of user test", this::sendUserTestList);
         functionMap.put("List of liked test", this::sendLikedTestList);
-        functionMap.put("Add to likes", this::sendAddToLikes);
-        functionMap.put("Add result", this::sendAddResult);
+        functionMap.put("Add to likes", this::sendAddFavorites);
+        functionMap.put("Add result", this::sendSaveResult);
         // TODO add more functions here
     }
 
-    public void sendAddResult() {
+    public void sendSaveResult() {
         Object obj = recived.poll();
         try {
             DataBase.saveResult(
@@ -65,7 +65,7 @@ public class ClientHandler implements Runnable {
         }
     }
 
-    public void sendAddToLikes() {
+    public void sendAddFavorites() {
         Object obj = recived.poll();
         if (obj instanceof TestInfoData) {
             boolean already_liked = false;
