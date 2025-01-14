@@ -15,6 +15,8 @@ import javafx.stage.Stage;
 import client.Client;
 import TestData.TestInfoData;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.image.Image;
+
 import com.LerningBara.controller.MainLayoutController;
 import com.LerningBara.controller.TestBoxController;
 import javafx.scene.layout.VBox;
@@ -39,10 +41,13 @@ public class App extends Application {
     public void start(Stage stage) {
         try {
             App.stage = stage;
+            Image icon = new Image("/kapibara.png");
+            stage.getIcons().add(icon);
+            stage.setTitle("LearningBara");
             Parent root = FXMLLoader.load(getClass().getResource("/fxml/LoginScene.fxml"));
             // Parent root = FXMLLoader.load(getClass().getResource("/fxml/StartScene.fxml"));
             Scene scene = new Scene(root);
-            scene.getStylesheets().add("/css/Styles.css");
+            scene.getStylesheets().add("/css/DefaultStyle.css");
             stage.setScene(scene);
             stage.show();
         } catch (Exception e) {
@@ -65,6 +70,7 @@ public class App extends Application {
             // scene.getStylesheets().add("/css/Styles.css");
             scene.getStylesheets().add("/css/CreateTest.css");
             stage.setScene(scene);
+
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -113,6 +119,10 @@ public class App extends Application {
         Scene scene = new Scene(root);
         scene.getStylesheets().add(getClass().getResource("/css/RoundedSearchBar.css").toExternalForm());
         stage.setScene(scene);
+    }
+
+    public Stage getPrimaryStage() {
+        return stage;
     }
 
 }

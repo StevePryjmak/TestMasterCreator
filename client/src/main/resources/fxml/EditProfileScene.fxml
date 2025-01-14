@@ -44,7 +44,7 @@
       <PasswordField fx:id="newPassField" layoutX="156.0" layoutY="198.0" prefHeight="26.0" prefWidth="199.0" promptText="new password" />
       <PasswordField fx:id="oldPassField" layoutX="156.0" layoutY="238.0" prefHeight="26.0" prefWidth="199.0" promptText="old password" />
       <Button layoutX="406.0" layoutY="238.0" mnemonicParsing="false" onAction="#changePassword" text="Confirm" />
-      <Button layoutX="228.0" layoutY="304.0" mnemonicParsing="false" text="Upload profile picture" />
+      <Button layoutX="228.0" layoutY="304.0" mnemonicParsing="false" onAction="#uploadPicture" text="Upload profile picture" />
       <Label fx:id="passLabel" layoutX="156.0" layoutY="271.0" prefHeight="18.0" prefWidth="199.0" textFill="RED">
          <font>
             <Font size="11.0" />

@@ -19,9 +19,9 @@
       <TextField fx:id="emailField" layoutX="224.0" layoutY="109.0" promptText="e-mail" />
       <PasswordField fx:id="passwordField1" layoutX="224.0" layoutY="152.0" promptText="password" />
       <PasswordField fx:id="passwordField2" layoutX="224.0" layoutY="200.0" promptText="repeat password" />
-      <CheckBox fx:id="termsField" layoutX="224.0" layoutY="244.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="198.0" text="I agree to terms and conditions" />
-      <Button fx:id="createButton" layoutX="237.0" layoutY="286.0" mnemonicParsing="false" onAction="#createAccount" text="Create your account" />
-      <Button layoutX="263.0" layoutY="322.0" mnemonicParsing="false" onAction="#goBack" prefHeight="26.0" prefWidth="70.0" text="Go back" />
+      <CheckBox fx:id="termsField" layoutX="223.0" layoutY="244.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="227.0" text="I agree to terms and conditions" />
+      <Button fx:id="createButton" layoutX="229.0" layoutY="287.0" mnemonicParsing="false" onAction="#createAccount" prefHeight="26.0" prefWidth="138.0" text="Create your account" />
+      <Button layoutX="229.0" layoutY="338.0" mnemonicParsing="false" onAction="#goBack" prefHeight="26.0" prefWidth="138.0" text="Go back" />
       <Label fx:id="loginLabel" layoutX="224.0" layoutY="91.0" prefHeight="18.0" prefWidth="150.0" textFill="RED" />
       <Label fx:id="emailLabel" layoutX="224.0" layoutY="135.0" prefHeight="18.0" prefWidth="150.0" textFill="RED" />
       <Label fx:id="passLabel" layoutX="224.0" layoutY="181.0" prefHeight="18.0" prefWidth="150.0" textFill="RED" />
