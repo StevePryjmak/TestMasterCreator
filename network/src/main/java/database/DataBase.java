@@ -193,7 +193,7 @@ public class DataBase {
         List<AbstractQuestionData> questions = new ArrayList<>();
         try {
             statement = connection.prepareStatement(
-                    "SELECT q.QuestionId, q.Text, q.Types_TypeId q.image FROM Tests t JOIN Questions q ON TestId = Tests_TestId  WHERE Name=? ORDER BY Position");
+                    "SELECT q.QuestionId, q.Text, q.Types_TypeId, q.image FROM Tests t JOIN Questions q ON TestId = Tests_TestId  WHERE Name=? ORDER BY Position");
             statement.setString(1, testName);
             questionsSet = statement.executeQuery();
 
@@ -737,7 +737,7 @@ public class DataBase {
         }
     }
 
-    public static Boolean getUserVisibility(String username){
+    public static Boolean getUserVisibility(String username) {
         connect();
         ResultSet resultSet = null;
         PreparedStatement statement = null;
@@ -748,7 +748,7 @@ public class DataBase {
             statement.setString(1, username);
             resultSet = statement.executeQuery();
             resultSet.next();
-            if(resultSet.getInt("VisibilityLevel") == 1){
+            if (resultSet.getInt("VisibilityLevel") == 1) {
                 result = true;
             }
 
