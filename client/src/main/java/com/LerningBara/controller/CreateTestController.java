@@ -3,6 +3,7 @@ package com.LerningBara.controller;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.layout.VBox;
+import main.java.com.LerningBara.controller.CreateTests.CreateQestionConventor;
 import javafx.fxml.FXMLLoader;
 
 import java.io.IOException;
@@ -30,6 +31,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.ComboBox;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import com.LerningBara.controller.CreateTests.*;;
 
 public class CreateTestController {
 
@@ -154,17 +156,18 @@ public class CreateTestController {
     // to App
     public void handleQuestionEdit(int index, boolean create) {
         System.out.println("Question #" + (index + 1) + " clicked");
+        String questionType = choseQuestionType.getValue();
         saveCurrentState();
         CreateAbstractQestionController questionController;
         if (create) {
-            questionController = new CreateSingleChoiceQuestionController();
+            questionController = CreateQestionConventor.getController(questionType);
         } else {
             questionController = questions.get(index);
         }
 
         try {
             FXMLLoader loader = new FXMLLoader(
-                    getClass().getResource("/fxml/CreateTests/CreateSingleChoiceQuestionScene.fxml")); // TODO add conwertor
+                    getClass().getResource(CreateQestionConventor.getFXMLLocation(questionType)));
             questionController.isEdit = true;
             loader.setController(questionController);
             Parent root = loader.load();
