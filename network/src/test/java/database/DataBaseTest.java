@@ -1,25 +1,18 @@
 package database;
 
 import org.junit.jupiter.api.BeforeAll;
-import org.h2.store.Data;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Test;
 
 import QuestionData.AbstractQuestionData;
 import QuestionData.SingleChoiceQuestionData;
-import QuestionData.MultipleChoicesQuestionData;
-import QuestionData.OpenAnwserQuestionData;
 import TestData.AvalibleTestsList;
 import TestData.TestData;
-import TestData.TestInfoData;
 import UserData.User;
 import UserData.UserData;
 
 
-import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
