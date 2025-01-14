@@ -1,7 +1,11 @@
 package com.LerningBara.controller;
 
+import java.io.IOException;
+import java.util.List;
+
 import com.LerningBara.app.App;
 
+import TestData.AvalibleTestsList;
 import TestData.TestInfoData;
 import client.Client;
 import connection.Message;
@@ -41,10 +45,25 @@ public class EndTestController {
     // TODO: check if this works
     @FXML
     public void returnToBrowsing() {
-        App.setRoot("MainLayoutScene");
+        App.getInstance().client = new Client("localhost", 8080);
+        System.out.println("Connected to server");
+        App.getInstance().client.sendMessage("List of tests", null);
+        System.out.println("Waiting for list of tests");
+        Message messageReceived = App.getInstance().client.getOneRecivedObject();
+
+        Object r = messageReceived.getObject();
+        if (r instanceof AvalibleTestsList) {
+            AvalibleTestsList avalibleTestsList = (AvalibleTestsList) r;
+            List<TestInfoData> tests = avalibleTestsList.getTests();
+            try {
+                App.getInstance().showTestsList(tests);
+            } catch (IOException e) {
+                System.out.println(e);
+            }
+
+        }
     }
 
-    // TODO: check if this works
     @FXML
     private void initialize() {
         currentTest = App.getInstance().testInfoData;
@@ -55,9 +74,17 @@ public class EndTestController {
         App.getInstance().client.sendMessage("Add result", currentTest);
         System.out.println("Waiting to add test result to database");
         Message messageReceived = App.getInstance().client.getOneRecivedObject();
-        Object _ = messageReceived.getObject();
+        Object obj = messageReceived.getObject();
+        // TODO: change this into some sort of feedback to server or sth
+        if ((Boolean) obj) {
+            System.out.println(
+                    "Successfuly added the result, result: " + currentTest.result + "/" + currentTest.questionCount);
+        } else {
+            System.out.println("Failed to add the result");
+        }
 
         String text = currentTest.result + "/" + currentTest.questionCount;
         resultLabel.setText(text);
+        likeInfoLabel.setText("");
     }
 }
