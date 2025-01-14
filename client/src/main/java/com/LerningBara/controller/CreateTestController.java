@@ -165,6 +165,10 @@ public class CreateTestController {
     @FXML
     private void handleSaveTest() {
         System.out.println("Add Test button clicked!");
+        if(testNameField.getText().isEmpty()) {
+            System.out.println("Test name is empty!");
+            return;
+        }
 
         List<AbstractQuestionData> questionsData = new ArrayList<>();
         for (CreateAbstractQestionController question : questions) {
@@ -177,8 +181,6 @@ public class CreateTestController {
         App.getInstance().setTest(test);
         App.getInstance().runExampleTest();
         // App.addTest(test);
-        App.getInstance().client = new Client("localhost", 8080);
-        System.out.println("Connected to server");
         App.getInstance().client.sendMessage("Save test", testdata);
         App.setRoot("QuizMenuScene");
         // App.getInstance().runExampleTest();
