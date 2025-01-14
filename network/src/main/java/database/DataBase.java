@@ -323,11 +323,15 @@ public class DataBase {
         ResultSet resultSet = null;
         int testId;
         String testName = testData.getName();
+        String testDescription = "hardcoded"; // TODO change this to actually work
+        String testField = "Math"; // TODO change this to actually work
         try {
             statement = connection.prepareStatement(
-                    "INSERT INTO Tests(Name, Users_UserId) VALUES (?, ?)");
+                    "INSERT INTO Tests(Name, Users_UserId, creationdate, field, description) VALUES (?, ?, CURRENT_DATE, ?, ?)");
             statement.setString(1, testName);
             statement.setInt(2, userId);
+            statement.setString(3, testField);
+            statement.setString(4, testDescription);
             statement.executeUpdate();
             statement = connection.prepareStatement(
                     "SELECT TestId FROM Tests WHERE Name = ?");
