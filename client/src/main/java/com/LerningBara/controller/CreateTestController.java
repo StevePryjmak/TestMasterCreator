@@ -170,6 +170,10 @@ public class CreateTestController {
     @FXML
     private void handleSaveTest() {
         System.out.println("Add Test button clicked!");
+        if(testNameField.getText().isEmpty()) {
+            System.out.println("Test name is empty!");
+            return;
+        }
 
         List<AbstractQuestionData> questionsData = new ArrayList<>();
         for (CreateAbstractQestionController question : questions) {
