@@ -76,7 +76,7 @@ public class App extends Application {
         if (!testIterator.hasNext()) {
             // start(stage);
             // return;
-            setRoot("EndTestController");
+            App.setRoot("EndTestScene");
         } else {
             AbstractQuestion question = testIterator.next();
             stage.setScene(question.getScene());
