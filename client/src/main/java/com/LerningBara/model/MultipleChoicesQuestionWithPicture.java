@@ -24,6 +24,8 @@ import java.io.ByteArrayInputStream;
 
 public class MultipleChoicesQuestionWithPicture extends AbstractQuestion {
 
+    
+
     private MultipleChoicesQuestionWithPictureData questionData;
     private MultipleChoicesQuestionWithPictureController controller;
 

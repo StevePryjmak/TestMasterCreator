@@ -36,15 +36,8 @@ INSERT INTO TESTS(
     'Programowanie aplikacyjne'
 );
 
-INSERT INTO TYPES(Description) VALUES (
-    'Single choice'
-),
-(
-    'Multiple choice'
-),
-(
-    'Open'
-);
+INSERT INTO types ( description ) values ( 'Single choice' ),( 'Multiple choice' ),( 'Open' ),( 'Multiple choice with picture'
+),( 'Single choice with picture' );
 
 INSERT INTO HINTS(Text) VALUES (
     'Hint1'

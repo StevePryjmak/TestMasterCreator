@@ -381,6 +381,8 @@ public class DataBase {
         int questionId;
         int type = -1;
         String text = "nie dziala";
+        byte[] image = null;
+    
         try {
             if (questionData instanceof SingleChoiceQuestionData) {
                 type = 1;
@@ -391,14 +393,31 @@ public class DataBase {
             } else if (questionData instanceof OpenAnwserQuestionData) {
                 type = 3;
                 text = ((OpenAnwserQuestionData) questionData).getQuestion();
+            } else if (questionData instanceof MultipleChoicesQuestionWithPictureData) {
+                type = 4;
+                text = ((MultipleChoicesQuestionWithPictureData) questionData).getQuestion();
+                image = ((MultipleChoicesQuestionWithPictureData) questionData).getImage(); // Get image bytes.
+            } else if (questionData instanceof SingleChoiceQuestionWithPictureData) {
+                type = 5;
+                text = ((SingleChoiceQuestionWithPictureData) questionData).getQuestion();
+                image = ((SingleChoiceQuestionWithPictureData) questionData).getImage(); // Get image bytes.
             }
+    
+            // Insert the question into the database, including the image if present.
             statement = connection.prepareStatement(
-                    "INSERT INTO Questions(Text, Types_TypeId, Position, Tests_TestId) VALUES (?, ?, ?, ?)");
+                    "INSERT INTO Questions(Text, Types_TypeId, Position, Tests_TestId, Image) VALUES (?, ?, ?, ?, ?)");
             statement.setString(1, text);
             statement.setInt(2, type);
             statement.setInt(3, position);
             statement.setInt(4, testId);
+            if (image != null) {
+                statement.setBytes(5, image);
+            } else {
+                statement.setNull(5, java.sql.Types.BLOB); 
+            }
             statement.executeUpdate();
+    
+            // Retrieve the newly inserted question's ID.
             statement = connection.prepareStatement(
                     "SELECT QuestionId FROM Questions WHERE Position = ? AND Tests_TestId = ?");
             statement.setInt(1, position);
@@ -406,20 +425,22 @@ public class DataBase {
             resultSet = statement.executeQuery();
             resultSet.next();
             questionId = resultSet.getInt(1);
+    
+            // Add associated answers.
             addAnswer(questionData, questionId);
+    
         } catch (SQLException e) {
             System.err.println("Query execution failed: " + e.getMessage());
         } finally {
             try {
-                if (resultSet != null)
-                    resultSet.close();
-                if (statement != null)
-                    statement.close();
+                if (resultSet != null) resultSet.close();
+                if (statement != null) statement.close();
             } catch (SQLException e) {
                 System.err.println("Failed to close resources: " + e.getMessage());
             }
         }
     }
+    
 
     private static void addAnswer(AbstractQuestionData questionData, int questionId) {
         connect();
