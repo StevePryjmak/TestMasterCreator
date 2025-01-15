@@ -10,6 +10,9 @@ import com.LerningBara.app.App;
 import com.LerningBara.controller.OpenAnwserQuestionController;
 
 import QuestionData.OpenAnwserQuestionData;
+import javafx.scene.layout.VBox;
+import javafx.scene.control.Label;
+
 
 public class OpenAnwserQuestion extends AbstractQuestion {
 
@@ -41,4 +44,23 @@ public class OpenAnwserQuestion extends AbstractQuestion {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'checkAnswer'");
     }
+
+    @Override
+    public VBox getDetailsBox(int index) {
+        VBox questionBox = new VBox(10);
+        questionBox.getStyleClass().add("question-box");
+        questionBox.setOnMouseClicked(event -> {
+            App.createTestController.handleQuestionEdit(index, false);
+        });
+
+        Label questionLabel = new Label("Question #" + (index + 1) + ": " + questionData.getQuestion());
+        questionLabel.getStyleClass().add("question-label");
+
+        Label correctAnswerLabel = new Label("Correct Answer: " + questionData.getCorrectAnswer());
+        correctAnswerLabel.getStyleClass().add("answer-label");
+
+        questionBox.getChildren().addAll(questionLabel, correctAnswerLabel);
+        return questionBox;
+    }
+
 }
