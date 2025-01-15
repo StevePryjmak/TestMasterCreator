@@ -804,6 +804,17 @@ public class DataBase {
         connect();
         PreparedStatement statement = null;
         try {
+
+            statement = connection.prepareStatement(
+                    "DELETE FROM results WHERE tests_testid = ?");
+            statement.setInt(1, testId);
+            statement.executeUpdate();
+
+            statement = connection.prepareStatement(
+                    "DELETE FROM likes WHERE tests_testid = ?");
+            statement.setInt(1, testId);
+            statement.executeUpdate();
+
             statement = connection.prepareStatement(
                     "DELETE FROM answers WHERE questions_questionid IN (SELECT q.questionid FROM questions q WHERE q.tests_testid = ?)");
             statement.setInt(1, testId);
@@ -811,12 +822,6 @@ public class DataBase {
 
             statement = connection.prepareStatement(
                     "delete from questions WHERE tests_testid = ?");
-            statement.setInt(1, testId);
-            statement.executeUpdate();
-
-            statement = connection.prepareStatement(
-                    "DELETE FROM answers WHERE questions_questionid IN (SELECT q.questionid FROM questions q WHERE q.tests_testid = ?)");
-
             statement.setInt(1, testId);
             statement.executeUpdate();
 

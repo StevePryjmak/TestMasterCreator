@@ -89,6 +89,8 @@ public class EndTestController {
                 bestResult = i;
             }
         }
+        if (currentTest.result > bestResult)
+            bestResult = currentTest.result;
         String text = "Best result: " + String.valueOf(bestResult) + "/" + currentTest.questionCount;
         bestResultLabel.setText(text);
 
