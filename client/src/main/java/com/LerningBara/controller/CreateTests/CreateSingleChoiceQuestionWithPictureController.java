@@ -8,6 +8,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 
+import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -53,7 +54,51 @@ public class CreateSingleChoiceQuestionWithPictureController extends CreateAbstr
         uploadImageButton.setOnAction(event -> handleImageUpload());
         addAnswerButton.setOnAction(event -> addAnswerField());
         saveButton.setOnAction(event -> handleSaveQuestion());
+
+        // Populate form if data exists
+        populateForm();
     }
+
+    /**
+     * Populates the form with existing values from the class variables.
+     */
+    private void populateForm() {
+        if (questionText != null) {
+            questionInput.setText(questionText);
+        }
+
+        if (answers != null && !answers.isEmpty()) {
+            answerList.getChildren().clear();
+            for (int i = 0; i < answers.size(); i++) {
+                HBox answerBox = new HBox(10);
+
+                TextField answerInput = new TextField(answers.get(i));
+                answerInput.setPromptText("Enter answer option");
+
+                RadioButton correctAnswerButton = new RadioButton();
+                correctAnswerButton.setToggleGroup(toggleGroup);
+
+                if (i == correctAnswerIndex) {
+                    correctAnswerButton.setSelected(true);
+                }
+
+                Button deleteButton = new Button("Remove");
+                deleteButton.setOnAction(event -> {
+                    answerList.getChildren().remove(answerBox);
+                    toggleGroup.getToggles().remove(correctAnswerButton);
+                });
+
+                answerBox.getChildren().addAll(correctAnswerButton, answerInput, deleteButton);
+                answerList.getChildren().add(answerBox);
+            }
+        }
+
+        if (imageBytes != null && imageBytes.length > 0) {
+            Image image = new Image(new ByteArrayInputStream(imageBytes));
+            imageView.setImage(image);
+        }
+    }
+
 
     private void handleImageUpload() {
         FileChooser fileChooser = new FileChooser();
