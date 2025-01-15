@@ -51,7 +51,7 @@ public class EndTestController {
             AvalibleTestsList avalibleTestsList = (AvalibleTestsList) r;
             List<TestInfoData> tests = avalibleTestsList.getTests();
             try {
-                App.getInstance().showTestsList(tests);
+                App.getInstance().showTestsList(tests, false);
             } catch (IOException e) {
                 System.out.println(e);
             }

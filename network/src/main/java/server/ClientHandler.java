@@ -60,7 +60,18 @@ public class ClientHandler implements Runnable {
         functionMap.put("Get user's test results", this::sendUserTestResult);
         functionMap.put("Get visibility", this::sendGetVisibility);
         functionMap.put("Set visibility", this::sendSetVisibility);
+        functionMap.put("Delete", this::sendDelete);
         // TODO add more functions here
+    }
+
+    public void sendDelete() {
+        try {
+            DataBase.deleteTest((int) recived.poll());
+            sendObject(new Message("Deleted quiz", (Boolean) true));
+        } catch (Exception e) {
+            sendObject(new Message("Failed to deleted quiz", (Boolean) false));
+        }
+
     }
 
     public void sendUserTestResult() {

@@ -790,7 +790,42 @@ public class DataBase {
         return result;
     }
 
-    // public static void deleteTest(int testId)
+    public static void deleteTest(int testId) {
+        connect();
+        PreparedStatement statement = null;
+        try {
+            statement = connection.prepareStatement(
+                    "DELETE FROM answers WHERE questions_questionid IN (SELECT q.questionid FROM questions q WHERE q.tests_testid = ?)");
+            statement.setInt(1, testId);
+            statement.executeUpdate();
+
+            statement = connection.prepareStatement(
+                    "delete from questions WHERE tests_testid = ?");
+            statement.setInt(1, testId);
+            statement.executeUpdate();
+
+            statement = connection.prepareStatement(
+                    "DELETE FROM answers WHERE questions_questionid IN (SELECT q.questionid FROM questions q WHERE q.tests_testid = ?)");
+
+            statement.setInt(1, testId);
+            statement.executeUpdate();
+
+            statement = connection.prepareStatement(
+                    "delete from Tests WHERE testid = ?");
+            statement.setInt(1, testId);
+            statement.executeUpdate();
+
+        } catch (SQLException e) {
+            System.err.println("Query execution failed: " + e.getMessage());
+        } finally {
+            try {
+                if (statement != null)
+                    statement.close();
+            } catch (SQLException e) {
+                System.err.println("Failed to close resources: " + e.getMessage());
+            }
+        }
+    }
 
     // class with user info profile image and some useful information idk ...
     // public User getUser(String username) {

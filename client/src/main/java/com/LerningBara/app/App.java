@@ -105,12 +105,12 @@ public class App extends Application {
         }
     }
 
-    public void showTestsList(List<TestInfoData> testsInfo) throws IOException {
+    public void showTestsList(List<TestInfoData> testsInfo, boolean allowDeleting) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/MainLayout.fxml"));
         ScrollPane root = loader.load();
         MainLayoutController controller = loader.getController();
 
-        controller.setTests(testsInfo);
+        controller.setTests(testsInfo, allowDeleting);
 
         Scene scene = new Scene(root, 600, 600);
         scene.getStylesheets().add(getClass().getResource("/css/RoundedSearchBar.css").toExternalForm());
