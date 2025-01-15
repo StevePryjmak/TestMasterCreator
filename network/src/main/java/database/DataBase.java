@@ -147,7 +147,6 @@ public class DataBase {
             }
         }
 
-        // TODO: remove this hardcoded data
         return new AvalibleTestsList(tests);
     }
 
@@ -191,13 +190,15 @@ public class DataBase {
         ResultSet questionsSet = null;
         ResultSet answersSet = null;
         List<AbstractQuestionData> questions = new ArrayList<>();
+        boolean shuffled = false;
         try {
             statement = connection.prepareStatement(
-                    "SELECT q.QuestionId, q.Text, q.Types_TypeId, q.image FROM Tests t JOIN Questions q ON TestId = Tests_TestId  WHERE Name=? ORDER BY Position");
+                    "SELECT q.QuestionId, q.Text, q.Types_TypeId, q.image, t.shuffled FROM Tests t JOIN Questions q ON TestId = Tests_TestId  WHERE Name=? ORDER BY Position");
             statement.setString(1, testName);
             questionsSet = statement.executeQuery();
 
             while (questionsSet.next()) {
+                shuffled = (questionsSet.getBoolean("shuffled"));
                 List<String> options = new ArrayList<>();
                 List<Integer> correctAnswers = new ArrayList<>();
                 int i = 0;
@@ -217,6 +218,7 @@ public class DataBase {
                     case 1:
                         q = new SingleChoiceQuestionData(questionsSet.getString("Text"), options,
                                 (int) (correctAnswers.toArray()[0]));
+                        System.out.println(((SingleChoiceQuestionData) q).getCorrectAnswerIndex());
                         break;
                     case 2:
                         q = new MultipleChoicesQuestionData(questionsSet.getString("Text"), options,
@@ -252,7 +254,9 @@ public class DataBase {
                 System.err.println("Failed to close resources: " + e.getMessage());
             }
         }
-        return new TestData(questions);
+        TestData result = new TestData(questions);
+        result.setShuffled(shuffled);
+        return result;
     }
 
     public static boolean userExists(String username) {
@@ -332,17 +336,19 @@ public class DataBase {
         connect();
         PreparedStatement statement = null;
         ResultSet resultSet = null;
-        int testId;
+        int testId, position = 1;
         String testName = testData.getName();
         String testDescription = testData.getDescription();
         String testField = testData.getFiled();
+        boolean bool = testData.getShuffled();
         try {
             statement = connection.prepareStatement(
-                    "INSERT INTO Tests(Name, Users_UserId, creationdate, field, description) VALUES (?, ?, CURRENT_DATE, ?, ?)");
+                    "INSERT INTO Tests(Name, Users_UserId, creationdate, field, description, shuffled) VALUES (?, ?, CURRENT_DATE, ?, ?, ?)");
             statement.setString(1, testName);
             statement.setInt(2, userId);
             statement.setString(3, testField);
             statement.setString(4, testDescription);
+            statement.setBoolean(5, bool);
             statement.executeUpdate();
             statement = connection.prepareStatement(
                     "SELECT TestId FROM Tests WHERE Name = ?");
@@ -351,7 +357,8 @@ public class DataBase {
             resultSet.next();
             testId = resultSet.getInt(1);
             for (var questionData : testData.questions) {
-                addQuestion(questionData, testId);
+                addQuestion(questionData, testId, position);
+                position++;
             }
         } catch (SQLException e) {
             System.err.println("Query execution failed: " + e.getMessage());
@@ -367,12 +374,11 @@ public class DataBase {
         }
     }
 
-    private static void addQuestion(AbstractQuestionData questionData, int testId) {
+    private static void addQuestion(AbstractQuestionData questionData, int testId, int position) {
         connect();
         PreparedStatement statement = null;
         ResultSet resultSet = null;
         int questionId;
-        int position = 1;
         int type = -1;
         String text = "nie dziala";
         try {
@@ -401,7 +407,6 @@ public class DataBase {
             resultSet.next();
             questionId = resultSet.getInt(1);
             addAnswer(questionData, questionId);
-            position++;
         } catch (SQLException e) {
             System.err.println("Query execution failed: " + e.getMessage());
         } finally {
@@ -421,9 +426,7 @@ public class DataBase {
         PreparedStatement statement = null;
         ResultSet resultSet = null;
         List<String> options = new ArrayList<>();
-        ;
         List<Integer> correctAnswerIndexes = new ArrayList<>();
-        ;
         try {
             if (questionData instanceof SingleChoiceQuestionData) {
                 options = ((SingleChoiceQuestionData) questionData).getOptions();
@@ -440,8 +443,9 @@ public class DataBase {
             for (int i = 0; i < options.size(); i++) {
                 statement = connection.prepareStatement(
                         "INSERT INTO Answers(Text, IsCorrect, Questions_QuestionId) VALUES (?, ?, ?)");
-                statement.setString(1, options.get(0));
-                statement.setBoolean(2, correctAnswerIndexes.contains(i));
+                statement.setString(1, options.get(i));
+                String correct = correctAnswerIndexes.contains(i) ? "T" : "F";
+                statement.setString(2, correct);
                 statement.setInt(3, questionId);
                 statement.executeUpdate();
             }
