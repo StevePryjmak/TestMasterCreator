@@ -4,6 +4,7 @@ import com.LerningBara.controller.CreateTests.CreateAbstractQestionController;
 import com.LerningBara.controller.CreateTests.CreateSingleChoiceQuestionController;
 import com.LerningBara.controller.CreateTests.CreateMultipleChoiceQuestionController;
 import com.LerningBara.controller.CreateTests.CreateOpenAnswerQuestionController;
+import com.LerningBara.controller.CreateTests.CreateSingleChoiceQuestionWithPictureController;
 
 public class CreateQuestionConventor {
     
@@ -15,6 +16,8 @@ public class CreateQuestionConventor {
                  return new CreateMultipleChoiceQuestionController();
             case "Open Question":
                 return new CreateOpenAnswerQuestionController();
+            case "Single Choice with Image":
+                return new CreateSingleChoiceQuestionWithPictureController();
             default:
                 return null;// it will crash the program but should be unreacheble
         }
@@ -28,6 +31,8 @@ public class CreateQuestionConventor {
                 return "/fxml/CreateTests/CreateMultipleChoiceQuestionScene.fxml";
             case "Open Question":
                 return "/fxml/CreateTests/CreateOpenAnswerQestionScene.fxml";
+            case "Single Choice with Image":
+                return "/fxml/CreateTests/CreateSingleChoiceQuestionWithPictureScene.fxml";
             default:
                 return null; // it will crash the program
         }

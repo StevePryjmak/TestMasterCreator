@@ -1,18 +1,23 @@
 package com.LerningBara.controller.CreateTests;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.stage.FileChooser;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.ToggleGroup;
-import QuestionData.*;
-import com.LerningBara.app.App;
 
-public class CreateSingleChoiceQuestionController extends CreateAbstractQestionController {
+import com.LerningBara.app.App;
+import QuestionData.*;
+
+public class CreateSingleChoiceQuestionWithPictureController extends CreateAbstractQestionController {
 
     @FXML
     private TextField questionInput;
@@ -26,52 +31,42 @@ public class CreateSingleChoiceQuestionController extends CreateAbstractQestionC
     @FXML
     private Button saveButton;
 
+    @FXML
+    private Button uploadImageButton;
+
+    @FXML
+    private ImageView imageView;
+
     private ToggleGroup toggleGroup;
 
     private String questionText;
     private List<String> answers;
     private int correctAnswerIndex;
+    private byte[] imageBytes;
 
     @FXML
     public void initialize() {
         toggleGroup = new ToggleGroup();
+        addAnswerField(); // Adds default fields
         addAnswerField();
-        addAnswerField();
-        initializeFields();
 
+        uploadImageButton.setOnAction(event -> handleImageUpload());
         addAnswerButton.setOnAction(event -> addAnswerField());
         saveButton.setOnAction(event -> handleSaveQuestion());
     }
 
-    private void initializeFields() {
-        if (questionText != null && !questionText.isEmpty()) {
-            questionInput.setText(questionText);
-        } else
+    private void handleImageUpload() {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Select Image");
+        File file = fileChooser.showOpenDialog(App.stage);
 
-        if (answers != null && !answers.isEmpty()) {
-            answerList.getChildren().clear();
-            toggleGroup = new ToggleGroup();
-
-            for (int i = 0; i < answers.size(); i++) {
-                HBox answerBox = new HBox(10);
-
-                TextField answerInput = new TextField(answers.get(i));
-                answerInput.setPromptText("Enter answer option");
-
-                RadioButton correctAnswerButton = new RadioButton();
-                correctAnswerButton.setToggleGroup(toggleGroup);
-                if (i == correctAnswerIndex) {
-                    correctAnswerButton.setSelected(true);
-                }
-
-                Button deleteButton = new Button("Remove");
-                deleteButton.setOnAction(_ -> {
-                    answerList.getChildren().remove(answerBox);
-                    toggleGroup.getToggles().remove(correctAnswerButton);
-                });
-
-                answerBox.getChildren().addAll(correctAnswerButton, answerInput, deleteButton);
-                answerList.getChildren().add(answerBox);
+        if (file != null) {
+            try (FileInputStream fis = new FileInputStream(file)) {
+                imageBytes = fis.readAllBytes();
+                Image image = new Image(new FileInputStream(file));
+                imageView.setImage(image);
+            } catch (IOException e) {
+                System.out.println("Error loading image: " + e.getMessage());
             }
         }
     }
@@ -96,7 +91,7 @@ public class CreateSingleChoiceQuestionController extends CreateAbstractQestionC
     }
 
     @FXML
-    public void handleSaveQuestion() {
+    private void handleSaveQuestion() {
         questionText = questionInput.getText().trim();
         if (questionText.isEmpty()) {
             System.out.println("Please provide a valid question.");
@@ -132,16 +127,24 @@ public class CreateSingleChoiceQuestionController extends CreateAbstractQestionC
             return;
         }
 
+        if (imageBytes == null || imageBytes.length == 0) {
+            System.out.println("Please upload an image.");
+            return;
+        }
+        
         if (!isEdit) {
             App.createTestController.addQuestion(this);
         }
         App.setRoot("CreateTestScene");
-        System.out.println("Question saved successfully!");
+        System.out.println("Question with picture saved successfully!");
     }
 
     @Override
     public AbstractQuestionData getQuestionData() {
-        return (AbstractQuestionData) new SingleChoiceQuestionData(
-                questionText, answers, correctAnswerIndex);
+        // Assuming you have a method to collect the question data from the UI
+        SingleChoiceQuestionWithPictureData questionData = new SingleChoiceQuestionWithPictureData(
+            questionText, answers, correctAnswerIndex, imageBytes);
+
+        return questionData;
     }
 }

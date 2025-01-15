@@ -4,6 +4,7 @@ import QuestionData.SingleChoiceQuestionData;
 import QuestionData.MultipleChoicesQuestionData;
 import QuestionData.OpenAnwserQuestionData;
 import QuestionData.AbstractQuestionData;
+import QuestionData.SingleChoiceQuestionWithPictureData;
 
 public class QuestionConventor {
     public static AbstractQuestion convertToQuestion(AbstractQuestionData data) {
@@ -24,6 +25,13 @@ public class QuestionConventor {
         if (data instanceof OpenAnwserQuestionData) {
             try {
                 return new OpenAnwserQuestion((OpenAnwserQuestionData) data);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        if (data instanceof SingleChoiceQuestionWithPictureData) {
+            try {
+                return new SingleChoiceQuestionWithPicture((SingleChoiceQuestionWithPictureData) data);
             } catch (Exception e) {
                 e.printStackTrace();
             }

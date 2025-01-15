@@ -6,10 +6,8 @@ import java.util.List;
 
 import com.LerningBara.app.App;
 import com.LerningBara.controller.SingleChoiceQuestionWithPictureController;
-
 import QuestionData.SingleChoiceQuestionWithPictureData;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
@@ -54,65 +52,30 @@ public class SingleChoiceQuestionWithPicture extends AbstractQuestion {
 
     @Override
     public boolean checkAnswer(String answer) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'checkAnswer'");
+        // Handle answer checking logic here
+        return answer.equals(questionData.getCorrectAnswer());
     }
 
     @Override
     public VBox getDetailsBox(int index) {
         VBox questionBox = new VBox(10);
         questionBox.getStyleClass().add("question-box");
-        questionBox.setOnMouseClicked(_ -> {
-            App.createTestController.handleQuestionEdit(index, false);
-        });
-
-        ImageView imageView = new ImageView();
-        imageView.setImage(byteArrayToImage(questionData.getImage()));
-        questionBox.getChildren().add(imageView);
 
         Label questionLabel = new Label("Question #" + (index + 1) + ": " + questionData.getQuestion());
         questionLabel.getStyleClass().add("question-label");
-        questionBox.getChildren().add(questionLabel);
 
-        List<String> options = questionData.getOptions();
+        ImageView imageView = new ImageView(byteArrayToImage(questionData.getImage()));
+        imageView.setFitWidth(200);
+        imageView.setPreserveRatio(true);
 
-        HBox answerHBox = new HBox(10);
-        answerHBox.getStyleClass().add("hbox");
-        answerHBox.setAlignment(Pos.CENTER_LEFT);
-
-        for (int i = 0; i < options.size(); i++) {
-            RadioButton answerButton = new RadioButton(options.get(i));
-            answerButton.setUserData(i);
-
-            if (i == questionData.getCorrectAnswerIndex()) {
-                answerButton.getStyleClass().add("correct-answer");
-                answerButton.setSelected(true);
-            } else {
-                answerButton.getStyleClass().add("incorrect-answer");
-            }
-
+        HBox answersBox = new HBox(10);
+        for (String option : questionData.getOptions()) {
+            RadioButton answerButton = new RadioButton(option);
             answerButton.setDisable(true);
-            answerHBox.getChildren().add(answerButton);
-
-            if (i % 2 == 1 || i == options.size() - 1) {
-                questionBox.getChildren().add(answerHBox);
-                answerHBox = new HBox(10);
-                answerHBox.getStyleClass().add("hbox");
-                answerHBox.setAlignment(Pos.CENTER_LEFT);
-            }
+            answersBox.getChildren().add(answerButton);
         }
 
-        Image deleteImage = new Image(getClass().getResourceAsStream("/images/delete.png"));
-        ImageView deleteImageView = new ImageView(deleteImage);
-        deleteImageView.setFitHeight(20);
-        deleteImageView.setFitWidth(20);
-        deleteImageView.setOnMouseClicked(event -> {
-            App.createTestController.handleDeleteQuestion(index);
-            event.consume();
-        });
-        questionBox.getChildren().add(deleteImageView);
-
+        questionBox.getChildren().addAll(questionLabel, imageView, answersBox);
         return questionBox;
     }
-
 }

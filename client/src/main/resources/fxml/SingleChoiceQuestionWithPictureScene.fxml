@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.RadioButton?>
@@ -8,10 +7,11 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.LerningBara.controller.SingleChoiceQuestionWithPictureController">
+<AnchorPane fx:controller="com.LerningBara.controller.SingleChoiceQuestionWithPictureController" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1"
+ >
    <children>
-      <ImageView fx:id="picture" fitHeight="175.0" fitWidth="218.0" layoutX="202.0" layoutY="62.0" pickOnBounds="true" preserveRatio="true" />
-      <Label fx:id="question" alignment="CENTER" layoutX="202.0" layoutY="42.0" prefHeight="20.0" prefWidth="218.0" text="question" />
+      <ImageView fx:id="imageView" fitHeight="175.0" fitWidth="218.0" layoutX="202.0" layoutY="62.0" pickOnBounds="true" preserveRatio="true" />
+      <Label fx:id="questionLabel" alignment="CENTER" layoutX="202.0" layoutY="42.0" prefHeight="20.0" prefWidth="218.0" text="question" />
       <VBox fx:id="Vbox" alignment="TOP_CENTER" layoutX="62.0" layoutY="237.0" prefHeight="83.0" prefWidth="497.0">
          <children>
             <HBox fx:id="Hbox1" alignment="TOP_CENTER" prefHeight="45.0" prefWidth="495.0">
