@@ -5,15 +5,25 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.LerningBara.controller.OpenAnwserQuestionController">
    <children>
-      <Label fx:id="question" alignment="CENTER" layoutX="154.0" layoutY="24.0" prefHeight="76.0" prefWidth="296.0" text="question" />
-      <HBox fx:id="Hbox" alignment="CENTER" layoutX="154.0" layoutY="96.0" prefHeight="208.0" prefWidth="296.0">
+      <VBox alignment="CENTER" prefHeight="400.0" prefWidth="600.0">
          <children>
-            <TextField fx:id="anwser" alignment="CENTER" prefHeight="52.0" prefWidth="289.0" promptText="Type anwser here" text="anwser" />
+            <Label fx:id="question" alignment="CENTER" prefHeight="105.0" prefWidth="600.0" text="question" />
+            <HBox fx:id="Hbox" alignment="CENTER" prefHeight="208.0" prefWidth="296.0">
+               <children>
+                  <TextField fx:id="anwser" alignment="CENTER" prefHeight="52.0" prefWidth="289.0" promptText="Type anwser here" text="anwser" />
+               </children>
+            </HBox>
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <Label fx:id="infoLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="31.0" prefWidth="600.0" text="info" textFill="RED" />
+                  <Button fx:id="next" mnemonicParsing="false" onMouseReleased="#handleCheckButton" text="next" />
+               </children>
+            </VBox>
          </children>
-      </HBox>
-      <Button fx:id="next" layoutX="274.0" layoutY="319.0" mnemonicParsing="false" onMouseReleased="#handleCheckButton" text="next" />
+      </VBox>
    </children>
 </AnchorPane>

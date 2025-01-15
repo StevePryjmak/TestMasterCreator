@@ -38,9 +38,9 @@
             </VBox>
             <HBox alignment="CENTER" prefHeight="95.0" prefWidth="600.0">
                <children>
-                  <VBox alignment="CENTER" prefHeight="75.0" prefWidth="277.0">
+                  <VBox alignment="CENTER" prefHeight="95.0" prefWidth="630.0">
                      <children>
-                        <Label fx:id="infoLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="20.0" prefWidth="165.0" text="info" textFill="RED" />
+                        <Label fx:id="infoLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="20.0" prefWidth="620.0" text="info" textFill="RED" />
                         <Button fx:id="next" mnemonicParsing="false" onMouseReleased="#handleCheckButton" prefHeight="29.0" prefWidth="67.0" text="next" />
                      </children>
                   </VBox>

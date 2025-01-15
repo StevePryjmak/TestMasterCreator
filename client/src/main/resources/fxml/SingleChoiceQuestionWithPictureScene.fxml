@@ -10,28 +10,41 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.LerningBara.controller.SingleChoiceQuestionWithPictureController">
    <children>
-      <ImageView fx:id="picture" fitHeight="175.0" fitWidth="218.0" layoutX="202.0" layoutY="62.0" pickOnBounds="true" preserveRatio="true" />
-      <Label fx:id="question" alignment="CENTER" layoutX="202.0" layoutY="42.0" prefHeight="20.0" prefWidth="218.0" text="question" />
-      <VBox fx:id="Vbox" alignment="TOP_CENTER" layoutX="62.0" layoutY="237.0" prefHeight="83.0" prefWidth="497.0">
+      <VBox alignment="CENTER" prefHeight="400.0" prefWidth="593.0">
          <children>
-            <HBox fx:id="Hbox1" alignment="TOP_CENTER" prefHeight="45.0" prefWidth="495.0">
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                <children>
-                  <RadioButton fx:id="button1" mnemonicParsing="false" text="button1" />
-                  <RadioButton fx:id="button2" mnemonicParsing="false" text="button2" />
-                  <RadioButton fx:id="button3" mnemonicParsing="false" text="button3" />
-                  <RadioButton fx:id="button4" mnemonicParsing="false" text="button4" />
+                  <Label fx:id="question" alignment="CENTER" prefHeight="20.0" prefWidth="218.0" text="question" />
+                  <ImageView fx:id="picture" fitHeight="175.0" fitWidth="218.0" pickOnBounds="true" preserveRatio="true" />
                </children>
-            </HBox>
-            <HBox fx:id="Hbox2" alignment="TOP_CENTER" prefHeight="45.0" prefWidth="495.0">
+            </VBox>
+            <VBox fx:id="Vbox" alignment="TOP_CENTER" prefHeight="128.0" prefWidth="593.0">
                <children>
-                  <RadioButton fx:id="button5" mnemonicParsing="false" text="button5" />
-                  <RadioButton fx:id="button6" mnemonicParsing="false" text="button6" />
-                  <RadioButton fx:id="button7" mnemonicParsing="false" text="button7" />
-                  <RadioButton fx:id="button8" mnemonicParsing="false" text="button8" />
+                  <HBox fx:id="Hbox1" alignment="CENTER" prefHeight="57.0" prefWidth="593.0">
+                     <children>
+                        <RadioButton fx:id="button1" mnemonicParsing="false" text="button1" />
+                        <RadioButton fx:id="button2" mnemonicParsing="false" text="button2" />
+                        <RadioButton fx:id="button3" mnemonicParsing="false" text="button3" />
+                        <RadioButton fx:id="button4" mnemonicParsing="false" text="button4" />
+                     </children>
+                  </HBox>
+                  <HBox fx:id="Hbox2" alignment="CENTER" prefHeight="63.0" prefWidth="593.0">
+                     <children>
+                        <RadioButton fx:id="button5" mnemonicParsing="false" text="button5" />
+                        <RadioButton fx:id="button6" mnemonicParsing="false" text="button6" />
+                        <RadioButton fx:id="button7" mnemonicParsing="false" text="button7" />
+                        <RadioButton fx:id="button8" mnemonicParsing="false" text="button8" />
+                     </children>
+                  </HBox>
                </children>
-            </HBox>
+            </VBox>
+            <VBox alignment="CENTER" prefHeight="104.0" prefWidth="593.0">
+               <children>
+                  <Label fx:id="infoLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="20.0" prefWidth="581.0" text="info" textFill="RED" />
+                  <Button fx:id="next" contentDisplay="CENTER" mnemonicParsing="false" onMouseReleased="#handleCheckButton" text="next" />
+               </children>
+            </VBox>
          </children>
       </VBox>
-      <Button fx:id="next" layoutX="281.0" layoutY="320.0" mnemonicParsing="false" onMouseReleased="#handleCheckButton" text="next" />
    </children>
 </AnchorPane>

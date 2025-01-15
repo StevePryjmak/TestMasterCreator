@@ -40,7 +40,7 @@
             </VBox>
             <VBox alignment="CENTER" prefHeight="65.0" prefWidth="600.0">
                <children>
-                  <Label fx:id="infoLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="20.0" prefWidth="180.0" text="info" textFill="RED" />
+                  <Label fx:id="infoLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="20.0" prefWidth="573.0" text="info" textFill="RED" />
                   <Button fx:id="next" mnemonicParsing="false" onMouseReleased="#handleCheckButton" text="next" />
                </children>
             </VBox>

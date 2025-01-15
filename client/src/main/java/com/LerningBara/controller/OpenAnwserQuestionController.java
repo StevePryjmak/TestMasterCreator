@@ -22,12 +22,13 @@ public class OpenAnwserQuestionController {
     @FXML
     public void initialize() {
         infoLabel.setText("");
+        anwser.setText("");
     }
 
     // Method to set question and answers dynamically
     public void setQuestionAndAnswers(String given_question, String correctAnswer) {
         question.setText(given_question);
-        anwser.setPromptText("write anwser here");
+        anwser.setPromptText("write your anwser here");
         this.correctAnswer = correctAnswer;
 
     }
