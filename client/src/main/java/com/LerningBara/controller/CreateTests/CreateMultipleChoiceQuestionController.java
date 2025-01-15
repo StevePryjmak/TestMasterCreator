@@ -3,6 +3,7 @@ package com.LerningBara.controller.CreateTests;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -10,7 +11,6 @@ import java.util.ArrayList;
 import java.util.List;
 import QuestionData.*;
 import com.LerningBara.app.App;
-import javafx.scene.control.TextField;
 
 public class CreateMultipleChoiceQuestionController extends CreateAbstractQestionController {
 
@@ -26,11 +26,15 @@ public class CreateMultipleChoiceQuestionController extends CreateAbstractQestio
     @FXML
     private Button saveButton;
 
+    @FXML
+    private Label infoLabel;
+
     private List<String> answers;
     private List<Integer> correctAnswerIndexes;
 
     @FXML
     public void initialize() {
+        infoLabel.setText("");
         answers = new ArrayList<>();
         correctAnswerIndexes = new ArrayList<>();
         addAnswerField(); // Add an initial answer field
@@ -61,7 +65,7 @@ public class CreateMultipleChoiceQuestionController extends CreateAbstractQestio
     public void handleSaveQuestion() {
         String questionText = questionInput.getText().trim();
         if (questionText.isEmpty()) {
-            System.out.println("Please provide a valid question.");
+            infoLabel.setText("Please provide a valid question.");
             return;
         }
 
@@ -85,12 +89,12 @@ public class CreateMultipleChoiceQuestionController extends CreateAbstractQestio
         }
 
         if (answers.size() < 2) {
-            System.out.println("Please provide at least two valid answers.");
+            infoLabel.setText("Please provide at least two valid answers.");
             return;
         }
 
         if (correctAnswerIndexes.isEmpty()) {
-            System.out.println("Please select at least one correct answer.");
+            infoLabel.setText("Please select at least one correct answer.");
             return;
         }
 
@@ -105,9 +109,9 @@ public class CreateMultipleChoiceQuestionController extends CreateAbstractQestio
     public AbstractQuestionData getQuestionData() {
         // Convert List<Integer> to int[]
         int[] correctAnswerIndexesArray = correctAnswerIndexes.stream()
-                                                              .mapToInt(Integer::intValue)
-                                                              .toArray();
-    
+                .mapToInt(Integer::intValue)
+                .toArray();
+
         return new MultipleChoicesQuestionData(
                 questionInput.getText(), answers, correctAnswerIndexesArray);
     }

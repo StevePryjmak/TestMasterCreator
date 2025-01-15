@@ -2,6 +2,7 @@ package com.LerningBara.controller.CreateTests;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -26,6 +27,9 @@ public class CreateSingleChoiceQuestionController extends CreateAbstractQestionC
     @FXML
     private Button saveButton;
 
+    @FXML
+    private Label infoLabel;
+
     private ToggleGroup toggleGroup;
 
     private String questionText;
@@ -34,6 +38,7 @@ public class CreateSingleChoiceQuestionController extends CreateAbstractQestionC
 
     @FXML
     public void initialize() {
+        infoLabel.setText("");
         toggleGroup = new ToggleGroup();
         addAnswerField();
         addAnswerField();
@@ -99,7 +104,7 @@ public class CreateSingleChoiceQuestionController extends CreateAbstractQestionC
     public void handleSaveQuestion() {
         questionText = questionInput.getText().trim();
         if (questionText.isEmpty()) {
-            System.out.println("Please provide a valid question.");
+            infoLabel.setText("Please provide a valid question.");
             return;
         }
 
@@ -123,12 +128,12 @@ public class CreateSingleChoiceQuestionController extends CreateAbstractQestionC
         }
 
         if (answers.size() < 2) {
-            System.out.println("Please provide at least two valid answers.");
+            infoLabel.setText("Please provide at least two valid answers.");
             return;
         }
 
         if (correctAnswerIndex == -1) {
-            System.out.println("Please select the correct answer.");
+            infoLabel.setText("Please select the correct answer.");
             return;
         }
 
