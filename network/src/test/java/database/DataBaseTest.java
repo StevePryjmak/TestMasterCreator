@@ -44,6 +44,7 @@ stmt.execute("CREATE TABLE Tests (" +
         "Attempts INTEGER, " +
         "TimeLimit INTEGER, " +
         "CreationDate DATE, " +
+        "Shuffled BOOLEAN, " +
         "Field VARCHAR(100), " +
         "Description VARCHAR(185), " +
         "FOREIGN KEY (Users_UserId) REFERENCES Users(UserId)" +
