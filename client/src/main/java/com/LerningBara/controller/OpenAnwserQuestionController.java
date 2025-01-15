@@ -14,8 +14,15 @@ public class OpenAnwserQuestionController {
     private TextField anwser;
     @FXML
     private Button next;
+    @FXML
+    private Label infoLabel;
 
     private String correctAnswer;
+
+    @FXML
+    public void initialize() {
+        infoLabel.setText("");
+    }
 
     // Method to set question and answers dynamically
     public void setQuestionAndAnswers(String given_question, String correctAnswer) {
@@ -31,7 +38,7 @@ public class OpenAnwserQuestionController {
         String selectedAnswer = anwser.getText();
 
         if (selectedAnswer.isEmpty()) {
-            System.out.println("Please write an anwser.");
+            infoLabel.setText("Please write an anwser.");
         } else {
             checkAnswer(selectedAnswer);
             App.getInstance().nextQuestion();

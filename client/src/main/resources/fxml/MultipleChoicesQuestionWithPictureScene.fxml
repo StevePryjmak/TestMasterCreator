@@ -10,28 +10,41 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.LerningBara.controller.MultipleChoicesQuestionWithPictureController">
    <children>
-      <ImageView fx:id="picture" fitHeight="184.0" fitWidth="233.0" layoutX="194.0" layoutY="62.0" pickOnBounds="true" preserveRatio="true" />
-      <Label fx:id="question" alignment="CENTER" layoutX="152.0" layoutY="42.0" prefHeight="20.0" prefWidth="317.0" text="question" />
-      <VBox fx:id="Vvox" alignment="CENTER" layoutX="60.0" layoutY="237.0" prefHeight="102.0" prefWidth="501.0">
+      <VBox alignment="CENTER" prefHeight="400.0" prefWidth="600.0">
          <children>
-            <HBox fx:id="Hbox1" alignment="TOP_CENTER" prefHeight="40.0" prefWidth="501.0">
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                <children>
-                  <CheckBox fx:id="button1" mnemonicParsing="false" text="button1" />
-                  <CheckBox fx:id="button2" mnemonicParsing="false" text="button2" />
-                  <CheckBox fx:id="button3" mnemonicParsing="false" text="button3" />
-                  <CheckBox fx:id="button4" mnemonicParsing="false" text="button4" />
+                  <Label fx:id="question" alignment="CENTER" prefHeight="20.0" prefWidth="317.0" text="question" />
+                  <ImageView fx:id="picture" fitHeight="184.0" fitWidth="233.0" pickOnBounds="true" preserveRatio="true" />
                </children>
-            </HBox>
-            <HBox fx:id="Hbox2" alignment="TOP_CENTER" prefHeight="37.0" prefWidth="501.0">
+            </VBox>
+            <VBox fx:id="Vvox" alignment="CENTER" prefHeight="102.0" prefWidth="501.0">
                <children>
-                  <CheckBox fx:id="button5" mnemonicParsing="false" text="button5" />
-                  <CheckBox fx:id="button6" mnemonicParsing="false" text="button6" />
-                  <CheckBox fx:id="button7" mnemonicParsing="false" text="button7" />
-                  <CheckBox fx:id="button8" mnemonicParsing="false" text="button8" />
+                  <HBox fx:id="Hbox1" alignment="TOP_CENTER" prefHeight="55.0" prefWidth="600.0">
+                     <children>
+                        <CheckBox fx:id="button1" mnemonicParsing="false" text="button1" />
+                        <CheckBox fx:id="button2" mnemonicParsing="false" text="button2" />
+                        <CheckBox fx:id="button3" mnemonicParsing="false" text="button3" />
+                        <CheckBox fx:id="button4" mnemonicParsing="false" text="button4" />
+                     </children>
+                  </HBox>
+                  <HBox fx:id="Hbox2" alignment="TOP_CENTER" prefHeight="49.0" prefWidth="600.0">
+                     <children>
+                        <CheckBox fx:id="button5" mnemonicParsing="false" text="button5" />
+                        <CheckBox fx:id="button6" mnemonicParsing="false" text="button6" />
+                        <CheckBox fx:id="button7" mnemonicParsing="false" text="button7" />
+                        <CheckBox fx:id="button8" mnemonicParsing="false" text="button8" />
+                     </children>
+                  </HBox>
                </children>
-            </HBox>
+            </VBox>
+            <VBox alignment="CENTER" prefHeight="65.0" prefWidth="600.0">
+               <children>
+                  <Label fx:id="infoLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="20.0" prefWidth="180.0" text="info" textFill="RED" />
+                  <Button fx:id="next" mnemonicParsing="false" onMouseReleased="#handleCheckButton" text="next" />
+               </children>
+            </VBox>
          </children>
       </VBox>
-      <Button fx:id="next" layoutX="281.0" layoutY="339.0" mnemonicParsing="false" onMouseReleased="#handleCheckButton" text="next" />
    </children>
 </AnchorPane>
