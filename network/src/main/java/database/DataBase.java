@@ -382,7 +382,7 @@ public class DataBase {
         int type = -1;
         String text = "nie dziala";
         byte[] image = null;
-    
+
         try {
             if (questionData instanceof SingleChoiceQuestionData) {
                 type = 1;
@@ -402,7 +402,7 @@ public class DataBase {
                 text = ((SingleChoiceQuestionWithPictureData) questionData).getQuestion();
                 image = ((SingleChoiceQuestionWithPictureData) questionData).getImage(); // Get image bytes.
             }
-    
+
             // Insert the question into the database, including the image if present.
             statement = connection.prepareStatement(
                     "INSERT INTO Questions(Text, Types_TypeId, Position, Tests_TestId, Image) VALUES (?, ?, ?, ?, ?)");
@@ -413,10 +413,10 @@ public class DataBase {
             if (image != null) {
                 statement.setBytes(5, image);
             } else {
-                statement.setNull(5, java.sql.Types.BLOB); 
+                statement.setNull(5, java.sql.Types.BLOB);
             }
             statement.executeUpdate();
-    
+
             // Retrieve the newly inserted question's ID.
             statement = connection.prepareStatement(
                     "SELECT QuestionId FROM Questions WHERE Position = ? AND Tests_TestId = ?");
@@ -425,22 +425,23 @@ public class DataBase {
             resultSet = statement.executeQuery();
             resultSet.next();
             questionId = resultSet.getInt(1);
-    
+
             // Add associated answers.
             addAnswer(questionData, questionId);
-    
+
         } catch (SQLException e) {
             System.err.println("Query execution failed: " + e.getMessage());
         } finally {
             try {
-                if (resultSet != null) resultSet.close();
-                if (statement != null) statement.close();
+                if (resultSet != null)
+                    resultSet.close();
+                if (statement != null)
+                    statement.close();
             } catch (SQLException e) {
                 System.err.println("Failed to close resources: " + e.getMessage());
             }
         }
     }
-    
 
     private static void addAnswer(AbstractQuestionData questionData, int questionId) {
         connect();
@@ -460,6 +461,15 @@ public class DataBase {
             } else if (questionData instanceof OpenAnwserQuestionData) {
                 options.add(((OpenAnwserQuestionData) questionData).getCorrectAnswer());
                 correctAnswerIndexes.add(1);
+            } else if (questionData instanceof SingleChoiceQuestionWithPictureData) {
+                options = ((SingleChoiceQuestionWithPictureData) questionData).getOptions();
+                correctAnswerIndexes
+                        .add((Integer) (((SingleChoiceQuestionWithPictureData) questionData).getCorrectAnswerIndex()));
+            } else if (questionData instanceof MultipleChoicesQuestionWithPictureData) {
+                options = ((MultipleChoicesQuestionWithPictureData) questionData).getOptions();
+                for (int i : ((MultipleChoicesQuestionWithPictureData) questionData).getCorrectAnswerIndexes()) {
+                    correctAnswerIndexes.add(i);
+                }
             }
             for (int i = 0; i < options.size(); i++) {
                 statement = connection.prepareStatement(
