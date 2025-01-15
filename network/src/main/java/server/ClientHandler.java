@@ -141,12 +141,7 @@ public class ClientHandler implements Runnable {
     public void saveTest() {
         Object obj = recived.poll();
         if (obj instanceof TestData) {
-            System.out.println("Test not saved in bd need to be implemented here " + user);
             DataBase.addTest((TestData) obj, user.getId());
-            TestData test = (TestData) obj;
-            System.out.println(test.getName());
-            System.out.println(test.questions.size());
-            System.out.println(test.questions.get(0).getQuestion());
         }
     }
 
