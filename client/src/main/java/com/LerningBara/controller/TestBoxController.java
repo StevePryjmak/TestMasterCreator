@@ -104,6 +104,7 @@ public class TestBoxController {
             TestData testData = (TestData) r;
             List<AbstractQuestionData> questions = testData.questions;
             Test test = new Test(questions, true);
+            test.setShuffle(testData.getShuffled());
             App.getInstance().setTest(test);
             App.getInstance().runExampleTest();
         }

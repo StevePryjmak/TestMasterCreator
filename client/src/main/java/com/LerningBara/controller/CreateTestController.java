@@ -2,6 +2,7 @@ package com.LerningBara.controller;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.layout.VBox;
 import javafx.fxml.FXMLLoader;
 
@@ -21,9 +22,6 @@ import javafx.scene.Scene;
 
 import javafx.scene.Node;
 import javafx.scene.control.ScrollPane;
-
-import com.LerningBara.controller.CreateTests.CreateAbstractQestionController;
-import com.LerningBara.controller.CreateTests.CreateSingleChoiceQuestionController;
 import javafx.scene.Parent;
 import com.LerningBara.model.Test;
 import javafx.scene.control.TextField;
@@ -58,6 +56,9 @@ public class CreateTestController {
     @FXML
     private ComboBox<String> choseQuestionType;
 
+    @FXML
+    private CheckBox shuffleButton;
+
     private String prevTestName;
     private String prevDescription;
     private String prevTestField;
@@ -76,10 +77,12 @@ public class CreateTestController {
             questions = new ArrayList<>();
         }
         // Populate ComboBoxes
-        ObservableList<String> filterOptions = FXCollections.observableArrayList("All", "Math", "Physics", "Chemistry", "Biology");
+        ObservableList<String> filterOptions = FXCollections.observableArrayList("All", "Math", "Physics", "Chemistry",
+                "Biology");
         setTestField.setItems(filterOptions);
 
-        ObservableList<String> questionTypes = FXCollections.observableArrayList("Single Choice", "Multiple Choice", "True/False");
+        ObservableList<String> questionTypes = FXCollections.observableArrayList("Single Choice", "Multiple Choice",
+                "True/False");
         choseQuestionType.setItems(questionTypes);
         update();
     }
@@ -169,7 +172,7 @@ public class CreateTestController {
         try {
             FXMLLoader loader = new FXMLLoader(
                     getClass().getResource(CreateQuestionConventor.getFXMLLocation(questionType)));
-            
+
             loader.setController(questionController);
             Parent root = loader.load();
 
@@ -220,6 +223,7 @@ public class CreateTestController {
         testData.setName(testNameField.getText());
         testData.setFiled(setTestField.getValue());
         testData.setDescription(descriptionField.getText());
+        testData.setShuffled(shuffleButton.isSelected());
 
         App.getInstance().client.sendMessage("Save test", testData);
         App.setRoot("QuizMenuScene");
