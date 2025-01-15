@@ -26,6 +26,7 @@ import javafx.scene.Parent;
 import com.LerningBara.model.Test;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import com.LerningBara.controller.CreateTests.*;;
@@ -59,6 +60,9 @@ public class CreateTestController {
     @FXML
     private CheckBox shuffleButton;
 
+    @FXML
+    private Label infoLabel;
+
     private String prevTestName;
     private String prevDescription;
     private String prevTestField;
@@ -69,6 +73,7 @@ public class CreateTestController {
     @FXML
     public void initialize() {
         System.out.println("CreateTestController initialized");
+        infoLabel.setText("");
 
         if (questionList == null) {
             questionList = new VBox();
@@ -158,6 +163,10 @@ public class CreateTestController {
     public void handleQuestionEdit(int index, boolean create) {
         System.out.println("Question #" + (index + 1) + " clicked");
         String questionType = choseQuestionType.getValue();
+        if (questionType == null) {
+            infoLabel.setText("Question type is empty!");
+            return;
+        }
         saveCurrentState();
         CreateAbstractQestionController questionController;
         if (create) {
@@ -197,20 +206,20 @@ public class CreateTestController {
     @FXML
     private void handleSaveTest() {
         System.out.println("Save Test Button Clicked!");
-        if (testNameField.getText().isEmpty()) {
-            System.out.println("Test name is empty!");
+        if (testNameField.getText() == null) {
+            infoLabel.setText("Test name is empty!");
             return;
         }
         if (setTestField.getValue() == null) {
-            System.out.println("Test field is empty!");
+            infoLabel.setText("Test field is empty!");
             return;
         }
-        if (descriptionField.getText().isEmpty()) {
-            System.out.println("Test description is empty!");
+        if (descriptionField.getText() == null) {
+            infoLabel.setText("Test description is empty!");
             return;
         }
         if (questions.isEmpty()) {
-            System.out.println("Test has no questions!");
+            infoLabel.setText("Test has no questions!");
             return;
         } // For now good enoth
 

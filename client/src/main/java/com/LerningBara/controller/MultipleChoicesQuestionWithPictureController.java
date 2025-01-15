@@ -37,12 +37,15 @@ public class MultipleChoicesQuestionWithPictureController {
     private Button next;
     @FXML
     private ImageView picture;
+    @FXML
+    private Label infoLabel;
 
     private String[] correctAnswers;
     private CheckBox[] buttons;
 
     @FXML
     public void initialize() {
+        infoLabel.setText("");
 
         buttons = new CheckBox[] { button1, button2, button3, button4,
                 button5, button6, button7, button8 };
@@ -80,7 +83,7 @@ public class MultipleChoicesQuestionWithPictureController {
         }
 
         if (selectedAnswers.isEmpty()) {
-            System.out.println("Please select an answer.");
+            infoLabel.setText("Please select an answer.");
         } else {
             checkAnswer(selectedAnswers.toArray(new String[0]));
             App.getInstance().nextQuestion();

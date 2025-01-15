@@ -31,6 +31,7 @@ fi
 # Start the server and client
 
 (./gradlew :client:run ) &
+sleep 5
 ./gradlew :server:run 
 
 echo "All tasks completed successfully!"

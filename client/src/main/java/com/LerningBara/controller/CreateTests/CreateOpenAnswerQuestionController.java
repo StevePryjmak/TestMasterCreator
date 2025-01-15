@@ -2,6 +2,7 @@ package com.LerningBara.controller.CreateTests;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import QuestionData.OpenAnwserQuestionData;
 import com.LerningBara.app.App;
@@ -17,14 +18,18 @@ public class CreateOpenAnswerQuestionController extends CreateAbstractQestionCon
     @FXML
     private Button saveButton;
 
+    @FXML
+    private Label infoLabel;
+
     private String questionText;
     private String correctAnswer;
 
     @FXML
     public void initialize() {
+        infoLabel.setText("");
         initializeFields();
 
-        saveButton.setOnAction(event -> handleSaveQuestion());
+        saveButton.setOnAction(_ -> handleSaveQuestion());
     }
 
     private void initializeFields() {
@@ -43,7 +48,7 @@ public class CreateOpenAnswerQuestionController extends CreateAbstractQestionCon
         correctAnswer = correctAnswerInput.getText().trim();
 
         if (questionText.isEmpty() || correctAnswer.isEmpty()) {
-            System.out.println("Please provide a valid question and correct answer.");
+            infoLabel.setText("Please provide a valid question and correct answer.");
             return;
         }
 

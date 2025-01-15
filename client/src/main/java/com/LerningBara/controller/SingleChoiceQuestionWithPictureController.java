@@ -35,7 +35,8 @@ public class SingleChoiceQuestionWithPictureController {
     private Button checkButton;
     @FXML
     private ImageView imageView;
-
+    @FXML
+    private Label infoLabel;
 
     private ToggleGroup toggleGroup = new ToggleGroup(); // To group the radio buttons
     private String correctAnswer;
@@ -43,7 +44,11 @@ public class SingleChoiceQuestionWithPictureController {
 
     @FXML
     public void initialize() {
-        buttons = new RadioButton[] { button1, button2, button3, button4, button5, button6, button7, button8 };
+        infoLabel.setText("");
+
+        buttons = new RadioButton[] { button1, button2, button3, button4,
+                button5, button6, button7, button8 };
+
         for (RadioButton button : buttons) {
             button.setToggleGroup(toggleGroup);
         }
@@ -72,7 +77,7 @@ public class SingleChoiceQuestionWithPictureController {
     private void handleCheckButton() {
         RadioButton selectedButton = (RadioButton) toggleGroup.getSelectedToggle();
         if (selectedButton == null) {
-            System.out.println("Please select an answer.");
+            infoLabel.setText("Please select an answer.");
         } else {
             String selectedAnswer = selectedButton.getText();
             checkAnswer(selectedAnswer);
