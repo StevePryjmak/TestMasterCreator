@@ -79,7 +79,7 @@ public class CreateTestController {
         ObservableList<String> filterOptions = FXCollections.observableArrayList("All", "Math", "Physics", "Chemistry", "Biology");
         setTestField.setItems(filterOptions);
 
-        ObservableList<String> questionTypes = FXCollections.observableArrayList("Single Choice", "Multiple Choice");
+        ObservableList<String> questionTypes = FXCollections.observableArrayList("Single Choice", "Multiple Choice", "Open Question");
         choseQuestionType.setItems(questionTypes);
         update();
     }
