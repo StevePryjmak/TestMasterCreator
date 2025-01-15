@@ -9,244 +9,245 @@
 
 -- predefined type, no DDL - XMLTYPE
 
-CREATE TABLE answers (
-    answerid             INTEGER NOT NULL,
-    text                 VARCHAR2(80 CHAR) NOT NULL,
-    iscorrect            CHAR(1) NOT NULL,
-    image                BLOB,
-    questions_questionid INTEGER NOT NULL
+create table answers (
+   answerid             integer not null,
+   text                 varchar2(80 char) not null,
+   iscorrect            char(1) not null,
+   image                blob,
+   questions_questionid integer not null
 );
 
-ALTER TABLE answers ADD CONSTRAINT answers_pk PRIMARY KEY ( answerid );
+alter table answers add constraint answers_pk primary key ( answerid );
 
-CREATE TABLE hints (
-    hintid INTEGER NOT NULL,
-    text   VARCHAR2(50 CHAR) NOT NULL
+create table hints (
+   hintid integer not null,
+   text   varchar2(50 char) not null
 );
 
-ALTER TABLE hints ADD CONSTRAINT hints_pk PRIMARY KEY ( hintid );
+alter table hints add constraint hints_pk primary key ( hintid );
 
-CREATE TABLE likes (
-    likeid       INTEGER NOT NULL,
-    "Date"       DATE NOT NULL,
-    users_userid INTEGER NOT NULL,
-    tests_testid INTEGER NOT NULL
+create table likes (
+   likeid       integer not null,
+   "Date"       date not null,
+   users_userid integer not null,
+   tests_testid integer not null
 );
 
-ALTER TABLE likes ADD CONSTRAINT likes_pk PRIMARY KEY ( likeid );
+alter table likes add constraint likes_pk primary key ( likeid );
 
-CREATE TABLE questions (
-    questionid   INTEGER NOT NULL,
-    text         VARCHAR2(50 CHAR) NOT NULL,
-    hints_hintid INTEGER,
-    types_typeid INTEGER NOT NULL,
-    image        BLOB,
-    timelimit    INTEGER,
-    position     INTEGER NOT NULL,
-    tests_testid INTEGER NOT NULL
+create table questions (
+   questionid   integer not null,
+   text         varchar2(50 char) not null,
+   hints_hintid integer,
+   types_typeid integer not null,
+   image        blob,
+   timelimit    integer,
+   position     integer not null,
+   tests_testid integer not null
 );
 
-ALTER TABLE questions ADD CONSTRAINT questions_pk PRIMARY KEY ( questionid );
+alter table questions add constraint questions_pk primary key ( questionid );
 
-CREATE TABLE results (
-    resultid     INTEGER NOT NULL,
-    points       INTEGER NOT NULL,
-    "Date"       DATE NOT NULL,
-    users_userid INTEGER NOT NULL,
-    tests_testid INTEGER NOT NULL
+create table results (
+   resultid     integer not null,
+   points       integer not null,
+   "Date"       date not null,
+   users_userid integer not null,
+   tests_testid integer not null
 );
 
-ALTER TABLE results ADD CONSTRAINT results_pk PRIMARY KEY ( resultid );
+alter table results add constraint results_pk primary key ( resultid );
 
-CREATE TABLE tags (
-    tagid INTEGER NOT NULL,
-    name  VARCHAR2(20 CHAR) NOT NULL
+create table tags (
+   tagid integer not null,
+   name  varchar2(20 char) not null
 );
 
-ALTER TABLE tags ADD CONSTRAINT tags_pk PRIMARY KEY ( tagid );
+alter table tags add constraint tags_pk primary key ( tagid );
 
-CREATE TABLE test_tag (
-    tests_testid INTEGER NOT NULL,
-    tags_tagid   INTEGER NOT NULL
+create table test_tag (
+   tests_testid integer not null,
+   tags_tagid   integer not null
 );
 
-ALTER TABLE test_tag ADD CONSTRAINT test_tag_pk PRIMARY KEY ( tests_testid,
+alter table test_tag add constraint test_tag_pk primary key ( tests_testid,
                                                               tags_tagid );
 
-CREATE TABLE tests (
-    testid       INTEGER NOT NULL,
-    name         VARCHAR2(20 CHAR) NOT NULL,
-    users_userid INTEGER NOT NULL,
-    icon         BLOB,
-    attempts     INTEGER,
-    timelimit    INTEGER,
-    creationdate DATE NOT NULL,
-    field        VARCHAR2(100 CHAR) NOT NULL,
-    description  VARCHAR2(180 CHAR) NOT NULL
+create table tests (
+   testid       integer not null,
+   name         varchar2(20 char) not null,
+   users_userid integer not null,
+   icon         blob,
+   attempts     integer,
+   timelimit    integer,
+   shuffled     boolean,
+   creationdate date not null,
+   field        varchar2(100 char) not null,
+   description  varchar2(180 char) not null
 );
 
-ALTER TABLE tests ADD CONSTRAINT tests_pk PRIMARY KEY ( testid );
+alter table tests add constraint tests_pk primary key ( testid );
 
-CREATE TABLE types (
-    typeid      INTEGER NOT NULL,
-    description VARCHAR2(50 CHAR) NOT NULL
+create table types (
+   typeid      integer not null,
+   description varchar2(50 char) not null
 );
 
-ALTER TABLE types ADD CONSTRAINT types_pk PRIMARY KEY ( typeid );
+alter table types add constraint types_pk primary key ( typeid );
 
-CREATE TABLE users (
-    userid          INTEGER NOT NULL,
-    login           VARCHAR2(20 CHAR) NOT NULL,
-    password        VARCHAR2(64 BYTE) NOT NULL,
-    email           VARCHAR2(30 CHAR) NOT NULL,
-    icon            BLOB,
-    isactive        CHAR(1) DEFAULT 'T' NOT NULL,
-    visibilitylevel INTEGER DEFAULT 0 NOT NULL
+create table users (
+   userid          integer not null,
+   login           varchar2(20 char) not null,
+   password        varchar2(64 byte) not null,
+   email           varchar2(30 char) not null,
+   icon            blob,
+   isactive        char(1) default 'T' not null,
+   visibilitylevel integer default 0 not null
 );
 
-ALTER TABLE users ADD CONSTRAINT users_pk PRIMARY KEY ( userid );
+alter table users add constraint users_pk primary key ( userid );
 
-ALTER TABLE answers
-    ADD CONSTRAINT answers_questions_fk FOREIGN KEY ( questions_questionid )
-        REFERENCES questions ( questionid );
+alter table answers
+   add constraint answers_questions_fk foreign key ( questions_questionid )
+      references questions ( questionid );
 
-ALTER TABLE likes
-    ADD CONSTRAINT likes_tests_fk FOREIGN KEY ( tests_testid )
-        REFERENCES tests ( testid );
+alter table likes
+   add constraint likes_tests_fk foreign key ( tests_testid )
+      references tests ( testid );
 
-ALTER TABLE likes
-    ADD CONSTRAINT likes_users_fk FOREIGN KEY ( users_userid )
-        REFERENCES users ( userid );
+alter table likes
+   add constraint likes_users_fk foreign key ( users_userid )
+      references users ( userid );
 
-ALTER TABLE questions
-    ADD CONSTRAINT questions_hints_fk FOREIGN KEY ( hints_hintid )
-        REFERENCES hints ( hintid );
+alter table questions
+   add constraint questions_hints_fk foreign key ( hints_hintid )
+      references hints ( hintid );
 
-ALTER TABLE questions
-    ADD CONSTRAINT questions_tests_fk FOREIGN KEY ( tests_testid )
-        REFERENCES tests ( testid );
+alter table questions
+   add constraint questions_tests_fk foreign key ( tests_testid )
+      references tests ( testid );
 
-ALTER TABLE questions
-    ADD CONSTRAINT questions_types_fk FOREIGN KEY ( types_typeid )
-        REFERENCES types ( typeid );
+alter table questions
+   add constraint questions_types_fk foreign key ( types_typeid )
+      references types ( typeid );
 
-ALTER TABLE results
-    ADD CONSTRAINT results_tests_fk FOREIGN KEY ( tests_testid )
-        REFERENCES tests ( testid );
+alter table results
+   add constraint results_tests_fk foreign key ( tests_testid )
+      references tests ( testid );
 
-ALTER TABLE results
-    ADD CONSTRAINT results_users_fk FOREIGN KEY ( users_userid )
-        REFERENCES users ( userid );
+alter table results
+   add constraint results_users_fk foreign key ( users_userid )
+      references users ( userid );
 
-ALTER TABLE test_tag
-    ADD CONSTRAINT test_tag_tags_fk FOREIGN KEY ( tags_tagid )
-        REFERENCES tags ( tagid );
+alter table test_tag
+   add constraint test_tag_tags_fk foreign key ( tags_tagid )
+      references tags ( tagid );
 
-ALTER TABLE test_tag
-    ADD CONSTRAINT test_tag_tests_fk FOREIGN KEY ( tests_testid )
-        REFERENCES tests ( testid );
+alter table test_tag
+   add constraint test_tag_tests_fk foreign key ( tests_testid )
+      references tests ( testid );
 
-ALTER TABLE tests
-    ADD CONSTRAINT tests_users_fk FOREIGN KEY ( users_userid )
-        REFERENCES users ( userid );
+alter table tests
+   add constraint tests_users_fk foreign key ( users_userid )
+      references users ( userid );
 
-CREATE SEQUENCE answers_answerid_seq START WITH 1 NOCACHE ORDER;
+create sequence answers_answerid_seq start with 1 nocache order;
 
-CREATE OR REPLACE TRIGGER answers_answerid_trg BEFORE
-    INSERT ON answers
-    FOR EACH ROW
-    WHEN ( new.answerid IS NULL )
-BEGIN
-    :new.answerid := answers_answerid_seq.nextval;
-END;
+create or replace trigger answers_answerid_trg before
+   insert on answers
+   for each row
+   when ( new.answerid is null )
+begin
+   :new.answerid := answers_answerid_seq.nextval;
+end;
 /
 
-CREATE SEQUENCE hints_hintid_seq START WITH 1 NOCACHE ORDER;
+create sequence hints_hintid_seq start with 1 nocache order;
 
-CREATE OR REPLACE TRIGGER hints_hintid_trg BEFORE
-    INSERT ON hints
-    FOR EACH ROW
-    WHEN ( new.hintid IS NULL )
-BEGIN
-    :new.hintid := hints_hintid_seq.nextval;
-END;
+create or replace trigger hints_hintid_trg before
+   insert on hints
+   for each row
+   when ( new.hintid is null )
+begin
+   :new.hintid := hints_hintid_seq.nextval;
+end;
 /
 
-CREATE SEQUENCE likes_likeid_seq START WITH 1 NOCACHE ORDER;
+create sequence likes_likeid_seq start with 1 nocache order;
 
-CREATE OR REPLACE TRIGGER likes_likeid_trg BEFORE
-    INSERT ON likes
-    FOR EACH ROW
-    WHEN ( new.likeid IS NULL )
-BEGIN
-    :new.likeid := likes_likeid_seq.nextval;
-END;
+create or replace trigger likes_likeid_trg before
+   insert on likes
+   for each row
+   when ( new.likeid is null )
+begin
+   :new.likeid := likes_likeid_seq.nextval;
+end;
 /
 
-CREATE SEQUENCE questions_questionid_seq START WITH 1 NOCACHE ORDER;
+create sequence questions_questionid_seq start with 1 nocache order;
 
-CREATE OR REPLACE TRIGGER questions_questionid_trg BEFORE
-    INSERT ON questions
-    FOR EACH ROW
-    WHEN ( new.questionid IS NULL )
-BEGIN
-    :new.questionid := questions_questionid_seq.nextval;
-END;
+create or replace trigger questions_questionid_trg before
+   insert on questions
+   for each row
+   when ( new.questionid is null )
+begin
+   :new.questionid := questions_questionid_seq.nextval;
+end;
 /
 
-CREATE SEQUENCE results_resultid_seq START WITH 1 NOCACHE ORDER;
+create sequence results_resultid_seq start with 1 nocache order;
 
-CREATE OR REPLACE TRIGGER results_resultid_trg BEFORE
-    INSERT ON results
-    FOR EACH ROW
-    WHEN ( new.resultid IS NULL )
-BEGIN
-    :new.resultid := results_resultid_seq.nextval;
-END;
+create or replace trigger results_resultid_trg before
+   insert on results
+   for each row
+   when ( new.resultid is null )
+begin
+   :new.resultid := results_resultid_seq.nextval;
+end;
 /
 
-CREATE SEQUENCE tags_tagid_seq START WITH 1 NOCACHE ORDER;
+create sequence tags_tagid_seq start with 1 nocache order;
 
-CREATE OR REPLACE TRIGGER tags_tagid_trg BEFORE
-    INSERT ON tags
-    FOR EACH ROW
-    WHEN ( new.tagid IS NULL )
-BEGIN
-    :new.tagid := tags_tagid_seq.nextval;
-END;
+create or replace trigger tags_tagid_trg before
+   insert on tags
+   for each row
+   when ( new.tagid is null )
+begin
+   :new.tagid := tags_tagid_seq.nextval;
+end;
 /
 
-CREATE SEQUENCE tests_testid_seq START WITH 1 NOCACHE ORDER;
+create sequence tests_testid_seq start with 1 nocache order;
 
-CREATE OR REPLACE TRIGGER tests_testid_trg BEFORE
-    INSERT ON tests
-    FOR EACH ROW
-    WHEN ( new.testid IS NULL )
-BEGIN
-    :new.testid := tests_testid_seq.nextval;
-END;
+create or replace trigger tests_testid_trg before
+   insert on tests
+   for each row
+   when ( new.testid is null )
+begin
+   :new.testid := tests_testid_seq.nextval;
+end;
 /
 
-CREATE SEQUENCE types_typeid_seq START WITH 1 NOCACHE ORDER;
+create sequence types_typeid_seq start with 1 nocache order;
 
-CREATE OR REPLACE TRIGGER types_typeid_trg BEFORE
-    INSERT ON types
-    FOR EACH ROW
-    WHEN ( new.typeid IS NULL )
-BEGIN
-    :new.typeid := types_typeid_seq.nextval;
-END;
+create or replace trigger types_typeid_trg before
+   insert on types
+   for each row
+   when ( new.typeid is null )
+begin
+   :new.typeid := types_typeid_seq.nextval;
+end;
 /
 
-CREATE SEQUENCE users_userid_seq START WITH 1 NOCACHE ORDER;
+create sequence users_userid_seq start with 1 nocache order;
 
-CREATE OR REPLACE TRIGGER users_userid_trg BEFORE
-    INSERT ON users
-    FOR EACH ROW
-    WHEN ( new.userid IS NULL )
-BEGIN
-    :new.userid := users_userid_seq.nextval;
-END;
+create or replace trigger users_userid_trg before
+   insert on users
+   for each row
+   when ( new.userid is null )
+begin
+   :new.userid := users_userid_seq.nextval;
+end;
 /
 
 

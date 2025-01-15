@@ -12,6 +12,7 @@ public class TestInfoData implements Serializable {
     public int questionCount;
     public int currentUserID;
     public int result;
+    public boolean shuffled = false;
 
     public TestInfoData(int testID, String name, String description, String author, String date, String field,
             int questionCount) {

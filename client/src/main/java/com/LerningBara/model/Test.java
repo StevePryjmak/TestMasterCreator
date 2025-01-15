@@ -8,6 +8,10 @@ public class Test implements Iterable<AbstractQuestion> {
     private List<AbstractQuestion> questions = new ArrayList<>();
     private boolean shuffle = false;
 
+    public void setShuffle(boolean shuffle) {
+        this.shuffle = shuffle;
+    }
+
     public Test() {
     }
 
