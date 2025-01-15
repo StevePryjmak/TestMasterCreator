@@ -38,4 +38,9 @@
          </VBox>
       </children>
    </HBox>
+   <HBox prefHeight="100.0" prefWidth="200.0">
+      <children>
+         <Button fx:id="deleteButton" mnemonicParsing="false" onAction="#handleDelete" prefHeight="29.0" prefWidth="64.0" text="Delete" />
+      </children>
+   </HBox>
 </VBox>

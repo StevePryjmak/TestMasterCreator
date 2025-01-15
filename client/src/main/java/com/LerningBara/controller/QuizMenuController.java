@@ -58,7 +58,10 @@ public class QuizMenuController {
          AvalibleTestsList avalibleTestsList = (AvalibleTestsList) r;
          List<TestInfoData> tests = avalibleTestsList.getTests();
          try {
-            App.getInstance().showTestsList(tests);
+            boolean allowDeleting = false;
+            if (msg == "List of user test")
+               allowDeleting = true;
+            App.getInstance().showTestsList(tests, allowDeleting);
          } catch (IOException e) {
             System.out.println(e);
          }

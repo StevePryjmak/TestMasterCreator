@@ -38,6 +38,7 @@ public class MainLayoutController {
 
     private List<TestInfoData> testsInfo;
     private List<TestInfoData> filteredTestsInfo;
+    private boolean allowDeleting = false;
 
     public void handleReturn() {
         App.setRoot("QuizMenuScene");
@@ -47,9 +48,10 @@ public class MainLayoutController {
         contentBox.getChildren().add(testBox);
     }
 
-    public void setTests(List<TestInfoData> testsInfo) {
+    public void setTests(List<TestInfoData> testsInfo, boolean allowDeleting) {
         // TODO: implement filtering and paging
         this.testsInfo = testsInfo;
+        this.allowDeleting = allowDeleting;
         this.updateTests(testsInfo);
     }
 
@@ -62,6 +64,8 @@ public class MainLayoutController {
                 TestBoxController testBoxController = testBoxLoader.getController();
 
                 testBoxController.setData(testInfo);
+                if (allowDeleting)
+                    testBoxController.allowDelete();
                 addTestBox(testBox);
             } catch (IOException e) {
                 System.out.println(e);

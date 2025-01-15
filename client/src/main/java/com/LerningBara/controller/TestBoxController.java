@@ -5,12 +5,14 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import connection.Message;
 
+import java.io.IOException;
 import java.util.List;
 
 import com.LerningBara.app.App;
 import com.LerningBara.model.Test;
 
 import QuestionData.AbstractQuestionData;
+import TestData.AvalibleTestsList;
 import TestData.TestData;
 import TestData.TestInfoData;
 
@@ -31,6 +33,8 @@ public class TestBoxController {
     private Label likeInfoLabel;
     @FXML
     private Label unlikeInfoLabel;
+    @FXML
+    private Button deleteButton;
 
     private TestInfoData testData;
 
@@ -44,14 +48,47 @@ public class TestBoxController {
         likeCountLabel.setText("Likes: " + (int) likes);
     }
 
+    public void allowDelete() {
+        deleteButton.setVisible(true);
+        deleteButton.setManaged(true);
+    }
+
     public void setData(TestInfoData testData) {
         this.testData = testData;
         testData.currentUserID = App.getInstance().user.getId();
+        deleteButton.setVisible(false);
+        deleteButton.setManaged(false);
 
         setLikes();
         titleLabel.setText(testData.name);
         infoLabel.setText(testData.description + " | " + testData.field + " | " + testData.date);
         questionCountLabel.setText("Questions: " + testData.questionCount);
+    }
+
+    @FXML
+    public void handleDelete() {
+        App.getInstance().client.sendMessage("Delete", testData.testID);
+        System.out.println("Waiting to delete test");
+        Message messageReceived = App.getInstance().client.getOneRecivedObject();
+        Object _ = messageReceived.getObject();
+
+        int currentUserID = testData.currentUserID;
+        App.getInstance().client.sendMessage("List of user test", currentUserID);
+        System.out.println("Waiting for list of users tests");
+        messageReceived = App.getInstance().client.getOneRecivedObject();
+        // App.getInstance().client.closeConnection();
+
+        Object r = messageReceived.getObject();
+        if (r instanceof AvalibleTestsList) {
+            AvalibleTestsList avalibleTestsList = (AvalibleTestsList) r;
+            List<TestInfoData> tests = avalibleTestsList.getTests();
+            try {
+                App.getInstance().showTestsList(tests, true);
+            } catch (IOException e) {
+                System.out.println(e);
+            }
+
+        }
     }
 
     @FXML
