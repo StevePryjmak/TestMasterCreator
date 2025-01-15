@@ -61,7 +61,6 @@ public class ClientHandler implements Runnable {
         functionMap.put("Get visibility", this::sendGetVisibility);
         functionMap.put("Set visibility", this::sendSetVisibility);
         functionMap.put("Delete", this::sendDelete);
-        // TODO add more functions here
     }
 
     public void sendDelete() {

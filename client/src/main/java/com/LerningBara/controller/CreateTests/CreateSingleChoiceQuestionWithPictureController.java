@@ -51,9 +51,9 @@ public class CreateSingleChoiceQuestionWithPictureController extends CreateAbstr
         addAnswerField(); // Adds default fields
         addAnswerField();
 
-        uploadImageButton.setOnAction(event -> handleImageUpload());
-        addAnswerButton.setOnAction(event -> addAnswerField());
-        saveButton.setOnAction(event -> handleSaveQuestion());
+        uploadImageButton.setOnAction(_ -> handleImageUpload());
+        addAnswerButton.setOnAction(_ -> addAnswerField());
+        saveButton.setOnAction(_ -> handleSaveQuestion());
 
         // Populate form if data exists
         populateForm();
@@ -83,7 +83,7 @@ public class CreateSingleChoiceQuestionWithPictureController extends CreateAbstr
                 }
 
                 Button deleteButton = new Button("Remove");
-                deleteButton.setOnAction(event -> {
+                deleteButton.setOnAction(_ -> {
                     answerList.getChildren().remove(answerBox);
                     toggleGroup.getToggles().remove(correctAnswerButton);
                 });
@@ -98,7 +98,6 @@ public class CreateSingleChoiceQuestionWithPictureController extends CreateAbstr
             imageView.setImage(image);
         }
     }
-
 
     private void handleImageUpload() {
         FileChooser fileChooser = new FileChooser();
@@ -126,7 +125,7 @@ public class CreateSingleChoiceQuestionWithPictureController extends CreateAbstr
         correctAnswerButton.setToggleGroup(toggleGroup);
 
         Button deleteButton = new Button("Remove");
-        deleteButton.setOnAction(event -> {
+        deleteButton.setOnAction(_ -> {
             answerList.getChildren().remove(answerBox);
             toggleGroup.getToggles().remove(correctAnswerButton);
         });
@@ -176,7 +175,7 @@ public class CreateSingleChoiceQuestionWithPictureController extends CreateAbstr
             System.out.println("Please upload an image.");
             return;
         }
-        
+
         if (!isEdit) {
             App.createTestController.addQuestion(this);
         }
@@ -188,7 +187,7 @@ public class CreateSingleChoiceQuestionWithPictureController extends CreateAbstr
     public AbstractQuestionData getQuestionData() {
         // Assuming you have a method to collect the question data from the UI
         SingleChoiceQuestionWithPictureData questionData = new SingleChoiceQuestionWithPictureData(
-            questionText, answers, correctAnswerIndex, imageBytes);
+                questionText, answers, correctAnswerIndex, imageBytes);
 
         return questionData;
     }

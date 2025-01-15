@@ -10,21 +10,19 @@ import com.LerningBara.controller.MultipleChoicesQuestionWithPictureController;
 
 import QuestionData.MultipleChoicesQuestionWithPictureData;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.Pos;
+
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.HBox;
+
 import javafx.scene.layout.VBox;
 
 import java.io.ByteArrayInputStream;
 
 public class MultipleChoicesQuestionWithPicture extends AbstractQuestion {
-
-    
 
     private MultipleChoicesQuestionWithPictureData questionData;
     private MultipleChoicesQuestionWithPictureController controller;
@@ -64,21 +62,20 @@ public class MultipleChoicesQuestionWithPicture extends AbstractQuestion {
         return false;
     }
 
-
     @Override
     public VBox getDetailsBox(int index) {
         VBox questionBox = new VBox(10);
         questionBox.getStyleClass().add("question-box");
-    
-        questionBox.setOnMouseClicked(event -> {
+
+        questionBox.setOnMouseClicked(_ -> {
             App.createTestController.handleQuestionEdit(index, false);
         });
-    
+
         // Question label
         Label questionLabel = new Label("Question #" + (index + 1) + ": " + questionData.getQuestion());
         questionLabel.getStyleClass().add("question-label");
         questionBox.getChildren().add(questionLabel);
-    
+
         // Question image
         if (questionData.getImage() != null) {
             ImageView imageView = new ImageView(byteArrayToImage(questionData.getImage()));
@@ -86,7 +83,7 @@ public class MultipleChoicesQuestionWithPicture extends AbstractQuestion {
             imageView.setPreserveRatio(true);
             questionBox.getChildren().add(imageView);
         }
-    
+
         // Answer options
         List<String> options = questionData.getOptions();
         VBox answersBox = new VBox(5);
@@ -96,12 +93,12 @@ public class MultipleChoicesQuestionWithPicture extends AbstractQuestion {
         for (int correctIndex : questionData.getCorrectAnswerIndexes()) {
             correctAnswerSet.add(correctIndex);
         }
-    
+
         for (int i = 0; i < options.size(); i++) {
             CheckBox answerCheckBox = new CheckBox(options.get(i));
             answerCheckBox.setUserData(i);
             answerCheckBox.setDisable(true); // Prevent modification during viewing
-    
+
             // Highlight the correct answers
             if (correctAnswerSet.contains(i)) {
                 answerCheckBox.setSelected(true);
@@ -109,12 +106,12 @@ public class MultipleChoicesQuestionWithPicture extends AbstractQuestion {
             } else {
                 answerCheckBox.getStyleClass().add("incorrect-answer");
             }
-    
+
             answersBox.getChildren().add(answerCheckBox);
         }
-    
+
         questionBox.getChildren().add(answersBox);
-    
+
         // Delete button
         Image deleteImage = new Image(getClass().getResourceAsStream("/images/delete.png"));
         ImageView deleteImageView = new ImageView(deleteImage);
@@ -125,10 +122,8 @@ public class MultipleChoicesQuestionWithPicture extends AbstractQuestion {
             event.consume();
         });
         questionBox.getChildren().add(deleteImageView);
-    
+
         return questionBox;
     }
-    
-    
 
 }

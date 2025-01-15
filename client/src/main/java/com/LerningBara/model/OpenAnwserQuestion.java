@@ -13,7 +13,6 @@ import QuestionData.OpenAnwserQuestionData;
 import javafx.scene.layout.VBox;
 import javafx.scene.control.Label;
 
-
 public class OpenAnwserQuestion extends AbstractQuestion {
 
     private OpenAnwserQuestionData questionData;
@@ -49,7 +48,7 @@ public class OpenAnwserQuestion extends AbstractQuestion {
     public VBox getDetailsBox(int index) {
         VBox questionBox = new VBox(10);
         questionBox.getStyleClass().add("question-box");
-        questionBox.setOnMouseClicked(event -> {
+        questionBox.setOnMouseClicked(_ -> {
             App.createTestController.handleQuestionEdit(index, false);
         });
 

@@ -48,9 +48,9 @@ public class CreateMultipleChoicesQuestionWithPictureController extends CreateAb
         addAnswerField(); // Adds default fields
         addAnswerField();
 
-        uploadImageButton.setOnAction(event -> handleImageUpload());
-        addAnswerButton.setOnAction(event -> addAnswerField());
-        saveButton.setOnAction(event -> handleSaveQuestion());
+        uploadImageButton.setOnAction(_ -> handleImageUpload());
+        addAnswerButton.setOnAction(_ -> addAnswerField());
+        saveButton.setOnAction(_ -> handleSaveQuestion());
 
         // Populate form if data exists
         populateForm();
@@ -104,7 +104,7 @@ public class CreateMultipleChoicesQuestionWithPictureController extends CreateAb
         correctAnswerCheckBox.setSelected(isSelected);
 
         Button deleteButton = new Button("Remove");
-        deleteButton.setOnAction(event -> answerList.getChildren().remove(answerBox));
+        deleteButton.setOnAction(_ -> answerList.getChildren().remove(answerBox));
 
         answerBox.getChildren().addAll(correctAnswerCheckBox, answerInput, deleteButton);
         answerList.getChildren().add(answerBox);
@@ -161,7 +161,6 @@ public class CreateMultipleChoicesQuestionWithPictureController extends CreateAb
     @Override
     public AbstractQuestionData getQuestionData() {
         return new MultipleChoicesQuestionWithPictureData(
-            questionText, answers, correctAnswers.stream().mapToInt(i -> i).toArray(), imageBytes
-        );
+                questionText, answers, correctAnswers.stream().mapToInt(i -> i).toArray(), imageBytes);
     }
 }

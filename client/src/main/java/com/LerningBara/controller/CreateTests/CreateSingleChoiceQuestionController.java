@@ -44,8 +44,8 @@ public class CreateSingleChoiceQuestionController extends CreateAbstractQestionC
         addAnswerField();
         initializeFields();
 
-        addAnswerButton.setOnAction(event -> addAnswerField());
-        saveButton.setOnAction(event -> handleSaveQuestion());
+        addAnswerButton.setOnAction(_ -> addAnswerField());
+        saveButton.setOnAction(_ -> handleSaveQuestion());
     }
 
     private void initializeFields() {
@@ -91,7 +91,7 @@ public class CreateSingleChoiceQuestionController extends CreateAbstractQestionC
         correctAnswerButton.setToggleGroup(toggleGroup);
 
         Button deleteButton = new Button("Remove");
-        deleteButton.setOnAction(event -> {
+        deleteButton.setOnAction(_ -> {
             answerList.getChildren().remove(answerBox);
             toggleGroup.getToggles().remove(correctAnswerButton);
         });
