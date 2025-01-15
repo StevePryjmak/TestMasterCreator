@@ -62,51 +62,58 @@ public class MultipleChoicesQuestionWithPicture extends AbstractQuestion {
         return false;
     }
 
+
     @Override
     public VBox getDetailsBox(int index) {
         VBox questionBox = new VBox(10);
         questionBox.getStyleClass().add("question-box");
-
-        ImageView imageView = new ImageView();
-        imageView.setImage(byteArrayToImage(questionData.getImage()));
-        questionBox.getChildren().add(imageView);
-
+    
+        questionBox.setOnMouseClicked(event -> {
+            App.createTestController.handleQuestionEdit(index, false);
+        });
+    
+        // Question label
         Label questionLabel = new Label("Question #" + (index + 1) + ": " + questionData.getQuestion());
         questionLabel.getStyleClass().add("question-label");
         questionBox.getChildren().add(questionLabel);
-
+    
+        // Question image
+        if (questionData.getImage() != null) {
+            ImageView imageView = new ImageView(byteArrayToImage(questionData.getImage()));
+            imageView.setFitWidth(200);
+            imageView.setPreserveRatio(true);
+            questionBox.getChildren().add(imageView);
+        }
+    
+        // Answer options
         List<String> options = questionData.getOptions();
-        int[] correctAnswerIndexes = questionData.getCorrectAnswerIndexes();
+        VBox answersBox = new VBox(5);
+        answersBox.getStyleClass().add("answers-box");
 
-        HBox answerHBox = new HBox(10);
-        answerHBox.setAlignment(Pos.CENTER_LEFT);
-
-        // Create a Set for quick lookup of correct answer indexes
         Set<Integer> correctAnswerSet = new HashSet<>();
-        for (int correctIndex : correctAnswerIndexes) {
+        for (int correctIndex : questionData.getCorrectAnswerIndexes()) {
             correctAnswerSet.add(correctIndex);
         }
-
+    
         for (int i = 0; i < options.size(); i++) {
             CheckBox answerCheckBox = new CheckBox(options.get(i));
             answerCheckBox.setUserData(i);
-
-            // Check if this option is correct based on the correctAnswerIndexes array
+            answerCheckBox.setDisable(true); // Prevent modification during viewing
+    
+            // Highlight the correct answers
             if (correctAnswerSet.contains(i)) {
                 answerCheckBox.setSelected(true);
+                answerCheckBox.getStyleClass().add("correct-answer");
+            } else {
+                answerCheckBox.getStyleClass().add("incorrect-answer");
             }
-
-            answerHBox.getChildren().add(answerCheckBox);
-
-            // Add the current row of checkboxes to the question box
-            if (i % 2 == 1 || i == options.size() - 1) {
-                questionBox.getChildren().add(answerHBox);
-                answerHBox = new HBox(10);
-                answerHBox.setAlignment(Pos.CENTER_LEFT);
-            }
+    
+            answersBox.getChildren().add(answerCheckBox);
         }
-
-        // Add a delete button image for removing the question (optional)
+    
+        questionBox.getChildren().add(answersBox);
+    
+        // Delete button
         Image deleteImage = new Image(getClass().getResourceAsStream("/images/delete.png"));
         ImageView deleteImageView = new ImageView(deleteImage);
         deleteImageView.setFitHeight(20);
@@ -116,8 +123,10 @@ public class MultipleChoicesQuestionWithPicture extends AbstractQuestion {
             event.consume();
         });
         questionBox.getChildren().add(deleteImageView);
-
+    
         return questionBox;
     }
+    
+    
 
 }
