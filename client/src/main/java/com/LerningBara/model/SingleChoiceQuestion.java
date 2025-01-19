@@ -89,8 +89,9 @@ public class SingleChoiceQuestion extends AbstractQuestion {
      */
     @Override
     public boolean checkAnswer(String answer) {
-        // TODO: Implement this method to verify the correctness of the answer.
-        throw new UnsupportedOperationException("Unimplemented method 'checkAnswer'");
+        List<String> options = questionData.getOptions();
+        int correctAnswerIndex = questionData.getCorrectAnswerIndex();
+        return options.get(correctAnswerIndex).equals(answer);
     }
 
     /**
